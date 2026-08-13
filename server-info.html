@@ -3,81 +3,151 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact — Wizards of Ark</title>
+  <title>Wizards of Ark — Server Info</title>
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#c9a86a">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="site-header">
+
+<body class="arcane-body">
+  <header class="site-header arcane-header">
     <div class="brand">
       <img src="assets/logo.png" alt="Wizards of Ark" class="logo">
-      <div class="brand-text"><div class="title">Wizards of Ark</div></div>
+      <div class="brand-text">
+        <div class="title">Wizards of Ark</div>
+        <div class="subtitle">Server Info</div>
+      </div>
     </div>
+
     <nav class="nav">
       <a href="index.html" class="nav-link">Home</a>
-      <a href="server-info.html" class="nav-link">Server Info</a>
-      <a href="contact.html" class="nav-link active">Contact</a>
       <a href="store.html" class="nav-link">Store</a>
+      <a href="server-info.html" class="nav-link active">Server Info</a>
+      <a href="contact.html" class="nav-link">Contact</a>
     </nav>
   </header>
 
   <main class="main">
-    <section class="content-block">
-      <h1 class="section-title">Contact & Staff</h1>
 
-      <p>All support, appeals, and community coordination are handled exclusively through our Discord. There is <strong>no email support</strong>. Join the Discord and open a ticket in <strong>#support</strong> for any enforcement, ban appeals, or technical issues.</p>
+    <section class="content-block arcane-panel">
+      <h1 class="section-title">Server Info</h1>
+      <p class="notice">This page contains the full server settings, rules, mods, and how to join.</p>
+    </section>
 
-      <h2 class="section-title">How to get help</h2>
+    <section class="content-block arcane-panel">
+      <h2 class="section-title">Welcome to the Realm</h2>
+      <p>You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, boosted but balanced rates, and active UK & US admin coverage.</p>
+      <p>Build, explore, tame legendary creatures, and participate in epic events — the Realm is yours to conquer.</p>
+    </section>
+
+    <section class="content-block arcane-panel">
+      <h2 class="section-title">Server Rates & Settings</h2>
+      <ul>
+        <li>Cluster Type: PvE · Crossplay Enabled</li>
+        <li>Platforms: PC / Xbox / PlayStation</li>
+        <li>Maps: All Official Maps</li>
+        <li>Max Player Level: 190</li>
+        <li>Tribe Max: 6</li>
+        <li>Max Bases: 2 per tribe, per map</li>
+        <li>Max Structures: 10,000 per tribe, per map</li>
+      </ul>
+
+      <h3>Rates</h3>
+      <ul>
+        <li>XP: 1.5× · Harvesting: 5× · Taming: 10×</li>
+        <li>Egg Hatch: x10 · Maturation: x15 · Mating Interval: x10</li>
+        <li>Player Weight: x15 · Cryopods Enabled</li>
+      </ul>
+
+      <h3>Decay Timers</h3>
+      <ul>
+        <li>Stone: 18 days · Metal/Greenhouse: 24 days · Tek: 30 days</li>
+        <li>Creature Decay: 14 days · Death Bag: 1 hour</li>
+      </ul>
+    </section>
+
+    <section class="content-block arcane-panel">
+      <h2 class="section-title">Active Mods</h2>
+      <ul>
+        <li>Cybers Structures QoL+</li>
+        <li>Dino Depot</li>
+        <li>Awesome Spyglass!</li>
+        <li>Auto Engrams!</li>
+        <li>Astraeos – Mythological Creatures</li>
+        <li>Shiny! Dinos Ascended</li>
+        <li>Resonant Shop Mod</li>
+        <li>Alfa Stack 2.5k</li>
+      </ul>
+
+      <h3>Mod Restrictions</h3>
+      <p>Some CS items are disabled (mutator, propagator, cloning chamber, etc.) to preserve balance and prevent automation abuse.</p>
+    </section>
+
+    <section class="content-block arcane-panel">
+      <h2 class="section-title">Rules</h2>
+
+      <h3>Building Rules</h3>
+      <ul>
+        <li>Max 2 bases per tribe, per map</li>
+        <li>Bases must be 500m apart</li>
+        <li>No building in caves, obelisks, spawn zones, or mesh areas</li>
+        <li>Max 10,000 structures per tribe</li>
+      </ul>
+
+      <h3>Taming & Creature Rules</h3>
+      <ul>
+        <li>No blocking resources or paths with tames</li>
+        <li>No stacking dinos</li>
+        <li>New players (<7 days) may NOT receive mutated or end‑game dinos</li>
+        <li>All gifted dinos must be spayed/neutered</li>
+      </ul>
+
+      <h3>Trading & Economy</h3>
+      <ul>
+        <li>Mutated dinos must be spayed/neutered before trading</li>
+        <li>Breeding lines may not be resold without breeder permission</li>
+        <li>Monthly Pack creatures may only be traded among pack owners during active month</li>
+        <li>All trades must be documented in the PvE Trading Channel</li>
+      </ul>
+
+      <h3>Gameplay & Performance</h3>
+      <ul>
+        <li>No hacking, duping, exploiting, or griefing</li>
+        <li>No structures or tames at spawns/obelisks</li>
+        <li>Lag‑causing bases may be wiped</li>
+      </ul>
+    </section>
+
+    <section class="content-block arcane-panel">
+      <h2 class="section-title">How to Find Our Server</h2>
       <ol>
-        <li>Join our Discord: <a href="https://discord.gg/84FDUShzE" class="link">discord.gg/84FDUShzE</a></li>
-        <li>Read the rules in <strong>⚖️➖discord-rules</strong> and press Enter Realm to unlock support channels</li>
-        <li>Open a ticket in <strong>#support</strong> and include: your in-game name, server/map, and a short description (screenshots/logs if available)</li>
+        <li>Open ARK: Survival Ascended → Join Game → Unofficial</li>
+        <li>Set Game Mode: PvE</li>
+        <li>Search: <strong>The Wizards of Ark</strong></li>
+        <li>Uncheck “Password Protected”</li>
+        <li>Refresh list</li>
       </ol>
 
-      <p class="muted">Do NOT DM admins or owners for enforcement. Do not pull staff into voice — use tickets only.</p>
+      <p>If you still cannot see the servers, restart your game or open a ticket on Discord.</p>
     </section>
 
-    <section class="content-block">
-      <h2 class="section-title">Staff & Bots</h2>
-
-      <h3>Realm Masters (Owners)</h3>
+    <section class="content-block arcane-panel">
+      <h2 class="section-title">Admin & Enforcement</h2>
       <ul>
-        <li>brendonv</li>
-        <li>wizard</li>
-        <li>Heathen</li>
+        <li>Admins may remove rule‑breaking content</li>
+        <li>Violations may result in wipes, suspensions, or bans</li>
+        <li>Appeals must go through #support tickets</li>
       </ul>
-
-      <h3>Supreme Wizards (Senior Admin)</h3>
-      <ul>
-        <li>Emilio The Great</li>
-      </ul>
-
-      <h3>High Wizards (Admin)</h3>
-      <ul>
-        <li>Panda</li>
-        <li>Meehow</li>
-        <li>Diva</li>
-      </ul>
-
-      <h3>Bots & Tools</h3>
-      <ul>
-        <li>Wizards of Ark Bot</li>
-        <li>Wizards of Ark Raffle Bot</li>
-        <li>Helena ASA</li>
-        <li>Ticket Tool</li>
-        <li>Awesome ARK Tools</li>
-        <li>sesh</li>
-      </ul>
-
-      <p class="muted">If you need staff action (appeal, ban review, technical help), open a ticket in <strong>#support</strong>. Staff will respond there in order.</p>
+      <p class="muted">Respect the Realm | Protect the Magic | The Wizards of Ark</p>
     </section>
+
   </main>
 
   <footer class="footer">
     <div>Wizards of Ark — Arcane ASA Cluster</div>
+    <div class="footer-links"><a href="https://discord.gg/84FDUShzE" class="discord">Join Discord</a></div>
   </footer>
 </body>
 </html>
