@@ -1,167 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Server Info — Wizards of Ark</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Wizards of Ark — Server Info</title>
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="site-header">
-    <div class="logo-wrap">
-      <img src="assets/logo.png" class="logo" alt="Wizards of Ark">
+<body class="arcane-body">
+  <header class="site-header arcane-header">
+    <div class="brand">
+      <img src="assets/logo.png" alt="Wizards of Ark" class="logo">
+      <div class="brand-text">
+        <div class="title">Wizards of Ark</div>
+        <div class="subtitle">Server Info</div>
+      </div>
     </div>
     <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="store.html">Store</a>
-      <a href="server-info.html" class="active">Server Info</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="store.html" class="nav-link">Store</a>
+      <a href="server-info.html" class="nav-link active">Server Info</a>
+      <a href="contact.html" class="nav-link">Contact</a>
     </nav>
   </header>
 
   <main class="main">
     <section class="content-block">
-      <h1 class="arcane-title">Cluster Server Status</h1>
-
-      <div class="tab-container" id="serverButtons">
-        <!-- Buttons call openPanel(event, 'Key') so the function can mark active -->
-        <button class="tab" onclick="openPanel(event,'Island')">The Island</button>
-        <button class="tab" onclick="openPanel(event,'Scorched')">Scorched Earth</button>
-        <button class="tab" onclick="openPanel(event,'Aberration')">Aberration</button>
-        <button class="tab" onclick="openPanel(event,'Ragnarok')">Ragnarok</button>
-        <button class="tab" onclick="openPanel(event,'Valguero')">Valguero</button>
-        <button class="tab" onclick="openPanel(event,'Center')">The Center</button>
-        <button class="tab" onclick="openPanel(event,'Extinction')">Extinction</button>
-        <button class="tab" onclick="openPanel(event,'Gen1')">Genesis Part 1</button>
-        <button class="tab" onclick="openPanel(event,'LostColony')">Lost Colony</button>
-        <button class="tab" onclick="openPanel(event,'Astraeos')">Astraeos</button>
-        <button class="tab" onclick="openPanel(event,'Amissa')">Amissa</button>
-        <button class="tab" onclick="openPanel(event,'Bjarnheim')">Bjarnheim</button>
-        <button class="tab" onclick="openPanel(event,'Event')">Event Map</button>
-        <button class="tab" onclick="openPanel(event,'PvP')">PvP Map</button>
-      </div>
-
-      <!-- Panels -->
-      <div id="Island" class="panel"></div>
-      <div id="Scorched" class="panel"></div>
-      <div id="Aberration" class="panel"></div>
-      <div id="Ragnarok" class="panel"></div>
-      <div id="Valguero" class="panel"></div>
-      <div id="Center" class="panel"></div>
-      <div id="Extinction" class="panel"></div>
-      <div id="Gen1" class="panel"></div>
-      <div id="LostColony" class="panel"></div>
-      <div id="Astraeos" class="panel"></div>
-      <div id="Amissa" class="panel"></div>
-      <div id="Bjarnheim" class="panel"></div>
-      <div id="Event" class="panel"></div>
-      <div id="PvP" class="panel"></div>
+      <h1 class="section-title">Server Info</h1>
+      <p class="notice">Live server status is temporarily disabled. Full configuration, rules and guides are below.</p>
     </section>
 
-    <!-- (Your original server-info content can follow here) -->
+    <!-- Inserted content from your rules and welcome documents -->
+    <section class="content-block">
+      <h2>Welcome</h2>
+      <p>You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and dedicated admins from both the UK and US keeping everything running smoothly.</p>
+    </section>
+
+    <section class="content-block">
+      <h2>Server Rates and Settings</h2>
+      <ul>
+        <li><strong>Cluster Type:</strong> PvE · <strong>Crossplay:</strong> Enabled</li>
+        <li><strong>Platforms:</strong> PC / Xbox / PlayStation · <strong>Max Level:</strong> 190</li>
+        <li><strong>Tribe Max:</strong> 6 · <strong>Max bases per tribe:</strong> 2 per map</li>
+      </ul>
+
+      <h3>General Rates</h3>
+      <ul>
+        <li>XP: 1.5× · Harvesting: 5× · Taming Speed: 10×</li>
+        <li>Player Weight: x15 · Cryopods: Enabled · Structure Pickup: Enabled</li>
+      </ul>
+
+      <h3>Decay & Dino</h3>
+      <ul>
+        <li>Creature decay: 14 Days · Auto Dino Wipe: Every 24 h</li>
+        <li>Max Wild Level: 150 · Egg Hatch Speed: x10 · Maturation: x15</li>
+      </ul>
+    </section>
+
+    <section class="content-block">
+      <h2>Active Mods</h2>
+      <ul>
+        <li>Cybers Structures QoL+</li>
+        <li>Dino Depot</li>
+        <li>Awesome Spyglass!</li>
+        <li>Auto Engrams!</li>
+        <li>Astraeos – Mythological Creatures</li>
+        <li>Shiny! Dinos Ascended</li>
+      </ul>
+    </section>
+
+    <section class="content-block">
+      <h2>Rules Summary</h2>
+      <h3>Building Rules</h3>
+      <ul>
+        <li>Max 2 bases per tribe, per map; bases must be 500m apart</li>
+        <li>No under-map/mesh/glitch builds; no building in spawn/obelisks/caves</li>
+        <li>Max 10,000 structures per tribe, per map</li>
+      </ul>
+
+      <h3>Gameplay & Trading</h3>
+      <ul>
+        <li>No hacking, duping, exploiting, or griefing</li>
+        <li>One character per player; no alts</li>
+        <li>Mutated dinos must be spayed/neutered before trading</li>
+        <li>All trades must be documented in the PvE Trading Channel</li>
+      </ul>
+    </section>
+
+    <section class="content-block">
+      <h2>Admin & Enforcement</h2>
+      <p>Admins may remove rule-breaking content. Appeals go through #support tickets. Respect the Realm | Protect the Magic | The Wizards of Ark.</p>
+    </section>
   </main>
 
   <footer class="footer">
-    <p>Wizards of Ark — Arcane ASA Cluster</p>
+    <div>Wizards of Ark — Arcane ASA Cluster</div>
+    <div class="footer-links"><a href="https://discord.gg/84FDUShzE" class="discord">Join Discord</a></div>
   </footer>
-
-  <a href="https://discord.gg/84FDUShzE" class="discord-float">Join Discord</a>
-
-  <script>
-  // Server list
-  const servers = {
-    Island: { id: 36234320, max: 40 },
-    Scorched: { id: 36350599, max: 40 },
-    Aberration: { id: 36350590, max: 40 },
-    Ragnarok: { id: 36622475, max: 40 },
-    Valguero: { id: 34584004, max: 40 },
-    Center: { id: 37460528, max: 40 },
-    Extinction: { id: 37877926, max: 40 },
-    Gen1: { id: 39624576, max: 40 },
-    LostColony: { id: 38673826, max: 40 },
-    Astraeos: { id: 36923428, max: 40 },
-    Amissa: { id: 37736125, max: 40 },
-    Bjarnheim: { id: 40500451, max: 40 },
-    Event: { id: 40597866, max: 20 },
-    PvP: { id: 39193910, max: 20 }
-  };
-
-  // Open panel and mark active button
-  function openPanel(e, name) {
-    document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    const panel = document.getElementById(name);
-    panel.style.display = 'block';
-    e.currentTarget.classList.add('active');
-
-    // If panel is empty or shows an error, try to (re)load its status
-    if (!panel.dataset.loaded || panel.dataset.loaded === 'false') {
-      loadSingleStatus(name);
-    }
-  }
-
-  // Try proxy.cors.sh first (requires header), fallback to allorigins
-  async function fetchWithFallback(url) {
-    // First attempt: proxy.cors.sh with header
-    try {
-      const res = await fetch('https://proxy.cors.sh/' + url, {
-        headers: { 'x-cors-api-key': 'temp' }
-      });
-      if (res.ok) return res;
-    } catch (e) {
-      // continue to fallback
-    }
-
-    // Fallback: allorigins
-    try {
-      const fallbackUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
-      const res2 = await fetch(fallbackUrl);
-      if (res2.ok) return res2;
-    } catch (e) {
-      // both failed
-    }
-
-    throw new Error('Both proxies failed');
-  }
-
-  async function loadSingleStatus(key) {
-    const server = servers[key];
-    const panel = document.getElementById(key);
-
-    // show loading
-    panel.innerHTML = '<h2>' + key.replace(/([A-Z])/g, ' $1').trim() + '</h2><div class="status">Loading...</div>';
-    panel.dataset.loaded = 'false';
-
-    try {
-      const apiUrl = 'https://api.battlemetrics.com/servers/' + server.id;
-      const response = await fetchWithFallback(apiUrl);
-      const data = await response.json();
-
-      const status = data.data.attributes.status;
-      const players = data.data.attributes.players;
-
-      panel.innerHTML = `
-        <h2>${key.replace(/([A-Z])/g, ' $1').trim()}</h2>
-        <div class="status ${status === 'online' ? 'online' : 'offline'}">
-          Status: ${status === 'online' ? '🟢 Online' : '🔴 Offline'}
-        </div>
-        <div class="status">Players: ${players} / ${server.max}</div>
-      `;
-      panel.dataset.loaded = 'true';
-    } catch (err) {
-      panel.innerHTML = `
-        <h2>${key.replace(/([A-Z])/g, ' $1').trim()}</h2>
-        <div class="status offline">Unable to load server data.</div>
-        <div class="status">Try again or check server logs.</div>
-      `;
-      panel.dataset.loaded = 'false';
-    }
-  }
-
-  // Preload first panel on page load
-  window.addEventListener('DOMContentLoaded', () => {
-    const firstButton = document.querySelector('.tab');
-    if (firstButton) firstButton.click();
-  });
-  </script>
 </body>
 </html>
