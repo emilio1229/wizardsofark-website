@@ -4,16 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Wizards of Ark — Home</title>
-
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-  <!-- Icons & manifest -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#c9a86a">
-
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="arcane-body">
@@ -47,7 +41,6 @@
       </div>
     </section>
 
-    <!-- Full lore blurb -->
     <section class="content-block" aria-labelledby="lore-heading">
       <h2 id="lore-heading" class="section-title">The Realm Awaits</h2>
       <div class="lore-full">
@@ -83,16 +76,13 @@
     <div class="footer-links"><a href="https://discord.gg/84FDUShzE" class="discord">Join Discord</a></div>
   </footer>
 
-  <!-- Lightbox -->
   <div id="galleryLightbox" class="gallery-lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
     <button class="close-btn" id="lightboxClose" aria-label="Close">✕</button>
     <div class="lightbox-content" id="lightboxContent" role="document"></div>
   </div>
 
-  <!-- Gallery loader + lightbox script -->
   <script>
   (function(){
-    // Edit this list if you add or remove gallery images
     const expectedFiles = ['gallery1.png','gallery2.png'];
     const basePaths = ['assets/gallery/','assets/'];
     const grid = document.getElementById('galleryGrid');
@@ -132,4 +122,35 @@
         if(!found) missing.push(name);
       }
       if(missing.length){
-        console
+        console.warn('Gallery missing:', missing);
+        note.textContent='Some gallery files are missing. Check console for filenames.';
+        note.style.display='block';
+      }
+    })();
+
+    const lightbox=document.getElementById('galleryLightbox');
+    const content=document.getElementById('lightboxContent');
+    const closeBtn=document.getElementById('lightboxClose');
+
+    grid.addEventListener('click', e=>{
+      const t=e.target.closest('img.thumb');
+      if(!t) return;
+      content.innerHTML='';
+      const img=document.createElement('img');
+      img.src=t.dataset.full||t.src;
+      img.alt=t.alt||'';
+      content.appendChild(img);
+      lightbox.style.display='flex';
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+      closeBtn.focus();
+    });
+
+    function closeLB(){ lightbox.style.display='none'; content.innerHTML=''; lightbox.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+    closeBtn.addEventListener('click', closeLB);
+    lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLB(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLB(); });
+  })();
+  </script>
+</body>
+</html>
