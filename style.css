@@ -1,92 +1,65 @@
-/* Arcane Background */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: url("assets/arcane-bg.jpg") no-repeat center center fixed,
-              radial-gradient(circle at top, #3b1b5f 0%, #05030a 45%, #020109 100%);
-  background-size: cover;
-  color: #e6d9ff;
-}
-
-/* Header */
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-  background: rgba(20, 10, 40, 0.7);
-}
-
-.logo {
-  height: 80px;
-}
-
-.nav a {
-  margin: 0 15px;
-  color: #e6d9ff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.nav a.active {
-  color: #b38cff;
-}
-
-/* Content Blocks */
-.main {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  background: rgba(20, 10, 40, 0.6);
-  border-radius: 10px;
-}
-
-.content-block {
-  margin-bottom: 40px;
-}
-
-h1, h2 {
-  color: #d8c4ff;
-}
-
-/* Buttons */
-.btn {
-  display: inline-block;
-  padding: 12px 20px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.btn.primary {
-  background: #6a4bcc;
-  color: white;
-}
-
-/* Floating Discord Button */
-.discord-float {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #5865F2;
-  color: white;
-  padding: 14px 18px;
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-  box-shadow: 0 0 18px rgba(88, 101, 242, 0.8);
-  transition: all 0.2s ease;
-  z-index: 9999;
-}
-
-.discord-float:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 24px rgba(88, 101, 242, 1);
-}
-
-/* Footer */
-.footer {
+/* Arcane Title */
+.arcane-title {
+  font-size: 42px;
   text-align: center;
-  padding: 20px;
-  color: #cbb8ff;
+  color: #c9a86a;
+  text-shadow: 0 0 12px #5a3e1b, 0 0 25px #c9a86a;
+  margin-bottom: 20px;
 }
+
+/* Tabs */
+.tab-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: #111522;
+  padding: 10px;
+  border-bottom: 2px solid #c9a86a;
+  box-shadow: 0 0 20px #000 inset;
+}
+
+.tab {
+  padding: 10px 18px;
+  margin: 5px;
+  background: #1a1f2e;
+  border: 1px solid #c9a86a;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #c9a86a;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.tab:hover {
+  background: #2a3147;
+  box-shadow: 0 0 12px #c9a86a;
+}
+
+.tab.active {
+  background: #c9a86a;
+  color: #0b0f19;
+  box-shadow: 0 0 15px #c9a86a;
+}
+
+/* Panels */
+.panel {
+  display: none;
+  padding: 20px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 800px;
+  background: #0d0f17;
+  border: 2px solid #c9a86a;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #c9a86a55, inset 0 0 10px #000;
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Status Colors */
+.online { color: #4caf50; }
+.offline { color: #f44336; }
