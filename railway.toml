@@ -1,0 +1,3 @@
+[service]
+name = "wizardsofark"
+port = 80
