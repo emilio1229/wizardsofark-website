@@ -1,27 +1,29 @@
 /* ---------------------------------------------------------
    ARCANE REALM THEME — Wizards of Ark
-   Magical gradients • glowing runes • parchment panels
+   Magical gradients • glowing runes • enchanted UI
 --------------------------------------------------------- */
 
 :root{
-  --bg1:#1a0f29;        /* deep arcane purple */
-  --bg2:#0d0a18;        /* dark violet */
-  --accent:#c9a86a;     /* gold */
-  --accent-glow:#e9d7a0;
-  --muted:#b8b4c7;
-  --panel-bg:rgba(255,255,255,0.03);
-  --panel-border:rgba(201,168,106,0.15);
+  --arcane-purple:#3d1a5a;
+  --arcane-dark:#1a0f29;
+  --arcane-deep:#0d0818;
+  --gold:#c9a86a;
+  --gold-glow:#f3e2b4;
+  --text-light:#eae6f7;
+  --text-muted:#b8b4c7;
+  --panel-bg:rgba(255,255,255,0.06);
+  --panel-border:rgba(201,168,106,0.25);
   --glyph:'Uncial Antiqua', serif;
   --ui:'Inter', system-ui, Arial, sans-serif;
   --max-width:1100px;
 }
 
-/* GLOBAL */
+/* GLOBAL BACKGROUND — ARCANE PURPLE REALM */
 body{
   margin:0;
   font-family:var(--ui);
-  background:radial-gradient(circle at 50% 20%, #3b1f5e 0%, #1a0f29 40%, #0d0a18 100%);
-  color:#eae6f7;
+  background:radial-gradient(circle at 50% 20%, var(--arcane-purple) 0%, var(--arcane-dark) 40%, var(--arcane-deep) 100%);
+  color:var(--text-light);
   -webkit-font-smoothing:antialiased;
 }
 
@@ -31,60 +33,62 @@ body{
   align-items:center;
   justify-content:space-between;
   padding:14px 20px;
-  background:linear-gradient(180deg, rgba(60,40,100,0.6), rgba(20,10,40,0.5));
-  border-bottom:1px solid rgba(201,168,106,0.2);
+  background:linear-gradient(180deg, rgba(80,40,120,0.6), rgba(20,10,40,0.5));
+  border-bottom:1px solid var(--panel-border);
   backdrop-filter:blur(6px);
   position:sticky;
   top:0;
   z-index:50;
+  box-shadow:0 4px 20px rgba(0,0,0,0.5);
 }
 
 .logo{
   height:56px;
   border-radius:8px;
-  border:2px solid rgba(201,168,106,0.25);
-  box-shadow:0 0 12px rgba(201,168,106,0.25);
+  border:2px solid var(--panel-border);
+  box-shadow:0 0 12px rgba(201,168,106,0.35);
 }
 
+/* BRAND TEXT */
 .brand-text .title{
   font-family:var(--glyph);
-  font-size:22px;
-  color:var(--accent);
-  text-shadow:0 0 8px rgba(201,168,106,0.4);
+  font-size:24px;
+  color:var(--gold);
+  text-shadow:0 0 10px rgba(201,168,106,0.5);
 }
 
 .brand-text .subtitle{
   font-size:12px;
-  color:var(--muted);
+  color:var(--text-muted);
 }
 
-/* NAV BUTTONS — ARCANE RUNES */
+/* NAV BUTTONS — ENCHANTED RUNES */
 .nav{
   display:flex;
-  gap:10px;
+  gap:12px;
 }
 
 .nav-link{
-  padding:10px 16px;
-  border-radius:10px;
+  padding:10px 18px;
+  border-radius:12px;
   text-decoration:none;
-  font-weight:600;
-  color:var(--accent);
-  background:rgba(255,255,255,0.05);
-  border:1px solid rgba(201,168,106,0.25);
-  box-shadow:0 0 10px rgba(201,168,106,0.15);
+  font-weight:700;
+  color:var(--gold);
+  background:rgba(255,255,255,0.08);
+  border:1px solid var(--panel-border);
+  box-shadow:0 0 12px rgba(201,168,106,0.25);
   transition:all .25s ease;
 }
 
 .nav-link:hover{
-  background:rgba(201,168,106,0.15);
-  box-shadow:0 0 14px rgba(201,168,106,0.45);
-  transform:translateY(-2px);
+  background:rgba(201,168,106,0.25);
+  box-shadow:0 0 18px rgba(201,168,106,0.55);
+  transform:translateY(-3px);
 }
 
 .nav-link.active{
-  background:rgba(201,168,106,0.25);
-  box-shadow:0 0 18px rgba(201,168,106,0.55);
+  background:rgba(201,168,106,0.35);
+  box-shadow:0 0 22px rgba(201,168,106,0.65);
 }
 
 /* MAIN */
@@ -94,25 +98,25 @@ body{
   padding:0 18px;
 }
 
-/* ARCANE PANELS */
+/* ARCANE PANELS — PARCHMENT + GLOW */
 .content-block{
-  background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
   border:1px solid var(--panel-border);
-  padding:20px;
-  border-radius:14px;
-  margin-bottom:22px;
-  box-shadow:0 10px 40px rgba(0,0,0,0.45);
-  backdrop-filter:blur(4px);
+  padding:22px;
+  border-radius:16px;
+  margin-bottom:26px;
+  box-shadow:0 12px 40px rgba(0,0,0,0.55);
+  backdrop-filter:blur(5px);
 }
 
-/* SECTION TITLES WITH RUNES */
+/* SECTION TITLES — GOLD RUNES */
 .section-title{
   font-family:var(--glyph);
-  font-size:22px;
-  color:var(--accent);
-  margin:0 0 14px;
+  font-size:24px;
+  color:var(--gold);
+  margin:0 0 16px;
   position:relative;
-  padding-left:22px;
+  padding-left:26px;
 }
 
 .section-title::before{
@@ -120,68 +124,69 @@ body{
   position:absolute;
   left:0;
   top:0;
-  color:var(--accent-glow);
-  text-shadow:0 0 12px rgba(201,168,106,0.5);
+  color:var(--gold-glow);
+  text-shadow:0 0 14px rgba(201,168,106,0.6);
+  font-size:20px;
 }
 
 /* HERO */
 .hero{
   padding:40px;
-  border-radius:16px;
-  background:linear-gradient(135deg, rgba(201,168,106,0.15), rgba(143,191,159,0.08));
-  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+  border-radius:18px;
+  background:linear-gradient(135deg, rgba(201,168,106,0.25), rgba(143,191,159,0.12));
+  box-shadow:0 12px 40px rgba(0,0,0,0.6);
 }
 
 .hero-title{
   font-family:var(--glyph);
-  font-size:46px;
-  color:var(--accent);
-  text-shadow:0 0 12px rgba(201,168,106,0.4);
+  font-size:48px;
+  color:var(--gold);
+  text-shadow:0 0 14px rgba(201,168,106,0.5);
 }
 
 .hero-lead{
-  color:var(--muted);
-  margin-top:10px;
+  color:var(--text-muted);
+  margin-top:12px;
   font-size:18px;
 }
 
-/* BUTTONS */
+/* BUTTONS — ARCANE SPELL BUTTONS */
 .btn{
   display:inline-block;
-  padding:12px 18px;
-  border-radius:12px;
+  padding:12px 20px;
+  border-radius:14px;
   text-decoration:none;
   font-weight:700;
   transition:all .25s ease;
 }
 
 .btn.primary{
-  background:linear-gradient(180deg,var(--accent),#b58f4a);
-  color:#1a0f29;
-  box-shadow:0 0 12px rgba(201,168,106,0.45);
+  background:linear-gradient(180deg,var(--gold),#b58f4a);
+  color:var(--arcane-dark);
+  box-shadow:0 0 14px rgba(201,168,106,0.55);
 }
 
 .btn.primary:hover{
-  box-shadow:0 0 18px rgba(201,168,106,0.65);
-  transform:translateY(-2px);
+  box-shadow:0 0 22px rgba(201,168,106,0.75);
+  transform:translateY(-3px);
 }
 
 .btn.ghost{
-  border:1px solid rgba(201,168,106,0.35);
-  color:var(--accent);
-  background:rgba(255,255,255,0.05);
+  border:1px solid var(--panel-border);
+  color:var(--gold);
+  background:rgba(255,255,255,0.08);
 }
 
 .btn.ghost:hover{
-  background:rgba(201,168,106,0.15);
-  box-shadow:0 0 14px rgba(201,168,106,0.45);
+  background:rgba(201,168,106,0.25);
+  box-shadow:0 0 18px rgba(201,168,106,0.55);
 }
 
 /* FOOTER */
 .footer{
   padding:20px;
   text-align:center;
-  color:var(--muted);
+  color:var(--text-muted);
   font-size:14px;
   margin-top:40px;
 }
@@ -190,22 +195,22 @@ body{
 .gallery-grid{
   display:grid;
   grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-  gap:16px;
+  gap:18px;
 }
 
 .thumb{
   width:100%;
   height:160px;
   object-fit:cover;
-  border-radius:12px;
-  border:2px solid rgba(201,168,106,0.25);
-  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  border-radius:14px;
+  border:2px solid var(--panel-border);
+  box-shadow:0 12px 30px rgba(0,0,0,0.6);
   transition:transform .22s ease, box-shadow .22s ease;
 }
 
 .thumb:hover{
-  transform:translateY(-6px) scale(1.03);
-  box-shadow:0 0 20px rgba(201,168,106,0.45);
+  transform:translateY(-6px) scale(1.04);
+  box-shadow:0 0 22px rgba(201,168,106,0.55);
 }
 
 /* LIGHTBOX */
@@ -223,8 +228,8 @@ body{
 .lightbox-content img{
   max-width:95%;
   max-height:95%;
-  border-radius:12px;
-  box-shadow:0 0 30px rgba(201,168,106,0.45);
+  border-radius:14px;
+  box-shadow:0 0 30px rgba(201,168,106,0.55);
 }
 
 .close-btn{
@@ -233,7 +238,7 @@ body{
   top:18px;
   background:rgba(0,0,0,0.45);
   color:#fff;
-  border:1px solid var(--accent);
+  border:1px solid var(--gold);
   padding:8px 10px;
   border-radius:8px;
   cursor:pointer;
@@ -242,7 +247,7 @@ body{
 
 /* UTILITY */
 .link{
-  color:var(--accent);
+  color:var(--gold);
   text-decoration:underline;
 }
 
