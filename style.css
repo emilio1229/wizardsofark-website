@@ -193,3 +193,91 @@ body {
   border:2px solid #c9a86a;
   box-shadow:0 0 15px #c9a86a55;
 }
+/* ---------- Gallery: responsive thumbnails + lightbox ---------- */
+
+/* Grid */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+/* Thumbnails: fixed height, cover, consistent aspect */
+.gallery-grid img,
+.gallery-grid video {
+  width: 100%;
+  height: 160px;               /* thumbnail height */
+  object-fit: cover;           /* crop to fill */
+  display: block;
+  border-radius: 8px;
+  border: 2px solid #c9a86a;
+  box-shadow: 0 6px 18px rgba(201,168,106,0.12);
+  cursor: pointer;
+}
+
+/* Make videos show a poster-like thumbnail */
+.gallery-grid video {
+  background: #000;
+}
+
+/* Smaller screens: reduce thumbnail height */
+@media (max-width: 600px) {
+  .gallery-grid img,
+  .gallery-grid video {
+    height: 120px;
+  }
+}
+
+/* Lightbox overlay */
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(6,8,12,0.85);
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* Lightbox content */
+.gallery-lightbox .content {
+  max-width: 95%;
+  max-height: 95%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* Lightbox image/video sizing */
+.gallery-lightbox img,
+.gallery-lightbox video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Close button */
+.gallery-lightbox .close-btn {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: rgba(0,0,0,0.45);
+  color: #fff;
+  border: 1px solid #c9a86a;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 700;
+  z-index: 10000;
+}
+
+/* Caption (optional) */
+.gallery-lightbox .caption {
+  color: #e6d9b8;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 14px;
+  background: rgba(0,0,0,0.35);
+}
