@@ -1,5 +1,4 @@
-/* Your existing site styles remain untouched */
-
+/* GLOBAL SITE STYLES */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -81,4 +80,68 @@ body {
   background: #111522;
   padding: 10px;
   border-bottom: 2px solid #c9a86a;
-  box-shadow: 0 0 20px
+  box-shadow: 0 0 20px #000 inset;
+  margin-top: 40px;
+}
+
+.tab {
+  padding: 12px 22px;
+  margin: 6px;
+  background: #1a1f2e;
+  border: 2px solid #c9a86a;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #c9a86a;
+  font-size: 16px;
+  font-weight: bold;
+  transition: 0.25s;
+}
+
+.tab:hover {
+  background: #2a3147;
+  box-shadow: 0 0 12px #c9a86a;
+}
+
+.tab.active {
+  background: #c9a86a;
+  color: #0b0f19;
+  box-shadow: 0 0 15px #c9a86a;
+}
+
+.panel {
+  display: none;
+  padding: 20px;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 800px;
+  background: #0d0f17;
+  border: 2px solid #c9a86a;
+  border-radius: 12px;
+  box-shadow: 0 0 25px #c9a86a55, inset 0 0 10px #000;
+  animation: fadeIn 0.6s ease;
+  color: #e0e0e0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.online { color: #4caf50; }
+.offline { color: #f44336; }
+
+/* ⭐⭐⭐ GALLERY FIX ⭐⭐⭐ */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.gallery-grid img,
+.gallery-grid video {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid #c9a86a;
+  box-shadow: 0 0 15px #c9a86a55;
+}
