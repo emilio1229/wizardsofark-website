@@ -1,42 +1,252 @@
-/* Arcane theme accents */
-.arcane-panel {
-  background: linear-gradient(180deg, rgba(20,18,12,0.55), rgba(12,10,8,0.45));
-  border: 1px solid rgba(201,168,106,0.08);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-  background-image: url('assets/parchment.png');
-  background-size: cover;
-  background-blend-mode: overlay;
+/* ---------------------------------------------------------
+   ARCANE REALM THEME — Wizards of Ark
+   Magical gradients • glowing runes • parchment panels
+--------------------------------------------------------- */
+
+:root{
+  --bg1:#1a0f29;        /* deep arcane purple */
+  --bg2:#0d0a18;        /* dark violet */
+  --accent:#c9a86a;     /* gold */
+  --accent-glow:#e9d7a0;
+  --muted:#b8b4c7;
+  --panel-bg:rgba(255,255,255,0.03);
+  --panel-border:rgba(201,168,106,0.15);
+  --glyph:'Uncial Antiqua', serif;
+  --ui:'Inter', system-ui, Arial, sans-serif;
+  --max-width:1100px;
 }
 
-/* Section rune accent */
-.section-title {
-  position: relative;
-  padding-left: 12px;
-}
-.section-title::before {
-  content: "✦";
-  position: absolute;
-  left: -6px;
-  top: 0;
-  color: rgba(201,168,106,0.95);
-  text-shadow: 0 0 12px rgba(201,168,106,0.18);
-  font-size: 18px;
+/* GLOBAL */
+body{
+  margin:0;
+  font-family:var(--ui);
+  background:radial-gradient(circle at 50% 20%, #3b1f5e 0%, #1a0f29 40%, #0d0a18 100%);
+  color:#eae6f7;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* Soft glow for important notes */
-.notice, .lore-note, .muted {
-  color: #f7e9c6;
-  text-shadow: 0 1px 0 rgba(0,0,0,0.45);
+/* HEADER */
+.site-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 20px;
+  background:linear-gradient(180deg, rgba(60,40,100,0.6), rgba(20,10,40,0.5));
+  border-bottom:1px solid rgba(201,168,106,0.2);
+  backdrop-filter:blur(6px);
+  position:sticky;
+  top:0;
+  z-index:50;
 }
 
-/* Parchment fallback if image missing */
-@media (prefers-reduced-motion: no-preference) {
-  .arcane-panel { transition: transform .18s ease; }
-  .arcane-panel:hover { transform: translateY(-4px); }
+.logo{
+  height:56px;
+  border-radius:8px;
+  border:2px solid rgba(201,168,106,0.25);
+  box-shadow:0 0 12px rgba(201,168,106,0.25);
 }
 
-/* Small rune border for hero */
-.hero {
-  border-image: linear-gradient(90deg, rgba(201,168,106,0.2), rgba(143,191,159,0.06)) 1;
-  background-blend-mode: multiply;
+.brand-text .title{
+  font-family:var(--glyph);
+  font-size:22px;
+  color:var(--accent);
+  text-shadow:0 0 8px rgba(201,168,106,0.4);
+}
+
+.brand-text .subtitle{
+  font-size:12px;
+  color:var(--muted);
+}
+
+/* NAV BUTTONS — ARCANE RUNES */
+.nav{
+  display:flex;
+  gap:10px;
+}
+
+.nav-link{
+  padding:10px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  color:var(--accent);
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(201,168,106,0.25);
+  box-shadow:0 0 10px rgba(201,168,106,0.15);
+  transition:all .25s ease;
+}
+
+.nav-link:hover{
+  background:rgba(201,168,106,0.15);
+  box-shadow:0 0 14px rgba(201,168,106,0.45);
+  transform:translateY(-2px);
+}
+
+.nav-link.active{
+  background:rgba(201,168,106,0.25);
+  box-shadow:0 0 18px rgba(201,168,106,0.55);
+}
+
+/* MAIN */
+.main{
+  max-width:var(--max-width);
+  margin:30px auto;
+  padding:0 18px;
+}
+
+/* ARCANE PANELS */
+.content-block{
+  background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+  border:1px solid var(--panel-border);
+  padding:20px;
+  border-radius:14px;
+  margin-bottom:22px;
+  box-shadow:0 10px 40px rgba(0,0,0,0.45);
+  backdrop-filter:blur(4px);
+}
+
+/* SECTION TITLES WITH RUNES */
+.section-title{
+  font-family:var(--glyph);
+  font-size:22px;
+  color:var(--accent);
+  margin:0 0 14px;
+  position:relative;
+  padding-left:22px;
+}
+
+.section-title::before{
+  content:"✦";
+  position:absolute;
+  left:0;
+  top:0;
+  color:var(--accent-glow);
+  text-shadow:0 0 12px rgba(201,168,106,0.5);
+}
+
+/* HERO */
+.hero{
+  padding:40px;
+  border-radius:16px;
+  background:linear-gradient(135deg, rgba(201,168,106,0.15), rgba(143,191,159,0.08));
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
+}
+
+.hero-title{
+  font-family:var(--glyph);
+  font-size:46px;
+  color:var(--accent);
+  text-shadow:0 0 12px rgba(201,168,106,0.4);
+}
+
+.hero-lead{
+  color:var(--muted);
+  margin-top:10px;
+  font-size:18px;
+}
+
+/* BUTTONS */
+.btn{
+  display:inline-block;
+  padding:12px 18px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:700;
+  transition:all .25s ease;
+}
+
+.btn.primary{
+  background:linear-gradient(180deg,var(--accent),#b58f4a);
+  color:#1a0f29;
+  box-shadow:0 0 12px rgba(201,168,106,0.45);
+}
+
+.btn.primary:hover{
+  box-shadow:0 0 18px rgba(201,168,106,0.65);
+  transform:translateY(-2px);
+}
+
+.btn.ghost{
+  border:1px solid rgba(201,168,106,0.35);
+  color:var(--accent);
+  background:rgba(255,255,255,0.05);
+}
+
+.btn.ghost:hover{
+  background:rgba(201,168,106,0.15);
+  box-shadow:0 0 14px rgba(201,168,106,0.45);
+}
+
+/* FOOTER */
+.footer{
+  padding:20px;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  margin-top:40px;
+}
+
+/* GALLERY */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:16px;
+}
+
+.thumb{
+  width:100%;
+  height:160px;
+  object-fit:cover;
+  border-radius:12px;
+  border:2px solid rgba(201,168,106,0.25);
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+  transition:transform .22s ease, box-shadow .22s ease;
+}
+
+.thumb:hover{
+  transform:translateY(-6px) scale(1.03);
+  box-shadow:0 0 20px rgba(201,168,106,0.45);
+}
+
+/* LIGHTBOX */
+.gallery-lightbox{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(10,0,20,0.85);
+  z-index:9999;
+  padding:20px;
+}
+
+.lightbox-content img{
+  max-width:95%;
+  max-height:95%;
+  border-radius:12px;
+  box-shadow:0 0 30px rgba(201,168,106,0.45);
+}
+
+.close-btn{
+  position:absolute;
+  right:22px;
+  top:18px;
+  background:rgba(0,0,0,0.45);
+  color:#fff;
+  border:1px solid var(--accent);
+  padding:8px 10px;
+  border-radius:8px;
+  cursor:pointer;
+  font-weight:700;
+}
+
+/* UTILITY */
+.link{
+  color:var(--accent);
+  text-decoration:underline;
+}
+
+.muted{
+  color:#d8d2e8;
+  opacity:0.85;
 }
