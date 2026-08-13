@@ -20,6 +20,7 @@
   </header>
 
   <main class="main">
+
     <!-- Gallery on Home Page -->
     <section class="content-block">
       <h1 class="arcane-title">Gallery</h1>
@@ -29,11 +30,53 @@
       </div>
     </section>
 
-    <!-- Example additional content -->
+    <!-- Welcome / Intro -->
     <section class="content-block">
-      <h2>Welcome</h2>
-      <p>Welcome to Wizards of Ark. Click any gallery thumbnail to view full size or play video.</p>
+      <h2>Welcome to Wizards of Ark</h2>
+      <p>Welcome to Wizards of Ark — Arcane ASA Cluster. We run a crossplay PvE cluster with multiple official maps, quality-of-life mods, and a friendly community. Click any gallery thumbnail to view full size or play video.</p>
     </section>
+
+    <!-- Quick server summary (links to full server-info page) -->
+    <section class="content-block">
+      <h2>Quick Server Summary</h2>
+      <p><strong>Cluster Type:</strong> PvE · <strong>Crossplay:</strong> Enabled · <strong>Max Level:</strong> 190</p>
+      <p><a href="server-info.html">Full server settings, rules, mods and detailed info →</a></p>
+    </section>
+
+    <!-- Active mods preview -->
+    <section class="content-block">
+      <h2>Active Mods (Preview)</h2>
+      <ul>
+        <li>Cybers Structures QoL+</li>
+        <li>Dino Depot</li>
+        <li>Awesome Spyglass!</li>
+        <li>Auto Engrams!</li>
+        <li>Astraeos – Mythological Creatures</li>
+        <li>Shiny! Dinos Ascended</li>
+      </ul>
+    </section>
+
+    <!-- Rules preview -->
+    <section class="content-block">
+      <h2>Server Rules (Short)</h2>
+      <ul>
+        <li>No hacking, duping, or exploiting.</li>
+        <li>Max 2 bases per tribe per map.</li>
+        <li>No mesh/under-map builds or spawn blocking.</li>
+        <li>Tribe max: 6 players.</li>
+      </ul>
+      <p>See <a href="server-info.html">Server Info</a> for the full ruleset and details.</p>
+    </section>
+
+    <!-- Discord widget -->
+    <section class="content-block">
+      <h2>Community</h2>
+      <iframe src="https://discord.com/widget?id=1428105944373526610&theme=dark"
+              width="100%" height="300"
+              allowtransparency="true"
+              frameborder="0"></iframe>
+    </section>
+
   </main>
 
   <footer class="footer">
@@ -51,13 +94,14 @@
 
   <script>
   (function(){
-    // Edit this list to match the exact filenames you uploaded (case-sensitive)
+    // Edit this list to match the exact filenames you uploaded (case-sensitive).
+    // Based on your repo listing, these are the files you currently have in assets/.
     const expectedFiles = [
       'gallery1.png',
       'gallery2.png'
     ];
 
-    // Base paths to try (checks both locations)
+    // Try these base paths in order (supports both layouts)
     const basePaths = [
       'assets/gallery/',
       'assets/'
@@ -175,4 +219,14 @@
 
     function closeLightbox() {
       lightbox.style.display = 'none';
-      light
+      lightbox.setAttribute('aria-hidden', 'true');
+      content.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+  })();
+  </script>
+</body>
+</html>
