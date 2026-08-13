@@ -6,66 +6,71 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="logo-wrap">
-      <img src="assets/logo.png" alt="Wizards of Ark Logo" class="logo">
-    </div>
-    <nav class="nav">
-      <a href="index.html">Home</a>
-      <a href="store.html">Store</a>
-      <a href="server-info.html" class="active">Server Info</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
 
-  <main class="main">
-    <section class="content-block">
-      <h1>Server Info</h1>
-      <p>Core details for the Wizards of Ark ASA cluster.</p>
-    </section>
+<header class="site-header">
+  <div class="logo-wrap">
+    <img src="assets/logo.png" class="logo">
+  </div>
+  <nav class="nav">
+    <a href="index.html">Home</a>
+    <a href="store.html">Store</a>
+    <a href="server-info.html" class="active">Server Info</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-    <section class="content-block">
-      <h2>Maps</h2>
-      <ul class="list">
-        <li>Example: The Island (ASA)</li>
-        <li>Example: Scorched Earth (ASA DLC)</li>
-        <li>Example: Ragnarok / Fjordur (when available)</li>
-      </ul>
-    </section>
+<main class="main">
 
-    <section class="content-block">
-      <h2>Rates</h2>
-      <ul class="list">
-        <li>XP: xX</li>
-        <li>Harvest: xX</li>
-        <li>Taming: xX</li>
-        <li>Breeding: xX</li>
-      </ul>
-    </section>
+  <section class="content-block">
+    <h1>Server Status</h1>
+    <p id="server-status">Checking server status...</p>
+    <p id="player-count">Loading player count...</p>
+  </section>
 
-    <section class="content-block">
-      <h2>Rules</h2>
-      <ul class="list">
-        <li>No griefing or harassment.</li>
-        <li>No cheating, exploiting, or third‑party hacks.</li>
-        <li>Respect bases, claims, and event areas.</li>
-        <li>Follow Discord announcements for cluster‑wide changes.</li>
-      </ul>
-    </section>
+  <script>
+    fetch("https://api.battlemetrics.com/servers/YOUR_BATTLEMETRICS_ID")
+      .then(r => r.json())
+      .then(data => {
+        const status = data.data.attributes.status;
+        const players = data.data.attributes.players;
+        const max = data.data.attributes.maxPlayers;
 
-    <section class="content-block">
-      <h2>How to Join</h2>
-      <p>
-        Search for <strong>Wizards of Ark</strong> in ASA’s server browser, or join via direct IP posted in Discord.
-      </p>
-      <p>
-        Make sure you’ve installed required mods (if any) listed in our Discord.
-      </p>
-    </section>
-  </main>
+        document.getElementById("server-status").innerText =
+          status === "online" ? "🟢 Online" : "🔴 Offline";
 
-  <footer class="footer">
-    <p>For full details, join the Discord for live updates.</p>
-  </footer>
+        document.getElementById("player-count").innerText =
+          `Players Online: ${players}/${max}`;
+      })
+      .catch(() => {
+        document.getElementById("server-status").innerText = "⚠ Unable to fetch status";
+        document.getElementById("player-count").innerText = "";
+      });
+  </script>
+
+  <section class="content-block">
+    <h2>Discord Community</h2>
+    <iframe src="https://discord.com/widget?id=1428105944373526610&theme=dark"
+            width="100%" height="400"
+            allowtransparency="true"
+            frameborder="0"></iframe>
+  </section>
+
+  <section class="content-block">
+    <h2>Cluster Mods</h2>
+    <ul>
+      <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=XXXXXX">Example Mod 1</a></li>
+      <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=XXXXXX">Example Mod 2</a></li>
+      <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=XXXXXX">Example Mod 3</a></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>Wizards of Ark — Arcane ASA Cluster</p>
+</footer>
+
+<a href="https://discord.gg/YOURDISCORD" class="discord-float">Join Discord</a>
+
 </body>
 </html>
