@@ -4,16 +4,22 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Wizards of Ark — Home</title>
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Icons & manifest -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#c9a86a">
+
+  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body class="arcane-body">
 
-  <header class="site-header arcane-header">
-    <div class="brand">
+  <header class="site-header arcane-header" role="banner">
+    <div class="brand" role="img" aria-label="Wizards of Ark logo">
       <img src="assets/logo.png" alt="Wizards of Ark" class="logo">
       <div class="brand-text">
         <div class="title">Wizards of Ark</div>
@@ -21,7 +27,7 @@
       </div>
     </div>
 
-    <nav class="nav">
+    <nav class="nav" role="navigation" aria-label="Main">
       <a href="index.html" class="nav-link active">Home</a>
       <a href="store.html" class="nav-link">Store</a>
       <a href="server-info.html" class="nav-link">Server Info</a>
@@ -29,15 +35,10 @@
     </nav>
   </header>
 
-  <!-- TEMP BANNER: visible marker to confirm new file is served -->
-  <div style="background:linear-gradient(90deg,#c9a86a,#8fbf9f);color:#07101a;padding:10px 16px;text-align:center;font-weight:700;">
-    DEV: Homepage updated — lore live
-  </div>
-
-  <main class="main">
-    <section class="hero arcane-hero">
+  <main class="main" role="main">
+    <section class="hero arcane-hero" aria-labelledby="hero-title">
       <div class="hero-inner">
-        <h1 class="hero-title">Step Through the Portal</h1>
+        <h1 id="hero-title" class="hero-title">Step Through the Portal</h1>
         <p class="hero-lead">A full ARK: Survival Ascended PvE cluster — all official maps, boosted but balanced rates, and active UK & US admin coverage.</p>
         <div class="hero-cta">
           <a class="btn primary" href="server-info.html">Server Info & Rules</a>
@@ -46,27 +47,28 @@
       </div>
     </section>
 
-    <!-- Full Lore Blurb -->
-    <section class="content-block">
+    <!-- Full lore blurb -->
+    <section class="content-block" aria-labelledby="lore-heading">
+      <h2 id="lore-heading" class="section-title">The Realm Awaits</h2>
       <div class="lore-full">
         <p>When the old ley-lines shifted, the islands of Ark were braided with new magic. The Wizards of Ark cluster is a living tapestry of those changes: every official map bears traces of arcane storms, hidden shrines, and rare spawns that reward explorers and tinkerers alike. We run boosted but balanced rates to remove needless grind while preserving the danger and wonder of survival. Expect mythic creatures, custom mods that add flavor without breaking balance, and a community that values fair play and creative builds. Whether you are a lone wanderer, a master breeder, or a guild leader, you’ll find a place to grow, trade, and compete in seasonal events. Enter the realm, learn the rules in Server Info, and carve your name into the annals of the Wizards of Ark.</p>
       </div>
     </section>
 
-    <section id="gallery" class="content-block">
-      <h2 class="section-title">Gallery</h2>
-      <div class="gallery-grid" id="galleryGrid"></div>
+    <section id="gallery" class="content-block" aria-labelledby="gallery-heading">
+      <h2 id="gallery-heading" class="section-title">Gallery</h2>
+      <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
       <div class="gallery-note" id="galleryNote" aria-hidden="true"></div>
     </section>
 
-    <section class="content-block">
-      <h2 class="section-title">Quick Summary</h2>
+    <section class="content-block" aria-labelledby="summary-heading">
+      <h2 id="summary-heading" class="section-title">Quick Summary</h2>
       <p><strong>Cluster Type:</strong> PvE · <strong>Crossplay:</strong> Enabled · <strong>Max Level:</strong> 190 · <strong>Tribe Max:</strong> 6</p>
       <p><a class="link" href="server-info.html">Full server settings, rules, mods and guides →</a></p>
     </section>
 
-    <section class="content-block">
-      <h2 class="section-title">How to Find Our Server</h2>
+    <section class="content-block" aria-labelledby="howto-heading">
+      <h2 id="howto-heading" class="section-title">How to Find Our Server</h2>
       <ol>
         <li>Open ARK: Survival Ascended → Join Game → Unofficial tab</li>
         <li>Set Game Mode to PvE and search for <strong>The Wizards of Ark</strong></li>
@@ -76,19 +78,21 @@
     </section>
   </main>
 
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div>Wizards of Ark — Arcane ASA Cluster</div>
     <div class="footer-links"><a href="https://discord.gg/84FDUShzE" class="discord">Join Discord</a></div>
   </footer>
 
   <!-- Lightbox -->
-  <div id="galleryLightbox" class="gallery-lightbox" aria-hidden="true">
+  <div id="galleryLightbox" class="gallery-lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
     <button class="close-btn" id="lightboxClose" aria-label="Close">✕</button>
-    <div class="lightbox-content" id="lightboxContent"></div>
+    <div class="lightbox-content" id="lightboxContent" role="document"></div>
   </div>
 
+  <!-- Gallery loader + lightbox script -->
   <script>
   (function(){
+    // Edit this list if you add or remove gallery images
     const expectedFiles = ['gallery1.png','gallery2.png'];
     const basePaths = ['assets/gallery/','assets/'];
     const grid = document.getElementById('galleryGrid');
@@ -103,13 +107,17 @@
       });
     }
 
-    function addThumb(src){
+    function addThumb(src, alt){
+      const wrapper = document.createElement('div');
+      wrapper.className = 'thumb-wrap';
       const el=document.createElement('img');
       el.className='thumb';
       el.src=src;
+      el.alt = alt || '';
       el.loading='lazy';
       el.dataset.full=src;
-      grid.appendChild(el);
+      wrapper.appendChild(el);
+      grid.appendChild(wrapper);
     }
 
     (async function(){
@@ -119,40 +127,9 @@
         for(const base of basePaths){
           const full=base+name;
           const res=await testImage(full);
-          if(res.ok){ addThumb(full); found=true; break; }
+          if(res.ok){ addThumb(full, name); found=true; break; }
         }
         if(!found) missing.push(name);
       }
       if(missing.length){
-        console.warn('Gallery missing:', missing);
-        note.textContent='Some gallery files are missing. Check console for filenames.';
-        note.style.display='block';
-      }
-    })();
-
-    // Lightbox
-    const lightbox=document.getElementById('galleryLightbox');
-    const content=document.getElementById('lightboxContent');
-    const closeBtn=document.getElementById('lightboxClose');
-
-    grid.addEventListener('click', e=>{
-      const t=e.target.closest('img.thumb');
-      if(!t) return;
-      content.innerHTML='';
-      const img=document.createElement('img');
-      img.src=t.dataset.full||t.src;
-      img.alt='';
-      content.appendChild(img);
-      lightbox.style.display='flex';
-      lightbox.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-    });
-
-    function closeLB(){ lightbox.style.display='none'; content.innerHTML=''; lightbox.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-    closeBtn.addEventListener('click', closeLB);
-    lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLB(); });
-    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLB(); });
-  })();
-  </script>
-</body>
-</html>
+        console
