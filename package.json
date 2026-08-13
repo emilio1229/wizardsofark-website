@@ -1,0 +1,13 @@
+{
+  "name": "wizards-of-ark-site",
+  "version": "1.0.0",
+  "description": "Static site for Wizards of Ark",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo 'static site - no build step'"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
