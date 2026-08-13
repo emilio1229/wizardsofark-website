@@ -1,3 +1,5 @@
-[service]
-name = "wizardsofark"
-port = 80
+project = "wizards-of-ark"
+service = "web"
+
+[deploy]
+  command = "npm install && npm run build"
