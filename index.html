@@ -1,236 +1,149 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Wizards of Ark — Home</title>
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header class="site-header">
-    <div class="logo-wrap">
-      <img src="assets/logo.png" class="logo" alt="Wizards of Ark">
+<body class="arcane-body">
+
+  <header class="site-header arcane-header">
+    <div class="brand">
+      <img src="assets/logo.png" alt="Wizards of Ark" class="logo">
+      <div class="brand-text">
+        <div class="title">Wizards of Ark</div>
+        <div class="subtitle">Arcane ASA Cluster</div>
+      </div>
     </div>
+
     <nav class="nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="store.html">Store</a>
-      <a href="server-info.html">Server Info</a>
-      <a href="contact.html">Contact</a>
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="store.html" class="nav-link">Store</a>
+      <a href="server-info.html" class="nav-link">Server Info</a>
+      <a href="contact.html" class="nav-link">Contact</a>
     </nav>
   </header>
 
   <main class="main">
-
-    <!-- Welcome (two lines taken from your Welcome document) -->
-    <section class="content-block">
-      <h1 class="arcane-title">Welcome to the Wizards of Ark</h1>
-      <blockquote style="color:#e6d9b8; border-left:4px solid #c9a86a; padding-left:12px;">
-        "You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and dedicated admins from both the UK and US keeping everything running smoothly."
-      </blockquote>
-      <p>We run boosted but balanced rates with reduced weight to remove the grind while preserving the challenge — perfect for building, exploring, and taming legendary creatures. Read the full server settings and rules on the <a href="server-info.html">Server Info</a> page.</p>
-    </section>
-
-    <!-- Gallery -->
-    <section class="content-block">
-      <h2 class="arcane-title">Gallery</h2>
-      <div class="gallery-grid" id="galleryGrid">
-        <!-- Thumbnails injected by JS -->
+    <section class="hero arcane-hero">
+      <div class="hero-inner">
+        <h1 class="hero-title">Step Through the Portal</h1>
+        <p class="hero-lead">A full ARK: Survival Ascended PvE cluster — all official maps, boosted but balanced rates, and active UK & US admin coverage.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="server-info.html">Server Info & Rules</a>
+          <a class="btn ghost" href="#gallery">Gallery</a>
+        </div>
       </div>
+      <div class="hero-glyph" aria-hidden="true">✦</div>
     </section>
 
-    <!-- Quick server summary (link to full server-info page) -->
+    <section id="gallery" class="content-block">
+      <h2 class="section-title">Gallery</h2>
+      <div class="gallery-grid" id="galleryGrid"></div>
+      <div class="gallery-note" id="galleryNote" aria-hidden="true"></div>
+    </section>
+
     <section class="content-block">
-      <h2>Quick Server Summary</h2>
+      <h2 class="section-title">Quick Summary</h2>
       <p><strong>Cluster Type:</strong> PvE · <strong>Crossplay:</strong> Enabled · <strong>Max Level:</strong> 190 · <strong>Tribe Max:</strong> 6</p>
-      <p><a href="server-info.html">Full server settings, rules, mods and detailed info →</a></p>
+      <p><a class="link" href="server-info.html">Full server settings, rules, mods and guides →</a></p>
     </section>
 
-    <!-- Active mods preview -->
     <section class="content-block">
-      <h2>Active Mods (Preview)</h2>
-      <ul>
-        <li>Cybers Structures QoL+</li>
-        <li>Dino Depot</li>
-        <li>Awesome Spyglass!</li>
-        <li>Auto Engrams!</li>
-        <li>Astraeos – Mythological Creatures</li>
-        <li>Shiny! Dinos Ascended</li>
-      </ul>
-    </section>
-
-    <!-- Rules preview (short) -->
-    <section class="content-block">
-      <h2>Server Rules (Short)</h2>
-      <ul>
-        <li>No hacking, duping, or exploiting.</li>
-        <li>Max 2 bases per tribe, per map; bases must be 500m apart.</li>
-        <li>No mesh/under-map builds or spawn blocking.</li>
-        <li>Tribe max: 6 players.</li>
-      </ul>
-      <p>See <a href="server-info.html">Server Info</a> for the full ruleset and details.</p>
-    </section>
-
-    <!-- How to find our server -->
-    <section class="content-block">
-      <h2>How to Find Our Server</h2>
+      <h2 class="section-title">How to Find Our Server</h2>
       <ol>
-        <li>Open ARK: Survival Ascended → Join Game → Unofficial tab.</li>
-        <li>Set Game Mode to PvE and search for <strong>The Wizards of Ark</strong>.</li>
-        <li>Make sure "Password Protected" is unchecked and press Enter / Refresh if needed.</li>
+        <li>Open ARK: Survival Ascended → Join Game → Unofficial tab</li>
+        <li>Set Game Mode to PvE and search for <strong>The Wizards of Ark</strong></li>
+        <li>Make sure "Password Protected" is unchecked; refresh list if needed</li>
       </ol>
-      <p>If you still can't see the servers, fully restart the game and open a support ticket on Discord.</p>
+      <p>If you still can't see the servers, restart the game and open a support ticket on Discord.</p>
     </section>
-
   </main>
 
   <footer class="footer">
-    <p>Wizards of Ark — Arcane ASA Cluster</p>
+    <div>Wizards of Ark — Arcane ASA Cluster</div>
+    <div class="footer-links">
+      <a href="https://discord.gg/84FDUShzE" class="discord">Join Discord</a>
+    </div>
   </footer>
-
-  <a href="https://discord.gg/84FDUShzE" class="discord-float">Join Discord</a>
 
   <!-- Lightbox -->
   <div id="galleryLightbox" class="gallery-lightbox" aria-hidden="true">
-    <button class="close-btn" id="lightboxClose" aria-label="Close gallery">Close</button>
-    <div class="content" id="lightboxContent" role="dialog" aria-modal="true"></div>
-    <div class="caption" id="lightboxCaption" style="display:none"></div>
+    <button class="close-btn" id="lightboxClose" aria-label="Close">✕</button>
+    <div class="lightbox-content" id="lightboxContent"></div>
   </div>
 
-  <!-- Gallery loader: tries assets/gallery/ and assets/ -->
+  <!-- Gallery loader (tries assets/gallery/ then assets/) -->
   <script>
   (function(){
-    // Edit this list to match the exact filenames you uploaded (case-sensitive).
-    // Based on your repo listing, these are the files you currently have in assets/.
-    const expectedFiles = [
-      'gallery1.png',
-      'gallery2.png'
-    ];
-
-    // Try these base paths in order
-    const basePaths = [
-      'assets/gallery/',
-      'assets/'
-    ];
-
+    const expectedFiles = ['gallery1.png','gallery2.png']; // edit if you add files
+    const basePaths = ['assets/gallery/','assets/'];
     const grid = document.getElementById('galleryGrid');
-    const missing = [];
+    const note = document.getElementById('galleryNote');
 
-    function testImage(src) {
-      return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve({ ok: true, type: 'image', src });
-        img.onerror = () => resolve({ ok: false, type: 'image', src });
-        img.src = src + '?_=' + Date.now();
+    function testImage(src){
+      return new Promise(resolve=>{
+        const img=new Image();
+        img.onload=()=>resolve({ok:true,src});
+        img.onerror=()=>resolve({ok:false,src});
+        img.src=src+'?_='+Date.now();
       });
     }
 
-    async function testVideo(src) {
-      try {
-        const res = await fetch(src, { method: 'HEAD' });
-        return { ok: res.ok, type: 'video', src, status: res.status };
-      } catch (e) {
-        return { ok: false, type: 'video', src, error: e.message };
-      }
+    function addThumb(src){
+      const el=document.createElement('img');
+      el.className='thumb';
+      el.src=src;
+      el.loading='lazy';
+      el.dataset.full=src;
+      grid.appendChild(el);
     }
 
-    function renderThumbnail(item) {
-      if (item.type === 'image') {
-        const el = document.createElement('img');
-        el.src = item.src;
-        el.alt = '';
-        el.loading = 'lazy';
-        el.dataset.full = item.src;
-        grid.appendChild(el);
-      } else if (item.type === 'video') {
-        const v = document.createElement('video');
-        v.controls = false;
-        v.muted = true;
-        v.preload = 'metadata';
-        v.dataset.full = item.src;
-        const s = document.createElement('source');
-        s.src = item.src;
-        s.type = 'video/mp4';
-        v.appendChild(s);
-        grid.appendChild(v);
-      }
-    }
-
-    (async function runChecks() {
-      for (const name of expectedFiles) {
-        let found = false;
-        for (const base of basePaths) {
-          const full = base + name;
-          const ext = name.split('.').pop().toLowerCase();
-          let result;
-          if (['mp4','webm','ogg'].includes(ext)) {
-            result = await testVideo(full);
-          } else {
-            result = await testImage(full);
-          }
-
-          if (result.ok) {
-            renderThumbnail(result);
-            found = true;
-            break;
-          }
+    (async function(){
+      const missing=[];
+      for(const name of expectedFiles){
+        let found=false;
+        for(const base of basePaths){
+          const full=base+name;
+          const res=await testImage(full);
+          if(res.ok){ addThumb(full); found=true; break; }
         }
-        if (!found) missing.push(name);
+        if(!found) missing.push(name);
       }
-
-      if (missing.length) {
-        console.warn('Gallery: missing files (check assets/ and assets/gallery/ and filename case):', missing);
-        const note = document.createElement('div');
-        note.style.color = '#f1c40f';
-        note.style.padding = '12px';
-        note.textContent = 'Some gallery files are missing. Check console for filenames.';
-        grid.appendChild(note);
-      } else {
-        console.info('Gallery: all expected files loaded successfully.');
+      if(missing.length){
+        console.warn('Gallery missing:', missing);
+        note.textContent='Some gallery files are missing. Check console for filenames.';
+        note.style.display='block';
       }
     })();
 
-    // Lightbox behavior
-    const lightbox = document.getElementById('galleryLightbox');
-    const content = document.getElementById('lightboxContent');
-    const closeBtn = document.getElementById('lightboxClose');
+    // Lightbox
+    const lightbox=document.getElementById('galleryLightbox');
+    const content=document.getElementById('lightboxContent');
+    const closeBtn=document.getElementById('lightboxClose');
 
-    grid.addEventListener('click', (e) => {
-      const target = e.target.closest('img, video');
-      if (!target) return;
-      content.innerHTML = '';
-
-      if (target.tagName.toLowerCase() === 'img') {
-        const img = document.createElement('img');
-        img.src = target.dataset.full || target.src;
-        img.alt = target.alt || '';
-        content.appendChild(img);
-      } else {
-        const vid = document.createElement('video');
-        vid.controls = true;
-        vid.autoplay = true;
-        vid.playsInline = true;
-        vid.style.maxHeight = '80vh';
-        const s = document.createElement('source');
-        s.src = target.dataset.full || (target.querySelector('source') && target.querySelector('source').src);
-        s.type = 'video/mp4';
-        vid.appendChild(s);
-        content.appendChild(vid);
-      }
-
-      lightbox.style.display = 'flex';
-      lightbox.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
+    grid.addEventListener('click', e=>{
+      const t=e.target.closest('img.thumb');
+      if(!t) return;
+      content.innerHTML='';
+      const img=document.createElement('img');
+      img.src=t.dataset.full||t.src;
+      img.alt='';
+      content.appendChild(img);
+      lightbox.style.display='flex';
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
     });
 
-    function closeLightbox() {
-      lightbox.style.display = 'none';
-      lightbox.setAttribute('aria-hidden', 'true');
-      content.innerHTML = '';
-      document.body.style.overflow = '';
-    }
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+    function closeLB(){ lightbox.style.display='none'; content.innerHTML=''; lightbox.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+    closeBtn.addEventListener('click', closeLB);
+    lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLB(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLB(); });
   })();
   </script>
 </body>
