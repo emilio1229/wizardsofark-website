@@ -22,30 +22,208 @@
 <main class="main">
 
   <section class="content-block">
-    <h1>Server Status</h1>
-    <p id="server-status">Checking server status...</p>
-    <p id="player-count">Loading player count...</p>
+    <h1>Server Rates & Settings</h1>
+    <p><strong>Cluster Type:</strong> PvE</p>
+    <p><strong>Crossplay:</strong> Enabled</p>
+    <p><strong>Platforms:</strong> PC / Xbox / PlayStation</p>
+    <p><strong>Maps:</strong> All Official Maps</p>
+    <p><strong>Max Player Level:</strong> 190</p>
+    <p><strong>Tribe Max:</strong> 6 players</p>
+    <p><strong>Max Structures:</strong> 10,000 per tribe per map</p>
+    <p><strong>Ocean Platforms:</strong> Max 3</p>
+    <p><strong>Cloning Chambers:</strong> Max 4</p>
+    <p><strong>Gacha Gavagers:</strong> Max 8</p>
+    <p><strong>Bases:</strong> Max 2 per tribe per map</p>
+
+    <h2>General Rates</h2>
+    <ul>
+      <li>XP: 1.5×</li>
+      <li>Harvesting: 5×</li>
+      <li>Taming Speed: 10×</li>
+      <li>Resource Respawn: 0.8× delay</li>
+      <li>Player Health Recovery: 2×</li>
+      <li>Player Resistance: 0.6×</li>
+      <li>Player Food & Water Drain: 0.2×</li>
+      <li>Player Weight: x15</li>
+      <li>Cryopods: Enabled</li>
+      <li>Structure Pickup: Enabled</li>
+    </ul>
+
+    <h2>Decay Timers</h2>
+    <ul>
+      <li>Thatch: 4 Days</li>
+      <li>Adobe: 12 Days</li>
+      <li>Wood: 12 Days</li>
+      <li>Stone: 18 Days</li>
+      <li>Metal: 24 Days</li>
+      <li>Greenhouse: 24 Days</li>
+      <li>Tek: 30 Days</li>
+      <li>Oil Pump: 3 Days</li>
+      <li>Gas Pump: 6 Days</li>
+      <li>Creature Decay: 14 Days</li>
+      <li>Death Bag: 1 Hour</li>
+    </ul>
+
+    <h2>Dino Settings</h2>
+    <ul>
+      <li>Max Wild Level: 150</li>
+      <li>Egg Hatch Speed: x10</li>
+      <li>Maturation Speed: x15</li>
+      <li>Mating Interval: x10</li>
+      <li>Baby Imprint: 100% per cuddle</li>
+      <li>Dino Weight: x8</li>
+      <li>Flyer Carry: Enabled</li>
+      <li>Dino Decay: Enabled</li>
+      <li>Auto Dino Wipe: Every 24h</li>
+    </ul>
+
+    <h2>Server Management</h2>
+    <ul>
+      <li>Save Interval: 15–30 minutes</li>
+      <li>Restart: 03:00am PST / 10:00am GMT</li>
+      <li>Dino Wipe: 01:00pm GMT / 5:00am PST</li>
+      <li>Cleanup Runs: Every Sunday</li>
+      <li>Corpse Locator: Enabled</li>
+      <li>Admin Logging: Enabled</li>
+    </ul>
   </section>
 
-  <script>
-    fetch("https://api.battlemetrics.com/servers/YOUR_BATTLEMETRICS_ID")
-      .then(r => r.json())
-      .then(data => {
-        const status = data.data.attributes.status;
-        const players = data.data.attributes.players;
-        const max = data.data.attributes.maxPlayers;
+  <section class="content-block">
+    <h1>Active Mods</h1>
+    <h2>QoL / Gameplay</h2>
+    <ul>
+      <li>Cybers Structures QoL+</li>
+      <li>Dino Depot</li>
+      <li>Awesome Spyglass!</li>
+      <li>Awesome ARK Tools</li>
+      <li>Auto Engrams!</li>
+      <li>Helena Bot Companion</li>
+      <li>Resonant’s Shop Mod</li>
+      <li>Alfa Stack 2.5k – 50% Weight</li>
+    </ul>
 
-        document.getElementById("server-status").innerText =
-          status === "online" ? "🟢 Online" : "🔴 Offline";
+    <h2>Creatures & Additions</h2>
+    <ul>
+      <li>ARKOLOGY: OE - Desolatitan</li>
+      <li>Cosmics Cohorts - Tyrannodominator</li>
+      <li>Additions Ascended: Brachiosaurus</li>
+      <li>S-Dino Variants</li>
+      <li>S-Dino Fantastic Tames</li>
+      <li>Astraeos – Mythological Creatures</li>
+      <li>Dragon’s Kingdom</li>
+      <li>Draconis Glaucus</li>
+      <li>Mountain Gryphons</li>
+      <li>Shiny! Dinos Ascended</li>
+      <li>Zytharian Critters</li>
+      <li>Custom Dino Levels</li>
+      <li>Spawn Blocker</li>
+    </ul>
 
-        document.getElementById("player-count").innerText =
-          `Players Online: ${players}/${max}`;
-      })
-      .catch(() => {
-        document.getElementById("server-status").innerText = "⚠ Unable to fetch status";
-        document.getElementById("player-count").innerText = "";
-      });
-  </script>
+    <h2>Structures / Decor</h2>
+    <ul>
+      <li>Alfa Oceanic Platforms</li>
+      <li>Wall’n’Floor Decor</li>
+      <li>Marnii Hairstyles</li>
+    </ul>
+
+    <h2>Special Systems</h2>
+    <ul>
+      <li>Wizards of Ark Utilities</li>
+      <li>WizardsOfArk Magical Mods</li>
+    </ul>
+  </section>
+
+  <section class="content-block">
+    <h1>Full Rules</h1>
+
+    <h2>Building Rules (BR)</h2>
+    <p>Max 2 bases per tribe per map. Bases must be 500m apart. No exploit builds. No structure spam. Max 10,000 structures. Full text included exactly as provided.</p>
+    <pre>
+BR1 — Base Limits
+• Max 2 bases per tribe, per map
+• 3rd base = removed without warning
+• Bases must be at least 500 meters apart
+• Main bases may not exceed a 500m radius
+• Exceptions require neighbor agreement + admin approval
+
+BR2 — No Exploit Builds
+• No mesh, under-map, glitch areas
+• No artifact caves, obelisks, Ovis Island
+• No explorer notes, spawn zones, red zones
+• No wyvern trenches, nests, high-resource zones
+• No meshing or stacking inside structures
+
+BR3 — Structure Management
+• No spam
+• Temporary pieces must be removed
+• Max 10,000 structures
+• Max 8 Gacha Gavagers
+• Max 3 Ocean Platforms
+• Max 4 cloning chambers
+• Max 3 teleporters (2 unlocked)
+• Tek Replicators off before logout
+• Oil rigs unlocked
+    </pre>
+
+    <h2>Taming Rules (TR)</h2>
+    <pre>
+TR1 — Tame Management
+• Do not block resources or paths
+• No dinos left at obelisks or caves
+• Abandoned dinos may be removed
+
+TR2 — Tame Limits
+• No stacking dinos
+• No stealing or interfering
+• First hit = claim
+
+TR3 — Starter Balance
+• No A/S-tier dinos to new players
+• No mutated or OP dinos
+• New players = less than 7 days in Discord
+• All gifted dinos must be spayed/neutered
+    </pre>
+
+    <h2>Gameplay Rules (GR)</h2>
+    <pre>
+GR1 — Fair Play
+• No hacking, exploiting, duping, macros
+
+GR2 — Player Restrictions
+• One character per player
+
+GR3 — Safe Zones
+• No structures or tames at spawns/obelisks
+
+GR4 — Griefing (Zero Tolerance)
+• Blocking bases, trapping players, stealing tames
+• Luring wilds, harassment, trolling
+
+GR5 — Performance
+• Overbuilt bases may be wiped
+    </pre>
+
+    <h2>Tribe & Player Rules (PR)</h2>
+    <pre>
+PR1 — Tribe Size: Max 6
+PR2 — Names: No “Human”, “123”, offensive names
+PR3 — No duplicate tribe names
+PR4 — Admins do not replace internal tribe losses
+PR5 — No harassment or toxic behavior
+PR6 — No advertising other servers or RMT
+    </pre>
+
+    <h2>Trading & Economy Rules</h2>
+    <pre>
+• All mutated dinos traded must be spayed/neutered
+• No reselling breeding lines without permission
+• Monthly Pack creatures restricted by month
+• All trades must be documented in PvE Trading channel
+• No giving dinos to players under 7 days
+• Must identify original breeder/seller if asked
+• Violations may result in removal or bans
+    </pre>
+  </section>
 
   <section class="content-block">
     <h2>Discord Community</h2>
@@ -55,22 +233,13 @@
             frameborder="0"></iframe>
   </section>
 
-  <section class="content-block">
-    <h2>Cluster Mods</h2>
-    <ul>
-      <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=XXXXXX">Example Mod 1</a></li>
-      <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=XXXXXX">Example Mod 2</a></li>
-      <li><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=XXXXXX">Example Mod 3</a></li>
-    </ul>
-  </section>
-
 </main>
 
 <footer class="footer">
   <p>Wizards of Ark — Arcane ASA Cluster</p>
 </footer>
 
-<a href="https://discord.gg/YOURDISCORD" class="discord-float">Join Discord</a>
+<a href="https://discord.gg/84FDUShzE" class="discord-float">Join Discord</a>
 
 </body>
 </html>
