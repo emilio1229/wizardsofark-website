@@ -21,25 +21,27 @@
 
   <main class="main">
 
-    <!-- Gallery on Home Page -->
+    <!-- Welcome (two lines taken from your Welcome document) -->
     <section class="content-block">
-      <h1 class="arcane-title">Gallery</h1>
+      <h1 class="arcane-title">Welcome to the Wizards of Ark</h1>
+      <blockquote style="color:#e6d9b8; border-left:4px solid #c9a86a; padding-left:12px;">
+        "You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and dedicated admins from both the UK and US keeping everything running smoothly."
+      </blockquote>
+      <p>We run boosted but balanced rates with reduced weight to remove the grind while preserving the challenge — perfect for building, exploring, and taming legendary creatures. Read the full server settings and rules on the <a href="server-info.html">Server Info</a> page.</p>
+    </section>
 
+    <!-- Gallery -->
+    <section class="content-block">
+      <h2 class="arcane-title">Gallery</h2>
       <div class="gallery-grid" id="galleryGrid">
         <!-- Thumbnails injected by JS -->
       </div>
     </section>
 
-    <!-- Welcome / Intro -->
-    <section class="content-block">
-      <h2>Welcome to Wizards of Ark</h2>
-      <p>Welcome to Wizards of Ark — Arcane ASA Cluster. We run a crossplay PvE cluster with multiple official maps, quality-of-life mods, and a friendly community. Click any gallery thumbnail to view full size or play video.</p>
-    </section>
-
-    <!-- Quick server summary (links to full server-info page) -->
+    <!-- Quick server summary (link to full server-info page) -->
     <section class="content-block">
       <h2>Quick Server Summary</h2>
-      <p><strong>Cluster Type:</strong> PvE · <strong>Crossplay:</strong> Enabled · <strong>Max Level:</strong> 190</p>
+      <p><strong>Cluster Type:</strong> PvE · <strong>Crossplay:</strong> Enabled · <strong>Max Level:</strong> 190 · <strong>Tribe Max:</strong> 6</p>
       <p><a href="server-info.html">Full server settings, rules, mods and detailed info →</a></p>
     </section>
 
@@ -56,25 +58,27 @@
       </ul>
     </section>
 
-    <!-- Rules preview -->
+    <!-- Rules preview (short) -->
     <section class="content-block">
       <h2>Server Rules (Short)</h2>
       <ul>
         <li>No hacking, duping, or exploiting.</li>
-        <li>Max 2 bases per tribe per map.</li>
+        <li>Max 2 bases per tribe, per map; bases must be 500m apart.</li>
         <li>No mesh/under-map builds or spawn blocking.</li>
         <li>Tribe max: 6 players.</li>
       </ul>
       <p>See <a href="server-info.html">Server Info</a> for the full ruleset and details.</p>
     </section>
 
-    <!-- Discord widget -->
+    <!-- How to find our server -->
     <section class="content-block">
-      <h2>Community</h2>
-      <iframe src="https://discord.com/widget?id=1428105944373526610&theme=dark"
-              width="100%" height="300"
-              allowtransparency="true"
-              frameborder="0"></iframe>
+      <h2>How to Find Our Server</h2>
+      <ol>
+        <li>Open ARK: Survival Ascended → Join Game → Unofficial tab.</li>
+        <li>Set Game Mode to PvE and search for <strong>The Wizards of Ark</strong>.</li>
+        <li>Make sure "Password Protected" is unchecked and press Enter / Refresh if needed.</li>
+      </ol>
+      <p>If you still can't see the servers, fully restart the game and open a support ticket on Discord.</p>
     </section>
 
   </main>
@@ -92,6 +96,7 @@
     <div class="caption" id="lightboxCaption" style="display:none"></div>
   </div>
 
+  <!-- Gallery loader: tries assets/gallery/ and assets/ -->
   <script>
   (function(){
     // Edit this list to match the exact filenames you uploaded (case-sensitive).
@@ -101,7 +106,7 @@
       'gallery2.png'
     ];
 
-    // Try these base paths in order (supports both layouts)
+    // Try these base paths in order
     const basePaths = [
       'assets/gallery/',
       'assets/'
