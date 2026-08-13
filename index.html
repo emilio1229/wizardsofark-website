@@ -74,14 +74,90 @@
     </p>
   </section>
 
-  <section class="content-block">
-    <h2>Gallery</h2>
-    <div class="grid">
-      <img src="assets/gallery1.png" class="card">
-      <img src="assets/gallery2.png" class="card">
-      <img src="assets/gallery3.png" class="card">
-    </div>
-  </section>
+ <section class="content-block">
+  <h1 class="arcane-title">Gallery</h1>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Use exact filenames from assets/gallery/ -->
+    <img src="assets/gallery/img1.jpg" alt="Image 1" loading="lazy" data-full="assets/gallery/img1.jpg">
+    <img src="assets/gallery/img2.jpg" alt="Image 2" loading="lazy" data-full="assets/gallery/img2.jpg">
+    <video controls muted preload="metadata" poster="assets/gallery/video-poster.jpg" data-full="assets/gallery/showcase.mp4">
+      <source src="assets/gallery/showcase.mp4" type="video/mp4">
+    </video>
+    <!-- Add more items as needed -->
+  </div>
+</section>
+
+<!-- Lightbox (single element reused for all items) -->
+<div id="galleryLightbox" class="gallery-lightbox" aria-hidden="true">
+  <button class="close-btn" id="lightboxClose">Close</button>
+  <div class="content" id="lightboxContent"></div>
+  <div class="caption" id="lightboxCaption" style="display:none"></div>
+</div>
+
+<script>
+  (function(){
+    const grid = document.getElementById('galleryGrid');
+    const lightbox = document.getElementById('galleryLightbox');
+    const content = document.getElementById('lightboxContent');
+    const closeBtn = document.getElementById('lightboxClose');
+    const caption = document.getElementById('lightboxCaption');
+
+    // Open lightbox for images and videos
+    grid.addEventListener('click', (e) => {
+      const target = e.target.closest('img, video');
+      if (!target) return;
+
+      // Clear previous
+      content.innerHTML = '';
+      caption.style.display = 'none';
+
+      if (target.tagName.toLowerCase() === 'img') {
+        const src = target.dataset.full || target.src;
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = target.alt || '';
+        content.appendChild(img);
+        if (target.alt) {
+          caption.textContent = target.alt;
+          caption.style.display = 'block';
+        }
+      } else if (target.tagName.toLowerCase() === 'video') {
+        const src = target.dataset.full || Array.from(target.querySelectorAll('source'))[0].src;
+        const vid = document.createElement('video');
+        vid.controls = true;
+        vid.autoplay = true;
+        vid.playsInline = true;
+        vid.style.maxHeight = '80vh';
+        const s = document.createElement('source');
+        s.src = src;
+        s.type = 'video/mp4';
+        vid.appendChild(s);
+        content.appendChild(vid);
+      }
+
+      lightbox.style.display = 'flex';
+      lightbox.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    });
+
+    // Close handlers
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+      lightbox.setAttribute('aria-hidden', 'true');
+      content.innerHTML = '';
+      document.body.style.overflow = '';
+    }
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  })();
+</script>
+
 
 </main>
 
