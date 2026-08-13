@@ -145,3 +145,51 @@ body {
   border: 2px solid #c9a86a;
   box-shadow: 0 0 15px #c9a86a55;
 }
+/* ARCANE TITLE */
+.arcane-title {
+  font-size: 42px;
+  text-align: center;
+  color: #c9a86a;
+  text-shadow: 0 0 12px #5a3e1b, 0 0 25px #c9a86a;
+  margin-bottom: 20px;
+}
+
+/* BUTTON TABS */
+.tab-container { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:20px; }
+.tab {
+  padding: 12px 22px;
+  background:#1a1f2e;
+  border:2px solid #c9a86a;
+  border-radius:8px;
+  color:#c9a86a;
+  cursor:pointer;
+  font-weight:700;
+}
+.tab:hover { background:#2a3147; box-shadow:0 0 12px #c9a86a; }
+.tab.active { background:#c9a86a; color:#0b0f19; box-shadow:0 0 15px #c9a86a; }
+
+/* PANELS */
+.panel {
+  display:none;
+  padding:18px;
+  margin:18px auto;
+  max-width:900px;
+  background:#0d0f17;
+  border:2px solid #c9a86a;
+  border-radius:12px;
+  color:#e0e0e0;
+}
+
+/* GALLERY */
+.gallery-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+}
+.gallery-grid img,
+.gallery-grid video {
+  width:100%;
+  border-radius:10px;
+  border:2px solid #c9a86a;
+  box-shadow:0 0 15px #c9a86a55;
+}
