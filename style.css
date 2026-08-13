@@ -1,4 +1,71 @@
-/* Arcane Title */
+/* Your existing site styles remain untouched */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0b0f19;
+  color: #e0e0e0;
+}
+
+.site-header {
+  background: #111522;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #c9a86a;
+}
+
+.logo {
+  height: 60px;
+}
+
+.nav a {
+  color: #c9a86a;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.nav a.active {
+  text-shadow: 0 0 10px #c9a86a;
+}
+
+.main {
+  padding: 20px;
+}
+
+.content-block {
+  background: #1a1f2e;
+  padding: 20px;
+  margin-bottom: 30px;
+  border: 2px solid #c9a86a;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #000;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #111522;
+  border-top: 2px solid #c9a86a;
+}
+
+.discord-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #5865F2;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  box-shadow: 0 0 10px #000;
+}
+
+/* ⭐⭐⭐ ARCANE SERVER STATUS STYLES ⭐⭐⭐ */
+
 .arcane-title {
   font-size: 42px;
   text-align: center;
@@ -7,7 +74,6 @@
   margin-bottom: 20px;
 }
 
-/* Tabs */
 .tab-container {
   display: flex;
   flex-wrap: wrap;
@@ -15,51 +81,4 @@
   background: #111522;
   padding: 10px;
   border-bottom: 2px solid #c9a86a;
-  box-shadow: 0 0 20px #000 inset;
-}
-
-.tab {
-  padding: 10px 18px;
-  margin: 5px;
-  background: #1a1f2e;
-  border: 1px solid #c9a86a;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #c9a86a;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-.tab:hover {
-  background: #2a3147;
-  box-shadow: 0 0 12px #c9a86a;
-}
-
-.tab.active {
-  background: #c9a86a;
-  color: #0b0f19;
-  box-shadow: 0 0 15px #c9a86a;
-}
-
-/* Panels */
-.panel {
-  display: none;
-  padding: 20px;
-  margin: 20px auto;
-  width: 90%;
-  max-width: 800px;
-  background: #0d0f17;
-  border: 2px solid #c9a86a;
-  border-radius: 12px;
-  box-shadow: 0 0 25px #c9a86a55, inset 0 0 10px #000;
-  animation: fadeIn 0.6s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Status Colors */
-.online { color: #4caf50; }
-.offline { color: #f44336; }
+  box-shadow: 0 0 20px
