@@ -1,136 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Wizards of Ark</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Wizards of Ark — Home</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="logo-wrap">
+      <img src="assets/logo.png" class="logo" alt="Wizards of Ark">
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="active">Home</a>
+      <a href="store.html">Store</a>
+      <a href="server-info.html">Server Info</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<header class="site-header">
-  <div class="logo-wrap">
-    <img src="assets/logo.png" class="logo">
+  <main class="main">
+    <!-- Gallery on Home Page -->
+    <section class="content-block">
+      <h1 class="arcane-title">Gallery</h1>
+
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Thumbnails injected by JS -->
+      </div>
+    </section>
+
+    <!-- Example additional content -->
+    <section class="content-block">
+      <h2>Welcome</h2>
+      <p>Welcome to Wizards of Ark. Click any gallery thumbnail to view full size or play video.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Wizards of Ark — Arcane ASA Cluster</p>
+  </footer>
+
+  <a href="https://discord.gg/84FDUShzE" class="discord-float">Join Discord</a>
+
+  <!-- Lightbox -->
+  <div id="galleryLightbox" class="gallery-lightbox" aria-hidden="true">
+    <button class="close-btn" id="lightboxClose" aria-label="Close gallery">Close</button>
+    <div class="content" id="lightboxContent" role="dialog" aria-modal="true"></div>
+    <div class="caption" id="lightboxCaption" style="display:none"></div>
   </div>
-  <nav class="nav">
-    <a href="index.html" class="active">Home</a>
-    <a href="store.html">Store</a>
-    <a href="server-info.html">Server Info</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
 
-<main class="main">
-
-  <section class="content-block">
-    <h1>Welcome to the Wizards of Ark</h1>
-    <p>
-      You have stepped through the portal into a living, roaring, magical realm.
-      A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and dedicated admins from both the UK and US keeping everything running smoothly.
-    </p>
-    <p>
-      Our servers run on boosted but balanced rates with reduced weight to remove the grind while preserving the challenge — giving you the perfect environment to build, explore, and conquer.
-    </p>
-    <p>
-      Whether you are here to tame legendary creatures, build powerful empires, participate in epic events, or simply find a home in the Ark — you belong here.
-    </p>
-  </section>
-
-  <section class="content-block">
-    <h2>What Awaits You</h2>
-    <ul>
-      <li>Complete official map cluster</li>
-      <li>Boosted but balanced rates with reduced weight</li>
-      <li>Active PvE community</li>
-      <li>UK & US admin coverage</li>
-      <li>Admin shop and in-game shop</li>
-      <li>Regular events, giveaways, and custom game modes</li>
-      <li>Unique creatures, mods, and perks</li>
-      <li>Community suggestions that actually matter</li>
-    </ul>
-  </section>
-
-  <section class="content-block">
-    <h2>How to Find Our Server</h2>
-    <p>Open ARK: Survival Ascended → Join Game → Unofficial → PvE → Search “The Wizards of Ark”.</p>
-    <p>If servers don’t appear:</p>
-    <ul>
-      <li>Enable Show Player Servers</li>
-      <li>Disable Password Protected</li>
-      <li>Set Map Filter to All Maps</li>
-      <li>Set PvE/PvP Filter to PvE or All</li>
-      <li>Refresh the list</li>
-    </ul>
-    <p>If still not showing, restart your game and try again.</p>
-  </section>
-
-  <section class="content-block">
-    <h2>Lore</h2>
-    <p>
-      In the shattered realms of ASA, magic bleeds through the cracks of reality.
-      Wizards rise, beasts awaken, and ancient forces whisper beneath the soil.
-    </p>
-    <p>
-      The Wizards of Ark cluster is built upon these legends — a world where arcane power shapes destiny, and every survivor carries a spark of the unknown.
-    </p>
-  </section>
-
- <section class="content-block">
-  <h1 class="arcane-title">Gallery</h1>
-
-  <div class="gallery-grid" id="galleryGrid">
-    <!-- Use exact filenames from assets/gallery/ -->
-    <img src="assets/gallery/img1.jpg" alt="Image 1" loading="lazy" data-full="assets/gallery/img1.jpg">
-    <img src="assets/gallery/img2.jpg" alt="Image 2" loading="lazy" data-full="assets/gallery/img2.jpg">
-    <video controls muted preload="metadata" poster="assets/gallery/video-poster.jpg" data-full="assets/gallery/showcase.mp4">
-      <source src="assets/gallery/showcase.mp4" type="video/mp4">
-    </video>
-    <!-- Add more items as needed -->
-  </div>
-</section>
-
-<!-- Lightbox (single element reused for all items) -->
-<div id="galleryLightbox" class="gallery-lightbox" aria-hidden="true">
-  <button class="close-btn" id="lightboxClose">Close</button>
-  <div class="content" id="lightboxContent"></div>
-  <div class="caption" id="lightboxCaption" style="display:none"></div>
-</div>
-
-<script>
+  <script>
   (function(){
+    // Edit this list to match the exact filenames you uploaded (case-sensitive)
+    const expectedFiles = [
+      'gallery1.png',
+      'gallery2.png'
+    ];
+
+    // Base paths to try (checks both locations)
+    const basePaths = [
+      'assets/gallery/',
+      'assets/'
+    ];
+
     const grid = document.getElementById('galleryGrid');
+    const missing = [];
+
+    function testImage(src) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve({ ok: true, type: 'image', src });
+        img.onerror = () => resolve({ ok: false, type: 'image', src });
+        img.src = src + '?_=' + Date.now();
+      });
+    }
+
+    async function testVideo(src) {
+      try {
+        const res = await fetch(src, { method: 'HEAD' });
+        return { ok: res.ok, type: 'video', src, status: res.status };
+      } catch (e) {
+        return { ok: false, type: 'video', src, error: e.message };
+      }
+    }
+
+    function renderThumbnail(item) {
+      if (item.type === 'image') {
+        const el = document.createElement('img');
+        el.src = item.src;
+        el.alt = '';
+        el.loading = 'lazy';
+        el.dataset.full = item.src;
+        grid.appendChild(el);
+      } else if (item.type === 'video') {
+        const v = document.createElement('video');
+        v.controls = false;
+        v.muted = true;
+        v.preload = 'metadata';
+        v.dataset.full = item.src;
+        const s = document.createElement('source');
+        s.src = item.src;
+        s.type = 'video/mp4';
+        v.appendChild(s);
+        grid.appendChild(v);
+      }
+    }
+
+    (async function runChecks() {
+      for (const name of expectedFiles) {
+        let found = false;
+        for (const base of basePaths) {
+          const full = base + name;
+          const ext = name.split('.').pop().toLowerCase();
+          let result;
+          if (['mp4','webm','ogg'].includes(ext)) {
+            result = await testVideo(full);
+          } else {
+            result = await testImage(full);
+          }
+
+          if (result.ok) {
+            renderThumbnail(result);
+            found = true;
+            break;
+          }
+        }
+        if (!found) missing.push(name);
+      }
+
+      if (missing.length) {
+        console.warn('Gallery: missing files (check assets/ and assets/gallery/ and filename case):', missing);
+        const note = document.createElement('div');
+        note.style.color = '#f1c40f';
+        note.style.padding = '12px';
+        note.textContent = 'Some gallery files are missing. Check console for filenames.';
+        grid.appendChild(note);
+      } else {
+        console.info('Gallery: all expected files loaded successfully.');
+      }
+    })();
+
+    // Lightbox behavior
     const lightbox = document.getElementById('galleryLightbox');
     const content = document.getElementById('lightboxContent');
     const closeBtn = document.getElementById('lightboxClose');
-    const caption = document.getElementById('lightboxCaption');
 
-    // Open lightbox for images and videos
     grid.addEventListener('click', (e) => {
       const target = e.target.closest('img, video');
       if (!target) return;
-
-      // Clear previous
       content.innerHTML = '';
-      caption.style.display = 'none';
 
       if (target.tagName.toLowerCase() === 'img') {
-        const src = target.dataset.full || target.src;
         const img = document.createElement('img');
-        img.src = src;
+        img.src = target.dataset.full || target.src;
         img.alt = target.alt || '';
         content.appendChild(img);
-        if (target.alt) {
-          caption.textContent = target.alt;
-          caption.style.display = 'block';
-        }
-      } else if (target.tagName.toLowerCase() === 'video') {
-        const src = target.dataset.full || Array.from(target.querySelectorAll('source'))[0].src;
+      } else {
         const vid = document.createElement('video');
         vid.controls = true;
         vid.autoplay = true;
         vid.playsInline = true;
         vid.style.maxHeight = '80vh';
         const s = document.createElement('source');
-        s.src = src;
+        s.src = target.dataset.full || (target.querySelector('source') && target.querySelector('source').src);
         s.type = 'video/mp4';
         vid.appendChild(s);
         content.appendChild(vid);
@@ -141,31 +173,6 @@
       document.body.style.overflow = 'hidden';
     });
 
-    // Close handlers
     function closeLightbox() {
       lightbox.style.display = 'none';
-      lightbox.setAttribute('aria-hidden', 'true');
-      content.innerHTML = '';
-      document.body.style.overflow = '';
-    }
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-    });
-  })();
-</script>
-
-
-</main>
-
-<footer class="footer">
-  <p>Wizards of Ark — Arcane ASA Cluster</p>
-</footer>
-
-<a href="https://discord.gg/84FDUShzE" class="discord-float">Join Discord</a>
-
-</body>
-</html>
+      light
