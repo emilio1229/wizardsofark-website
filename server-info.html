@@ -1,125 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <title>Server Info — Wizards of Ark</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<header class="site-header">
-  <div class="logo-wrap">
-    <img src="assets/logo.png" class="logo">
-  </div>
-  <nav class="nav">
-    <a href="index.html">Home</a>
-    <a href="store.html">Store</a>
-    <a href="server-info.html" class="active">Server Info</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
-
-<main class="main">
-
-  <!-- ⭐⭐⭐ SERVER STATUS SECTION ⭐⭐⭐ -->
-  <section class="content-block">
-    <h1 class="arcane-title">Cluster Server Status</h1>
-
-    <div class="tab-container">
-      <button class="tab" onclick="openPanel('Island')">The Island</button>
-      <button class="tab" onclick="openPanel('Scorched')">Scorched Earth</button>
-      <button class="tab" onclick="openPanel('Aberration')">Aberration</button>
-      <button class="tab" onclick="openPanel('Ragnarok')">Ragnarok</button>
-      <button class="tab" onclick="openPanel('Valguero')">Valguero</button>
-      <button class="tab" onclick="openPanel('Center')">The Center</button>
-      <button class="tab" onclick="openPanel('Extinction')">Extinction</button>
-      <button class="tab" onclick="openPanel('Gen1')">Genesis Part 1</button>
-      <button class="tab" onclick="openPanel('LostColony')">Lost Colony</button>
-      <button class="tab" onclick="openPanel('Astraeos')">Astraeos</button>
-      <button class="tab" onclick="openPanel('Amissa')">Amissa</button>
-      <button class="tab" onclick="openPanel('Bjarnheim')">Bjarnheim</button>
-      <button class="tab" onclick="openPanel('Event')">Event Map</button>
-      <button class="tab" onclick="openPanel('PvP')">PvP Map</button>
+  <header class="site-header">
+    <div class="logo-wrap">
+      <img src="assets/logo.png" class="logo" alt="Wizards of Ark">
     </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="store.html">Store</a>
+      <a href="server-info.html" class="active">Server Info</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-    <div id="Island" class="panel"></div>
-    <div id="Scorched" class="panel"></div>
-    <div id="Aberration" class="panel"></div>
-    <div id="Ragnarok" class="panel"></div>
-    <div id="Valguero" class="panel"></div>
-    <div id="Center" class="panel"></div>
-    <div id="Extinction" class="panel"></div>
-    <div id="Gen1" class="panel"></div>
-    <div id="LostColony" class="panel"></div>
-    <div id="Astraeos" class="panel"></div>
-    <div id="Amissa" class="panel"></div>
-    <div id="Bjarnheim" class="panel"></div>
-    <div id="Event" class="panel"></div>
-    <div id="PvP" class="panel"></div>
-  </section>
+  <main class="main">
+    <section class="content-block">
+      <h1 class="arcane-title">Cluster Server Status</h1>
 
-  <!-- ⭐⭐⭐ GALLERY SECTION ⭐⭐⭐ -->
-  <section class="content-block">
-    <h1 class="arcane-title">Gallery</h1>
+      <div class="tab-container" id="serverButtons">
+        <!-- Buttons call openPanel(event, 'Key') so the function can mark active -->
+        <button class="tab" onclick="openPanel(event,'Island')">The Island</button>
+        <button class="tab" onclick="openPanel(event,'Scorched')">Scorched Earth</button>
+        <button class="tab" onclick="openPanel(event,'Aberration')">Aberration</button>
+        <button class="tab" onclick="openPanel(event,'Ragnarok')">Ragnarok</button>
+        <button class="tab" onclick="openPanel(event,'Valguero')">Valguero</button>
+        <button class="tab" onclick="openPanel(event,'Center')">The Center</button>
+        <button class="tab" onclick="openPanel(event,'Extinction')">Extinction</button>
+        <button class="tab" onclick="openPanel(event,'Gen1')">Genesis Part 1</button>
+        <button class="tab" onclick="openPanel(event,'LostColony')">Lost Colony</button>
+        <button class="tab" onclick="openPanel(event,'Astraeos')">Astraeos</button>
+        <button class="tab" onclick="openPanel(event,'Amissa')">Amissa</button>
+        <button class="tab" onclick="openPanel(event,'Bjarnheim')">Bjarnheim</button>
+        <button class="tab" onclick="openPanel(event,'Event')">Event Map</button>
+        <button class="tab" onclick="openPanel(event,'PvP')">PvP Map</button>
+      </div>
 
-    <div class="gallery-grid">
-      <img src="assets/gallery/img1.jpg" alt="">
-      <img src="assets/gallery/img2.jpg" alt="">
-      <video controls>
-        <source src="assets/gallery/showcase.mp4" type="video/mp4">
-      </video>
-    </div>
-  </section>
+      <!-- Panels -->
+      <div id="Island" class="panel"></div>
+      <div id="Scorched" class="panel"></div>
+      <div id="Aberration" class="panel"></div>
+      <div id="Ragnarok" class="panel"></div>
+      <div id="Valguero" class="panel"></div>
+      <div id="Center" class="panel"></div>
+      <div id="Extinction" class="panel"></div>
+      <div id="Gen1" class="panel"></div>
+      <div id="LostColony" class="panel"></div>
+      <div id="Astraeos" class="panel"></div>
+      <div id="Amissa" class="panel"></div>
+      <div id="Bjarnheim" class="panel"></div>
+      <div id="Event" class="panel"></div>
+      <div id="PvP" class="panel"></div>
+    </section>
 
-  <!-- ⭐⭐⭐ YOUR ORIGINAL CONTENT BELOW ⭐⭐⭐ -->
-  <!-- (I keep everything exactly as you had it) -->
+    <!-- (Your original server-info content can follow here) -->
+  </main>
 
-</main>
+  <footer class="footer">
+    <p>Wizards of Ark — Arcane ASA Cluster</p>
+  </footer>
 
-<footer class="footer">
-  <p>Wizards of Ark — Arcane ASA Cluster</p>
-</footer>
+  <a href="https://discord.gg/84FDUShzE" class="discord-float">Join Discord</a>
 
-<a href="https://discord.gg/84FDUShzE" class="discord-float">Join Discord</a>
+  <script>
+  // Server list
+  const servers = {
+    Island: { id: 36234320, max: 40 },
+    Scorched: { id: 36350599, max: 40 },
+    Aberration: { id: 36350590, max: 40 },
+    Ragnarok: { id: 36622475, max: 40 },
+    Valguero: { id: 34584004, max: 40 },
+    Center: { id: 37460528, max: 40 },
+    Extinction: { id: 37877926, max: 40 },
+    Gen1: { id: 39624576, max: 40 },
+    LostColony: { id: 38673826, max: 40 },
+    Astraeos: { id: 36923428, max: 40 },
+    Amissa: { id: 37736125, max: 40 },
+    Bjarnheim: { id: 40500451, max: 40 },
+    Event: { id: 40597866, max: 20 },
+    PvP: { id: 39193910, max: 20 }
+  };
 
-<!-- ⭐⭐⭐ WORKING BATTLEMETRICS SCRIPT ⭐⭐⭐ -->
-<script>
-const servers = {
-  Island: { id: 36234320, max: 40 },
-  Scorched: { id: 36350599, max: 40 },
-  Aberration: { id: 36350590, max: 40 },
-  Ragnarok: { id: 36622475, max: 40 },
-  Valguero: { id: 34584004, max: 40 },
-  Center: { id: 37460528, max: 40 },
-  Extinction: { id: 37877926, max: 40 },
-  Gen1: { id: 39624576, max: 40 },
-  LostColony: { id: 38673826, max: 40 },
-  Astraeos: { id: 36923428, max: 40 },
-  Amissa: { id: 37736125, max: 40 },
-  Bjarnheim: { id: 40500451, max: 40 },
-  Event: { id: 40597866, max: 20 },
-  PvP: { id: 39193910, max: 20 }
-};
+  // Open panel and mark active button
+  function openPanel(e, name) {
+    document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    const panel = document.getElementById(name);
+    panel.style.display = 'block';
+    e.currentTarget.classList.add('active');
 
-function openPanel(name) {
-  document.querySelectorAll('.panel').forEach(p => p.style.display = 'none');
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.getElementById(name).style.display = 'block';
-  event.target.classList.add('active');
-}
+    // If panel is empty or shows an error, try to (re)load its status
+    if (!panel.dataset.loaded || panel.dataset.loaded === 'false') {
+      loadSingleStatus(name);
+    }
+  }
 
-async function loadStatus() {
-  for (const key in servers) {
+  // Try proxy.cors.sh first (requires header), fallback to allorigins
+  async function fetchWithFallback(url) {
+    // First attempt: proxy.cors.sh with header
+    try {
+      const res = await fetch('https://proxy.cors.sh/' + url, {
+        headers: { 'x-cors-api-key': 'temp' }
+      });
+      if (res.ok) return res;
+    } catch (e) {
+      // continue to fallback
+    }
+
+    // Fallback: allorigins
+    try {
+      const fallbackUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
+      const res2 = await fetch(fallbackUrl);
+      if (res2.ok) return res2;
+    } catch (e) {
+      // both failed
+    }
+
+    throw new Error('Both proxies failed');
+  }
+
+  async function loadSingleStatus(key) {
     const server = servers[key];
     const panel = document.getElementById(key);
 
-    try {
-      const response = await fetch(
-        `https://proxy.cors.sh/https://api.battlemetrics.com/servers/${server.id}`,
-        { headers: { "x-cors-api-key": "temp" } }
-      );
+    // show loading
+    panel.innerHTML = '<h2>' + key.replace(/([A-Z])/g, ' $1').trim() + '</h2><div class="status">Loading...</div>';
+    panel.dataset.loaded = 'false';
 
+    try {
+      const apiUrl = 'https://api.battlemetrics.com/servers/' + server.id;
+      const response = await fetchWithFallback(apiUrl);
       const data = await response.json();
+
       const status = data.data.attributes.status;
       const players = data.data.attributes.players;
 
@@ -130,17 +146,22 @@ async function loadStatus() {
         </div>
         <div class="status">Players: ${players} / ${server.max}</div>
       `;
-    } catch (e) {
+      panel.dataset.loaded = 'true';
+    } catch (err) {
       panel.innerHTML = `
-        <h2>${key}</h2>
+        <h2>${key.replace(/([A-Z])/g, ' $1').trim()}</h2>
         <div class="status offline">Unable to load server data.</div>
+        <div class="status">Try again or check server logs.</div>
       `;
+      panel.dataset.loaded = 'false';
     }
   }
-}
 
-window.onload = loadStatus;
-</script>
-
+  // Preload first panel on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    const firstButton = document.querySelector('.tab');
+    if (firstButton) firstButton.click();
+  });
+  </script>
 </body>
 </html>
