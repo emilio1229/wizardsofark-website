@@ -49,6 +49,21 @@
       </ul>
     </section>
 
+    <!-- Gallery section added -->
+    <section class="content-block">
+      <h3 class="section-title">Realm Gallery</h3>
+      <p class="muted">Snapshots from the realm — builds, creatures, and community events. Click any image to enlarge.</p>
+
+      <div class="gallery-grid" id="gallery">
+        <img src="assets/gallery1.jpg" alt="Grand wizard tower at sunset" class="thumb" data-full="assets/gallery1-large.jpg">
+        <img src="assets/gallery2.jpg" alt="Tamed wyvern soaring above cliffs" class="thumb" data-full="assets/gallery2-large.jpg">
+        <img src="assets/gallery3.jpg" alt="Community event arena" class="thumb" data-full="assets/gallery3-large.jpg">
+        <img src="assets/gallery4.jpg" alt="Ocean platform and ships" class="thumb" data-full="assets/gallery4-large.jpg">
+        <img src="assets/gallery5.jpg" alt="Rare creature spawn" class="thumb" data-full="assets/gallery5-large.jpg">
+        <img src="assets/gallery6.jpg" alt="Player-built fortress" class="thumb" data-full="assets/gallery6-large.jpg">
+      </div>
+    </section>
+
     <section class="content-block">
       <h3 class="section-title">Quick Start</h3>
       <ol>
@@ -78,5 +93,44 @@
   <footer class="footer">
     <div>© Wizards of Ark — PvE Cluster • UK & US Admins • Join our Discord: <a class="link" href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener">discord.gg/84FDUShzE</a></div>
   </footer>
+
+  <!-- Lightbox for gallery -->
+  <div id="lightbox" class="gallery-lightbox" aria-hidden="true">
+    <button class="close-btn" id="lightbox-close">Close</button>
+    <div class="lightbox-content" id="lightbox-content"></div>
+  </div>
+
+  <script>
+    // Simple gallery lightbox
+    (function(){
+      const thumbs = document.querySelectorAll('.thumb');
+      const lightbox = document.getElementById('lightbox');
+      const content = document.getElementById('lightbox-content');
+      const closeBtn = document.getElementById('lightbox-close');
+
+      thumbs.forEach(t => {
+        t.addEventListener('click', () => {
+          const src = t.dataset.full || t.src;
+          content.innerHTML = '<img src="'+src+'" alt="'+(t.alt||'Gallery image')+'">';
+          lightbox.style.display = 'flex';
+          lightbox.setAttribute('aria-hidden','false');
+        });
+      });
+
+      function closeLB(){
+        lightbox.style.display = 'none';
+        lightbox.setAttribute('aria-hidden','true');
+        content.innerHTML = '';
+      }
+
+      closeBtn.addEventListener('click', closeLB);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLB();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeLB();
+      });
+    })();
+  </script>
 </body>
 </html>
