@@ -25,16 +25,12 @@ body{
   background:radial-gradient(circle at 50% 20%, var(--arcane-purple) 0%, var(--arcane-dark) 40%, var(--arcane-deep) 100%);
   color:var(--text-light);
   -webkit-font-smoothing:antialiased;
-  padding-top:160px; /* space for fixed header */
 }
 
-/* HEADER — CENTERED & FIXED */
+/* HEADER — CENTERED, SCROLLS WITH PAGE */
 .site-header{
-  position:fixed;
-  top:0;
-  left:0;
+  position:relative;
   width:100%;
-  z-index:1000;
   background:linear-gradient(180deg, rgba(80,40,120,0.85), rgba(20,10,40,0.9));
   backdrop-filter:blur(6px);
   box-shadow:0 4px 20px rgba(0,0,0,0.5);
