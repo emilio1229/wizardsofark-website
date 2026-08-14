@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -10,49 +10,61 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="arcane-body">
-  <header class="site-header arcane-header">
+<body>
+  <header class="site-header">
     <div class="brand">
       <img src="assets/logo.png" alt="Wizards of Ark" class="logo">
       <div class="brand-text">
-        <div class="title">Wizards of Ark</div>
-        <div class="subtitle">Arcane ASA Cluster Store</div>
+        <h1 class="title">Wizards of Ark</h1>
+        <div class="subtitle">Realm Shop (Discord Only)</div>
       </div>
     </div>
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <a href="index.html" class="nav-link">Home</a>
-      <a href="store.html" class="nav-link active">Store</a>
       <a href="server-info.html" class="nav-link">Server Info</a>
+      <a href="store.html" class="nav-link active">Store</a>
       <a href="contact.html" class="nav-link">Contact</a>
     </nav>
   </header>
 
   <main class="main">
     <section class="content-block">
-      <h1 class="section-title">Realm Shop</h1>
-      <p>Welcome to the enchanted store of the Wizards of Ark. Here you can purchase in‑game packs, creature tokens, and magical artifacts using your realm credits.</p>
+      <h2 class="section-title">Store Access</h2>
+      <p>At the moment all purchases and shop interactions are handled <strong>exclusively through Discord</strong>. We are not listing packs or items on the website yet — shop orders, deliveries, and support are processed via our Discord support system.</p>
     </section>
 
     <section class="content-block">
-      <h2 class="section-title">Featured Packs</h2>
+      <h3 class="section-title">How to Order</h3>
+      <ol>
+        <li>Join our Discord: <a class="link" href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener">discord.gg/84FDUShzE</a></li>
+        <li>Open a ticket in <strong>#store-orders</strong> and include your in-game name, desired item/package name, and preferred payment method (if applicable).</li>
+        <li>Wait for an admin to confirm availability and provide payment instructions.</li>
+        <li>Once payment is confirmed, admins will deliver items directly in-game and close the ticket.</li>
+      </ol>
+      <p class="muted">We will add web-based shop listings in the future (Tip4Serv integration planned). For now, please use Discord for all purchases.</p>
+    </section>
+
+    <section class="content-block">
+      <h3 class="section-title">Delivery & Refunds</h3>
       <ul>
-        <li><strong>Starter Wizard Pack</strong> — Basic gear, starter dinos, and 500 credits.</li>
-        <li><strong>Beastmaster Bundle</strong> — Rare creature tokens and taming boosts.</li>
-        <li><strong>Architect’s Arsenal</strong> — Building materials and decorative runes.</li>
+        <li>Deliveries are made in-game by admins after order confirmation.</li>
+        <li>No refunds for in-game consumables once delivered unless an admin error occurred.</li>
+        <li>Disputes must be raised in the original ticket; staff will review and respond.</li>
       </ul>
     </section>
 
     <section class="content-block">
-      <h2 class="section-title">How to Purchase</h2>
-      <ol>
-        <li>Join our Discord: <a href="https://discord.gg/84FDUShzE" class="link">discord.gg/84FDUShzE</a></li>
-        <li>Open a ticket in <strong>#store‑orders</strong></li>
-        <li>Specify your pack and in‑game name</li>
-        <li>Admins will deliver items directly to your inventory</li>
-      </ol>
+      <h3 class="section-title">Questions</h3>
+      <p>If you have questions about shop items, availability, or upcoming packs, ask in <strong>#store-questions</strong> on Discord or open a ticket in <strong>#store-orders</strong>.</p>
     </section>
   </main>
+
+  <footer class="footer">
+    <div>Store operations are managed via Discord. Check <a class="link" href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener">discord.gg/84FDUShzE</a> for the latest updates.</div>
+  </footer>
+</body>
+</html>
 
   <footer class="footer">
     <div>Wizards of Ark — Arcane ASA Cluster</div>
