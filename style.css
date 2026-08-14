@@ -1,59 +1,42 @@
 /* ---------------------------------------------------------
-   ARCANE REALM THEME — Wizards of Ark
-   Magical gradients • glowing runes • enchanted UI
+   HEADER — Arcane compact header, part of page flow
 --------------------------------------------------------- */
 
-:root{
-  --arcane-purple:#3d1a5a;
-  --arcane-dark:#1a0f29;
-  --arcane-deep:#0d0818;
-  --gold:#c9a86a;
-  --gold-glow:#f3e2b4;
-  --text-light:#eae6f7;
-  --text-muted:#b8b4c7;
-  --panel-bg:rgba(255,255,255,0.06);
-  --panel-border:rgba(201,168,106,0.25);
-  --glyph:'Uncial Antiqua', serif;
-  --ui:'Inter', system-ui, Arial, sans-serif;
-  --max-width:1100px;
-}
-
-/* GLOBAL BACKGROUND — ARCANE PURPLE REALM */
-body{
-  margin:0;
-  font-family:var(--ui);
-  background:radial-gradient(circle at 50% 20%, var(--arcane-purple) 0%, var(--arcane-dark) 40%, var(--arcane-deep) 100%);
-  color:var(--text-light);
-  -webkit-font-smoothing:antialiased;
-}
-
-/* HEADER — Compact, centered horizontally, scrolls with page */
 .site-header {
-  position: relative;
+  position: relative;                 /* ensures header is part of page flow */
   width: 100%;
-  background: linear-gradient(180deg, rgba(80,40,120,0.85), rgba(20,10,40,0.9));
+  background: linear-gradient(
+    180deg,
+    rgba(80,40,120,0.85),
+    rgba(20,10,40,0.9)
+  );
   backdrop-filter: blur(6px);
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   border-bottom: 1px solid var(--panel-border);
   text-align: center;
   padding: 16px 0;
+  z-index: 5;
 }
 
-/* Logo and text side by side, centered horizontally */
+/* Brand container */
 .brand {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
+  margin-bottom: 10px;
 }
 
+/* Logo */
 .logo {
   height: 64px;
+  width: auto;
   border-radius: 8px;
   border: 2px solid var(--panel-border);
   box-shadow: 0 0 12px rgba(201,168,106,0.35);
 }
 
+/* Title + Subtitle */
 .brand-text {
   display: flex;
   flex-direction: column;
@@ -74,7 +57,7 @@ body{
   margin: 0;
 }
 
-/* Buttons directly under header */
+/* Navigation */
 .nav {
   display: flex;
   justify-content: center;
@@ -104,51 +87,4 @@ body{
 .nav-link.active {
   background: rgba(201,168,106,0.35);
   box-shadow: 0 0 22px rgba(201,168,106,0.65);
-}
-
-/* MAIN */
-.main{
-  max-width:var(--max-width);
-  margin:30px auto;
-  padding:0 18px;
-}
-
-/* ARCANE PANELS — PARCHMENT + GLOW */
-.content-block{
-  background:linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
-  border:1px solid var(--panel-border);
-  padding:22px;
-  border-radius:16px;
-  margin-bottom:26px;
-  box-shadow:0 12px 40px rgba(0,0,0,0.55);
-  backdrop-filter:blur(5px);
-}
-
-/* SECTION TITLES — GOLD RUNES */
-.section-title{
-  font-family:var(--glyph);
-  font-size:24px;
-  color:var(--gold);
-  margin:0 0 16px;
-  position:relative;
-  padding-left:26px;
-}
-
-.section-title::before{
-  content:"✦";
-  position:absolute;
-  left:0;
-  top:0;
-  color:var(--gold-glow);
-  text-shadow:0 0 14px rgba(201,168,106,0.6);
-  font-size:20px;
-}
-
-/* FOOTER */
-.footer{
-  padding:20px;
-  text-align:center;
-  color:var(--text-muted);
-  font-size:14px;
-  margin-top:40px;
 }
