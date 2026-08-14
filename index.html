@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -6,324 +6,77 @@
   <title>Wizards of Ark — Home</title>
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#c9a86a">
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Centered header / brand shared styles */
-    .arcane-header .brand {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-align: center;
-      padding: 18px 12px;
-    }
-
-    .arcane-header .logo {
-      width: 120px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      filter: drop-shadow(0 6px 18px rgba(176, 120, 255, 0.18));
-    }
-
-    .brand-text .title {
-      font-family: 'Uncial Antiqua', serif;
-      font-size: 1.9rem;
-      color: #f0e6ff;
-      letter-spacing: 0.6px;
-      text-shadow: 0 0 10px rgba(146, 84, 255, 0.35), 0 0 20px rgba(120, 40, 220, 0.18);
-      margin: 0;
-    }
-
-    .brand-text .subtitle {
-      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      font-size: 0.95rem;
-      color: #d8c7ff;
-      opacity: 0.95;
-      margin-top: 2px;
-    }
-
-    /* Centered nav under brand */
-    .arcane-header .nav {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-      padding-bottom: 8px;
-    }
-
-    .arcane-header .nav-link {
-      text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 8px;
-      background: linear-gradient(90deg, rgba(90,0,176,0.95), rgba(155,77,255,0.95));
-      color: #fff;
-      border: 1px solid rgba(207,170,255,0.18);
-      font-weight: 600;
-      box-shadow: 0 6px 18px rgba(120,40,220,0.08);
-      transition: transform .18s ease, box-shadow .18s ease;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .arcane-header .nav-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(120,40,220,0.12);
-    }
-
-    .arcane-header .nav-link.active {
-      outline: 2px solid rgba(207,170,255,0.12);
-      background: linear-gradient(90deg, rgba(110,20,200,0.98), rgba(175,95,255,0.98));
-    }
-
-    /* Responsive tweaks */
-    @media (max-width: 520px) {
-      .arcane-header .logo { width: 96px; }
-      .brand-text .title { font-size: 1.5rem; }
-      .arcane-header .nav { gap: 8px; }
-      .arcane-header .nav-link { padding: 7px 10px; font-size: 0.95rem; }
-    }
-
-    /* Minor page layout polish to match server-info */
-    .main {
-      max-width: 1100px;
-      margin: 28px auto;
-      padding: 0 18px 48px;
-    }
-
-    .arcane-hero {
-      background: linear-gradient(180deg, rgba(30,6,50,0.35), rgba(10,2,18,0.45));
-      border-radius: 12px;
-      padding: 36px 18px;
-      box-shadow: 0 12px 40px rgba(20,6,40,0.22);
-      margin: 18px 0;
-      color: #efe6ff;
-    }
-
-    .hero-title {
-      font-family: 'Uncial Antiqua', serif;
-      font-size: 2.4rem;
-      margin: 0 0 8px;
-      text-shadow: 0 0 10px rgba(160,110,255,0.12);
-    }
-
-    .hero-lead {
-      font-size: 1.05rem;
-      color: #e8dbff;
-      margin: 0 0 16px;
-      line-height: 1.5;
-    }
-
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-weight: 700;
-      margin-right: 8px;
-      transition: transform .15s ease, box-shadow .15s ease;
-    }
-
-    .btn.primary {
-      background: linear-gradient(90deg, rgba(90,0,176,0.98), rgba(155,77,255,0.98));
-      color: #fff;
-      border: none;
-      box-shadow: 0 8px 24px rgba(120,40,220,0.12);
-    }
-
-    .btn.ghost {
-      background: transparent;
-      color: #d8c7ff;
-      border: 1px solid rgba(207,170,255,0.08);
-    }
-
-    .btn:hover { transform: translateY(-3px); }
-
-    .content-block { margin: 18px 0; }
-
-    .section-title {
-      font-family: 'Uncial Antiqua', serif;
-      color: #efe6ff;
-      margin-top: 0;
-      margin-bottom: 8px;
-      font-size: 1.4rem;
-      text-shadow: 0 0 8px rgba(160,110,255,0.12);
-    }
-
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 12px; }
-    .thumb-wrap { border-radius: 8px; overflow: hidden; background: rgba(255,255,255,0.02); display:flex; align-items:center; justify-content:center; padding:6px; }
-    .thumb { width:100%; height:auto; display:block; object-fit:cover; cursor:pointer; border-radius:6px; }
-    .gallery-lightbox { position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(4,2,8,0.85); z-index:9999; padding:20px; }
-    .lightbox-content img { max-width:90vw; max-height:80vh; border-radius:8px; box-shadow:0 12px 40px rgba(0,0,0,0.6); }
-    .close-btn { position:absolute; top:18px; right:18px; background:transparent; color:#fff; border:none; font-size:1.6rem; cursor:pointer; }
-
-    footer.footer {
-      text-align: center;
-      padding: 22px 12px;
-      color: #d8c7ff;
-      opacity: 0.95;
-      border-top: 1px solid rgba(207,170,255,0.04);
-      margin-top: 28px;
-    }
-
-    footer .discord {
-      color: #fff;
-      background: linear-gradient(90deg, rgba(90,0,176,0.95), rgba(155,77,255,0.95));
-      padding: 6px 10px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      display: inline-block;
-      margin-top: 8px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="arcane-body">
-
-  <header class="site-header arcane-header" role="banner">
-    <div class="brand" role="img" aria-label="Wizards of Ark logo">
-      <img src="assets/logo.png" alt="Wizards of Ark" class="logo">
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <img src="assets/logo.png" alt="Wizards of Ark logo" class="logo">
       <div class="brand-text">
-        <div class="title">Wizards of Ark</div>
-        <div class="subtitle">Arcane ASA Cluster</div>
+        <h1 class="title">Wizards of Ark</h1>
+        <div class="subtitle">A living ARK: Survival Ascended PvE cluster</div>
       </div>
     </div>
 
-    <nav class="nav" role="navigation" aria-label="Main">
+    <nav class="nav" aria-label="Main navigation">
       <a href="index.html" class="nav-link active">Home</a>
-      <a href="store.html" class="nav-link">Store</a>
       <a href="server-info.html" class="nav-link">Server Info</a>
+      <a href="store.html" class="nav-link">Store</a>
       <a href="contact.html" class="nav-link">Contact</a>
     </nav>
   </header>
 
-  <main class="main" role="main">
-    <section class="hero arcane-hero" aria-labelledby="hero-title">
-      <div class="hero-inner">
-        <h1 id="hero-title" class="hero-title">Step Through the Portal</h1>
-        <p class="hero-lead">A full ARK: Survival Ascended PvE cluster — all official maps, boosted but balanced rates, and active UK & US admin coverage.</p>
-        <div class="hero-cta">
-          <a class="btn primary" href="server-info.html">Server Info & Rules</a>
-          <a class="btn ghost" href="#gallery">Gallery</a>
-        </div>
+  <main class="main" id="home">
+    <section class="content-block hero">
+      <h2 class="hero-title">Welcome to the Wizards of Ark</h2>
+      <p class="hero-lead">You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and dedicated admins from both the UK and US keeping everything running smoothly.</p>
+
+      <div style="margin-top:18px;">
+        <a class="btn primary" href="server-info.html">Join the Cluster</a>
+        <a class="btn ghost" href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener">Join Discord</a>
       </div>
     </section>
 
-    <section class="content-block" aria-labelledby="lore-heading">
-      <h2 id="lore-heading" class="section-title">The Realm Awaits</h2>
-      <div class="lore-full">
-        <p>When the old ley-lines shifted, the islands of Ark were braided with new magic. The Wizards of Ark cluster is a living tapestry of those changes: every official map bears traces of arcane storms, hidden shrines, and rare spawns that reward explorers and tinkerers alike. We run boosted but balanced rates to remove needless grind while preserving the danger and wonder of survival. Expect mythic creatures, custom mods that add flavor without breaking balance, and a community that values fair play and creative builds. Whether you are a lone wanderer, a master breeder, or a guild leader, you’ll find a place to grow, trade, and compete in seasonal events. Enter the realm, learn the rules in Server Info, and carve your name into the annals of the Wizards of Ark.</p>
-      </div>
+    <section class="content-block">
+      <h3 class="section-title">What Awaits You</h3>
+      <ul>
+        <li>Complete official map cluster (all official maps)</li>
+        <li>Boosted but balanced rates with reduced weight to remove grind while preserving challenge</li>
+        <li>Active PvE community with UK & US admin coverage</li>
+        <li>Admin shop, in-game shop, regular events, giveaways, and custom game modes</li>
+        <li>Unique creatures, curated mods, and community-driven improvements</li>
+      </ul>
     </section>
 
-    <section id="gallery" class="content-block" aria-labelledby="gallery-heading">
-      <h2 id="gallery-heading" class="section-title">Gallery</h2>
-      <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
-      <div class="gallery-note" id="galleryNote" aria-hidden="true"></div>
-    </section>
-
-    <section class="content-block" aria-labelledby="summary-heading">
-      <h2 id="summary-heading" class="section-title">Quick Summary</h2>
-      <p><strong>Cluster Type:</strong> PvE · <strong>Crossplay:</strong> Enabled · <strong>Max Level:</strong> 190 · <strong>Tribe Max:</strong> 6</p>
-      <p><a class="link" href="server-info.html">Full server settings, rules, mods and guides →</a></p>
-    </section>
-
-    <section class="content-block" aria-labelledby="howto-heading">
-      <h2 id="howto-heading" class="section-title">How to Find Our Server</h2>
+    <section class="content-block">
+      <h3 class="section-title">Quick Start</h3>
       <ol>
-        <li>Open ARK: Survival Ascended → Join Game → Unofficial tab</li>
-        <li>Set Game Mode to PvE and search for <strong>The Wizards of Ark</strong></li>
-        <li>Make sure "Password Protected" is unchecked; refresh list if needed</li>
+        <li>Search "The Wizards of Ark" under Unofficial in ARK: Survival Ascended and join our PvE cluster.</li>
+        <li>Read the rules in <strong>#discord-rules</strong> and press the <strong>Enter Realm</strong> button to unlock the full Discord.</li>
+        <li>Link your account to Helena Bot (see instructions below) to enable in-game features and shop access.</li>
       </ol>
-      <p>If you still can't see the servers, restart the game and open a support ticket on Discord.</p>
+    </section>
+
+    <section class="content-block">
+      <h3 class="section-title">Helena Bot Linking (Quick)</h3>
+      <p>In the <strong>The Wizards of Ark → 🖥️➖spamming</strong> channel type <code>/linkgamertag</code>. In-game: open the radial wheel (Console: Hold O/B | PC: Hold R), select HelenaBot → Link Discord, copy the EOS ID and paste it into the Discord command. Helena will DM you when linking is complete.</p>
+      <p class="muted">Thank you for taking the time to register with Helena Bot — this enables shop features, admin tools, and smoother support.</p>
+    </section>
+
+    <section class="content-block">
+      <h3 class="section-title">Community & Events</h3>
+      <p>We run regular events, seasonal giveaways, and community-driven game modes. Check <strong>#announcements</strong> and <strong>#events</strong> in Discord for schedules and prize details.</p>
+    </section>
+
+    <section class="content-block">
+      <h3 class="section-title">A Short Promise</h3>
+      <p><strong>Respect the Realm | Protect the Magic | The Wizards of Ark</strong></p>
     </section>
   </main>
 
-  <footer class="footer" role="contentinfo">
-    <div>Wizards of Ark — Arcane ASA Cluster</div>
-    <div class="footer-links"><a href="https://discord.gg/84FDUShzE" class="discord">Join Discord</a></div>
+  <footer class="footer">
+    <div>© Wizards of Ark — PvE Cluster • UK & US Admins • Join our Discord: <a class="link" href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener">discord.gg/84FDUShzE</a></div>
   </footer>
-
-  <!-- Lightbox -->
-  <div id="galleryLightbox" class="gallery-lightbox" aria-hidden="true" role="dialog" aria-label="Image preview">
-    <button class="close-btn" id="lightboxClose" aria-label="Close">✕</button>
-    <div class="lightbox-content" id="lightboxContent" role="document"></div>
-  </div>
-
-  <script>
-  (function(){
-    const expectedFiles = ['gallery1.png','gallery2.png'];
-    const basePaths = ['assets/gallery/','assets/'];
-    const grid = document.getElementById('galleryGrid');
-    const note = document.getElementById('galleryNote');
-
-    function testImage(src){
-      return new Promise(resolve=>{
-        const img=new Image();
-        img.onload=()=>resolve({ok:true,src});
-        img.onerror=()=>resolve({ok:false,src});
-        img.src=src+'?_='+Date.now();
-      });
-    }
-
-    function addThumb(src, alt){
-      const wrapper = document.createElement('div');
-      wrapper.className = 'thumb-wrap';
-      const el=document.createElement('img');
-      el.className='thumb';
-      el.src=src;
-      el.alt = alt || '';
-      el.loading='lazy';
-      el.dataset.full=src;
-      wrapper.appendChild(el);
-      grid.appendChild(wrapper);
-    }
-
-    (async function(){
-      const missing=[];
-      for(const name of expectedFiles){
-        let found=false;
-        for(const base of basePaths){
-          const full=base+name;
-          const res=await testImage(full);
-          if(res.ok){ addThumb(full, name); found=true; break; }
-        }
-        if(!found) missing.push(name);
-      }
-      if(missing.length){
-        console.warn('Gallery missing:', missing);
-        note.textContent='Some gallery files are missing. Check console for filenames.';
-        note.style.display='block';
-      }
-    })();
-
-    // Lightbox
-    const lightbox=document.getElementById('galleryLightbox');
-    const content=document.getElementById('lightboxContent');
-    const closeBtn=document.getElementById('lightboxClose');
-
-    grid.addEventListener('click', e=>{
-      const t=e.target.closest('img.thumb');
-      if(!t) return;
-      content.innerHTML='';
-      const img=document.createElement('img');
-      img.src=t.dataset.full||t.src;
-      img.alt=t.alt||'';
-      content.appendChild(img);
-      lightbox.style.display='flex';
-      lightbox.setAttribute('aria-hidden','false');
-      document.body.style.overflow='hidden';
-      closeBtn.focus();
-    });
-
-    function closeLB(){ lightbox.style.display='none'; content.innerHTML=''; lightbox.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
-    closeBtn.addEventListener('click', closeLB);
-    lightbox.addEventListener('click', e=>{ if(e.target===lightbox) closeLB(); });
-    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLB(); });
-  })();
-  </script>
 </body>
 </html>
