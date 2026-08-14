@@ -1,9 +1,67 @@
 /* ---------------------------------------------------------
-   HEADER — Arcane compact header, part of page flow
+   GLOBAL VARIABLES
 --------------------------------------------------------- */
+:root {
+  --gold: #c9a86a;
+  --text-light: #e8e8e8;
+  --text-muted: #b8b8b8;
+  --panel-border: rgba(201,168,106,0.25);
+  --glyph: 'Uncial Antiqua', serif;
+}
 
+/* ---------------------------------------------------------
+   GLOBAL BACKGROUND (Fixes mobile white screen)
+--------------------------------------------------------- */
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  background: radial-gradient(circle at top, #1a0f2b, #0b0614 60%);
+  color: var(--text-light);
+  font-family: 'Inter', sans-serif;
+  animation: fadeIn 0.8s ease;
+}
+
+/* Page fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------------------------------------------------------
+   ARCANE PARTICLES (Background animation)
+--------------------------------------------------------- */
+#particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(201,168,106,0.75);
+  border-radius: 50%;
+  animation: drift 12s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes drift {
+  0% { transform: translateY(0) translateX(0); opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-120vh) translateX(40vw); opacity: 0; }
+}
+
+/* ---------------------------------------------------------
+   HEADER — Arcane compact header
+--------------------------------------------------------- */
 .site-header {
-  position: relative;                 /* ensures header is part of page flow */
+  position: relative;
   width: 100%;
   background: linear-gradient(
     180deg,
@@ -16,6 +74,25 @@
   text-align: center;
   padding: 16px 0;
   z-index: 5;
+}
+
+/* Magical divider under header */
+.header-divider {
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg,
+    rgba(201,168,106,0) 0%,
+    rgba(201,168,106,0.8) 50%,
+    rgba(201,168,106,0) 100%
+  );
+  animation: shimmer 3s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes shimmer {
+  0% { filter: brightness(0.8); }
+  50% { filter: brightness(1.4); }
+  100% { filter: brightness(0.8); }
 }
 
 /* Brand container */
@@ -87,4 +164,109 @@
 .nav-link.active {
   background: rgba(201,168,106,0.35);
   box-shadow: 0 0 22px rgba(201,168,106,0.65);
+}
+
+/* ---------------------------------------------------------
+   CONTENT BLOCKS — Arcane animated glow
+--------------------------------------------------------- */
+.content-block {
+  position: relative;
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  padding: 24px;
+  background: rgba(255,255,255,0.05);
+  box-shadow: 0 0 18px rgba(0,0,0,0.45);
+  margin-bottom: 24px;
+  animation: arcaneGlow 4s ease-in-out infinite;
+}
+
+@keyframes arcaneGlow {
+  0% {
+    box-shadow: 0 0 18px rgba(201,168,106,0.25);
+    border-color: rgba(201,168,106,0.25);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(201,168,106,0.55);
+    border-color: rgba(201,168,106,0.55);
+  }
+  100% {
+    box-shadow: 0 0 18px rgba(201,168,106,0.25);
+    border-color: rgba(201,168,106,0.25);
+  }
+}
+
+/* ---------------------------------------------------------
+   BUTTONS — Arcane hover animation
+--------------------------------------------------------- */
+.btn {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(201,168,106,0.4),
+    transparent
+  );
+  transition: all .4s ease;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
+/* ---------------------------------------------------------
+   FOOTER
+--------------------------------------------------------- */
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+/* ---------------------------------------------------------
+   MOBILE FIXES
+--------------------------------------------------------- */
+@media (max-width: 768px) {
+
+  .brand {
+    flex-direction: column;
+  }
+
+  .logo {
+    height: 52px;
+  }
+
+  .brand-text .title {
+    font-size: 22px;
+  }
+
+  .nav {
+    gap: 8px;
+  }
+
+  .nav-link {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .content-block {
+    padding: 18px;
+  }
+
+  body {
+    background: radial-gradient(circle at top, #1a0f2b, #0b0614 80%);
+  }
 }
