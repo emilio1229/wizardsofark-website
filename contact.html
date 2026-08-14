@@ -4,10 +4,128 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact — Wizards of Ark</title>
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#c9a86a">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Centered header / brand shared styles */
+    .arcane-header .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      padding: 18px 12px;
+    }
+
+    .arcane-header .logo {
+      width: 120px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 6px 18px rgba(176, 120, 255, 0.18));
+    }
+
+    .brand-text .title {
+      font-family: 'Uncial Antiqua', serif;
+      font-size: 1.9rem;
+      color: #f0e6ff;
+      letter-spacing: 0.6px;
+      text-shadow: 0 0 10px rgba(146, 84, 255, 0.35), 0 0 20px rgba(120, 40, 220, 0.18);
+      margin: 0;
+    }
+
+    .brand-text .subtitle {
+      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      font-size: 0.95rem;
+      color: #d8c7ff;
+      opacity: 0.95;
+      margin-top: 2px;
+    }
+
+    /* Centered nav under brand */
+    .arcane-header .nav {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      padding-bottom: 8px;
+    }
+
+    .arcane-header .nav-link {
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: linear-gradient(90deg, rgba(90,0,176,0.95), rgba(155,77,255,0.95));
+      color: #fff;
+      border: 1px solid rgba(207,170,255,0.18);
+      font-weight: 600;
+      box-shadow: 0 6px 18px rgba(120,40,220,0.08);
+      transition: transform .18s ease, box-shadow .18s ease;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .arcane-header .nav-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(120,40,220,0.12);
+    }
+
+    .arcane-header .nav-link.active {
+      outline: 2px solid rgba(207,170,255,0.12);
+      background: linear-gradient(90deg, rgba(110,20,200,0.98), rgba(175,95,255,0.98));
+    }
+
+    /* Responsive tweaks */
+    @media (max-width: 520px) {
+      .arcane-header .logo { width: 96px; }
+      .brand-text .title { font-size: 1.5rem; }
+      .arcane-header .nav { gap: 8px; }
+      .arcane-header .nav-link { padding: 7px 10px; font-size: 0.95rem; }
+    }
+
+    /* Page layout */
+    .main {
+      max-width: 1100px;
+      margin: 28px auto;
+      padding: 0 18px 48px;
+    }
+
+    .arcane-panel {
+      background: linear-gradient(180deg, rgba(18,4,30,0.45), rgba(12,2,22,0.55));
+      border: 1px solid rgba(207,170,255,0.06);
+      padding: 18px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 30px rgba(20,6,40,0.25);
+    }
+
+    .section-title {
+      font-family: 'Uncial Antiqua', serif;
+      color: #efe6ff;
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.4rem;
+      text-shadow: 0 0 8px rgba(160,110,255,0.18);
+    }
+
+    .muted {
+      color: rgba(216,199,255,0.85);
+      font-size: 0.95rem;
+    }
+
+    footer.footer {
+      text-align: center;
+      padding: 22px 12px;
+      color: #d8c7ff;
+      opacity: 0.95;
+      border-top: 1px solid rgba(207,170,255,0.04);
+      margin-top: 28px;
+    }
+  </style>
 </head>
 
 <body class="arcane-body">
@@ -48,19 +166,19 @@
     <section class="content-block arcane-panel">
       <h2 class="section-title">Staff Members</h2>
 
-      <h3>Realm Masters (Owners)</h3>
+      <h3>Realm Masters</h3>
       <ul>
         <li>brendonv</li>
         <li>wizard</li>
         <li>Heathen</li>
       </ul>
 
-      <h3>Supreme Wizards (Senior Admin)</h3>
+      <h3>Supreme Wizards</h3>
       <ul>
         <li>Emilio The Great</li>
       </ul>
 
-      <h3>High Wizards (Admin)</h3>
+      <h3>High Wizards</h3>
       <ul>
         <li>Panda</li>
         <li>Meehow</li>
