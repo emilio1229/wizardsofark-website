@@ -1,207 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact — Wizards of Ark</title>
+  <title>Wizards of Ark — Contact & Support</title>
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#c9a86a">
   <link rel="stylesheet" href="style.css">
-  <style>
-    /* Centered header / brand shared styles */
-    .arcane-header .brand {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-align: center;
-      padding: 18px 12px;
-    }
-
-    .arcane-header .logo {
-      width: 120px;
-      height: auto;
-      display: block;
-      margin: 0 auto;
-      filter: drop-shadow(0 6px 18px rgba(176, 120, 255, 0.18));
-    }
-
-    .brand-text .title {
-      font-family: 'Uncial Antiqua', serif;
-      font-size: 1.9rem;
-      color: #f0e6ff;
-      letter-spacing: 0.6px;
-      text-shadow: 0 0 10px rgba(146, 84, 255, 0.35), 0 0 20px rgba(120, 40, 220, 0.18);
-      margin: 0;
-    }
-
-    .brand-text .subtitle {
-      font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      font-size: 0.95rem;
-      color: #d8c7ff;
-      opacity: 0.95;
-      margin-top: 2px;
-    }
-
-    /* Centered nav under brand */
-    .arcane-header .nav {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 10px;
-      flex-wrap: wrap;
-      padding-bottom: 8px;
-    }
-
-    .arcane-header .nav-link {
-      text-decoration: none;
-      padding: 8px 14px;
-      border-radius: 8px;
-      background: linear-gradient(90deg, rgba(90,0,176,0.95), rgba(155,77,255,0.95));
-      color: #fff;
-      border: 1px solid rgba(207,170,255,0.18);
-      font-weight: 600;
-      box-shadow: 0 6px 18px rgba(120,40,220,0.08);
-      transition: transform .18s ease, box-shadow .18s ease;
-      font-family: 'Inter', sans-serif;
-    }
-
-    .arcane-header .nav-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(120,40,220,0.12);
-    }
-
-    .arcane-header .nav-link.active {
-      outline: 2px solid rgba(207,170,255,0.12);
-      background: linear-gradient(90deg, rgba(110,20,200,0.98), rgba(175,95,255,0.98));
-    }
-
-    /* Responsive tweaks */
-    @media (max-width: 520px) {
-      .arcane-header .logo { width: 96px; }
-      .brand-text .title { font-size: 1.5rem; }
-      .arcane-header .nav { gap: 8px; }
-      .arcane-header .nav-link { padding: 7px 10px; font-size: 0.95rem; }
-    }
-
-    /* Page layout */
-    .main {
-      max-width: 1100px;
-      margin: 28px auto;
-      padding: 0 18px 48px;
-    }
-
-    .arcane-panel {
-      background: linear-gradient(180deg, rgba(18,4,30,0.45), rgba(12,2,22,0.55));
-      border: 1px solid rgba(207,170,255,0.06);
-      padding: 18px;
-      border-radius: 10px;
-      margin-bottom: 18px;
-      box-shadow: 0 8px 30px rgba(20,6,40,0.25);
-    }
-
-    .section-title {
-      font-family: 'Uncial Antiqua', serif;
-      color: #efe6ff;
-      margin-top: 0;
-      margin-bottom: 8px;
-      font-size: 1.4rem;
-      text-shadow: 0 0 8px rgba(160,110,255,0.18);
-    }
-
-    .muted {
-      color: rgba(216,199,255,0.85);
-      font-size: 0.95rem;
-    }
-
-    footer.footer {
-      text-align: center;
-      padding: 22px 12px;
-      color: #d8c7ff;
-      opacity: 0.95;
-      border-top: 1px solid rgba(207,170,255,0.04);
-      margin-top: 28px;
-    }
-  </style>
 </head>
-
-<body class="arcane-body">
-  <header class="site-header arcane-header">
+<body>
+  <header class="site-header">
     <div class="brand">
-      <img src="assets/logo.png" alt="Wizards of Ark" class="logo">
+      <img src="assets/logo.png" alt="Wizards of Ark logo" class="logo">
       <div class="brand-text">
-        <div class="title">Wizards of Ark</div>
-        <div class="subtitle">Contact & Staff</div>
+        <h1 class="title">Wizards of Ark</h1>
+        <div class="subtitle">Contact & Support</div>
       </div>
     </div>
 
-    <nav class="nav">
+    <nav class="nav" aria-label="Main navigation">
       <a href="index.html" class="nav-link">Home</a>
       <a href="server-info.html" class="nav-link">Server Info</a>
-      <a href="contact.html" class="nav-link active">Contact</a>
       <a href="store.html" class="nav-link">Store</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
     </nav>
   </header>
 
-  <main class="main">
-
-    <section class="content-block arcane-panel">
-      <h1 class="section-title">Support & Contact</h1>
-      <p>All support, appeals, and admin communication is handled <strong>exclusively through Discord</strong>. There is <strong>no email support</strong>.</p>
-
-      <h2 class="section-title">How to Get Help</h2>
-      <ol>
-        <li>Join our Discord: <a href="https://discord.gg/84FDUShzE" class="link">discord.gg/84FDUShzE</a></li>
-        <li>Read the rules in <strong>⚖️➖discord-rules</strong> and press <strong>Enter Realm</strong></li>
-        <li>Open a ticket in <strong>#support</strong></li>
-        <li>Include: your in‑game name, map/server, and a short description of the issue</li>
-      </ol>
-
-      <p class="muted">Do NOT DM admins or owners for enforcement. Do not pull staff into voice — use tickets only.</p>
+  <main class="main" id="contact">
+    <section class="content-block">
+      <h2 class="section-title">Need Help? Start Here</h2>
+      <p>If you need rule clarifications, to report an issue, or to appeal a decision, please open a ticket in <strong>#support</strong> on our Discord. Tickets ensure staff can track and resolve issues fairly and transparently.</p>
+      <p class="muted">Do not DM admins or owners for enforcement — use tickets so we can log and act on reports properly.</p>
     </section>
 
-    <section class="content-block arcane-panel">
-      <h2 class="section-title">Staff Members</h2>
-
-      <h3>Realm Masters</h3>
+    <section class="content-block">
+      <h3 class="section-title">Support Channels</h3>
       <ul>
-        <li>brendonv</li>
-        <li>wizard</li>
-        <li>Heathen</li>
-      </ul>
-
-      <h3>Supreme Wizards</h3>
-      <ul>
-        <li>Emilio The Great</li>
-      </ul>
-
-      <h3>High Wizards</h3>
-      <ul>
-        <li>Panda</li>
-        <li>Meehow</li>
-        <li>Diva</li>
+        <li><strong>Discord Support:</strong> Open a ticket in <strong>#support</strong> — fastest way to get help.</li>
+        <li><strong>In-game Issues:</strong> Report via ticket and include map, coordinates, and screenshots if possible.</li>
+        <li><strong>Emergencies after restart:</strong> Use the ticket system; admins monitor logs and will respond.</li>
       </ul>
     </section>
 
-    <section class="content-block arcane-panel">
-      <h2 class="section-title">Bots & Tools</h2>
+    <section class="content-block">
+      <h3 class="section-title">Contact Form</h3>
+      <p>Use this form for non-urgent messages (it sends an email to the admin team). For rule enforcement, use Discord tickets instead.</p>
+
+      <!-- Simple mailto fallback form (no backend). Replace action with your form endpoint if available. -->
+      <form id="contact-form" action="mailto:admin@thewizardsofark.com" method="post" enctype="text/plain" onsubmit="alert('This will open your email client. For faster support use Discord #support.');">
+        <label style="display:block;margin-bottom:8px;">
+          <strong>Your Name</strong><br>
+          <input type="text" name="name" required style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(201,168,106,0.15);background:rgba(255,255,255,0.02);color:var(--text-light);">
+        </label>
+
+        <label style="display:block;margin-bottom:8px;">
+          <strong>Your Email or Discord</strong><br>
+          <input type="text" name="contact" required style="width:100%;padding:8px;border-radius:8px;border:1px solid rgba(201,168,106,0.15);background:rgba(255,255,255,0.02);color:var(--text-light);">
+        </label>
+
+        <label style="display:block;margin-bottom:12px;">
+          <strong>Message</strong><br>
+          <textarea name="message" rows="6" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(201,168,106,0.15);background:rgba(255,255,255,0.02);color:var(--text-light);"></textarea>
+        </label>
+
+        <div style="display:flex;gap:12px;">
+          <button type="submit" class="btn primary">Send Email</button>
+          <a class="btn ghost" href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener">Open Discord</a>
+        </div>
+      </form>
+    </section>
+
+    <section class="content-block">
+      <h3 class="section-title">Ticket Guidelines</h3>
       <ul>
-        <li>Wizards of Ark Bot</li>
-        <li>Wizards of Ark Raffle Bot</li>
-        <li>Helena ASA</li>
-        <li>Ticket Tool</li>
-        <li>Awesome ARK Tools</li>
-        <li>sesh</li>
+        <li>Provide clear timestamps, map names, and coordinates for in-game issues.</li>
+        <li>Attach screenshots or video clips when possible.</li>
+        <li>For trade disputes include trade logs or screenshots from the PvE Trading Channel.</li>
       </ul>
     </section>
 
+    <section class="content-block">
+      <h3 class="section-title">Admin Availability</h3>
+      <p>We have UK & US admin coverage. For urgent post-restart issues, open a ticket and include server, character name, and a short description — admins will prioritize critical problems.</p>
+      <p class="muted">Respect the Realm | Protect the Magic | The Wizards of Ark</p>
+    </section>
   </main>
 
   <footer class="footer">
-    <div>Wizards of Ark — Arcane ASA Cluster</div>
+    <div>For fastest support use Discord: <a class="link" href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener">discord.gg/84FDUShzE</a></div>
   </footer>
 </body>
 </html>
