@@ -133,37 +133,30 @@ html, body {
   padding-bottom: 60px;
 }
 
-/* --- Gallery --- */
-.gallery {
+/* --- Gallery (home-gallery class) --- */
+.home-gallery {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start;
-  gap: 25px;
-  margin: 50px auto;
+  gap: 20px;
+  margin: 40px auto;
   width: 90%;
   max-width: 1200px;
 }
 
-.gallery-item {
-  position: relative;
-  overflow: hidden;
-  border-radius: 12px;
+.home-gallery img {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
   border: 2px solid rgba(201,168,106,0.4);
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-.gallery-item img {
-  display: block;
-  width: 300px;
-  height: auto;
-  border-radius: 12px;
-}
-
-.gallery-item:hover {
+.home-gallery img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 28px rgba(201,168,106,0.6);
+  box-shadow: 0 0 25px rgba(201,168,106,0.6);
 }
 
 /* --- Arcane Button --- */
@@ -232,7 +225,6 @@ footer {
   .logo { width: 180px; }
   .title { font-size: 36px; }
   .nav-link { padding: 8px 16px; font-size: 14px; }
-  .gallery-item img { width: 260px; }
+  .home-gallery img { max-width: 260px; }
   .arcane-btn { font-size: 18px; padding: 12px 26px; }
 }
-
