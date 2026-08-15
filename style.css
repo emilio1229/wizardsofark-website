@@ -28,15 +28,15 @@ html, body {
 
 /* --- Header --- */
 .site-header {
- .site-header { height: auto; }
- width: 100%;
+  width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(10,5,25,0.9));
   padding: 20px 0 30px;
   position: relative;
   z-index: 10;
   border-bottom: 2px solid rgba(201,168,106,0.4);
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  overflow: hidden; /* prevents sigil from expanding header */
+  height: auto;
+  overflow: hidden;
 }
 
 .header-inner {
@@ -46,7 +46,7 @@ html, body {
   justify-content: center;
   text-align: center;
   position: relative;
-  min-height: 220px; /* compact header height */
+  min-height: 220px;
 }
 
 .brand {
@@ -55,7 +55,7 @@ html, body {
 }
 
 .logo {
-  width: 220px; /* larger logo */
+  width: 220px;
   height: auto;
   filter: drop-shadow(0 0 18px rgba(201,168,106,0.65));
   transition: transform .3s ease;
@@ -74,17 +74,18 @@ html, body {
 
 .sigil {
   position: absolute;
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   background: url('assets/sigil.png') no-repeat center/contain;
   opacity: 0.18;
-  filter: drop-shadow(0 0 20px rgba(201,168,106,0.6));
+  filter: drop-shadow(0 0 25px rgba(201,168,106,0.6));
   animation: sigilSpin 22s linear infinite;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
+}
 
 /* --- Navigation --- */
 .nav {
@@ -102,7 +103,8 @@ html, body {
   border: 1px solid rgba(201,168,106,0.4);
   padding: 10px 22px;
   border-radius: 10px;
-  background: rgba(20,10,40,0.4);
+  background: radial-gradient(circle at center, rgba(201,168,106,0.15), rgba(20,10,40,0.6));
+  box-shadow: 0 0 12px rgba(201,168,106,0.35);
   transition: all .3s ease;
   position: relative;
   z-index: 5;
@@ -110,8 +112,9 @@ html, body {
 
 .nav-link:hover,
 .nav-link.active {
-  background: rgba(201,168,106,0.25);
-  box-shadow: 0 0 14px rgba(201,168,106,0.6);
+  background: radial-gradient(circle at center, rgba(201,168,106,0.35), rgba(40,20,80,0.8));
+  box-shadow: 0 0 20px rgba(201,168,106,0.65);
+  transform: translateY(-2px);
 }
 
 /* --- Divider --- */
@@ -156,7 +159,6 @@ html, body {
   transform: scale(1.05);
   box-shadow: 0 0 25px rgba(201,168,106,0.6);
 }
-
 
 /* --- Arcane Button --- */
 .arcane-btn {
@@ -227,4 +229,3 @@ footer {
   .gallery img { max-width: 260px; }
   .arcane-btn { font-size: 18px; padding: 12px 26px; }
 }
-
