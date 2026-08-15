@@ -11,7 +11,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
 </head>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 <body>
 
   <!-- Arcane Particles -->
@@ -219,25 +218,8 @@
     }, { threshold: 0.2 });
     fadeEls.forEach(el => observer.observe(el));
 
-    // Lightbox popup
-    const galleryImgs = document.querySelectorAll('.home-gallery img');
-    const lightbox = document.createElement('div');
-    lightbox.classList.add('lightbox');
-    const lightImg = document.createElement('img');
-    lightbox.appendChild(lightImg);
-    document.body.appendChild(lightbox);
-
-    galleryImgs.forEach(img => {
-      img.addEventListener('click', () => {
-        lightImg.src = img.src;
-        lightbox.classList.add('active');
-      });
-    });
-
-    lightbox.addEventListener('click', () => {
-      lightbox.classList.remove('active');
-    });
   </script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
 </body>
 </html>
