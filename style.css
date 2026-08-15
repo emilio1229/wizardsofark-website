@@ -192,27 +192,38 @@ html, body {
   transform: translateY(-3px);
 }
 
-/* --- Lightbox --- */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10,5,25,0.9);
-  justify-content: center;
-  align-items: center;
+/* --- Lightbox2 Overrides (Safe + Compatible) --- */
+
+/* Lightbox overlay background */
+.lb-overlay {
+  background: rgba(10, 5, 25, 0.9) !important;
 }
 
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 2px solid var(--gold);
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(201,168,106,0.6);
+/* Lightbox image frame */
+.lb-image {
+  border: 2px solid var(--gold) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 0 25px rgba(201,168,106,0.6) !important;
 }
+
+/* Lightbox caption text */
+.lb-caption {
+  color: var(--gold) !important;
+  font-family: 'Spectral', serif !important;
+  text-shadow: 0 0 6px rgba(201,168,106,0.6);
+}
+
+/* Lightbox navigation arrows */
+.lb-nav a.lb-prev,
+.lb-nav a.lb-next {
+  filter: drop-shadow(0 0 12px rgba(201,168,106,0.8));
+}
+
+/* Close button glow */
+.lb-close {
+  filter: drop-shadow(0 0 12px rgba(201,168,106,0.8));
+}
+
 
 /* --- Footer --- */
 footer {
