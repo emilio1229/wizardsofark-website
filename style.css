@@ -241,35 +241,4 @@ html, body {
 
 /* --- Animations --- */
 @keyframes sigilSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes runeGlow {
-  from { box-shadow: 0 0 15px var(--rune-glow); }
-  to { box-shadow: 0 0 35px var(--rune-glow); }
-}
-
-/* --- Footer --- */
-footer {
-  text-align: center;
-  padding: 20px 0;
-  border-top: 2px solid rgba(201,168,106,0.4);
-  color: rgba(201,168,106,0.8);
-  font-size: 14px;
-  margin-top: 40px;
-}
-
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .logo { width: 180px; }
-  .title { font-size: 36px; }
-  .nav-link { padding: 8px 16px; font-size: 14px; }
-  .home-gallery { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-  .rune-img { border-radius: 8px; }
-}
+  from
