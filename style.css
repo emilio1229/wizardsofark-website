@@ -1,5 +1,5 @@
 /* =========================================
-   Wizards of Ark — Clean Unified Stylesheet
+   Wizards of Ark — Complete Clean Stylesheet
    ========================================= */
 
 /* --- Root Variables --- */
@@ -30,29 +30,23 @@ html, body {
 .site-header {
   width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(10,5,25,0.9));
-  padding: 20px 0 30px;
+  padding: 25px 0 35px;
   position: relative;
   z-index: 10;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   border-bottom: 2px solid rgba(201,168,106,0.4);
-  animation: headerFade 1.5s ease-out;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
 
 .header-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* centers everything horizontally */
+  justify-content: center;
   text-align: center;
-  gap: 14px;
   position: relative;
 }
 
 .brand {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   position: relative;
   z-index: 5;
 }
@@ -61,35 +55,15 @@ html, body {
   width: 160px;
   height: auto;
   filter: drop-shadow(0 0 14px rgba(201,168,106,0.55));
-  transition: transform .3s ease;
-}
-.logo:hover {
-  transform: scale(1.06);
 }
 
 .title {
-  font-size: 42px;
   font-family: 'Uncial Antiqua', serif;
-  letter-spacing: 2px;
+  font-size: 42px;
   color: var(--gold);
   text-shadow: 0 0 14px rgba(201,168,106,0.55);
-  margin: 8px 0 5px;
-  animation: titleGlow 4s ease-in-out infinite;
+  margin-top: 10px;
 }
-
-.nav-link {
-  position: relative;
-  z-index: 5; /* keeps buttons clickable above sigil */
-  font-family: 'Uncial Antiqua', serif;
-  color: var(--gold);
-  text-decoration: none;
-  border: 1px solid rgba(201,168,106,0.4);
-  padding: 8px 18px;
-  border-radius: 8px;
-  background: rgba(20,10,40,0.4);
-  transition: all .3s ease;
-}
-
 
 .sigil {
   position: absolute;
@@ -101,12 +75,47 @@ html, body {
   animation: sigilSpin 22s linear infinite;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* centers perfectly behind logo */
+  transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
 }
 
+/* --- Navigation --- */
+.nav {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+}
 
+.nav-link {
+  font-family: 'Uncial Antiqua', serif;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(201,168,106,0.4);
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: rgba(20,10,40,0.4);
+  transition: all .3s ease;
+  position: relative;
+  z-index: 5;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: rgba(201,168,106,0.2);
+  box-shadow: 0 0 10px rgba(201,168,106,0.5);
+}
+
+/* --- Divider --- */
+.header-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+  margin-bottom: 20px;
+}
 
 /* --- Main Content --- */
 .main {
@@ -116,122 +125,7 @@ html, body {
   padding-bottom: 60px;
 }
 
-.content-block {
-  margin-bottom: 40px;
-  background: rgba(255,255,255,0.03);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-}
-
-/* --- Animations --- */
-@keyframes headerFade {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes sigilSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes titleGlow {
-  0%, 100% { text-shadow: 0 0 14px rgba(201,168,106,0.55); }
-  50% { text-shadow: 0 0 24px rgba(201,168,106,0.85); }
-}
-
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 1.2s ease forwards;
-}
-@keyframes fadeIn {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- Lightbox --- */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10,5,25,0.9);
-  justify-content: center;
-  align-items: center;
-}
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 2px solid var(--gold);
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(201,168,106,0.6);
-}
-
-/* --- Footer --- */
-footer {
-  text-align: center;
-  padding: 20px 0;
-  border-top: 2px solid rgba(201,168,106,0.4);
-  color: rgba(201,168,106,0.8);
-  font-size: 14px;
-}
-
-/* --- Responsive --- */
-@media (max-width: 768px) {
-  .logo { width: 130px; }
-  .title { font-size: 34px; }
-  .subtitle { font-size: 18px; }
-  .nav-link { padding: 6px 14px; font-size: 14px; }
-}
-/* --- Gallery Section --- */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  margin-top: 40px;
-  justify-items: center;
-}
-
-.gallery img {
-  width: 100%;
-  max-width: 320px;
-  height: auto;
-  border-radius: 10px;
-  border: 2px solid rgba(201,168,106,0.4);
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(201,168,106,0.6);
-}
-
-/* Lightbox overlay fix */
-.lightbox {
-  display: none;
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(10,5,25,0.9);
-  justify-content: center;
-  align-items: center;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border: 2px solid var(--gold);
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(201,168,106,0.6);
-}
+/* --- Gallery --- */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -257,4 +151,50 @@ footer {
 .gallery img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 25px rgba(201,168,106,0.6);
+}
+
+/* --- Lightbox --- */
+.lightbox {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(10,5,25,0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(201,168,106,0.6);
+}
+
+/* --- Footer --- */
+footer {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 2px solid rgba(201,168,106,0.4);
+  color: rgba(201,168,106,0.8);
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+/* --- Animations --- */
+@keyframes sigilSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .logo { width: 130px; }
+  .title { font-size: 34px; }
+  .nav-link { padding: 6px 14px; font-size: 14px; }
+  .gallery img { max-width: 260px; }
 }
