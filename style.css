@@ -44,15 +44,17 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 220px;
-  height: 220px;
+  width: 300px;        /* bigger */
+  height: 300px;       /* bigger */
   background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.18;
-  filter: drop-shadow(0 0 25px rgba(201,168,106,0.6));
+  opacity: 0.22;
+  filter: drop-shadow(0 0 35px rgba(201,168,106,0.6));
   animation: sigilSpin 40s linear infinite;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  z-index: 1;
 }
+
 
 .logo {
   width: 180px;
@@ -234,3 +236,11 @@ body {
   to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
