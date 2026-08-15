@@ -3,6 +3,7 @@
    ========================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@600&display=swap');
+
 :root {
   --gold: #c9a86a;
   --purple-dark: #1a0f2e;
@@ -15,20 +16,221 @@
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body {
-  height: 100%;
+body {
   background: radial-gradient(circle at center, var(--purple-mid) 0%, var(--purple-dark) 100%);
   color: var(--text-light);
   font-family: 'Inter', sans-serif;
-  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Header */
 .site-header {
   width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(10,5,25,0.9));
-  padding: 20px 0 30px;
+  padding: 30px 0 40px;
   position: relative;
-  z-index: 10;
   border-bottom: 2px solid rgba(201,168,106,0.4);
-  box-shadow: 0 4px 20px rgba
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+.header-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.sigil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  background: url('assets/sigil.png') no-repeat center/contain;
+  opacity: 0.18;
+  filter: drop-shadow(0 0 25px rgba(201,168,106,0.6));
+  animation: sigilSpin 40s linear infinite;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.logo {
+  width: 180px;
+  filter: drop-shadow(0 0 14px rgba(201,168,106,0.55));
+}
+
+.title {
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 42px;
+  color: var(--gold);
+  text-shadow: 0 0 14px rgba(201,168,106,0.55);
+  margin-top: 10px;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.nav-link {
+  font-family: 'Spectral', serif;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(201,168,106,0.4);
+  padding: 8px 20px;
+  border-radius: 8px;
+  background: radial-gradient(circle at center, rgba(201,168,106,0.15), rgba(20,10,40,0.6));
+  box-shadow: 0 0 10px rgba(201,168,106,0.35);
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: radial-gradient(circle at center, rgba(201,168,106,0.35), rgba(40,20,80,0.8));
+  box-shadow: 0 0 18px rgba(201,168,106,0.65);
+  transform: translateY(-2px);
+  text-shadow: 0 0 6px rgba(201,168,106,0.6);
+}
+
+/* Divider */
+.header-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.6;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.hero-title {
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 48px;
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(201,168,106,0.6);
+  margin-bottom: 20px;
+}
+
+.hero-text {
+  font-size: 18px;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  color: var(--text-light);
+}
+
+/* Arcane Button */
+.arcane-btn {
+  font-family: 'Spectral', serif;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  border: 2px solid rgba(201,168,106,0.6);
+  padding: 12px 28px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(40,20,80,0.7), rgba(20,10,40,0.9));
+  box-shadow: 0 0 18px rgba(201,168,106,0.6);
+  transition: all 0.3s ease;
+}
+
+.arcane-btn:hover {
+  background: linear-gradient(180deg, rgba(60,30,100,0.8), rgba(30,15,60,0.95));
+  box-shadow: 0 0 28px rgba(201,168,106,0.9);
+  transform: translateY(-2px);
+}
+
+/* Main Content */
+.main {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-bottom: 60px;
+}
+
+.section-title {
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 32px;
+  color: var(--gold);
+  margin: 30px 0 15px;
+  text-shadow: 0 0 12px rgba(201,168,106,0.5);
+}
+
+.feature-list {
+  margin: 15px 0 25px 20px;
+  line-height: 1.6;
+}
+
+/* Gallery */
+.home-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin: 40px auto;
+}
+
+.rune-img {
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid rgba(201,168,106,0.4);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.rune-img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 25px rgba(201,168,106,0.9);
+}
+
+/* Shimmer */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmerMove 2s infinite;
+}
+@keyframes shimmerMove {
+  from { left: -150%; }
+  to { left: 150%; }
+}
+
+/* Glyph */
+.glyph {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.glyph.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  border-top: 2px solid rgba(201,168,106,0.4);
+  color: rgba(201,168,106,0.8);
+  font-size: 14px;
+}
+
+/* Animations */
+@keyframes sigilSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
