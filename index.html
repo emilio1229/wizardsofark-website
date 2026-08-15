@@ -7,19 +7,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#c9a86a">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=999">
 </head>
+
 <body>
+
+  <!-- Arcane Particles -->
+  <div id="particles"></div>
+
+  <!-- Header -->
   <header class="site-header">
     <div class="brand">
-      <img src="assets/logo.png" alt="Wizards of Ark logo" class="logo">
+      <img src="assets/logo.png" alt="Wizards of Ark" class="logo">
       <div class="brand-text">
         <h1 class="title">Wizards of Ark</h1>
-        <div class="subtitle">A living ARK: Survival Ascended PvE cluster</div>
+        <div class="subtitle">Arcane PvE Cluster</div>
       </div>
     </div>
 
-    <nav class="nav" aria-label="Main navigation">
+    <nav class="nav">
       <a href="index.html" class="nav-link active">Home</a>
       <a href="server-info.html" class="nav-link">Server Info</a>
       <a href="store.html" class="nav-link">Store</a>
@@ -27,110 +33,62 @@
     </nav>
   </header>
 
-  <main class="main" id="home">
-    <section class="content-block hero">
-      <h2 class="hero-title">Welcome to the Wizards of Ark</h2>
-      <p class="hero-lead">You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and dedicated admins from both the UK and US keeping everything running smoothly.</p>
+  <div class="header-divider"></div>
 
-      <div style="margin-top:18px;">
-        <a class="btn primary" href="server-info.html">Join the Cluster</a>
-        <a class="btn ghost" href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener">Join Discord</a>
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- Welcome Block -->
+    <section class="content-block">
+      <h2 class="section-title">Welcome to the Arcane Realm</h2>
+      <p>
+        Step into a world shaped by magic, mystery, and powerful creatures.  
+        Wizards of Ark is a fully custom PvE cluster built for adventurers who seek  
+        exploration, community, and unforgettable experiences.
+      </p>
+
+      <div class="home-buttons">
+        <a href="https://discord.gg/84FDUShzE" target="_blank" class="btn home-btn">
+          Join the Arcane Cluster
+        </a>
       </div>
     </section>
 
+    <!-- Gallery Section -->
     <section class="content-block">
-      <h3 class="section-title">What Awaits You</h3>
-      <ul>
-        <li>Complete official map cluster (all official maps)</li>
-        <li>Boosted but balanced rates with reduced weight to remove grind while preserving challenge</li>
-        <li>Active PvE community with UK & US admin coverage</li>
-        <li>Admin shop, in-game shop, regular events, giveaways, and custom game modes</li>
-        <li>Unique creatures, curated mods, and community-driven improvements</li>
-      </ul>
-    </section>
+      <h2 class="section-title">Arcane Gallery</h2>
+      <p>Explore moments captured from our magical world.</p>
 
-    <!-- Gallery section added -->
-    <section class="content-block">
-      <h3 class="section-title">Realm Gallery</h3>
-      <p class="muted">Snapshots from the realm — builds, creatures, and community events. Click any image to enlarge.</p>
-
-      <div class="gallery-grid" id="gallery">
-        <img src="assets/gallery1.jpg" alt="Grand wizard tower at sunset" class="thumb" data-full="assets/gallery1-large.jpg">
-        <img src="assets/gallery2.jpg" alt="Tamed wyvern soaring above cliffs" class="thumb" data-full="assets/gallery2-large.jpg">
-        <img src="assets/gallery3.jpg" alt="Community event arena" class="thumb" data-full="assets/gallery3-large.jpg">
-        <img src="assets/gallery4.jpg" alt="Ocean platform and ships" class="thumb" data-full="assets/gallery4-large.jpg">
-        <img src="assets/gallery5.jpg" alt="Rare creature spawn" class="thumb" data-full="assets/gallery5-large.jpg">
-        <img src="assets/gallery6.jpg" alt="Player-built fortress" class="thumb" data-full="assets/gallery6-large.jpg">
+      <div class="home-gallery">
+        <img src="assets/gallery1.jpg" alt="Gallery Image 1">
+        <img src="assets/gallery2.jpg" alt="Gallery Image 2">
+        <img src="assets/gallery3.jpg" alt="Gallery Image 3">
+        <img src="assets/gallery4.jpg" alt="Gallery Image 4">
       </div>
     </section>
 
-    <section class="content-block">
-      <h3 class="section-title">Quick Start</h3>
-      <ol>
-        <li>Search "The Wizards of Ark" under Unofficial in ARK: Survival Ascended and join our PvE cluster.</li>
-        <li>Read the rules in <strong>#discord-rules</strong> and press the <strong>Enter Realm</strong> button to unlock the full Discord.</li>
-        <li>Link your account to Helena Bot (see instructions below) to enable in-game features and shop access.</li>
-      </ol>
-    </section>
-
-    <section class="content-block">
-      <h3 class="section-title">Helena Bot Linking (Quick)</h3>
-      <p>In the <strong>The Wizards of Ark → 🖥️➖spamming</strong> channel type <code>/linkgamertag</code>. In-game: open the radial wheel (Console: Hold O/B | PC: Hold R), select HelenaBot → Link Discord, copy the EOS ID and paste it into the Discord command. Helena will DM you when linking is complete.</p>
-      <p class="muted">Thank you for taking the time to register with Helena Bot — this enables shop features, admin tools, and smoother support.</p>
-    </section>
-
-    <section class="content-block">
-      <h3 class="section-title">Community & Events</h3>
-      <p>We run regular events, seasonal giveaways, and community-driven game modes. Check <strong>#announcements</strong> and <strong>#events</strong> in Discord for schedules and prize details.</p>
-    </section>
-
-    <section class="content-block">
-      <h3 class="section-title">A Short Promise</h3>
-      <p><strong>Respect the Realm | Protect the Magic | The Wizards of Ark</strong></p>
-    </section>
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
-    <div>© Wizards of Ark — PvE Cluster • UK & US Admins • Join our Discord: <a class="link" href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener">discord.gg/84FDUShzE</a></div>
+    <div>Join the community on Discord: 
+      <a class="link" href="https://discord.gg/84FDUShzE" target="_blank">discord.gg/84FDUShzE</a>
+    </div>
   </footer>
 
-  <!-- Lightbox for gallery -->
-  <div id="lightbox" class="gallery-lightbox" aria-hidden="true">
-    <button class="close-btn" id="lightbox-close">Close</button>
-    <div class="lightbox-content" id="lightbox-content"></div>
-  </div>
-
+  <!-- Particle Script -->
   <script>
-    // Simple gallery lightbox
-    (function(){
-      const thumbs = document.querySelectorAll('.thumb');
-      const lightbox = document.getElementById('lightbox');
-      const content = document.getElementById('lightbox-content');
-      const closeBtn = document.getElementById('lightbox-close');
-
-      thumbs.forEach(t => {
-        t.addEventListener('click', () => {
-          const src = t.dataset.full || t.src;
-          content.innerHTML = '<img src="'+src+'" alt="'+(t.alt||'Gallery image')+'">';
-          lightbox.style.display = 'flex';
-          lightbox.setAttribute('aria-hidden','false');
-        });
-      });
-
-      function closeLB(){
-        lightbox.style.display = 'none';
-        lightbox.setAttribute('aria-hidden','true');
-        content.innerHTML = '';
-      }
-
-      closeBtn.addEventListener('click', closeLB);
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLB();
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeLB();
-      });
-    })();
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 25; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.top = Math.random() * 100 + 'vh';
+      p.style.animationDelay = Math.random() * 10 + 's';
+      container.appendChild(p);
+    }
   </script>
+
 </body>
 </html>
+
