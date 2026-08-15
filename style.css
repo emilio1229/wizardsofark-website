@@ -37,7 +37,6 @@ html, body {
   z-index: 10;
   border-bottom: 2px solid rgba(201,168,106,0.4);
   box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  height: auto;
   overflow: hidden;
 }
 
@@ -45,7 +44,6 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
   position: relative;
 }
@@ -73,7 +71,6 @@ html, body {
   margin-top: 8px;
   margin-bottom: 4px;
   line-height: 1.1;
-  text-align: center;
 }
 
 .sigil {
@@ -155,7 +152,8 @@ html, body {
   border-radius: 10px;
 }
 
-.home-gallery img {
+/* --- Rune Hover + Shimmer + Glyph --- */
+.rune-img {
   width: 100%;
   height: auto;
   border-radius: 10px;
@@ -165,9 +163,40 @@ html, body {
   cursor: pointer;
 }
 
-.home-gallery img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 25px rgba(201,168,106,0.6);
+.rune-img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 25px rgba(201,168,106,0.9);
+}
+
+/* Shimmer Loading */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmerMove 2s infinite;
+}
+@keyframes shimmerMove {
+  from { left: -150%; }
+  to { left: 150%; }
+}
+
+/* Scroll Glyph Activation */
+.glyph {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.glyph.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* --- Captions under thumbnails --- */
@@ -242,13 +271,5 @@ footer {
   .title { font-size: 36px; }
   .nav-link { padding: 8px 16px; font-size: 14px; }
   .home-gallery { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-  .home-gallery img { max-width: 100%; }
-}
-
-  border-radius: 6px;
-}
-
-.home-gallery a img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7);
+  .rune-img { border-radius: 8px; }
 }
