@@ -1,7 +1,6 @@
 /* =========================================
    Wizards of Ark — Final Unified Stylesheet
    ========================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@600&display=swap');
 
 :root {
@@ -40,12 +39,23 @@ body {
   position: relative;
 }
 
+/* Centered brand block */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 5;
+}
+
+/* Larger centered sigil */
 .sigil {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 300px;        /* bigger */
-  height: 300px;       /* bigger */
+  width: 300px;
+  height: 300px;
   background: url('assets/sigil.png') no-repeat center/contain;
   opacity: 0.22;
   filter: drop-shadow(0 0 35px rgba(201,168,106,0.6));
@@ -54,7 +64,6 @@ body {
   pointer-events: none;
   z-index: 1;
 }
-
 
 .logo {
   width: 180px;
@@ -216,27 +225,7 @@ body {
   transform: translateY(20px);
   transition: all 0.6s ease;
 }
-.glyph.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 20px 0;
-  border-top: 2px solid rgba(201,168,106,0.4);
-  color: rgba(201,168,106,0.8);
-  font-size: 14px;
-}
-
-/* Animations */
-@keyframes sigilSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-.brand {
+.g
   display: flex;
   flex-direction: column;
   align-items: center;
