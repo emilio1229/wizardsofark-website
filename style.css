@@ -55,7 +55,7 @@ html, body {
 }
 
 .logo {
-  width: 220px;
+  width: 280px; /* bigger logo */
   height: auto;
   filter: drop-shadow(0 0 18px rgba(201,168,106,0.65));
   transition: transform .3s ease;
@@ -64,13 +64,18 @@ html, body {
   transform: scale(1.08);
 }
 
+
 .title {
   font-family: 'Uncial Antiqua', serif;
-  font-size: 46px;
+  font-size: 48px;
   color: var(--gold);
   text-shadow: 0 0 16px rgba(201,168,106,0.65);
-  margin-top: 12px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  line-height: 1.1;
+  text-align: center;
 }
+
 
 .sigil {
   position: absolute;
@@ -106,22 +111,20 @@ html, body {
   color: var(--gold);
   text-decoration: none;
   border: 1px solid rgba(201,168,106,0.4);
-  padding: 8px 20px;
+  padding: 10px 24px;
   border-radius: 8px;
-  background: radial-gradient(circle at center, rgba(201,168,106,0.15), rgba(20,10,40,0.6));
+  background: linear-gradient(180deg, #1a0f2e 0%, #2e1a4f 100%); /* solid dark background */
   box-shadow: 0 0 10px rgba(201,168,106,0.35);
   transition: all 0.3s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  background: radial-gradient(circle at center, rgba(201,168,106,0.55), rgba(40,20,80,0.9));
-  box-shadow: 0 0 25px rgba(201,168,106,0.85);
-  text-shadow: 0 0 8px rgba(201,168,106,0.8);
+  background: linear-gradient(180deg, #2e1a4f 0%, #4b2e7a 100%);
+  box-shadow: 0 0 20px rgba(201,168,106,0.65);
   transform: translateY(-2px);
+  text-shadow: 0 0 6px rgba(201,168,106,0.6);
 }
-
-
 
 /* --- Divider --- */
 .header-divider {
