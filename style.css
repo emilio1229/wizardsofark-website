@@ -238,3 +238,12 @@ footer {
   .home-gallery img { max-width: 260px; }
   .arcane-btn { font-size: 18px; padding: 12px 26px; }
 }
+.home-gallery a img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 6px;
+}
+
+.home-gallery a img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 18px rgba(255, 215, 0, 0.7);
+}
