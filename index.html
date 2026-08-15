@@ -7,12 +7,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#c9a86a">
-  <link rel="stylesheet" href="style.css?v=1002">
-  <style>
-    /* ---------------------------------------------------------
-       Arcane Gallery Enhancements
-    --------------------------------------------------------- */
+  <link rel="stylesheet" href="style.css?v=1003">
 
+  <style>
     /* Fade-in animation */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
@@ -51,7 +48,6 @@
       transition: all .3s ease;
       object-fit: cover;
       cursor: pointer;
-      position: relative;
     }
 
     .home-gallery img:hover {
@@ -83,7 +79,7 @@
       box-shadow: 0 0 30px rgba(201,168,106,0.55);
     }
 
-    .lightbox:target {
+    .lightbox.active {
       display: flex;
     }
 
@@ -152,21 +148,21 @@
       <p>Explore moments captured from our magical world.</p>
 
       <div class="home-gallery">
-        <a href="#img1"><img src="assets/gallery1.png" alt="Gallery Image 1"></a>
-        <a href="#img2"><img src="assets/gallery2.png" alt="Gallery Image 2"></a>
-        <a href="#img3"><img src="assets/gallery3.png" alt="Gallery Image 3"></a>
-        <a href="#img4"><img src="assets/gallery4.png" alt="Gallery Image 4"></a>
-        <a href="#img5"><img src="assets/gallery5.png" alt="Gallery Image 5"></a>
-        <a href="#img6"><img src="assets/gallery6.png" alt="Gallery Image 6"></a>
-        <a href="#img7"><img src="assets/gallery7.png" alt="Gallery Image 7"></a>
-        <a href="#img8"><img src="assets/gallery8.png" alt="Gallery Image 8"></a>
-        <a href="#img9"><img src="assets/gallery9.png" alt="Gallery Image 9"></a>
-        <a href="#img10"><img src="assets/gallery10.png" alt="Gallery Image 10"></a>
-        <a href="#img11"><img src="assets/gallery11.png" alt="Gallery Image 11"></a>
-        <a href="#img12"><img src="assets/gallery12.png" alt="Gallery Image 12"></a>
-        <a href="#img13"><img src="assets/gallery13.png" alt="Gallery Image 13"></a>
-        <a href="#img14"><img src="assets/gallery14.png" alt="Gallery Image 14"></a>
-        <a href="#img15"><img src="assets/gallery15.png" alt="Gallery Image 15"></a>
+        <img src="assets/gallery1.png" alt="Gallery Image 1">
+        <img src="assets/gallery2.png" alt="Gallery Image 2">
+        <img src="assets/gallery3.png" alt="Gallery Image 3">
+        <img src="assets/gallery4.png" alt="Gallery Image 4">
+        <img src="assets/gallery5.png" alt="Gallery Image 5">
+        <img src="assets/gallery6.png" alt="Gallery Image 6">
+        <img src="assets/gallery7.png" alt="Gallery Image 7">
+        <img src="assets/gallery8.png" alt="Gallery Image 8">
+        <img src="assets/gallery9.png" alt="Gallery Image 9">
+        <img src="assets/gallery10.png" alt="Gallery Image 10">
+        <img src="assets/gallery11.png" alt="Gallery Image 11">
+        <img src="assets/gallery12.png" alt="Gallery Image 12">
+        <img src="assets/gallery13.png" alt="Gallery Image 13">
+        <img src="assets/gallery14.png" alt="Gallery Image 14">
+        <img src="assets/gallery15.png" alt="Gallery Image 15">
       </div>
     </section>
 
@@ -179,15 +175,49 @@
     </div>
   </footer>
 
-  <!-- Lightbox Images -->
-  <div id="img1" class="lightbox"><img src="assets/gallery1.png" alt=""></div>
-  <div id="img2" class="lightbox"><img src="assets/gallery2.png" alt=""></div>
-  <div id="img3" class="lightbox"><img src="assets/gallery3.png" alt=""></div>
-  <div id="img4" class="lightbox"><img src="assets/gallery4.png" alt=""></div>
-  <div id="img5" class="lightbox"><img src="assets/gallery5.png" alt=""></div>
-  <div id="img6" class="lightbox"><img src="assets/gallery6.png" alt=""></div>
-  <div id="img7" class="lightbox"><img src="assets/gallery7.png" alt=""></div>
-  <div id="img8" class="lightbox"><img src="assets/gallery8.png" alt=""></div>
-  <div id="img9" class="lightbox"><img src="assets/gallery9.png" alt=""></div>
-  <div id="img10" class="lightbox"><img src="assets/gallery10.png" alt=""></div>
-  <div id="img11" class="lightbox"><img src="assets/gallery11.png" alt=""></div>
+  <!-- Particle Script -->
+  <script>
+    // Arcane particles
+    const container = document.getElementById('particles');
+    for (let i = 0; i < 25; i++) {
+      const p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.top = Math.random() * 100 + 'vh';
+      p.style.animationDelay = Math.random() * 10 + 's';
+      container.appendChild(p);
+    }
+
+    // Fade-in on scroll
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    fadeEls.forEach(el => observer.observe(el));
+
+    // Lightbox popup
+    const galleryImgs = document.querySelectorAll('.home-gallery img');
+    const lightbox = document.createElement('div');
+    lightbox.classList.add('lightbox');
+    const lightImg = document.createElement('img');
+    lightbox.appendChild(lightImg);
+    document.body.appendChild(lightbox);
+
+    galleryImgs.forEach(img => {
+      img.addEventListener('click', () => {
+        lightImg.src = img.src;
+        lightbox.classList.add('active');
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+  </script>
+
+</body>
+</html>
