@@ -506,3 +506,37 @@ html, body {
   from { box-shadow: 0 0 10px rgba(201,168,106,0.4); }
   to { box-shadow: 0 0 25px rgba(201,168,106,0.8); }
 }
+.sigil {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  background: url('assets/sigil.png') no-repeat center/contain;
+  opacity: 0.25;
+  filter: drop-shadow(0 0 25px rgba(201,168,106,0.6));
+  animation: sigilSpin 18s linear infinite;
+  top: 10px;
+  left: calc(50% - 130px);
+  pointer-events: none;
+}
+
+@keyframes sigilSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Soft purple shimmer */
+.sigil::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(180,120,255,0.35) 0%, transparent 70%);
+  animation: shimmerPulse 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes shimmerPulse {
+  0% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.45; transform: scale(1.05); }
+  100% { opacity: 0.2; transform: scale(1); }
+}
