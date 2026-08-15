@@ -9,7 +9,7 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#c9a86a">
 
-  <link rel="stylesheet" href="style.css?v=1007">
+  <link rel="stylesheet" href="style.css?v=1008">
 
   <!-- Lightbox2 CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
@@ -190,31 +190,22 @@
     fadeEls.forEach(el => observer.observe(el));
   </script>
 
-  <!-- FORCE REMOVE ALL EXISTING CLICK HANDLERS -->
-  <script>
-    document.querySelectorAll('.home-gallery img').forEach(img => {
-      const newImg = img.cloneNode(true);
-      img.replaceWith(newImg);
-    });
-  </script>
-
-  <!-- FORCE LIGHTBOX2 TO ATTACH -->
+  <!-- FINAL OVERRIDE: FORCE LIGHTBOX2 TO OPEN AND BLOCK THE THEME VIEWER -->
   <script>
     setTimeout(() => {
       document.querySelectorAll('.home-gallery a').forEach(a => {
-        a.setAttribute('data-lightbox', 'ark-gallery');
-      });
 
-      if (window.lightbox) {
-        lightbox.option({
-          resizeDuration: 200,
-          wrapAround: true,
-          fadeDuration: 200,
-          imageFadeDuration: 200,
-          positionFromTop: 50
+        // Remove ALL existing click handlers (theme, hosting, etc.)
+        const newA = a.cloneNode(true);
+        a.replaceWith(newA);
+
+        // Force Lightbox2 to open manually
+        newA.addEventListener('click', function(e) {
+          e.preventDefault(); // stop theme fullscreen viewer
+          lightbox.start(newA); // force Lightbox2 modal
         });
-      }
-    }, 300);
+      });
+    }, 500);
   </script>
 
   <!-- Scroll Glyph Activation -->
@@ -234,4 +225,3 @@
 
 </body>
 </html>
-
