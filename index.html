@@ -5,19 +5,15 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Wizards of Ark — Home</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@600&display=swap" rel="stylesheet">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <meta name="theme-color" content="#c9a86a">
 
-  <link rel="stylesheet" href="style.css?v=1011">
+  <link rel="stylesheet" href="style.css?v=revamp">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
 </head>
 
 <body>
-
-  <!-- Arcane Particles -->
-  <div id="particles"></div>
-
   <!-- Header -->
   <header class="site-header">
     <div class="header-inner">
@@ -28,7 +24,7 @@
       </div>
 
       <nav class="nav">
-        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html" class="nav-link active">Home</a>
         <a href="server-info.html" class="nav-link">Server Info</a>
         <a href="store.html" class="nav-link">Store</a>
         <a href="contact.html" class="nav-link">Contact</a>
@@ -38,60 +34,47 @@
 
   <div class="header-divider"></div>
 
-  <!-- Main Content -->
-  <main class="main">
-    <section class="content-block fade-in">
-      <h2 class="section-title">Welcome to the Wizards of Ark</h2>
-      <p>You have stepped through the portal into a living, roaring, magical realm...</p>
-      <p>Our servers run on boosted but balanced rates...</p>
-      <p>Whether you are here to tame legendary creatures...</p>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero fade-in">
+    <div class="hero-content">
+      <h2 class="hero-title">Enter the Realm of Magic</h2>
+      <p class="hero-text">
+        Step through the portal and join a world where dragons soar, runes shimmer, and adventure never ends.
+      </p>
+      <a href="https://discord.gg/84FDUShzE" target="_blank" class="arcane-btn">Enter the Realm</a>
+    </div>
+  </section>
 
-    <!-- Gallery -->
-    <section class="content-block fade-in">
-      <h2 class="section-title">Arcane Gallery</h2>
-      <p>Explore moments captured from our magical world.</p>
+  <!-- Gallery Section -->
+  <section class="content-block fade-in">
+    <h2 class="section-title">Arcane Gallery</h2>
+    <p>Glimpse the wonders of our enchanted world.</p>
 
-      <div class="home-gallery">
-        <a href="assets/gallery1.png" data-lightbox="ark-gallery" data-title="Crystal Cavern"><img src="assets/gallery1.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery2.png" data-lightbox="ark-gallery" data-title="Elder Grove"><img src="assets/gallery2.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery3.png" data-lightbox="ark-gallery" data-title="Skyforge Peak"><img src="assets/gallery3.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery4.png" data-lightbox="ark-gallery" data-title="Obsidian Depths"><img src="assets/gallery4.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery5.png" data-lightbox="ark-gallery" data-title="Arcane Sanctuary"><img src="assets/gallery5.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery6.png" data-lightbox="ark-gallery" data-title="Dragonspire Ridge"><img src="assets/gallery6.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery7.png" data-lightbox="ark-gallery" data-title="Moonlit Falls"><img src="assets/gallery7.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery8.png" data-lightbox="ark-gallery" data-title="Ancient Ruins"><img src="assets/gallery8.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery9.png" data-lightbox="ark-gallery" data-title="Stormwatch Keep"><img src="assets/gallery9.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery10.png" data-lightbox="ark-gallery" data-title="Sunfire Plateau"><img src="assets/gallery10.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery11.png" data-lightbox="ark-gallery" data-title="Frostbound Tundra"><img src="assets/gallery11.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery12.png" data-lightbox="ark-gallery" data-title="Eternal Spire"><img src="assets/gallery12.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery13.png" data-lightbox="ark-gallery" data-title="Celestial Basin"><img src="assets/gallery13.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery14.png" data-lightbox="ark-gallery" data-title="Shadowfen Marsh"><img src="assets/gallery14.png" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery15.png" data-lightbox="ark-gallery" data-title="Astral Gate"><img src="assets/gallery15.png" class="rune-img shimmer glyph"></a>
-      </div>
-    </section>
-  </main>
+    <div class="home-gallery">
+      <a href="assets/gallery1.png" data-lightbox="ark-gallery" data-title="Crystal Cavern"><img src="assets/gallery1.png" class="rune-img shimmer glyph"></a>
+      <a href="assets/gallery2.png" data-lightbox="ark-gallery" data-title="Elder Grove"><img src="assets/gallery2.png" class="rune-img shimmer glyph"></a>
+      <a href="assets/gallery3.png" data-lightbox="ark-gallery" data-title="Skyforge Peak"><img src="assets/gallery3.png" class="rune-img shimmer glyph"></a>
+      <a href="assets/gallery4.png" data-lightbox="ark-gallery" data-title="Obsidian Depths"><img src="assets/gallery4.png" class="rune-img shimmer glyph"></a>
+      <a href="assets/gallery5.png" data-lightbox="ark-gallery" data-title="Arcane Sanctuary"><img src="assets/gallery5.png" class="rune-img shimmer glyph"></a>
+    </div>
+  </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <a href="https://discord.gg/84FDUShzE" target="_blank" class="arcane-btn">Enter the Realm</a>
+    <p class="footer-text">© 2026 The Wizards of Ark — Forged in Magic</p>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
   <script>
-    // Particles
-    const container = document.getElementById('particles');
-    for (let i = 0; i < 25; i++) {
-      const p = document.createElement('div');
-      p.classList.add('particle');
-      p.style.left = Math.random() * 100 + 'vw';
-      p.style.top = Math.random() * 100 + 'vh';
-      p.style.animationDelay = Math.random() * 10 + 's';
-      container.appendChild(p);
-    }
+    lightbox.option({
+      resizeDuration: 200,
+      wrapAround: true,
+      fadeDuration: 200,
+      imageFadeDuration: 200,
+      positionFromTop: 50
+    });
 
-    // Fade-in
+    // Fade-in animation
     const fadeEls = document.querySelectorAll('.fade-in');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
@@ -99,26 +82,6 @@
       });
     }, { threshold: 0.2 });
     fadeEls.forEach(el => observer.observe(el));
-
-    // Glyph animation
-    const glyphs = document.querySelectorAll('.glyph');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
-      });
-    }, { threshold: 0.2 });
-    glyphs.forEach(g => obs.observe(g));
-
-    // Lightbox setup
-    window.addEventListener('load', () => {
-      lightbox.option({
-        resizeDuration: 200,
-        wrapAround: true,
-        fadeDuration: 200,
-        imageFadeDuration: 200,
-        positionFromTop: 50
-      });
-    });
   </script>
 </body>
 </html>
