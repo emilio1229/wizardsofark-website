@@ -10,6 +10,7 @@
   --purple-mid: #2e1a4f;
   --purple-light: #4b2e7a;
   --text-light: #e8e3f0;
+  --rune-glow: rgba(201,168,106,0.75);
 }
 
 /* --- Global Reset --- */
@@ -55,7 +56,7 @@ html, body {
 }
 
 .logo {
-  width: 280px; /* bigger logo */
+  width: 280px;
   height: auto;
   filter: drop-shadow(0 0 18px rgba(201,168,106,0.65));
   transition: transform .3s ease;
@@ -63,7 +64,6 @@ html, body {
 .logo:hover {
   transform: scale(1.08);
 }
-
 
 .title {
   font-family: 'Uncial Antiqua', serif;
@@ -75,7 +75,6 @@ html, body {
   line-height: 1.1;
   text-align: center;
 }
-
 
 .sigil {
   position: absolute;
@@ -92,10 +91,7 @@ html, body {
   z-index: 1;
 }
 
-
 /* --- Navigation --- */
-@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@600&display=swap');
-
 .nav {
   display: flex;
   justify-content: center;
@@ -113,7 +109,7 @@ html, body {
   border: 1px solid rgba(201,168,106,0.4);
   padding: 10px 24px;
   border-radius: 8px;
-  background: linear-gradient(180deg, #1a0f2e 0%, #2e1a4f 100%); /* solid dark background */
+  background: linear-gradient(180deg, #1a0f2e 0%, #2e1a4f 100%);
   box-shadow: 0 0 10px rgba(201,168,106,0.35);
   transition: all 0.3s ease;
 }
@@ -143,19 +139,24 @@ html, body {
   padding-bottom: 60px;
 }
 
-/* --- Gallery (home-gallery class) --- */
+/* --- Gallery --- */
 .home-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 20px;
   margin: 40px auto;
-  width: 90%;
-  max-width: 1200px;
+  width: 100%;
+}
+
+.home-gallery a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
 }
 
 .home-gallery img {
-  width: 300px;
+  width: 100%;
   height: auto;
   border-radius: 10px;
   border: 2px solid rgba(201,168,106,0.4);
@@ -169,88 +170,61 @@ html, body {
   box-shadow: 0 0 25px rgba(201,168,106,0.6);
 }
 
-/* --- Arcane Button --- */
-.arcane-btn {
-  display: inline-block;
-  margin: 60px auto 0;
-  padding: 14px 32px;
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 20px;
-  color: var(--gold);
-  border: 2px solid var(--gold);
-  border-radius: 12px;
-  background: radial-gradient(circle at center, rgba(201,168,106,0.25), rgba(40,20,80,0.6));
-  box-shadow: 0 0 20px rgba(201,168,106,0.45);
-  text-decoration: none;
-  transition: all 0.4s ease;
+/* --- Captions under thumbnails --- */
+.home-gallery a::after {
+  content: attr(data-title);
+  display: block;
   text-align: center;
+  margin-top: 8px;
+  font-family: 'Spectral', serif;
+  color: var(--gold);
+  font-size: 14px;
+  text-shadow: 0 0 6px rgba(201,168,106,0.6);
 }
 
-.arcane-btn:hover {
-  background: radial-gradient(circle at center, rgba(201,168,106,0.45), rgba(40,20,80,0.8));
-  box-shadow: 0 0 30px rgba(201,168,106,0.65);
-  transform: translateY(-3px);
-}
-<!-- Lightbox2 Required HTML Structure -->
-<div id="lightboxOverlay" class="lightboxOverlay"></div>
-<div id="lightbox" class="lightbox">
-  <div class="lb-outerContainer">
-    <div class="lb-container">
-      <img class="lb-image" src="">
-      <div class="lb-nav">
-        <a class="lb-prev"></a>
-        <a class="lb-next"></a>
-      </div>
-      <div class="lb-loader">
-        <a class="lb-cancel"></a>
-      </div>
-    </div>
-  </div>
-  <div class="lb-dataContainer">
-    <div class="lb-data">
-      <div class="lb-details">
-        <span class="lb-caption"></span>
-        <span class="lb-number"></span>
-      </div>
-      <div class="lb-closeContainer">
-        <a class="lb-close"></a>
-      </div>
-    </div>
-  </div>
-</div>
-
-/* --- Lightbox2 Overrides (Safe + Compatible) --- */
-
-/* Lightbox overlay background */
+/* --- Lightbox2 Rune Glow Overrides --- */
 .lb-overlay {
   background: rgba(10, 5, 25, 0.9) !important;
+  animation: fadeIn 0.3s ease;
 }
 
-/* Lightbox image frame */
 .lb-image {
   border: 2px solid var(--gold) !important;
   border-radius: 10px !important;
-  box-shadow: 0 0 25px rgba(201,168,106,0.6) !important;
+  box-shadow: 0 0 35px var(--rune-glow) !important;
+  animation: runeGlow 2s infinite alternate ease-in-out;
 }
 
-/* Lightbox caption text */
 .lb-caption {
   color: var(--gold) !important;
   font-family: 'Spectral', serif !important;
   text-shadow: 0 0 6px rgba(201,168,106,0.6);
 }
 
-/* Lightbox navigation arrows */
 .lb-nav a.lb-prev,
 .lb-nav a.lb-next {
   filter: drop-shadow(0 0 12px rgba(201,168,106,0.8));
 }
 
-/* Close button glow */
 .lb-close {
   filter: drop-shadow(0 0 12px rgba(201,168,106,0.8));
 }
 
+/* --- Animations --- */
+@keyframes sigilSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes runeGlow {
+  from { box-shadow: 0 0 15px var(--rune-glow); }
+  to { box-shadow: 0 0 35px var(--rune-glow); }
+}
 
 /* --- Footer --- */
 footer {
@@ -262,22 +236,15 @@ footer {
   margin-top: 40px;
 }
 
-/* --- Animations --- */
-@keyframes sigilSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
 /* --- Responsive --- */
 @media (max-width: 768px) {
   .logo { width: 180px; }
   .title { font-size: 36px; }
   .nav-link { padding: 8px 16px; font-size: 14px; }
-  .home-gallery img { max-width: 260px; }
-  .arcane-btn { font-size: 18px; padding: 12px 26px; }
+  .home-gallery { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+  .home-gallery img { max-width: 100%; }
 }
-.home-gallery a img {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
   border-radius: 6px;
 }
 
