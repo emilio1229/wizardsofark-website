@@ -77,12 +77,19 @@ html, body {
   animation: titleGlow 4s ease-in-out infinite;
 }
 
-.nav {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  justify-content: center;
+.nav-link {
+  position: relative;
+  z-index: 5; /* keeps buttons clickable above sigil */
+  font-family: 'Uncial Antiqua', serif;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(201,168,106,0.4);
+  padding: 8px 18px;
+  border-radius: 8px;
+  background: rgba(20,10,40,0.4);
+  transition: all .3s ease;
 }
+
 
 .sigil {
   position: absolute;
@@ -92,11 +99,13 @@ html, body {
   opacity: 0.18;
   filter: drop-shadow(0 0 20px rgba(201,168,106,0.6));
   animation: sigilSpin 22s linear infinite;
-  top: 10px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%); /* centers the sigil perfectly */
+  transform: translate(-50%, -50%); /* centers perfectly behind logo */
   pointer-events: none;
+  z-index: 1;
 }
+
 
 
 /* --- Main Content --- */
@@ -222,4 +231,30 @@ footer {
   border: 2px solid var(--gold);
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(201,168,106,0.6);
+}
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin: 40px auto;
+  width: 90%;
+  max-width: 1200px;
+  justify-items: center;
+}
+
+.gallery img {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid rgba(201,168,106,0.4);
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(201,168,106,0.6);
 }
