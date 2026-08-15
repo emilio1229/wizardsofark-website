@@ -31,18 +31,4 @@ html, body {
   position: relative;
   z-index: 10;
   border-bottom: 2px solid rgba(201,168,106,0.4);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-  overflow: hidden;
-}
-
-.header-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.logo {
-  width: 280px;
-  height: auto;
-  filter: drop-shadow(0 0 18
+  box-shadow: 0 4px 20px rgba
