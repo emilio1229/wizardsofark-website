@@ -80,12 +80,13 @@ html, body {
   opacity: 0.18;
   filter: drop-shadow(0 0 25px rgba(201,168,106,0.6));
   animation: sigilSpin 22s linear infinite;
-  top: 15%; /* raised higher behind logo */
+  top: 28%; /* lowered slightly for perfect centering */
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
 }
+
 
 
 
