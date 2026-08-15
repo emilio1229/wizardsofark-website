@@ -28,7 +28,8 @@ html, body {
 
 /* --- Header --- */
 .site-header {
-  width: 100%;
+ .site-header { height: auto; }
+ width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(10,5,25,0.9));
   padding: 20px 0 30px;
   position: relative;
@@ -132,31 +133,30 @@ html, body {
 
 /* --- Gallery --- */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  margin: 50px auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin: 40px auto;
   width: 90%;
   max-width: 1200px;
-  justify-items: center;
 }
 
 .gallery img {
-  width: 100%;
-  max-width: 340px;
+  width: 300px;
   height: auto;
-  border-radius: 12px;
+  border-radius: 10px;
   border: 2px solid rgba(201,168,106,0.4);
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  z-index: 2;
 }
 
 .gallery img:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 28px rgba(201,168,106,0.6);
+  box-shadow: 0 0 25px rgba(201,168,106,0.6);
 }
+
 
 /* --- Arcane Button --- */
 .arcane-btn {
