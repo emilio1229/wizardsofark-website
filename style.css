@@ -278,6 +278,24 @@ body {
   margin: 28px 0 48px;
 }
 
+/* Gallery item wrapper */
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+}
+
+.gallery-item-title {
+  font-family: 'Spectral', serif;
+  font-size: 14px;
+  color: var(--gold);
+  text-align: center;
+  padding: 10px 6px 0;
+  line-height: 1.3;
+  text-shadow: 0 0 6px rgba(201,168,106,0.3);
+}
+
 /* Images: lazy loading recommended in HTML */
 .rune-img {
   width: 100%;
@@ -317,6 +335,40 @@ body {
 .glyph.visible { opacity: 1; transform: translateY(0); }
 
 /* -------------------------
+   Lightbox2 Responsive Fixes
+   ------------------------- */
+.lb-loader,
+.lb-nav {
+  max-width: 100%;
+}
+
+.lightbox {
+  padding-bottom: 0 !important;
+}
+
+.lightbox img {
+  max-height: 85vh !important;
+  max-width: 90vw !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+}
+
+.lb-outerContainer {
+  max-width: 95vw !important;
+  max-height: 90vh !important;
+}
+
+.lb-container {
+  max-width: 95vw !important;
+  max-height: 90vh !important;
+}
+
+.lb-dataContainer {
+  max-width: 95vw !important;
+}
+
+/* -------------------------
    Footer
    ------------------------- */
 .footer {
@@ -351,6 +403,18 @@ img { max-width: 100%; height: auto; display: block; }
   .hero { padding: 36px 12px; }
   .hero-title { font-size: 28px; }
   .rune-img { height: 140px; }
+  
+  .lightbox img {
+    max-height: 75vh !important;
+    max-width: 85vw !important;
+  }
+  
+  .lb-outerContainer,
+  .lb-container,
+  .lb-dataContainer {
+    max-width: 90vw !important;
+    max-height: 80vh !important;
+  }
 }
 /* =========================================
    Wizards of Ark — Enhanced Animations
