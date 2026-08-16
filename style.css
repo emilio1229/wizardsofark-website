@@ -1,7 +1,11 @@
 /* =========================================
-   Wizards of Ark — Optimized Unified Stylesheet
+   Wizards of Ark — Final Optimized Stylesheet
+   Version: 2026-08-15
+   Includes compact header rules and gallery optimizations
    ========================================= */
-@import url('https://fonts.googleapis.com/css2?family=Spectral:wght@600&display=swap');
+
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@600&display=swap');
 
 :root {
   --gold: #c9a86a;
@@ -10,81 +14,102 @@
   --purple-light: #4b2e7a;
   --text-light: #e8e3f0;
   --rune-glow: rgba(201,168,106,0.75);
+  --header-max-width: 1200px;
+  --header-padding-mobile: 12px;
+  --header-padding-desktop: 10px;
 }
 
 /* Reset */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+
+html,body { height: 100%; }
 
 body {
   background: radial-gradient(circle at center, var(--purple-mid) 0%, var(--purple-dark) 100%);
   color: var(--text-light);
-  font-family: 'Inter', sans-serif;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Header */
+/* -------------------------
+   Header Base
+   ------------------------- */
 .site-header {
   width: 100%;
-  background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(10,5,25,0.9));
-  padding: 30px 0 40px;
+  background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
+  padding: var(--header-padding-mobile) 0;
   position: relative;
-  border-bottom: 2px solid rgba(201,168,106,0.4);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(201,168,106,0.18);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  z-index: 50;
 }
 
 .header-inner {
+  width: 100%;
+  max-width: var(--header-max-width);
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 8px;
+  padding: 0 16px;
   position: relative;
 }
 
-/* Centered brand block */
+/* Brand block centered and above nav on mobile */
 .brand {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
   z-index: 5;
 }
 
-/* Larger centered sigil */
+/* Sigil sits behind the brand, centered */
 .sigil {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 320px;
-  height: 320px;
+  width: 220px;
+  height: 220px;
   background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.22;
-  filter: drop-shadow(0 0 35px rgba(201,168,106,0.6));
-  animation: sigilSpin 40s linear infinite;
+  opacity: 0.16;
+  filter: drop-shadow(0 0 28px rgba(201,168,106,0.5));
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
+  will-change: transform, opacity;
+  transition: opacity 300ms ease, transform 60000ms linear;
 }
 
+/* Logo and title */
 .logo {
-  width: 200px;
-  filter: drop-shadow(0 0 14px rgba(201,168,106,0.55));
+  width: 140px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 12px rgba(201,168,106,0.5));
+  z-index: 5;
+  transition: width 180ms ease;
 }
 
 .title {
   font-family: 'Uncial Antiqua', serif;
-  font-size: 44px;
+  font-size: 28px;
   color: var(--gold);
-  text-shadow: 0 0 14px rgba(201,168,106,0.55);
-  margin-top: 10px;
+  text-shadow: 0 0 10px rgba(201,168,106,0.45);
+  margin-top: 6px;
+  z-index: 5;
+  line-height: 1;
 }
 
 /* Navigation */
 .nav {
   display: flex;
-  gap: 14px;
+  gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 20px;
+  width: 100%;
 }
 
 .nav-link {
@@ -92,48 +117,120 @@ body {
   font-weight: 600;
   color: var(--gold);
   text-decoration: none;
-  border: 1px solid rgba(201,168,106,0.4);
-  padding: 8px 20px;
+  border: 1px solid rgba(201,168,106,0.18);
+  padding: 6px 12px;
   border-radius: 8px;
-  background: radial-gradient(circle at center, rgba(201,168,106,0.15), rgba(20,10,40,0.6));
-  box-shadow: 0 0 10px rgba(201,168,106,0.35);
-  transition: all 0.3s ease;
+  background: rgba(201,168,106,0.06);
+  box-shadow: 0 0 8px rgba(0,0,0,0.25);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  font-size: 14px;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  background: radial-gradient(circle at center, rgba(201,168,106,0.35), rgba(40,20,80,0.8));
-  box-shadow: 0 0 18px rgba(201,168,106,0.65);
   transform: translateY(-2px);
-  text-shadow: 0 0 6px rgba(201,168,106,0.6);
+  background: rgba(201,168,106,0.12);
+  box-shadow: 0 6px 18px rgba(201,168,106,0.08);
 }
 
 /* Divider */
 .header-divider {
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,106,0.12), transparent);
   opacity: 0.6;
 }
 
-/* Hero */
+/* -------------------------
+   Compact Header Modifier
+   Apply the class compact-header to <header> or <body> to force compact mode
+   ------------------------- */
+.compact-header .site-header {
+  padding: 8px 0;
+}
+
+.compact-header .header-inner {
+  gap: 6px;
+  padding: 0 12px;
+}
+
+.compact-header .sigil {
+  width: 180px;
+  height: 180px;
+  opacity: 0.12;
+}
+
+.compact-header .logo {
+  width: 120px;
+}
+
+.compact-header .title {
+  font-size: 22px;
+  margin-top: 4px;
+}
+
+.compact-header .nav-link {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+/* -------------------------
+   Desktop layout
+   ------------------------- */
+@media (min-width: 900px) {
+  .header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    gap: 12px;
+  }
+
+  /* Keep brand visually centered while nav sits to the right */
+  .brand {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .sigil {
+    width: 360px;
+    height: 360px;
+    top: 50%;
+    left: 50%;
+    opacity: 0.14;
+    filter: drop-shadow(0 0 40px rgba(201,168,106,0.55));
+    transform: translate(-50%, -50%);
+  }
+
+  .logo { width: 160px; }
+  .title { font-size: 36px; margin-top: 0; }
+
+  .nav { justify-content: flex-end; gap: 12px; width: auto; }
+  .nav-link { padding: 8px 16px; font-size: 15px; }
+}
+
+/* -------------------------
+   Hero
+   ------------------------- */
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 64px 20px;
 }
 
 .hero-title {
   font-family: 'Uncial Antiqua', serif;
-  font-size: 48px;
+  font-size: 44px;
   color: var(--gold);
-  text-shadow: 0 0 20px rgba(201,168,106,0.6);
-  margin-bottom: 20px;
+  text-shadow: 0 0 18px rgba(201,168,106,0.6);
+  margin-bottom: 14px;
 }
 
 .hero-text {
-  font-size: 18px;
-  max-width: 700px;
-  margin: 0 auto 30px;
+  font-size: 16px;
+  max-width: 760px;
+  margin: 0 auto 22px;
   color: var(--text-light);
 }
 
@@ -143,23 +240,19 @@ body {
   font-weight: 600;
   color: var(--gold);
   text-decoration: none;
-  border: 2px solid rgba(201,168,106,0.6);
-  padding: 12px 28px;
-  border-radius: 10px;
-  background: linear-gradient(180deg, rgba(40,20,80,0.7), rgba(20,10,40,0.9));
-  box-shadow: 0 0 18px rgba(201,168,106,0.6);
-  transition: all 0.3s ease;
+  border: 2px solid rgba(201,168,106,0.5);
+  padding: 10px 22px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(40,20,80,0.75), rgba(20,10,40,0.95));
+  box-shadow: 0 8px 28px rgba(201,168,106,0.08);
+  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
-.arcane-btn:hover {
-  background: linear-gradient(180deg, rgba(60,30,100,0.8), rgba(30,15,60,0.95));
-  box-shadow: 0 0 28px rgba(201,168,106,0.9);
-  transform: translateY(-2px);
-}
-
-/* Main Content */
+/* -------------------------
+   Main content
+   ------------------------- */
 .main {
-  width: 90%;
+  width: 92%;
   max-width: 1100px;
   margin: 0 auto;
   padding-bottom: 60px;
@@ -167,25 +260,95 @@ body {
 
 .section-title {
   font-family: 'Uncial Antiqua', serif;
-  font-size: 32px;
+  font-size: 30px;
   color: var(--gold);
-  margin: 30px 0 15px;
-  text-shadow: 0 0 12px rgba(201,168,106,0.5);
+  margin: 28px 0 12px;
+  text-shadow: 0 0 10px rgba(201,168,106,0.45);
 }
 
-.feature-list {
-  margin: 15px 0 25px 20px;
-  line-height: 1.6;
-}
+.feature-list { margin: 12px 0 22px 20px; line-height: 1.6; }
 
-/* Gallery */
+/* -------------------------
+   Gallery
+   ------------------------- */
 .home-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  margin: 40px auto;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin: 28px 0 48px;
 }
 
+/* Images: lazy loading recommended in HTML */
 .rune-img {
-  width: 
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(201,168,106,0.12);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease;
+  display: block;
+  background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12));
+}
+
+.rune-img:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+}
+
+/* Shimmer effect optimized to reduce GPU load */
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
+  animation: shimmerMove 2.8s linear infinite;
+  opacity: 0.18;
+  will-change: transform;
+}
+@keyframes shimmerMove { from { transform: translateX(0); } to { transform: translateX(120%); } }
+
+/* Glyph reveal (intersection observer friendly) */
+.glyph { opacity: 0; transform: translateY(10px); transition: opacity 420ms ease, transform 420ms ease; }
+.glyph.visible { opacity: 1; transform: translateY(0); }
+
+/* -------------------------
+   Footer
+   ------------------------- */
+.footer {
+  text-align: center;
+  padding: 18px 12px;
+  border-top: 1px solid rgba(201,168,106,0.08);
+  color: rgba(201,168,106,0.8);
+  font-size: 13px;
+}
+
+/* -------------------------
+   Accessibility and performance hints
+   ------------------------- */
+a { -webkit-tap-highlight-color: transparent; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* Prevent layout shift for header elements */
+.logo, .title, .nav-link { will-change: transform, opacity; }
+
+/* Slightly reduce motion for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sigil, .shimmer::before, .rune-img, .logo { transition: none !important; animation: none !important; }
+}
+
+/* -------------------------
+   Small screens tweaks
+   ------------------------- */
+@media (max-width: 520px) {
+  .sigil { width: 160px; height: 160px; opacity: 0.12; }
+  .logo { width: 120px; }
+  .title { font-size: 20px; }
+  .hero { padding: 36px 12px; }
+  .hero-title { font-size: 28px; }
+  .rune-img { height: 140px; }
 }
