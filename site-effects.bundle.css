@@ -1,67 +1,54 @@
-/* site-effects.bundle.css — extracted from pages to centralize effects and improve caching */
-:root{
-  --gold:#c9a86a;
-  --purple-mid:#2e1a4f;
-  --side-width:72px;
-  --max-orbs-desktop:12;
-  --max-orbs-mobile:5;
-}
+/* Wizards of Ark — site-effects.bundle.css (ambient effects, compact header, gallery optimizations) */
+:root{ --gold:#c9a86a; --purple-mid:#2e1a4f; --side-width:72px; --max-orbs-desktop:12; --max-orbs-mobile:5; --header-max-width:1200px; --header-padding-mobile:12px; }
 
-/* Compact header basics */
+/* Header */
 .site-header{width:100%;background:linear-gradient(180deg,rgba(40,20,80,0.9),rgba(10,5,25,0.95));padding:12px 0;position:relative;border-bottom:1px solid rgba(201,168,106,0.18);z-index:50}
-.header-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 16px;position:relative}
-.brand{display:flex;flex-direction:column;align-items:center;z-index:5}
-.sigil{position:absolute;top:48%;left:50%;width:220px;height:220px;background:url('assets/sigil.png') no-repeat center/contain;opacity:0.18;filter:drop-shadow(0 0 28px rgba(201,168,106,0.5));transform:translate(-50%,-50%);}
-.logo{width:140px;z-index:5;transition:width 180ms ease}
-.title{font-family:'Uncial Antiqua',serif;font-size:28px;color:var(--gold);margin-top:6px;z-index:5}
+.header-inner{width:100%;max-width:var(--header-max-width);margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 16px;position:relative}
+.brand{display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:5}
+.sigil{position:absolute;top:48%;left:50%;width:220px;height:220px;background:url('assets/sigil.png') no-repeat center/contain;opacity:0.16;filter:drop-shadow(0 0 28px rgba(201,168,106,0.5));transform:translate(-50%,-50%);pointer-events:none;z-index:1}
+.logo{width:140px;height:auto;display:block;filter:drop-shadow(0 0 12px rgba(201,168,106,0.5));z-index:5}
+.title{font-family:'Uncial Antiqua',serif;font-size:28px;color:var(--gold);text-shadow:0 0 10px rgba(201,168,106,0.45);margin-top:6px}
 
 /* Nav */
 .nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
-.nav-link{font-family:'Spectral',serif;font-weight:600;color:var(--gold);text-decoration:none;padding:6px 12px;border-radius:8px;background:rgba(201,168,106,0.06);font-size:14px}
-.nav-link:hover,.nav-link.active{transform:translateY(-2px);background:rgba(201,168,106,0.12)}
+.nav-link{font-family:'Spectral',serif;font-weight:600;color:var(--gold);text-decoration:none;padding:6px 12px;border-radius:8px;background:rgba(201,168,106,0.06);}
 
-/* Compact modifier */
+/* Compact */
 .compact-header .site-header{padding:8px 0}
-.compact-header .sigil{width:180px;height:180px;transform:translate(-50%,-58%);opacity:0.12}
+.compact-header .sigil{width:180px;height:180px;opacity:0.12}
 .compact-header .logo{width:120px}
 .compact-header .title{font-size:22px}
 
-/* Desktop layout */
-@media(min-width:900px){
-  .header-inner{flex-direction:row;align-items:center;justify-content:space-between;padding:0 20px}
-  .brand{flex-direction:row;gap:12px}
-  .sigil{width:360px;height:360px;transform:translate(-50%,-60%);opacity:0.14}
-  .logo{width:160px}.title{font-size:36px}
-  .nav{justify-content:flex-end;width:auto}.nav-link{padding:8px 16px;font-size:15px}
-}
-
-/* Gallery and shimmer */
+/* Gallery */
 .home-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:28px 0 48px}
 .rune-img{width:100%;height:160px;object-fit:cover;border-radius:10px;border:1px solid rgba(201,168,106,0.12);box-shadow:0 6px 18px rgba(0,0,0,0.35);display:block;background:linear-gradient(180deg,rgba(0,0,0,0.06),rgba(0,0,0,0.12))}
+.rune-img:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 18px 40px rgba(0,0,0,0.45)}
+
+/* Shimmer */
 .shimmer{position:relative;overflow:hidden}
-.shimmer::before{content:"";position:absolute;top:0;left:-120%;width:120%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent);animation:shimmerMove 2.8s linear infinite;opacity:0.18;will-change:transform}
+.shimmer::before{content:"";position:absolute;top:0;left:-120%;width:120%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent);animation:shimmerMove 2.8s linear infinite;opacity:0.18}
 @keyframes shimmerMove{from{transform:translateX(0)}to{transform:translateX(120%)}}
 
-/* Side runes and orbs */
+/* Side runes */
 .side-rune{position:fixed;top:0;bottom:0;width:var(--side-width);pointer-events:none;z-index:40;display:flex;align-items:center;justify-content:center;opacity:0.9}
-.side-rune.left{left:0}.side-rune.right{right:0}
-.side-rune::before{content:"";display:block;width:100%;height:100%;background-image:radial-gradient(circle at 50% 20%,rgba(255,255,255,0.02) 0,transparent 20%),linear-gradient(180deg,rgba(255,255,255,0.01),transparent 30%);background-size:28px 120px,100% 100%;transform:translateZ(0);mix-blend-mode:overlay;filter:blur(0.6px) saturate(1.05)}
+.side-rune::before{content:"";display:block;width:100%;height:100%;background-image:radial-gradient(circle at 50% 20%,rgba(255,255,255,0.02) 0,transparent 20%),linear-gradient(180deg,rgba(255,255,255,0.01),transparent 30%);background-size:28px 120px,100% 100%;mix-blend-mode:overlay;filter:blur(0.6px) saturate(1.05)}
 .side-rune .rune-stack{display:flex;flex-direction:column;gap:18px;align-items:center;transform:translateY(6vh);opacity:0.95}
-.side-rune .rune{width:36px;height:36px;background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 40%),linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));border-radius:8px;box-shadow:0 0 12px rgba(120,80,200,0.06);animation:runeFloat 6s ease-in-out infinite}
-@keyframes runeFloat{0%{transform:translateY(0) rotate(0deg) scale(1);opacity:0.95}50%{transform:translateY(-8px) rotate(6deg) scale(1.02);opacity:1}100%{transform:translateY(0) rotate(0deg) scale(1);opacity:0.95}}
+.side-rune .rune{width:36px;height:36px;border-radius:8px;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.06),transparent 40%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06));box-shadow:0 0 12px rgba(120,80,200,0.06);animation:runeFloat 6s ease-in-out infinite}
+@keyframes runeFloat{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
 
-/* Orb layer and cursor glow */
+/* Orb layer */
 .orb-layer{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden;mix-blend-mode:screen}
 .orb{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.18),rgba(201,168,106,0.06) 40%,transparent 60%);filter:blur(10px);opacity:0.12}
 .orb.small{width:44px;height:44px;opacity:0.08;filter:blur(6px)}
-.cursor-glow{position:fixed;pointer-events:none;z-index:9999;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(201,168,106,0.14),transparent 40%);transform:translate(-50%,-50%) scale(0.9);transition:transform 160ms ease,opacity 160ms ease;opacity:0.0}
-a:hover ~ .cursor-glow,.arcane-btn:hover ~ .cursor-glow{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
 
-/* Rune trail */
-.rune-trail{position:fixed;right:12%;bottom:8%;z-index:45;pointer-events:none;opacity:0.9}
-.rune-trail .trail-glyph{display:block;width:56px;height:56px;margin-bottom:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06));border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.45);transition:transform 420ms cubic-bezier(.2,.9,.2,1),opacity 420ms ease;opacity:0.9}
-.rune-trail.pop .trail-glyph{transform:translateY(-8px) scale(1.03)}
+/* Cursor glow */
+.cursor-glow{position:fixed;pointer-events:none;z-index:9999;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(201,168,106,0.14),transparent 40%);transform:translate(-50%,-50%) scale(0.9);transition:transform 160ms ease,opacity 160ms ease;opacity:0}
 
-/* Performance and accessibility */
-@media(max-width:720px){.side-rune,.orb-layer,.cursor-glow,.rune-trail{display:none!important}}
+/* Content block accent */
+.content-block{position:relative}
+.content-block::after{content:"";position:absolute;inset:-6px;border-radius:14px;background:linear-gradient(90deg,rgba(201,168,106,0.06),rgba(120,80,200,0.03),rgba(201,168,106,0.06));filter:blur(8px);opacity:0.7;z-index:-1;transition:opacity 240ms ease}
+.content-block:hover::after{opacity:1;transform:scale(1.01)}
+
+/* Performance */
+@media(max-width:720px){.side-rune,.orb-layer,.cursor-glow,.rune-trail{display:none!important}.content-block::after{filter:blur(6px);opacity:0.6}}
 @media(prefers-reduced-motion:reduce){.orb,.sigil,.rune,.shimmer::before,.cursor-glow{animation:none!important;transition:none!important;transform:none!important}}
