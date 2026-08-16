@@ -1,15 +1,12 @@
 /* =========================================
    Wizards of Ark — Final Optimized Stylesheet
-   Version: 2026-08-15
-   Includes compact header rules and gallery optimizations
+   Version: 2026-08-16
+   Consolidated, cleaned and fixed placeholder/truncated fragments
    ========================================= */
-
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@600&display=swap');
 
 :root {
   --gold: #c9a86a;
-  --purple-dark: #1a0f2e;
+  --purple-dark: #0f0820;
   --purple-mid: #2e1a4f;
   --purple-light: #4b2e7a;
   --text-light: #e8e3f0;
@@ -17,17 +14,19 @@
   --header-max-width: 1200px;
   --header-padding-mobile: 12px;
   --header-padding-desktop: 10px;
+  --max-orbs-desktop: 12;
+  --max-orbs-mobile: 5;
+  --side-width: 72px;
 }
 
 /* Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-
 html,body { height: 100%; }
 
 body {
   background: radial-gradient(circle at center, var(--purple-mid) 0%, var(--purple-dark) 100%);
   color: var(--text-light);
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
@@ -57,7 +56,6 @@ body {
   position: relative;
 }
 
-/* Brand block centered and above nav on mobile */
 .brand {
   display: flex;
   flex-direction: column;
@@ -66,10 +64,9 @@ body {
   z-index: 5;
 }
 
-/* Sigil sits behind the brand, centered */
 .sigil {
   position: absolute;
-  top: 32%;
+  top: 48%;
   left: 50%;
   width: 220px;
   height: 220px;
@@ -83,7 +80,6 @@ body {
   transition: opacity 300ms ease, transform 60000ms linear;
 }
 
-/* Logo and title */
 .logo {
   width: 140px;
   height: auto;
@@ -133,7 +129,6 @@ body {
   box-shadow: 0 6px 18px rgba(201,168,106,0.08);
 }
 
-/* Divider */
 .header-divider {
   width: 100%;
   height: 1px;
@@ -141,426 +136,92 @@ body {
   opacity: 0.6;
 }
 
-/* -------------------------
-   Compact Header Modifier
-   Apply the class compact-header to <header> or <body> to force compact mode
-   ------------------------- */
-.compact-header .site-header {
-  padding: 8px 0;
-}
+/* Compact header */
+.compact-header .site-header { padding: 8px 0; }
+.compact-header .header-inner { gap: 6px; padding: 0 12px; }
+.compact-header .sigil { width: 180px; height: 180px; opacity: 0.12; }
+.compact-header .logo { width: 120px; }
+.compact-header .title { font-size: 22px; margin-top: 4px; }
+.compact-header .nav-link { padding: 6px 10px; font-size: 13px; }
 
-.compact-header .header-inner {
-  gap: 6px;
-  padding: 0 12px;
-}
-
-.compact-header .sigil {
-  width: 180px;
-  height: 180px;
-  opacity: 0.12;
-}
-
-.compact-header .logo {
-  width: 120px;
-}
-
-.compact-header .title {
-  font-size: 22px;
-  margin-top: 4px;
-}
-
-.compact-header .nav-link {
-  padding: 6px 10px;
-  font-size: 13px;
-}
-
-/* -------------------------
-   Desktop layout
-   ------------------------- */
+/* Desktop layout */
 @media (min-width: 900px) {
-  .header-inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    gap: 12px;
-  }
-
-  /* Keep brand visually centered while nav sits to the right */
-  .brand {
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    justify-content: flex-start;
-  }
-
-  .sigil {
-    width: 360px;
-    height: 360px;
-    top: 50%;
-    left: 50%;
-    opacity: 0.14;
-    filter: drop-shadow(0 0 40px rgba(201,168,106,0.55));
-    transform: translate(-50%, -50%);
-  }
-
+  .header-inner { flex-direction: row; align-items: center; justify-content: space-between; padding: 0 20px; gap: 12px; }
+  .brand { flex-direction: row; align-items: center; gap: 12px; justify-content: flex-start; }
+  .sigil { width: 360px; height: 360px; top: 50%; left: 50%; opacity: 0.14; filter: drop-shadow(0 0 40px rgba(201,168,106,0.55)); transform: translate(-50%, -50%); }
   .logo { width: 160px; }
   .title { font-size: 36px; margin-top: 0; }
-
   .nav { justify-content: flex-end; gap: 12px; width: auto; }
   .nav-link { padding: 8px 16px; font-size: 15px; }
 }
 
-/* -------------------------
-   Hero
-   ------------------------- */
-.hero {
-  text-align: center;
-  padding: 64px 20px;
-}
+/* Hero */
+.hero { text-align: center; padding: 64px 20px; }
+.hero-title { font-family: 'Uncial Antiqua', serif; font-size: 44px; color: var(--gold); text-shadow: 0 0 18px rgba(201,168,106,0.6); margin-bottom: 14px; }
+.hero-text { font-size: 16px; max-width: 760px; margin: 0 auto 22px; color: var(--text-light); }
+.arcane-btn { font-family: 'Spectral', serif; font-weight: 600; color: var(--gold); text-decoration: none; border: 2px solid rgba(201,168,106,0.5); padding: 10px 22px; border-radius: 8px; background: linear-gradient(180deg, rgba(40,20,80,0.75), rgba(20,10,40,0.95)); box-shadow: 0 8px 28px rgba(201,168,106,0.08); transition: transform 160ms ease, box-shadow 160ms ease; }
 
-.hero-title {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 44px;
-  color: var(--gold);
-  text-shadow: 0 0 18px rgba(201,168,106,0.6);
-  margin-bottom: 14px;
-}
-
-.hero-text {
-  font-size: 16px;
-  max-width: 760px;
-  margin: 0 auto 22px;
-  color: var(--text-light);
-}
-
-/* Arcane Button */
-.arcane-btn {
-  font-family: 'Spectral', serif;
-  font-weight: 600;
-  color: var(--gold);
-  text-decoration: none;
-  border: 2px solid rgba(201,168,106,0.5);
-  padding: 10px 22px;
-  border-radius: 8px;
-  background: linear-gradient(180deg, rgba(40,20,80,0.75), rgba(20,10,40,0.95));
-  box-shadow: 0 8px 28px rgba(201,168,106,0.08);
-  transition: transform 160ms ease, box-shadow 160ms ease;
-}
-
-/* -------------------------
-   Main content
-   ------------------------- */
-.main {
-  width: 92%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding-bottom: 60px;
-}
-
-.section-title {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 30px;
-  color: var(--gold);
-  margin: 28px 0 12px;
-  text-shadow: 0 0 10px rgba(201,168,106,0.45);
-}
-
+/* Main content */
+.main { width: 92%; max-width: 1100px; margin: 0 auto; padding-bottom: 60px; }
+.section-title { font-family: 'Uncial Antiqua', serif; font-size: 30px; color: var(--gold); margin: 28px 0 12px; text-shadow: 0 0 10px rgba(201,168,106,0.45); }
 .feature-list { margin: 12px 0 22px 20px; line-height: 1.6; }
 
-/* -------------------------
-   Gallery
-   ------------------------- */
-.home-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin: 28px 0 48px;
-}
+/* Gallery */
+.home-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 28px 0 48px; }
+.rune-img { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; border: 1px solid rgba(201,168,106,0.12); box-shadow: 0 6px 18px rgba(0,0,0,0.35); transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease; display: block; background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12)); }
+.rune-img:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
 
-/* Images: lazy loading recommended in HTML */
-.rune-img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid rgba(201,168,106,0.12);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease;
-  display: block;
-  background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12));
-}
-
-.rune-img:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
-}
-
-/* Shimmer effect optimized to reduce GPU load */
+/* Shimmer */
 .shimmer { position: relative; overflow: hidden; }
-.shimmer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 120%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
-  animation: shimmerMove 2.8s linear infinite;
-  opacity: 0.18;
-  will-change: transform;
-}
+.shimmer::before { content: ""; position: absolute; top: 0; left: -120%; width: 120%; height: 100%; background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent); animation: shimmerMove 2.8s linear infinite; opacity: 0.18; will-change: transform; }
 @keyframes shimmerMove { from { transform: translateX(0); } to { transform: translateX(120%); } }
 
-/* Glyph reveal (intersection observer friendly) */
+/* Glyph reveal */
 .glyph { opacity: 0; transform: translateY(10px); transition: opacity 420ms ease, transform 420ms ease; }
 .glyph.visible { opacity: 1; transform: translateY(0); }
 
-/* -------------------------
-   Footer
-   ------------------------- */
-.footer {
-  text-align: center;
-  padding: 18px 12px;
-  border-top: 1px solid rgba(201,168,106,0.08);
-  color: rgba(201,168,106,0.8);
-  font-size: 13px;
-}
+/* Footer */
+.footer { text-align: center; padding: 18px 12px; border-top: 1px solid rgba(201,168,106,0.08); color: rgba(201,168,106,0.8); font-size: 13px; }
 
-/* -------------------------
-   Accessibility and performance hints
-   ------------------------- */
+/* Accessibility & performance */
 a { -webkit-tap-highlight-color: transparent; }
 img { max-width: 100%; height: auto; display: block; }
-
-/* Prevent layout shift for header elements */
 .logo, .title, .nav-link { will-change: transform, opacity; }
+@media (prefers-reduced-motion: reduce) { .sigil, .shimmer::before, .rune-img, .logo { transition: none !important; animation: none !important; } }
 
-/* Slightly reduce motion for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .sigil, .shimmer::before, .rune-img, .logo { transition: none !important; animation: none !important; }
-}
+/* Small screens */
+@media (max-width: 520px) { .sigil { width: 160px; height: 160px; opacity: 0.12; } .logo { width: 120px; } .title { font-size: 20px; } .hero { padding: 36px 12px; } .hero-title { font-size: 28px; } .rune-img { height: 140px; } }
 
-/* -------------------------
-   Small screens tweaks
-   ------------------------- */
-@media (max-width: 520px) {
-  .sigil { width: 160px; height: 160px; opacity: 0.12; }
-  .logo { width: 120px; }
-  .title { font-size: 20px; }
-  .hero { padding: 36px 12px; }
-  .hero-title { font-size: 28px; }
-  .rune-img { height: 140px; }
-}
-/* =========================================
-   Wizards of Ark — Enhanced Animations
-   Add this to your existing style.css or replace it.
-   Keep the rest of your styles; these rules layer on top.
-   ========================================= */
+/* --- Side panels & enhanced effects --- */
+.site-with-sides { position: relative; overflow-x: hidden; }
+.side-rune { position: fixed; top: 0; bottom: 0; width: var(--side-width); pointer-events: none; z-index: 40; display: flex; align-items: center; justify-content: center; opacity: 0.9; }
+.side-rune.left { left: 0; } .side-rune.right { right: 0; }
+.side-rune::before { content: ""; display:block; width:100%; height:100%; background-image: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.02) 0, transparent 20%), linear-gradient(180deg, rgba(255,255,255,0.01), transparent 30%); background-size: 28px 120px, 100% 100%; transform: translateZ(0); mix-blend-mode: overlay; filter: blur(0.6px) saturate(1.05); }
+.side-rune .rune-stack { display:flex; flex-direction:column; gap:18px; align-items:center; transform: translateY(6vh); opacity: 0.95; }
+.side-rune .rune { width: 36px; height: 36px; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 40%), linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); border-radius: 8px; box-shadow: 0 0 12px rgba(120,80,200,0.06), inset 0 1px 0 rgba(255,255,255,0.02); transform-origin: center; animation: runeFloat 6s ease-in-out infinite; will-change: transform, opacity; opacity: 0.95; }
+.side-rune .rune:nth-child(odd){ animation-duration: 5.6s; } .side-rune .rune:nth-child(even){ animation-duration: 6.8s; animation-delay: 0.2s; }
+@keyframes runeFloat { 0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; } 50% { transform: translateY(-8px) rotate(6deg) scale(1.02); opacity: 1; } 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; } }
 
-/* --- Core variables --- */
-:root{
-  --gold: #c9a86a;
-  --purple-dark: #0f0820;
-  --purple-mid: #2e1a4f;
-  --accent-glow: rgba(201,168,106,0.18);
-  --orb-color: rgba(201,168,106,0.12);
-  --rune-color: rgba(120,80,200,0.08);
-  --max-orbs-desktop: 12;
-  --max-orbs-mobile: 5;
-  --side-width: 72px;
-}
-
-/* --- Layout helpers for side panels --- */
-.site-with-sides {
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* Left and right rune sidebars */
-.side-rune {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: var(--side-width);
-  pointer-events: none;
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.9;
-}
-
-.side-rune.left { left: 0; }
-.side-rune.right { right: 0; }
-
-/* rune column background pattern (subtle, repeats vertically) */
-.side-rune::before{
-  content: "";
-  display:block;
-  width:100%;
-  height:100%;
-  background-image: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.02) 0, transparent 20%),
-                    linear-gradient(180deg, rgba(255,255,255,0.01), transparent 30%);
-  background-size: 28px 120px, 100% 100%;
-  transform: translateZ(0);
-  mix-blend-mode: overlay;
-  filter: blur(0.6px) saturate(1.05);
-}
-
-/* rune glyphs stacked vertically */
-.side-rune .rune-stack{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-  align-items:center;
-  transform: translateY(6vh);
-  opacity: 0.95;
-}
-.side-rune .rune {
-  width: 36px;
-  height: 36px;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 40%),
-              linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(120,80,200,0.06), inset 0 1px 0 rgba(255,255,255,0.02);
-  transform-origin: center;
-  animation: runeFloat 6s ease-in-out infinite;
-  will-change: transform, opacity;
-  opacity: 0.95;
-}
-
-/* staggered float */
-.side-rune .rune:nth-child(odd){ animation-duration: 5.6s; transform-origin:center; }
-.side-rune .rune:nth-child(even){ animation-duration: 6.8s; transform-origin:center; animation-delay: 0.2s; }
-
-@keyframes runeFloat {
-  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
-  50% { transform: translateY(-8px) rotate(6deg) scale(1.02); opacity: 1; }
-  100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
-}
-
-/* --- Floating orbs layer (ambient) --- */
-.orb-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  pointer-events: none;
-  overflow: hidden;
-  mix-blend-mode: screen;
-}
-
-/* each orb */
-.orb {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), rgba(201,168,106,0.06) 40%, transparent 60%);
-  filter: blur(10px) saturate(1.1);
-  opacity: 0.12;
-  transform: translate3d(0,0,0);
-  will-change: transform, opacity;
-}
-
-/* smaller orb variant */
+.orb-layer { position: fixed; inset: 0; z-index: 30; pointer-events: none; overflow: hidden; mix-blend-mode: screen; }
+.orb { position: absolute; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), rgba(201,168,106,0.06) 40%, transparent 60%); filter: blur(10px) saturate(1.1); opacity: 0.12; transform: translate3d(0,0,0); will-change: transform, opacity; }
 .orb.small { width: 44px; height: 44px; opacity: 0.08; filter: blur(6px); }
 
-/* subtle parallax for hero background */
-.hero-parallax {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02), transparent 8%),
-                    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01), transparent 6%);
-  mix-blend-mode: overlay;
-  opacity: 0.6;
-  transform: translateZ(0);
-}
+.hero-parallax { position: absolute; inset: 0; z-index: 2; pointer-events: none; background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02), transparent 8%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01), transparent 6%); mix-blend-mode: overlay; opacity: 0.6; transform: translateZ(0); }
 
-/* --- Animated border accent for content blocks --- */
-.content-block {
-  position: relative;
-  overflow: visible;
-  z-index: 5;
-}
+.content-block { position: relative; overflow: visible; z-index: 5; }
+.content-block::after { content: ""; position: absolute; inset: -6px; border-radius: 14px; background: linear-gradient(90deg, rgba(201,168,106,0.06), rgba(120,80,200,0.03), rgba(201,168,106,0.06)); filter: blur(8px); opacity: 0.7; z-index: -1; transition: opacity 240ms ease; }
+.content-block:hover::after { opacity: 1; transform: scale(1.01); }
 
-.content-block::after{
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 14px;
-  background: linear-gradient(90deg, rgba(201,168,106,0.06), rgba(120,80,200,0.03), rgba(201,168,106,0.06));
-  filter: blur(8px);
-  opacity: 0.7;
-  z-index: -1;
-  transition: opacity 240ms ease;
-}
+.cursor-glow { position: fixed; pointer-events: none; z-index: 9999; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, rgba(201,168,106,0.14), transparent 40%); transform: translate(-50%, -50%) scale(0.9); transition: transform 160ms ease, opacity 160ms ease; opacity: 0.0; mix-blend-mode: screen; will-change: transform, opacity; }
 
-/* on hover, glow stronger */
-.content-block:hover::after{ opacity: 1; transform: scale(1.01); }
+a:hover ~ .cursor-glow, button:hover ~ .cursor-glow, .arcane-btn:hover ~ .cursor-glow { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
 
-/* --- Cursor glow for desktop --- */
-.cursor-glow {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, rgba(201,168,106,0.14), transparent 40%);
-  transform: translate(-50%, -50%) scale(0.9);
-  transition: transform 160ms ease, opacity 160ms ease;
-  opacity: 0.0;
-  mix-blend-mode: screen;
-  will-change: transform, opacity;
-}
-
-/* show on hover of interactive elements */
-a:hover ~ .cursor-glow, button:hover ~ .cursor-glow, .arcane-btn:hover ~ .cursor-glow {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1.05);
-}
-
-/* --- Subtle scroll-based rune trail --- */
-.rune-trail {
-  position: fixed;
-  right: 12%;
-  bottom: 8%;
-  z-index: 45;
-  pointer-events: none;
-  opacity: 0.9;
-}
-.rune-trail .trail-glyph {
-  display:block;
-  width: 56px;
-  height: 56px;
-  margin-bottom: 10px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
-  transform-origin: center;
-  transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease;
-  opacity: 0.9;
-}
-
-/* when user scrolls, small pop */
+.rune-trail { position: fixed; right: 12%; bottom: 8%; z-index: 45; pointer-events: none; opacity: 0.9; }
+.rune-trail .trail-glyph { display:block; width: 56px; height: 56px; margin-bottom: 10px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.45); transform-origin: center; transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease; opacity: 0.9; }
 .rune-trail.pop .trail-glyph { transform: translateY(-8px) scale(1.03); }
 
-/* --- Performance: reduce effects on small screens --- */
-@media (max-width: 720px) {
-  .side-rune { display: none; }
-  .orb { display: none; }
-  .cursor-glow { display: none; }
-  .rune-trail { display: none; }
-  .content-block::after { filter: blur(6px); opacity: 0.6; }
-}
+@media (max-width: 720px) { .side-rune, .orb, .cursor-glow, .rune-trail { display: none !important; } .content-block::after { filter: blur(6px); opacity: 0.6; } }
+@media (prefers-reduced-motion: reduce) { .orb, .sigil, .rune, .shimmer::before, .cursor-glow { animation: none !important; transition: none !important; transform: none !important; } }
 
-/* --- Accessibility: reduce motion --- */
-@media (prefers-reduced-motion: reduce) {
-  .orb, .sigil, .rune, .shimmer::before, .cursor-glow { animation: none !important; transition: none !important; transform: none !important; }
-}
-
-/* --- Utility: hide sides quickly --- */
+/* Utility */
 .hide-sides .side-rune, .hide-sides .orb-layer, .hide-sides .rune-trail { display: none !important; }
