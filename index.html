@@ -5,76 +5,64 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Wizards of Ark — Home</title>
 
-  <!-- Fonts -->
+  <!-- SEO -->
+  <meta name="description" content="Join The Wizards of Ark — a PvE ARK: Survival Ascended cluster with all official maps, boosted rates, active community, and regular events.">
+
+  <!-- Fonts: preconnect + load -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@600&display=swap" rel="stylesheet">
 
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-
-  <!-- Theme -->
   <meta name="theme-color" content="#c9a86a">
 
   <!-- Preload critical images -->
   <link rel="preload" href="assets/logo.png" as="image">
   <link rel="preload" href="assets/sigil.png" as="image">
 
-  <!-- Preload Lightbox -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" as="script">
-
-  <!-- Cache boost -->
-  <meta http-equiv="Cache-Control" content="max-age=86400, public">
-
   <!-- Styles -->
   <link rel="stylesheet" href="style.css?v=optimized104">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+  <link rel="stylesheet" href="site-effects.bundle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" integrity="sha512-hb8QP223Zv5v7MXYzmGZB11M8BxkG3qK1gpAQewoOC/LA0kW0voFA+cJavDt6SY/3F8f6U7TY+q9g1xIrG0W0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
-<body>
 <body class="site-with-sides">
+  <a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
 
-
-  <!-- Header -->
-  <header class="site-header compact-header">
-    <header class="site-header">
+  <header class="site-header compact-header" role="banner">
     <div class="header-inner">
-     <div class="sigil"></div>
-    <div class="brand">
-      <img src="assets/logo.png" alt="The Wizards of Ark Logo" class="logo">
-      <h1 class="title">The Wizards of Ark</h1>
+      <div class="sigil" aria-hidden="true"></div>
+      <div class="brand">
+        <img src="assets/logo.png" alt="The Wizards of Ark logo" class="logo" width="160" height="80">
+        <h1 class="title">The Wizards of Ark</h1>
+      </div>
+      <nav class="nav" role="navigation" aria-label="Main">
+        <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+        <a href="server-info.html" class="nav-link">Server Info</a>
+        <a href="store.html" class="nav-link">Store</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
     </div>
-    <nav class="nav">
-      <a href="index.html" class="nav-link active">Home</a>
-      <a href="server-info.html" class="nav-link">Server Info</a>
-      <a href="store.html" class="nav-link">Store</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </nav>
-  </div>
-</header>
+  </header>
 
-  <div class="header-divider"></div>
-  <div class="header-divider"></div>
-  <!-- HERO SECTION -->
+  <div class="header-divider" aria-hidden="true"></div>
+  <div class="header-divider" aria-hidden="true"></div>
+
   <section class="hero fade-in">
     <div class="hero-content">
       <h2 class="hero-title">Enter the Realm of Magic</h2>
-      <p class="hero-text">
-        Step through the portal and join a world where dragons soar, runes shimmer, and adventure never ends.
-      </p>
-      <a href="https://discord.gg/84FDUShzE" target="_blank" class="arcane-btn">Enter the Realm</a>
+      <p class="hero-text">Step through the portal and join a world where dragons soar, runes shimmer, and adventure never ends.</p>
+      <a href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener noreferrer" class="arcane-btn" aria-label="Join our Discord">Enter the Realm</a>
     </div>
   </section>
 
-  <!-- MAIN CONTENT -->
-  <main class="main">
+  <main id="main" class="main">
 
-    <!-- REQUIRED TEXT BLOCK -->
     <section class="content-block fade-in">
       <h2 class="section-title">Welcome to the Wizards of Ark</h2>
-
-      <p>You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and dedica[...]
-
+      <p>You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and dedicated staff ready to help new and returning players.</p>
       <p>Our servers run on boosted but balanced rates with reduced weight to remove the grind while preserving the challenge — giving you the perfect environment to build, explore, and conquer.</p>
-
       <p>Whether you are here to tame legendary creatures, build powerful empires, participate in epic events, or simply find a home in the Ark — you belong here.</p>
 
       <h3 class="section-title">What Awaits You</h3>
@@ -94,237 +82,45 @@
 
       <h3 class="section-title">IMPORTANT — Unlock the Realm</h3>
       <p>Before you can access the rest of the Discord, you must complete your first quest:</p>
-
       <ul class="feature-list">
         <li>Go to ⚖️➖discord-rules</li>
         <li>Read the rules</li>
         <li>Press the <strong>Enter Realm</strong> button</li>
       </ul>
 
-      <p>This step unlocks your full access to the entire Discord — including all channels, events, shops, and community features.</p>
-
-      <p><strong>Welcome to The Wizards of Ark.<br>Your adventure begins now.</strong></p>
-
-      <h3 class="section-title">Linking Helena Bot</h3>
-      <p>In the 🖥️➖spamming channel type <strong>/linkgamertag</strong>. This will reference you to link your EOS ID.</p>
-
-      <p>To find your EOS ID in game:</p>
-      <ul class="feature-list">
-        <li>Join any of our servers on ASA</li>
-        <li>Open the radial wheel (Console: Hold O/B | PC: Hold R)</li>
-        <li>Select HelenaBot → Link Discord</li>
-        <li>A pop-up will appear with your linking code</li>
-      </ul>
-
-      <p>Copy this EOS ID and submit it using <strong>/linkgamertag</strong> in the Discord spamming channel.</p>
-
-      <p>Helena will DM you once your account is successfully linked.</p>
-
-      <p><strong>Thank you for taking the time to register for Helena Bot!</strong></p>
     </section>
 
-    <!-- GALLERY -->
     <section class="content-block fade-in">
       <h2 class="section-title">Arcane Gallery</h2>
       <p>Glimpse the wonders of our enchanted world.</p>
-
       <div class="home-gallery">
-
-        <!-- 15 IMAGES WITH LAZY LOADING -->
-        <a href="assets/gallery1.png" data-lightbox="ark-gallery" data-title="Crystal Cavern"><img src="assets/gallery1.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery2.png" data-lightbox="ark-gallery" data-title="Elder Grove"><img src="assets/gallery2.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery3.png" data-lightbox="ark-gallery" data-title="Skyforge Peak"><img src="assets/gallery3.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery4.png" data-lightbox="ark-gallery" data-title="Obsidian Depths"><img src="assets/gallery4.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery5.png" data-lightbox="ark-gallery" data-title="Arcane Sanctuary"><img src="assets/gallery5.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery6.png" data-lightbox="ark-gallery" data-title="Dragonspire Ridge"><img src="assets/gallery6.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery7.png" data-lightbox="ark-gallery" data-title="Moonlit Falls"><img src="assets/gallery7.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery8.png" data-lightbox="ark-gallery" data-title="Ancient Ruins"><img src="assets/gallery8.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery9.png" data-lightbox="ark-gallery" data-title="Stormwatch Keep"><img src="assets/gallery9.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery10.png" data-lightbox="ark-gallery" data-title="Sunfire Plateau"><img src="assets/gallery10.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery11.png" data-lightbox="ark-gallery" data-title="Frostbound Tundra"><img src="assets/gallery11.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery12.png" data-lightbox="ark-gallery" data-title="Eternal Spire"><img src="assets/gallery12.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery13.png" data-lightbox="ark-gallery" data-title="Celestial Basin"><img src="assets/gallery13.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery14.png" data-lightbox="ark-gallery" data-title="Shadowfen Marsh"><img src="assets/gallery14.png" loading="lazy" class="rune-img shimmer glyph"></a>
-        <a href="assets/gallery15.png" data-lightbox="ark-gallery" data-title="Astral Gate"><img src="assets/gallery15.png" loading="lazy" class="rune-img shimmer glyph"></a>
-
+        <a href="assets/gallery1.png" data-lightbox="ark-gallery" data-title="Crystal Cavern"><img src="assets/gallery1.png" loading="lazy" class="rune-img shimmer glyph" alt="Crystal Cavern — glowing crystal formations" width="1200" height="800"></a>
+        <a href="assets/gallery2.png" data-lightbox="ark-gallery" data-title="Elder Grove"><img src="assets/gallery2.png" loading="lazy" class="rune-img shimmer glyph" alt="Elder Grove" width="1200" height="800"></a>
+        <a href="assets/gallery3.png" data-lightbox="ark-gallery" data-title="Skyforge Peak"><img src="assets/gallery3.png" loading="lazy" class="rune-img shimmer glyph" alt="Skyforge Peak" width="1200" height="800"></a>
+        <a href="assets/gallery4.png" data-lightbox="ark-gallery" data-title="Obsidian Depths"><img src="assets/gallery4.png" loading="lazy" class="rune-img shimmer glyph" alt="Obsidian Depths" width="1200" height="800"></a>
       </div>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <p class="footer-text">© 2026 The Wizards of Ark — Forged in Magic</p>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" integrity="sha512-H3QKp3ZXiDQbboEwya8KnUjDGRvh7wnH1WNYamganWHPIRUAJLJzea1OZO3OYcAxqklUu6akQIq2wXFcK8MTAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script defer src="site-effects.bundle.js"></script>
 
   <script>
-    // Fade-in animation
-    const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.2 });
-    fadeEls.forEach(el => observer.observe(el));
-
-    // Glyph animation
-    const glyphs = document.querySelectorAll('.glyph');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('visible');
-      });
-    }, { threshold: 0.2 });
-    glyphs.forEach(g => obs.observe(g));
-
-    // Lightbox setup + theme viewer block
-    window.addEventListener('load', () => {
-
-      document.querySelectorAll('.home-gallery a').forEach(a => {
-        a.onclick = (e) => {
-          e.stopPropagation(); // block theme fullscreen viewer
-        };
-      });
-
-      lightbox.option({
-        resizeDuration: 150,
-        wrapAround: true,
-        fadeDuration: 150,
-        imageFadeDuration: 150,
-        positionFromTop: 50
-      });
-    });
+    (function(){
+      const fadeEls = document.querySelectorAll('.fade-in');
+      if(fadeEls.length){
+        const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.2 });
+        fadeEls.forEach(el => observer.observe(el));
+      }
+      const glyphs = document.querySelectorAll('.glyph');
+      if(glyphs.length){ const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.2 }); glyphs.forEach(g => obs.observe(g)); }
+      window.addEventListener('load', ()=>{ document.querySelectorAll('.home-gallery a').forEach(a=>{ a.onclick = (e)=>{ e.stopPropagation(); }; }); if(window.lightbox && typeof lightbox.option === 'function'){ lightbox.option({ resizeDuration: 150, wrapAround: true, fadeDuration: 150, imageFadeDuration: 150, positionFromTop: 50 }); } });
+    })();
   </script>
-<!-- site-effects.bundle.html -->
-<!-- Paste this block before </body> on pages where you want the effects -->
-<!-- BEGIN site-effects.bundle -->
-<style>
-:root{
-  --gold:#c9a86a;
-  --purple-mid:#2e1a4f;
-  --side-width:72px;
-  --max-orbs-desktop:12;
-  --max-orbs-mobile:5;
-}
-
-/* Compact header basics */
-.site-header{width:100%;background:linear-gradient(180deg,rgba(40,20,80,0.9),rgba(10,5,25,0.95));padding:12px 0;position:relative;border-bottom:1px solid rgba(201,168,106,0.18);z-index:50}
-.header-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 16px;position:relative}
-.brand{display:flex;flex-direction:column;align-items:center;z-index:5}
-.sigil{position:absolute;top:48%;left:50%;width:220px;height:220px;background:url('assets/sigil.png') no-repeat center/contain;opacity:0.18;filter:drop-shadow(0 0 28px rgba(201,168,106,0.5));transform:translate(-50%,-60%);pointer-events:none;z-index:1}
-.logo{width:140px;z-index:5;transition:width 180ms ease}
-.title{font-family:'Uncial Antiqua',serif;font-size:28px;color:var(--gold);margin-top:6px;z-index:5}
-
-/* Nav */
-.nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
-.nav-link{font-family:'Spectral',serif;font-weight:600;color:var(--gold);text-decoration:none;padding:6px 12px;border-radius:8px;background:rgba(201,168,106,0.06);font-size:14px}
-.nav-link:hover,.nav-link.active{transform:translateY(-2px);background:rgba(201,168,106,0.12)}
-
-/* Compact modifier */
-.compact-header .site-header{padding:8px 0}
-.compact-header .sigil{width:180px;height:180px;transform:translate(-50%,-58%);opacity:0.12}
-.compact-header .logo{width:120px}
-.compact-header .title{font-size:22px}
-
-/* Desktop layout */
-@media(min-width:900px){
-  .header-inner{flex-direction:row;align-items:center;justify-content:space-between;padding:0 20px}
-  .brand{flex-direction:row;gap:12px}
-  .sigil{width:360px;height:360px;transform:translate(-50%,-60%);opacity:0.14}
-  .logo{width:160px}.title{font-size:36px}
-  .nav{justify-content:flex-end;width:auto}.nav-link{padding:8px 16px;font-size:15px}
-}
-
-/* Gallery and shimmer */
-.home-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:28px 0 48px}
-.rune-img{width:100%;height:160px;object-fit:cover;border-radius:10px;border:1px solid rgba(201,168,106,0.12);box-shadow:0 6px 18px rgba(0,0,0,0.35);display:block;background:linear-gradient(180deg,rgba(0,0,0,0.06),rgba(0,0,0,0.12))}
-.shimmer{position:relative;overflow:hidden}
-.shimmer::before{content:"";position:absolute;top:0;left:-120%;width:120%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent);animation:shimmerMove 2.8s linear infinite;opacity:0.18}
-@keyframes shimmerMove{from{transform:translateX(0)}to{transform:translateX(120%)}}
-
-/* Side runes and orbs */
-.side-rune{position:fixed;top:0;bottom:0;width:var(--side-width);pointer-events:none;z-index:40;display:flex;align-items:center;justify-content:center;opacity:0.9}
-.side-rune.left{left:0}.side-rune.right{right:0}
-.side-rune::before{content:"";display:block;width:100%;height:100%;background-image:radial-gradient(circle at 50% 20%,rgba(255,255,255,0.02) 0,transparent 20%),linear-gradient(180deg,rgba(255,255,255,0.01),transparent 30%);background-size:28px 120px,100% 100%;mix-blend-mode:overlay;filter:blur(0.6px)}
-.side-rune .rune-stack{display:flex;flex-direction:column;gap:18px;align-items:center;transform:translateY(6vh);opacity:0.95}
-.side-rune .rune{width:36px;height:36px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06));box-shadow:0 0 12px rgba(120,80,200,0.06);animation:runeFloat 6s ease-in-out infinite}
-@keyframes runeFloat{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
-
-/* Orb layer and cursor glow */
-.orb-layer{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden;mix-blend-mode:screen}
-.orb{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.18),rgba(201,168,106,0.06) 40%,transparent 60%);filter:blur(10px);opacity:0.12}
-.orb.small{width:44px;height:44px;opacity:0.08;filter:blur(6px)}
-.cursor-glow{position:fixed;pointer-events:none;z-index:9999;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(201,168,106,0.14),transparent 40%);transform:translate(-50%,-50%) scale(0.9);opacity:0;transition:transform 160ms ease,opacity 160ms ease;mix-blend-mode:screen}
-a:hover ~ .cursor-glow,.arcane-btn:hover ~ .cursor-glow{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
-
-/* Rune trail */
-.rune-trail{position:fixed;right:12%;bottom:8%;z-index:45;pointer-events:none;opacity:0.9}
-.rune-trail .trail-glyph{width:56px;height:56px;margin-bottom:10px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06));box-shadow:0 8px 24px rgba(0,0,0,0.45);transition:transform 420ms,opacity 420ms}
-.rune-trail.pop .trail-glyph{transform:translateY(-8px) scale(1.03)}
-
-/* Performance and accessibility */
-@media(max-width:720px){.side-rune,.orb-layer,.cursor-glow,.rune-trail{display:none!important}}
-@media(prefers-reduced-motion:reduce){.orb,.sigil,.rune,.shimmer::before,.cursor-glow{animation:none!important;transition:none!important;transform:none!important}}
-</style>
-
-<script>
-(function(){
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isMobile = window.matchMedia('(max-width:720px)').matches;
-  if(prefersReduced || isMobile){
-    document.documentElement.classList.add('site-with-sides');
-    return;
-  }
-
-  const css = getComputedStyle(document.documentElement);
-  const maxOrbs = parseInt(css.getPropertyValue('--max-orbs-desktop')) || 12;
-  const maxOrbsMobile = parseInt(css.getPropertyValue('--max-orbs-mobile')) || 5;
-  const orbCount = isMobile ? maxOrbsMobile : maxOrbs;
-
-  const orbLayer = document.createElement('div'); orbLayer.className='orb-layer'; document.body.appendChild(orbLayer);
-  const orbs = [];
-  for(let i=0;i<orbCount;i++){
-    const el=document.createElement('div'); el.className='orb'+(Math.random()>0.6?' small':''); orbLayer.appendChild(el);
-    orbs.push({el,x:Math.random()*innerWidth,y:Math.random()*innerHeight,vx:(Math.random()-0.5)*0.12,vy:(Math.random()-0.5)*0.06,scale:0.6+Math.random()*0.9});
-  }
-  function placeOrbs(){ orbs.forEach(o=>{ o.el.style.left=o.x+'px'; o.el.style.top=o.y+'px'; o.el.style.opacity=(0.06+Math.random()*0.12); o.el.style.transform=`translate3d(-50%,-50%,0) scale(${o.scale})`; }); }
-  placeOrbs();
-
-  let last=performance.now(), raf;
-  function tick(now){
-    const dt=Math.min(40, now-last); last=now;
-    orbs.forEach(o=>{
-      o.x+=o.vx*dt; o.y+=o.vy*dt;
-      if(o.x<-120) o.x=innerWidth+120; if(o.x>innerWidth+120) o.x=-120;
-      if(o.y<-120) o.y=innerHeight+120; if(o.y>innerHeight+120) o.y=-120;
-      const bob=Math.sin((now/1000)+(o.x*0.001))*6;
-      o.el.style.left=(o.x)+'px'; o.el.style.top=(o.y+bob)+'px';
-    });
-    raf=requestAnimationFrame(tick);
-  }
-  raf=requestAnimationFrame(tick);
-
-  const cursor=document.createElement('div'); cursor.className='cursor-glow'; document.body.appendChild(cursor);
-  document.addEventListener('mousemove', e=>{ cursor.style.left=e.clientX+'px'; cursor.style.top=e.clientY+'px'; cursor.style.opacity=0.9; }, {passive:true});
-
-  function makeSide(side){ const container=document.createElement('div'); container.className='side-rune '+side; const stack=document.createElement('div'); stack.className='rune-stack'; for(let i=0;i<6;i++){ const r=document.createElement('div'); r.className='rune'; stack.appendChild(r); } container.appendChild(stack); document.body.appendChild(container); }
-  makeSide('left'); makeSide('right');
-
-  const trail=document.createElement('div'); trail.className='rune-trail'; for(let i=0;i<3;i++){ const g=document.createElement('div'); g.className='trail-glyph'; trail.appendChild(g); } document.body.appendChild(trail);
-  let lastScroll=window.scrollY;
-  window.addEventListener('scroll', ()=>{ const dy=Math.abs(window.scrollY-lastScroll); if(dy>8){ trail.classList.add('pop'); clearTimeout(window._runePop); window._runePop=setTimeout(()=>trail.classList.remove('pop'),420); } lastScroll=window.scrollY; }, {passive:true});
-
-  document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ cancelAnimationFrame(raf); orbLayer.style.display='none'; cursor.style.display='none'; } else { orbLayer.style.display='block'; cursor.style.display='block'; last=performance.now(); raf=requestAnimationFrame(tick); } });
-
-  window.addEventListener('load', ()=>{ document.querySelectorAll('.home-gallery a').forEach(a=>{ a.onclick=(e)=>{ e.stopPropagation(); }; }); if(window.lightbox && typeof lightbox.option==='function'){ lightbox.option({ resizeDuration:150, wrapAround:true, fadeDuration:150, imageFadeDuration:150, positionFromTop:50 }); } });
-
-  window.__WIZARDS_ANIM={ disable:()=>{ cancelAnimationFrame(raf); orbLayer.remove(); cursor.remove(); document.querySelectorAll('.side-rune, .rune-trail').forEach(n=>n.remove()); }, enable:()=>{ location.reload(); } };
-  document.documentElement.classList.add('site-with-sides');
-})();
-</script>
-<!-- END site-effects.bundle -->
-
 </body>
 </html>
