@@ -1,5 +1,5 @@
 /* =========================================
-   Wizards of Ark — Final Unified Stylesheet
+   Wizards of Ark — Optimized Unified Stylesheet
    ========================================= */
 @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@600&display=swap');
 
@@ -54,8 +54,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 300px;
-  height: 300px;
+  width: 320px;
+  height: 320px;
   background: url('assets/sigil.png') no-repeat center/contain;
   opacity: 0.22;
   filter: drop-shadow(0 0 35px rgba(201,168,106,0.6));
@@ -66,13 +66,13 @@ body {
 }
 
 .logo {
-  width: 180px;
+  width: 200px;
   filter: drop-shadow(0 0 14px rgba(201,168,106,0.55));
 }
 
 .title {
   font-family: 'Uncial Antiqua', serif;
-  font-size: 42px;
+  font-size: 44px;
   color: var(--gold);
   text-shadow: 0 0 14px rgba(201,168,106,0.55);
   margin-top: 10px;
@@ -187,49 +187,5 @@ body {
 }
 
 .rune-img {
-  width: 100%;
-  border-radius: 10px;
-  border: 2px solid rgba(201,168,106,0.4);
-  box-shadow: 0 0 20px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.rune-img:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 25px rgba(201,168,106,0.9);
-}
-
-/* Shimmer */
-.shimmer {
-  position: relative;
-  overflow: hidden;
-}
-.shimmer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -150%;
-  width: 150%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-  animation: shimmerMove 2s infinite;
-}
-@keyframes shimmerMove {
-  from { left: -150%; }
-  to { left: 150%; }
-}
-
-/* Glyph */
-.glyph {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.6s ease;
-}
-.g
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  z-index: 5;
+  width: 
 }
