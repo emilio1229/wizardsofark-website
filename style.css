@@ -352,3 +352,215 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-title { font-size: 28px; }
   .rune-img { height: 140px; }
 }
+/* =========================================
+   Wizards of Ark — Enhanced Animations
+   Add this to your existing style.css or replace it.
+   Keep the rest of your styles; these rules layer on top.
+   ========================================= */
+
+/* --- Core variables --- */
+:root{
+  --gold: #c9a86a;
+  --purple-dark: #0f0820;
+  --purple-mid: #2e1a4f;
+  --accent-glow: rgba(201,168,106,0.18);
+  --orb-color: rgba(201,168,106,0.12);
+  --rune-color: rgba(120,80,200,0.08);
+  --max-orbs-desktop: 12;
+  --max-orbs-mobile: 5;
+  --side-width: 72px;
+}
+
+/* --- Layout helpers for side panels --- */
+.site-with-sides {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Left and right rune sidebars */
+.side-rune {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: var(--side-width);
+  pointer-events: none;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.9;
+}
+
+.side-rune.left { left: 0; }
+.side-rune.right { right: 0; }
+
+/* rune column background pattern (subtle, repeats vertically) */
+.side-rune::before{
+  content: "";
+  display:block;
+  width:100%;
+  height:100%;
+  background-image: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.02) 0, transparent 20%),
+                    linear-gradient(180deg, rgba(255,255,255,0.01), transparent 30%);
+  background-size: 28px 120px, 100% 100%;
+  transform: translateZ(0);
+  mix-blend-mode: overlay;
+  filter: blur(0.6px) saturate(1.05);
+}
+
+/* rune glyphs stacked vertically */
+.side-rune .rune-stack{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  align-items:center;
+  transform: translateY(6vh);
+  opacity: 0.95;
+}
+.side-rune .rune {
+  width: 36px;
+  height: 36px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 40%),
+              linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(120,80,200,0.06), inset 0 1px 0 rgba(255,255,255,0.02);
+  transform-origin: center;
+  animation: runeFloat 6s ease-in-out infinite;
+  will-change: transform, opacity;
+  opacity: 0.95;
+}
+
+/* staggered float */
+.side-rune .rune:nth-child(odd){ animation-duration: 5.6s; transform-origin:center; }
+.side-rune .rune:nth-child(even){ animation-duration: 6.8s; transform-origin:center; animation-delay: 0.2s; }
+
+@keyframes runeFloat {
+  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
+  50% { transform: translateY(-8px) rotate(6deg) scale(1.02); opacity: 1; }
+  100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
+}
+
+/* --- Floating orbs layer (ambient) --- */
+.orb-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  overflow: hidden;
+  mix-blend-mode: screen;
+}
+
+/* each orb */
+.orb {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), rgba(201,168,106,0.06) 40%, transparent 60%);
+  filter: blur(10px) saturate(1.1);
+  opacity: 0.12;
+  transform: translate3d(0,0,0);
+  will-change: transform, opacity;
+}
+
+/* smaller orb variant */
+.orb.small { width: 44px; height: 44px; opacity: 0.08; filter: blur(6px); }
+
+/* subtle parallax for hero background */
+.hero-parallax {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02), transparent 8%),
+                    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01), transparent 6%);
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+  transform: translateZ(0);
+}
+
+/* --- Animated border accent for content blocks --- */
+.content-block {
+  position: relative;
+  overflow: visible;
+  z-index: 5;
+}
+
+.content-block::after{
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 14px;
+  background: linear-gradient(90deg, rgba(201,168,106,0.06), rgba(120,80,200,0.03), rgba(201,168,106,0.06));
+  filter: blur(8px);
+  opacity: 0.7;
+  z-index: -1;
+  transition: opacity 240ms ease;
+}
+
+/* on hover, glow stronger */
+.content-block:hover::after{ opacity: 1; transform: scale(1.01); }
+
+/* --- Cursor glow for desktop --- */
+.cursor-glow {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, rgba(201,168,106,0.14), transparent 40%);
+  transform: translate(-50%, -50%) scale(0.9);
+  transition: transform 160ms ease, opacity 160ms ease;
+  opacity: 0.0;
+  mix-blend-mode: screen;
+  will-change: transform, opacity;
+}
+
+/* show on hover of interactive elements */
+a:hover ~ .cursor-glow, button:hover ~ .cursor-glow, .arcane-btn:hover ~ .cursor-glow {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+/* --- Subtle scroll-based rune trail --- */
+.rune-trail {
+  position: fixed;
+  right: 12%;
+  bottom: 8%;
+  z-index: 45;
+  pointer-events: none;
+  opacity: 0.9;
+}
+.rune-trail .trail-glyph {
+  display:block;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+  transform-origin: center;
+  transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease;
+  opacity: 0.9;
+}
+
+/* when user scrolls, small pop */
+.rune-trail.pop .trail-glyph { transform: translateY(-8px) scale(1.03); }
+
+/* --- Performance: reduce effects on small screens --- */
+@media (max-width: 720px) {
+  .side-rune { display: none; }
+  .orb { display: none; }
+  .cursor-glow { display: none; }
+  .rune-trail { display: none; }
+  .content-block::after { filter: blur(6px); opacity: 0.6; }
+}
+
+/* --- Accessibility: reduce motion --- */
+@media (prefers-reduced-motion: reduce) {
+  .orb, .sigil, .rune, .shimmer::before, .cursor-glow { animation: none !important; transition: none !important; transform: none !important; }
+}
+
+/* --- Utility: hide sides quickly --- */
+.hide-sides .side-rune, .hide-sides .orb-layer, .hide-sides .rune-trail { display: none !important; }
