@@ -7,13 +7,13 @@
 
   <!-- SEO -->
   <meta name="description" content="The Wizards of Ark — ARK: Survival Ascended PvE cluster with boosted but balanced rates, active community, and regular events. Join our Discord to enter the realm.">
-  <link rel="canonical" href="https://wizardsofark.example.com/">
+  <link rel="canonical" href="https://thewizardsofark.com/">
 
   <!-- Open Graph / Twitter -->
   <meta property="og:title" content="Wizards of Ark — Home">
   <meta property="og:description" content="Join The Wizards of Ark — a friendly ARK: Survival Ascended PvE cluster with boosted rates and custom content.">
-  <meta property="og:image" content="https://wizardsofark.example.com/assets/gallery1.png">
-  <meta property="og:url" content="https://wizardsofark.example.com/">
+  <meta property="og:image" content="https://thewizardsofark.com/assets/gallery1.png">
+  <meta property="og:url" content="https://thewizardsofark.com/">
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- Fonts: preconnect + load -->
@@ -40,7 +40,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="style.css?v=optimized104">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" integrity="REPLACE_WITH_SRI_HASH" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" integrity="sha512-hb8QP223Zv5v7MXYzmGZB11M8BxkG3qK1gpAQewoOC/LA0kW0voFA+cJavDt6SY/3F8f6U7TY+q9g1xIrG0W0g==" crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
 <body class="site-with-sides">
@@ -172,7 +172,7 @@
   </footer>
 
   <!-- SCRIPTS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" integrity="REPLACE_WITH_SRI_HASH" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" integrity="sha512-H3QKp3ZXiDQbboEwya8KnUjDGRvh7wnH1WNYamganWHPIRUAJLJzea1OZO3OYcAxqklUu6akQIq2wXFcK8MTAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <script>
     // Fade-in animation
@@ -228,57 +228,21 @@
 .header-inner{max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 16px;position:relative}
 .brand{display:flex;flex-direction:column;align-items:center;z-index:5}
 .sigil{position:absolute;top:48%;left:50%;width:220px;height:220px;background:url('assets/sigil.png') no-repeat center/contain;opacity:0.18;filter:drop-shadow(0 0 28px rgba(201,168,106,0.5));tran[...]
-.logo{width:140px;z-index:5;transition:width 180ms ease}
-.title{font-family:'Uncial Antiqua',serif;font-size:28px;color:var(--gold);margin-top:6px;z-index:5}
-
-/* Nav */
-.nav{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;width:100%}
-.nav-link{font-family:'Spectral',serif;font-weight:600;color:var(--gold);text-decoration:none;padding:6px 12px;border-radius:8px;background:rgba(201,168,106,0.06);font-size:14px}
-.nav-link:hover,.nav-link.active{transform:translateY(-2px);background:rgba(201,168,106,0.12)}
-
-/* Compact modifier */
-.compact-header .site-header{padding:8px 0}
-.compact-header .sigil{width:180px;height:180px;transform:translate(-50%,-58%);opacity:0.12}
-.compact-header .logo{width:120px}
-.compact-header .title{font-size:22px}
-
-/* Desktop layout */
-@media(min-width:900px){
-  .header-inner{flex-direction:row;align-items:center;justify-content:space-between;padding:0 20px}
-  .brand{flex-direction:row;gap:12px}
-  .sigil{width:360px;height:360px;transform:translate(-50%,-60%);opacity:0.14}
-  .logo{width:160px}.title{font-size:36px}
-  .nav{justify-content:flex-end;width:auto}.nav-link{padding:8px 16px;font-size:15px}
-}
-
-/* Gallery and shimmer */
+.header-divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,106,0.12),transparent);opacity:0.6}
 .home-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:28px 0 48px}
 .rune-img{width:100%;height:160px;object-fit:cover;border-radius:10px;border:1px solid rgba(201,168,106,0.12);box-shadow:0 6px 18px rgba(0,0,0,0.35);display:block;background:linear-gradient(180de[...]
 .shimmer{position:relative;overflow:hidden}
-.shimmer::before{content:"";position:absolute;top:0;left:-120%;width:120%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent);animation:shimmerMove 2.8s [...]
+.shimmer::before{content:"";position:absolute;top:0;left:-120%;width:120%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,0.18),transparent);animation:shimmerMove 2.8s linea[...]
 @keyframes shimmerMove{from{transform:translateX(0)}to{transform:translateX(120%)}}
 
-/* Side runes and orbs */
-.side-rune{position:fixed;top:0;bottom:0;width:var(--side-width);pointer-events:none;z-index:40;display:flex;align-items:center;justify-content:center;opacity:0.9}
-.side-rune.left{left:0}.side-rune.right{right:0}
-.side-rune::before{content:"";display:block;width:100%;height:100%;background-image:radial-gradient(circle at 50% 20%,rgba(255,255,255,0.02) 0,transparent 20%),linear-gradient(180deg,rgba(255,255[...]
-.side-rune .rune-stack{display:flex;flex-direction:column;gap:18px;align-items:center;transform:translateY(6vh);opacity:0.95}
-.side-rune .rune{width:36px;height:36px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06));box-shadow:0 0 12px rgba(120,80,200,0.06);animation:runeFloat [...]
-@keyframes runeFloat{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
-
-/* Orb layer and cursor glow */
 .orb-layer{position:fixed;inset:0;z-index:30;pointer-events:none;overflow:hidden;mix-blend-mode:screen}
-.orb{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.18),rgba(201,168,106,0.06) 40%,transparent 60%);filter:blur(10px);opacit[...]
+.orb{position:absolute;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,0.18),rgba(201,168,106,0.06) 40%,transparent 60%);filter:blur(10px);o[...]
 .orb.small{width:44px;height:44px;opacity:0.08;filter:blur(6px)}
-.cursor-glow{position:fixed;pointer-events:none;z-index:9999;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(201,168,106,0.14),transparent 40%);transform:t[...]
+.cursor-glow{position:fixed;pointer-events:none;z-index:9999;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle at 40% 40%,rgba(201,168,106,0.14),transparent 40%);transf[...]
 a:hover ~ .cursor-glow,.arcane-btn:hover ~ .cursor-glow{opacity:1;transform:translate(-50%,-50%) scale(1.05)}
 
-/* Rune trail */
 .rune-trail{position:fixed;right:12%;bottom:8%;z-index:45;pointer-events:none;opacity:0.9}
 .rune-trail .trail-glyph{width:56px;height:56px;margin-bottom:10px;border-radius:8px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.06));box-shadow:0 8px 24px rgba(0,0,0,0.[...]
-.rune-trail.pop .trail-glyph{transform:translateY(-8px) scale(1.03)}
-
-/* Performance and accessibility */
 @media(max-width:720px){.side-rune,.orb-layer,.cursor-glow,.rune-trail{display:none!important}}
 @media(prefers-reduced-motion:reduce){.orb,.sigil,.rune,.shimmer::before,.cursor-glow{animation:none!important;transition:none!important;transform:none!important}}
 </style>
@@ -326,11 +290,11 @@ a:hover ~ .cursor-glow,.arcane-btn:hover ~ .cursor-glow{opacity:1;transform:tran
   function makeSide(side){ const container=document.createElement('div'); container.className='side-rune '+side; const stack=document.createElement('div'); stack.className='rune-stack'; for(let i=0;i<[...]
   makeSide('left'); makeSide('right');
 
-  const trail=document.createElement('div'); trail.className='rune-trail'; for(let i=0;i<3;i++){ const g=document.createElement('div'); g.className='trail-glyph'; trail.appendChild(g); } document.body[...]
+  const trail=document.createElement('div'); trail.className='rune-trail'; for(let i=0;i<3;i++){ const g=document.createElement('div'); g.className='trail-glyph'; trail.appendChild(g); } document[...]
   let lastScroll=window.scrollY;
-  window.addEventListener('scroll', ()=>{ const dy=Math.abs(window.scrollY-lastScroll); if(dy>8){ trail.classList.add('pop'); clearTimeout(window._runePop); window._runePop=setTimeout(()=>trail.classL[...]
+  window.addEventListener('scroll', ()=>{ const dy=Math.abs(window.scrollY-lastScroll); if(dy>8){ trail.classList.add('pop'); clearTimeout(window._runePop); window._runePop=setTimeout(()=>trail.c[...]
 
-  document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ cancelAnimationFrame(raf); orbLayer.style.display='none'; cursor.style.display='none'; } else { orbLayer.style.display='block'[...]}
+  document.addEventListener('visibilitychange', ()=>{ if(document.hidden){ cancelAnimationFrame(raf); orbLayer.style.display='none'; cursor.style.display='none'; } else { orbLayer.style.display='[...]
 
   window.addEventListener('load', ()=>{ document.querySelectorAll('.home-gallery a').forEach(a=>{ a.onclick=(e)=>{ e.stopPropagation(); }; }); if(window.lightbox && typeof lightbox.option==='function'[...]}
 
