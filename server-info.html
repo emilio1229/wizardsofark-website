@@ -387,5 +387,407 @@
 </footer>
 
 </body>
+  <!-- site-effects.bundle.html -->
+<!-- Paste this block before </body> on pages where you want the effects -->
+<style>
+/* =========================================
+   Wizards of Ark — Combined Effects CSS
+   Includes compact header rules, gallery optimizations,
+   side runes, orbs, cursor glow, and content accents
+   ========================================= */
+
+/* Fonts fallback note: keep your existing font imports in head */
+:root{
+  --gold: #c9a86a;
+  --purple-dark: #0f0820;
+  --purple-mid: #2e1a4f;
+  --accent-glow: rgba(201,168,106,0.18);
+  --orb-color: rgba(201,168,106,0.12);
+  --rune-color: rgba(120,80,200,0.08);
+  --max-orbs-desktop: 12;
+  --max-orbs-mobile: 5;
+  --side-width: 72px;
+  --header-max-width: 1200px;
+  --header-padding-mobile: 12px;
+  --header-padding-desktop: 10px;
+}
+
+/* Reset small helpers */
+.site-with-sides { position: relative; overflow-x: hidden; }
+
+/* -------------------------
+   Header compacting (mobile-first)
+   ------------------------- */
+.site-header {
+  width: 100%;
+  background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
+  padding: var(--header-padding-mobile) 0;
+  position: relative;
+  border-bottom: 1px solid rgba(201,168,106,0.18);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  z-index: 50;
+}
+
+.header-inner {
+  width: 100%;
+  max-width: var(--header-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+  position: relative;
+}
+
+/* Brand block centered and above nav on mobile */
+.brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+/* Sigil sits behind the brand, centered; slight upward nudge */
+.sigil {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  width: 220px;
+  height: 220px;
+  background: url('assets/sigil.png') no-repeat center/contain;
+  opacity: 0.18;
+  filter: drop-shadow(0 0 28px rgba(201,168,106,0.5));
+  transform: translate(-50%, -60%);
+  pointer-events: none;
+  z-index: 1;
+  will-change: transform, opacity;
+  transition: opacity 300ms ease, transform 60000ms linear;
+}
+
+/* Logo and title */
+.logo {
+  width: 140px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 12px rgba(201,168,106,0.5));
+  z-index: 5;
+  transition: width 180ms ease;
+}
+
+.title {
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 28px;
+  color: var(--gold);
+  text-shadow: 0 0 10px rgba(201,168,106,0.45);
+  margin-top: 6px;
+  z-index: 5;
+  line-height: 1;
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.nav-link {
+  font-family: 'Spectral', serif;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  border: 1px solid rgba(201,168,106,0.18);
+  padding: 6px 12px;
+  border-radius: 8px;
+  background: rgba(201,168,106,0.06);
+  box-shadow: 0 0 8px rgba(0,0,0,0.25);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  font-size: 14px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  transform: translateY(-2px);
+  background: rgba(201,168,106,0.12);
+  box-shadow: 0 6px 18px rgba(201,168,106,0.08);
+}
+
+/* Divider */
+.header-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, rgba(201,168,106,0.12), transparent); opacity: 0.6; }
+
+/* Compact header modifier */
+.compact-header .site-header { padding: 8px 0; }
+.compact-header .header-inner { gap: 6px; padding: 0 12px; }
+.compact-header .sigil { width: 180px; height: 180px; opacity: 0.12; transform: translate(-50%, -58%); }
+.compact-header .logo { width: 120px; }
+.compact-header .title { font-size: 22px; margin-top: 4px; }
+.compact-header .nav-link { padding: 6px 10px; font-size: 13px; }
+
+/* Desktop layout */
+@media (min-width: 900px) {
+  .header-inner { flex-direction: row; align-items: center; justify-content: space-between; padding: 0 20px; gap: 12px; }
+  .brand { flex-direction: row; align-items: center; gap: 12px; justify-content: flex-start; }
+  .sigil { width: 360px; height: 360px; top: 50%; left: 50%; opacity: 0.14; filter: drop-shadow(0 0 40px rgba(201,168,106,0.55)); transform: translate(-50%, -60%); }
+  .logo { width: 160px; }
+  .title { font-size: 36px; margin-top: 0; }
+  .nav { justify-content: flex-end; gap: 12px; width: auto; }
+  .nav-link { padding: 8px 16px; font-size: 15px; }
+}
+
+/* -------------------------
+   Hero and main content tweaks
+   ------------------------- */
+.hero { text-align: center; padding: 64px 20px; position: relative; z-index: 3; }
+.hero-title { font-family: 'Uncial Antiqua', serif; font-size: 44px; color: var(--gold); text-shadow: 0 0 18px rgba(201,168,106,0.6); margin-bottom: 14px; }
+.hero-text { font-size: 16px; max-width: 760px; margin: 0 auto 22px; color: #e8e3f0; }
+
+/* Arcane button */
+.arcane-btn { font-family: 'Spectral', serif; font-weight: 600; color: var(--gold); text-decoration: none; border: 2px solid rgba(201,168,106,0.5); padding: 10px 22px; border-radius: 8px; background: linear-gradient(180deg, rgba(40,20,80,0.75), rgba(20,10,40,0.95)); box-shadow: 0 8px 28px rgba(201,168,106,0.08); transition: transform 160ms ease, box-shadow 160ms ease; }
+
+/* -------------------------
+   Gallery optimizations
+   ------------------------- */
+.home-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 28px 0 48px; }
+.rune-img { width: 100%; height: 160px; object-fit: cover; border-radius: 10px; border: 1px solid rgba(201,168,106,0.12); box-shadow: 0 6px 18px rgba(0,0,0,0.35); transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease; display: block; background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12)); }
+.rune-img:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 18px 40px rgba(0,0,0,0.45); }
+
+/* Shimmer optimized */
+.shimmer { position: relative; overflow: hidden; }
+.shimmer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
+  animation: shimmerMove 2.8s linear infinite;
+  opacity: 0.18;
+  will-change: transform;
+}
+@keyframes shimmerMove { from { transform: translateX(0); } to { transform: translateX(120%); } }
+
+/* Glyph reveal */
+.glyph { opacity: 0; transform: translateY(10px); transition: opacity 420ms ease, transform 420ms ease; }
+.glyph.visible { opacity: 1; transform: translateY(0); }
+
+/* -------------------------
+   Side runes and orbs (ambient)
+   ------------------------- */
+.side-rune { position: fixed; top: 0; bottom: 0; width: var(--side-width); pointer-events: none; z-index: 40; display: flex; align-items: center; justify-content: center; opacity: 0.9; }
+.side-rune.left { left: 0; } .side-rune.right { right: 0; }
+.side-rune::before { content: ""; display:block; width:100%; height:100%; background-image: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.02) 0, transparent 20%), linear-gradient(180deg, rgba(255,255,255,0.01), transparent 30%); background-size: 28px 120px, 100% 100%; transform: translateZ(0); mix-blend-mode: overlay; filter: blur(0.6px) saturate(1.05); }
+.side-rune .rune-stack { display:flex; flex-direction:column; gap:18px; align-items:center; transform: translateY(6vh); opacity: 0.95; }
+.side-rune .rune { width: 36px; height: 36px; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 40%), linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); border-radius: 8px; box-shadow: 0 0 12px rgba(120,80,200,0.06), inset 0 1px 0 rgba(255,255,255,0.02); transform-origin: center; animation: runeFloat 6s ease-in-out infinite; will-change: transform, opacity; opacity: 0.95; }
+.side-rune .rune:nth-child(odd){ animation-duration: 5.6s; } .side-rune .rune:nth-child(even){ animation-duration: 6.8s; animation-delay: 0.2s; }
+@keyframes runeFloat { 0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; } 50% { transform: translateY(-8px) rotate(6deg) scale(1.02); opacity: 1; } 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; } }
+
+/* Orb layer */
+.orb-layer { position: fixed; inset: 0; z-index: 30; pointer-events: none; overflow: hidden; mix-blend-mode: screen; }
+.orb { position: absolute; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), rgba(201,168,106,0.06) 40%, transparent 60%); filter: blur(10px) saturate(1.1); opacity: 0.12; transform: translate3d(0,0,0); will-change: transform, opacity; }
+.orb.small { width: 44px; height: 44px; opacity: 0.08; filter: blur(6px); }
+
+/* Cursor glow */
+.cursor-glow { position: fixed; pointer-events: none; z-index: 9999; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, rgba(201,168,106,0.14), transparent 40%); transform: translate(-50%, -50%) scale(0.9); transition: transform 160ms ease, opacity 160ms ease; opacity: 0.0; mix-blend-mode: screen; will-change: transform, opacity; }
+a:hover ~ .cursor-glow, button:hover ~ .cursor-glow, .arcane-btn:hover ~ .cursor-glow { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+
+/* Rune trail */
+.rune-trail { position: fixed; right: 12%; bottom: 8%; z-index: 45; pointer-events: none; opacity: 0.9; }
+.rune-trail .trail-glyph { display:block; width: 56px; height: 56px; margin-bottom: 10px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06)); border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.45); transform-origin: center; transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease; opacity: 0.9; }
+.rune-trail.pop .trail-glyph { transform: translateY(-8px) scale(1.03); }
+
+/* Content block glow */
+.content-block::after { content: ""; position: absolute; inset: -6px; border-radius: 14px; background: linear-gradient(90deg, rgba(201,168,106,0.06), rgba(120,80,200,0.03), rgba(201,168,106,0.06)); filter: blur(8px); opacity: 0.7; z-index: -1; transition: opacity 240ms ease; }
+.content-block:hover::after { opacity: 1; transform: scale(1.01); }
+
+/* Footer and misc */
+.footer { text-align: center; padding: 18px 12px; border-top: 1px solid rgba(201,168,106,0.08); color: rgba(201,168,106,0.8); font-size: 13px; }
+
+/* Performance: hide heavy effects on small screens */
+@media (max-width: 720px) {
+  .side-rune, .orb-layer, .cursor-glow, .rune-trail { display: none !important; }
+  .content-block::after { filter: blur(6px); opacity: 0.6; }
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .orb, .sigil, .rune, .shimmer::before, .cursor-glow { animation: none !important; transition: none !important; transform: none !important; }
+}
+
+/* Utility to hide sides quickly */
+.hide-sides .side-rune, .hide-sides .orb-layer, .hide-sides .rune-trail { display: none !important; }
+</style>
+
+<script>
+/* =========================================
+   Wizards of Ark — Combined Effects JS
+   Lightweight ambient orbs, side runes, cursor glow,
+   rune trail, and adaptive performance
+   ========================================= */
+(function(){
+  // Respect reduced motion and small screens
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isMobile = window.matchMedia('(max-width:720px)').matches;
+  if(prefersReduced || isMobile) {
+    // minimal setup: ensure sigil transform is applied and exit
+    document.documentElement.classList.add('site-with-sides');
+    return;
+  }
+
+  // read orb counts from CSS variables
+  const css = getComputedStyle(document.documentElement);
+  const maxOrbs = parseInt(css.getPropertyValue('--max-orbs-desktop')) || 12;
+  const maxOrbsMobile = parseInt(css.getPropertyValue('--max-orbs-mobile')) || 5;
+  const orbCount = isMobile ? maxOrbsMobile : maxOrbs;
+
+  // create orb layer
+  const orbLayer = document.createElement('div');
+  orbLayer.className = 'orb-layer';
+  document.body.appendChild(orbLayer);
+
+  // create orbs
+  const orbs = [];
+  for(let i=0;i<orbCount;i++){
+    const el = document.createElement('div');
+    el.className = 'orb' + (Math.random() > 0.6 ? ' small' : '');
+    orbLayer.appendChild(el);
+    orbs.push({
+      el,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.12,
+      vy: (Math.random() - 0.5) * 0.06,
+      scale: 0.6 + Math.random() * 0.9
+    });
+  }
+
+  // initial placement
+  function placeOrbs(){
+    orbs.forEach(o => {
+      o.el.style.left = o.x + 'px';
+      o.el.style.top = o.y + 'px';
+      o.el.style.opacity = (0.06 + Math.random() * 0.12);
+      o.el.style.transform = `translate3d(-50%,-50%,0) scale(${o.scale})`;
+    });
+  }
+  placeOrbs();
+
+  // animation loop
+  let last = performance.now();
+  let raf;
+  function tick(now){
+    const dt = Math.min(40, now - last);
+    last = now;
+    orbs.forEach(o => {
+      o.x += o.vx * dt;
+      o.y += o.vy * dt;
+      // wrap
+      if(o.x < -120) o.x = window.innerWidth + 120;
+      if(o.x > window.innerWidth + 120) o.x = -120;
+      if(o.y < -120) o.y = window.innerHeight + 120;
+      if(o.y > window.innerHeight + 120) o.y = -120;
+      const bob = Math.sin((now/1000) + (o.x * 0.001)) * 6;
+      o.el.style.left = (o.x) + 'px';
+      o.el.style.top = (o.y + bob) + 'px';
+    });
+    raf = requestAnimationFrame(tick);
+  }
+  raf = requestAnimationFrame(tick);
+
+  // cursor glow
+  const cursor = document.createElement('div');
+  cursor.className = 'cursor-glow';
+  document.body.appendChild(cursor);
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    cursor.style.opacity = 0.9;
+  }, {passive:true});
+
+  // side rune stacks
+  function makeSide(side){
+    const container = document.createElement('div');
+    container.className = 'side-rune ' + side;
+    const stack = document.createElement('div');
+    stack.className = 'rune-stack';
+    const runeCount = 6;
+    for(let i=0;i<runeCount;i++){
+      const r = document.createElement('div');
+      r.className = 'rune';
+      stack.appendChild(r);
+    }
+    container.appendChild(stack);
+    document.body.appendChild(container);
+  }
+  makeSide('left');
+  makeSide('right');
+
+  // rune trail
+  const trail = document.createElement('div');
+  trail.className = 'rune-trail';
+  for(let i=0;i<3;i++){
+    const g = document.createElement('div');
+    g.className = 'trail-glyph';
+    trail.appendChild(g);
+  }
+  document.body.appendChild(trail);
+
+  // scroll pop
+  let lastScroll = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const dy = Math.abs(window.scrollY - lastScroll);
+    if(dy > 8){
+      trail.classList.add('pop');
+      clearTimeout(window._runePop);
+      window._runePop = setTimeout(() => trail.classList.remove('pop'), 420);
+    }
+    lastScroll = window.scrollY;
+  }, {passive:true});
+
+  // pause on visibility change
+  document.addEventListener('visibilitychange', () => {
+    if(document.hidden){
+      cancelAnimationFrame(raf);
+      orbLayer.style.display = 'none';
+      cursor.style.display = 'none';
+    } else {
+      orbLayer.style.display = 'block';
+      cursor.style.display = 'block';
+      last = performance.now();
+      raf = requestAnimationFrame(tick);
+    }
+  });
+
+  // Lightbox click interception safety: ensure gallery anchors don't get intercepted by other scripts
+  window.addEventListener('load', () => {
+    document.querySelectorAll('.home-gallery a').forEach(a => {
+      a.onclick = (e) => { e.stopPropagation(); };
+    });
+    if(window.lightbox && typeof lightbox.option === 'function'){
+      lightbox.option({ resizeDuration: 150, wrapAround: true, fadeDuration: 150, imageFadeDuration: 150, positionFromTop: 50 });
+    }
+  });
+
+  // expose quick toggle
+  window.__WIZARDS_ANIM = {
+    disable: () => {
+      cancelAnimationFrame(raf);
+      orbLayer.remove();
+      cursor.remove();
+      document.querySelectorAll('.side-rune, .rune-trail').forEach(n => n.remove());
+    },
+    enable: () => { location.reload(); }
+  };
+
+  // ensure body class present for CSS targeting
+  document.documentElement.classList.add('site-with-sides');
+
+})();
+</script>
+
 </html>
 
