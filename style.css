@@ -1,28 +1,64 @@
 /* =========================================
-   Wizards of Ark — Final Optimized Stylesheet
-   Version: 2026-08-15
-   Includes compact header rules and gallery optimizations
+   Wizards of Ark — Consolidated & Optimized Stylesheet
+   Version: 2026-08-17 (refactor)
+   - Single :root for variables
+   - Duplicate rules removed (sigil, root)
+   - Animations limited to transform/opacity
+   - Focus-visible accessibility styles
+   - Performance-friendly media queries
    ========================================= */
 
-/* Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@600&display=swap');
-
+/* -------------------------
+   Variables (single source)
+   ------------------------- */
 :root {
+  /* Colors */
   --gold: #c9a86a;
   --purple-dark: #1a0f2e;
   --purple-mid: #2e1a4f;
   --purple-light: #4b2e7a;
   --text-light: #e8e3f0;
+
+  /* Accents / effects */
   --rune-glow: rgba(201,168,106,0.75);
+  --accent-glow: rgba(201,168,106,0.18);
+  --orb-color: rgba(201,168,106,0.12);
+  --rune-color: rgba(120,80,200,0.08);
+
+  /* Layout */
   --header-max-width: 1200px;
   --header-padding-mobile: 12px;
   --header-padding-desktop: 10px;
+  --side-width: 72px;
+  --max-orbs-desktop: 12;
+  --max-orbs-mobile: 5;
+
+  /* Sigil sizes and animation */
+  --sigil-width-desktop: 360px;
+  --sigil-width-desktop-alt: 320px;
+  --sigil-width-tablet: 320px;
+  --sigil-width-mobile: 160px;
+  --sigil-opacity: 0.16;
+  --sigil-spin-duration: 36s;
+  --sigil-spin-duration-slower: 48s;
+
+  /* Timing */
+  --t-fast: 160ms;
+  --t-medium: 220ms;
+  --t-long: 420ms;
+
+  /* Shadows / opacities (centralized to avoid magic numbers) */
+  --shadow-strong: rgba(0,0,0,0.45);
+  --shadow-soft: rgba(0,0,0,0.25);
+  --gold-soft: rgba(201,168,106,0.12);
 }
 
-/* Reset */
+/* -------------------------
+   Reset / Base
+   ------------------------- */
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
 
-html,body { height: 100%; }
+html, body { height: 100%; }
 
 body {
   background: radial-gradient(circle at center, var(--purple-mid) 0%, var(--purple-dark) 100%);
@@ -30,6 +66,8 @@ body {
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* -------------------------
@@ -41,7 +79,7 @@ body {
   padding: var(--header-padding-mobile) 0;
   position: relative;
   border-bottom: 1px solid rgba(201,168,106,0.18);
-  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  box-shadow: 0 6px 24px var(--shadow-strong);
   z-index: 50;
 }
 
@@ -57,7 +95,7 @@ body {
   position: relative;
 }
 
-/* Brand block centered and above nav on mobile */
+/* Brand */
 .brand {
   display: flex;
   flex-direction: column;
@@ -66,40 +104,28 @@ body {
   z-index: 5;
 }
 
-/* Sigil sits behind the brand, centered */
+/* -------------------------
+   Sigil (single definition)
+   - Animates only transform & opacity
+   - Sizes controlled with variables
+   ------------------------- */
 .sigil {
   position: absolute;
-  top: 28%;
+  top: 46%;
   left: 50%;
-  width: 220px;
-  height: 220px;
+  width: var(--sigil-width-tablet);
+  height: var(--sigil-width-tablet);
   background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.16;
-  filter: drop-shadow(0 0 28px rgba(201,168,106,0.5));
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: 1;
-  will-change: transform, opacity;
-  transition: opacity 300ms ease, transform 60000ms linear;
-}
-/* Sigil alignment and slow spin */
-.sigil {
-  position: absolute;
-  top: 46%;                     /* raise the sigil slightly higher on the page */
-  left: 50%;
-  width: 320px;                 /* desktop size; adjust if needed */
-  height: 320px;
-  background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.20;
+  opacity: var(--sigil-opacity);
   filter: drop-shadow(0 0 36px rgba(201,168,106,0.55));
-  transform: translate(-50%, -62%); /* extra vertical nudge to lift behind logo */
+  transform: translate(-50%, -62%) rotate(0deg);
   pointer-events: none;
   z-index: 1;
   will-change: transform, opacity;
-  animation: sigilSpin 36s linear infinite; /* slow continuous spin */
+  animation: sigilSpin var(--sigil-spin-duration) linear infinite;
 }
 
-/* Slightly smaller on mobile */
+/* Reduced size on smaller screens */
 @media (max-width: 900px) {
   .sigil {
     width: 220px;
@@ -107,29 +133,55 @@ body {
     top: 48%;
     transform: translate(-50%, -60%);
     opacity: 0.18;
-    animation-duration: 48s;
+    animation-duration: var(--sigil-spin-duration-slower);
   }
 }
 
-/* Spin keyframes */
+/* Desktop adjustments */
+@media (min-width: 900px) {
+  .sigil {
+    width: var(--sigil-width-desktop);
+    height: var(--sigil-width-desktop);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.14;
+    filter: drop-shadow(0 0 40px rgba(201,168,106,0.55));
+  }
+}
+
+/* Small screens */
+@media (max-width: 520px) {
+  .sigil {
+    width: var(--sigil-width-mobile);
+    height: var(--sigil-width-mobile);
+    opacity: 0.12;
+    filter: none; /* reduce expensive filter on small devices */
+    transform: translate(-50%, -60%);
+  }
+}
+
+/* Keyframes (transform-only) */
 @keyframes sigilSpin {
   from { transform: translate(-50%, -62%) rotate(0deg); }
   to   { transform: translate(-50%, -62%) rotate(360deg); }
 }
 
-/* Respect reduced motion preferences */
+/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .sigil { animation: none; transform: translate(-50%, -62%); }
 }
 
-/* Logo and title */
+/* -------------------------
+   Logo & Title
+   ------------------------- */
 .logo {
   width: 140px;
   height: auto;
   display: block;
   filter: drop-shadow(0 0 12px rgba(201,168,106,0.5));
   z-index: 5;
-  transition: width 180ms ease;
+  transition: width var(--t-fast) ease;
 }
 
 .title {
@@ -142,7 +194,30 @@ body {
   line-height: 1;
 }
 
-/* Navigation */
+/* Header logo wrapper utility */
+.header-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  padding: 4px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.45);
+}
+
+.header-logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: auto;
+  filter: drop-shadow(0 0 6px rgba(201,168,106,0.5));
+}
+
+/* -------------------------
+   Navigation
+   ------------------------- */
 .nav {
   display: flex;
   gap: 10px;
@@ -160,16 +235,35 @@ body {
   padding: 6px 12px;
   border-radius: 8px;
   background: rgba(201,168,106,0.06);
-  box-shadow: 0 0 8px rgba(0,0,0,0.25);
-  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+  box-shadow: 0 0 8px var(--shadow-soft);
+  transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease, background var(--t-fast) ease;
   font-size: 14px;
 }
 
+/* Hover and active (transform/opacity only where possible) */
 .nav-link:hover,
 .nav-link.active {
   transform: translateY(-2px);
   background: rgba(201,168,106,0.12);
   box-shadow: 0 6px 18px rgba(201,168,106,0.08);
+}
+
+/* Focus-visible accessibility (keyboard) */
+.nav-link,
+.arcane-btn,
+a,
+button {
+  outline: none;
+}
+.nav-link:focus-visible,
+.arcane-btn:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  box-shadow: 0 0 0 3px rgba(201,168,106,0.22), 0 6px 18px rgba(201,168,106,0.06);
+  transform: translateY(-2px);
+  border-color: rgba(201,168,106,0.28);
+  background: rgba(201,168,106,0.08);
+  border-radius: 8px;
 }
 
 /* Divider */
@@ -182,36 +276,13 @@ body {
 
 /* -------------------------
    Compact Header Modifier
-   Apply the class compact-header to <header> or <body> to force compact mode
    ------------------------- */
-.compact-header .site-header {
-  padding: 8px 0;
-}
-
-.compact-header .header-inner {
-  gap: 6px;
-  padding: 0 12px;
-}
-
-.compact-header .sigil {
-  width: 180px;
-  height: 180px;
-  opacity: 0.12;
-}
-
-.compact-header .logo {
-  width: 120px;
-}
-
-.compact-header .title {
-  font-size: 22px;
-  margin-top: 4px;
-}
-
-.compact-header .nav-link {
-  padding: 6px 10px;
-  font-size: 13px;
-}
+.compact-header .site-header { padding: 8px 0; }
+.compact-header .header-inner { gap: 6px; padding: 0 12px; }
+.compact-header .sigil { width: 180px; height: 180px; opacity: 0.12; }
+.compact-header .logo { width: 120px; }
+.compact-header .title { font-size: 22px; margin-top: 4px; }
+.compact-header .nav-link { padding: 6px 10px; font-size: 13px; }
 
 /* -------------------------
    Desktop layout
@@ -225,23 +296,7 @@ body {
     gap: 12px;
   }
 
-  /* Keep brand visually centered while nav sits to the right */
-  .brand {
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    justify-content: flex-start;
-  }
-
-  .sigil {
-    width: 360px;
-    height: 360px;
-    top: 50%;
-    left: 50%;
-    opacity: 0.14;
-    filter: drop-shadow(0 0 40px rgba(201,168,106,0.55));
-    transform: translate(-50%, -50%);
-  }
+  .brand { flex-direction: row; align-items: center; gap: 12px; justify-content: flex-start; }
 
   .logo { width: 160px; }
   .title { font-size: 36px; margin-top: 0; }
@@ -256,6 +311,8 @@ body {
 .hero {
   text-align: center;
   padding: 64px 20px;
+  position: relative;
+  z-index: 3;
 }
 
 .hero-title {
@@ -284,7 +341,7 @@ body {
   border-radius: 8px;
   background: linear-gradient(180deg, rgba(40,20,80,0.75), rgba(20,10,40,0.95));
   box-shadow: 0 8px 28px rgba(201,168,106,0.08);
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease;
 }
 
 /* -------------------------
@@ -317,7 +374,6 @@ body {
   margin: 28px 0 48px;
 }
 
-/* Gallery item wrapper */
 .gallery-item {
   display: flex;
   flex-direction: column;
@@ -335,7 +391,7 @@ body {
   text-shadow: 0 0 6px rgba(201,168,106,0.3);
 }
 
-/* Images: lazy loading recommended in HTML */
+/* Images: prefer lazy loading in HTML */
 .rune-img {
   width: 100%;
   height: 160px;
@@ -343,7 +399,7 @@ body {
   border-radius: 10px;
   border: 1px solid rgba(201,168,106,0.12);
   box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease;
+  transition: transform var(--t-medium) cubic-bezier(.2,.9,.2,1), box-shadow var(--t-medium) ease;
   display: block;
   background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12));
 }
@@ -353,7 +409,7 @@ body {
   box-shadow: 0 18px 40px rgba(0,0,0,0.45);
 }
 
-/* Shimmer effect optimized to reduce GPU load */
+/* Shimmer (optimized to reduce GPU load) */
 .shimmer { position: relative; overflow: hidden; }
 .shimmer::before {
   content: "";
@@ -369,43 +425,29 @@ body {
 }
 @keyframes shimmerMove { from { transform: translateX(0); } to { transform: translateX(120%); } }
 
-/* Glyph reveal (intersection observer friendly) */
-.glyph { opacity: 0; transform: translateY(10px); transition: opacity 420ms ease, transform 420ms ease; }
+/* Glyph reveal for intersection-observer */
+.glyph { opacity: 0; transform: translateY(10px); transition: opacity var(--t-long) ease, transform var(--t-long) ease; }
 .glyph.visible { opacity: 1; transform: translateY(0); }
 
 /* -------------------------
-   Lightbox2 Responsive Fixes
+   Lightbox2 Responsive Fixes (grouped, prefer specificity over !important)
    ------------------------- */
 .lb-loader,
-.lb-nav {
-  max-width: 100%;
-}
+.lb-nav { max-width: 100%; }
 
-.lightbox {
-  padding-bottom: 0 !important;
-}
+.lightbox { padding-bottom: 0; }
 
 .lightbox img {
-  max-height: 85vh !important;
-  max-width: 90vw !important;
-  width: auto !important;
-  height: auto !important;
+  max-height: 85vh;
+  max-width: 90vw;
+  width: auto;
+  height: auto;
   object-fit: contain;
 }
 
-.lb-outerContainer {
-  max-width: 95vw !important;
-  max-height: 90vh !important;
-}
-
-.lb-container {
-  max-width: 95vw !important;
-  max-height: 90vh !important;
-}
-
-.lb-dataContainer {
-  max-width: 95vw !important;
-}
+.lb-outerContainer,
+.lb-container,
+.lb-dataContainer { max-width: 95vw; max-height: 90vh; }
 
 /* -------------------------
    Footer
@@ -419,68 +461,12 @@ body {
 }
 
 /* -------------------------
-   Accessibility and performance hints
+   Ambient / Decorative Layers
+   - side runes, orb layer, rune trail
+   - keep pointer-events: none and hide on small screens
    ------------------------- */
-a { -webkit-tap-highlight-color: transparent; }
-img { max-width: 100%; height: auto; display: block; }
+.site-with-sides { position: relative; overflow-x: hidden; }
 
-/* Prevent layout shift for header elements */
-.logo, .title, .nav-link { will-change: transform, opacity; }
-
-/* Slightly reduce motion for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .sigil, .shimmer::before, .rune-img, .logo { transition: none !important; animation: none !important; }
-}
-
-/* -------------------------
-   Small screens tweaks
-   ------------------------- */
-@media (max-width: 520px) {
-  .sigil { width: 160px; height: 160px; opacity: 0.12; }
-  .logo { width: 120px; }
-  .title { font-size: 20px; }
-  .hero { padding: 36px 12px; }
-  .hero-title { font-size: 28px; }
-  .rune-img { height: 140px; }
-  
-  .lightbox img {
-    max-height: 75vh !important;
-    max-width: 85vw !important;
-  }
-  
-  .lb-outerContainer,
-  .lb-container,
-  .lb-dataContainer {
-    max-width: 90vw !important;
-    max-height: 80vh !important;
-  }
-}
-/* =========================================
-   Wizards of Ark — Enhanced Animations
-   Add this to your existing style.css or replace it.
-   Keep the rest of your styles; these rules layer on top.
-   ========================================= */
-
-/* --- Core variables --- */
-:root{
-  --gold: #c9a86a;
-  --purple-dark: #0f0820;
-  --purple-mid: #2e1a4f;
-  --accent-glow: rgba(201,168,106,0.18);
-  --orb-color: rgba(201,168,106,0.12);
-  --rune-color: rgba(120,80,200,0.08);
-  --max-orbs-desktop: 12;
-  --max-orbs-mobile: 5;
-  --side-width: 72px;
-}
-
-/* --- Layout helpers for side panels --- */
-.site-with-sides {
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* Left and right rune sidebars */
 .side-rune {
   position: fixed;
   top: 0;
@@ -493,33 +479,26 @@ img { max-width: 100%; height: auto; display: block; }
   justify-content: center;
   opacity: 0.9;
 }
-
 .side-rune.left { left: 0; }
 .side-rune.right { right: 0; }
 
-/* rune column background pattern (subtle, repeats vertically) */
-.side-rune::before{
+/* subtle repeating background */
+.side-rune::before {
   content: "";
   display:block;
   width:100%;
   height:100%;
-  background-image: radial-gradient(circle at 50% 20%, rgba(255,255,255,0.02) 0, transparent 20%),
-                    linear-gradient(180deg, rgba(255,255,255,0.01), transparent 30%);
+  background-image:
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,0.02) 0, transparent 20%),
+    linear-gradient(180deg, rgba(255,255,255,0.01), transparent 30%);
   background-size: 28px 120px, 100% 100%;
   transform: translateZ(0);
   mix-blend-mode: overlay;
   filter: blur(0.6px) saturate(1.05);
 }
 
-/* rune glyphs stacked vertically */
-.side-rune .rune-stack{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-  align-items:center;
-  transform: translateY(6vh);
-  opacity: 0.95;
-}
+/* stacked runes */
+.side-rune .rune-stack { display:flex; flex-direction:column; gap:18px; align-items:center; transform: translateY(6vh); opacity: 0.95; }
 .side-rune .rune {
   width: 36px;
   height: 36px;
@@ -532,10 +511,9 @@ img { max-width: 100%; height: auto; display: block; }
   will-change: transform, opacity;
   opacity: 0.95;
 }
-
-/* staggered float */
-.side-rune .rune:nth-child(odd){ animation-duration: 5.6s; transform-origin:center; }
-.side-rune .rune:nth-child(even){ animation-duration: 6.8s; transform-origin:center; animation-delay: 0.2s; }
+/* stagger durations */
+.side-rune .rune:nth-child(odd){ animation-duration: 5.6s; }
+.side-rune .rune:nth-child(even){ animation-duration: 6.8s; animation-delay: 0.2s; }
 
 @keyframes runeFloat {
   0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
@@ -543,7 +521,7 @@ img { max-width: 100%; height: auto; display: block; }
   100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
 }
 
-/* --- Floating orbs layer (ambient) --- */
+/* Orb layer (ambient) */
 .orb-layer {
   position: fixed;
   inset: 0;
@@ -552,8 +530,6 @@ img { max-width: 100%; height: auto; display: block; }
   overflow: hidden;
   mix-blend-mode: screen;
 }
-
-/* each orb */
 .orb {
   position: absolute;
   width: 80px;
@@ -565,31 +541,29 @@ img { max-width: 100%; height: auto; display: block; }
   transform: translate3d(0,0,0);
   will-change: transform, opacity;
 }
-
-/* smaller orb variant */
 .orb.small { width: 44px; height: 44px; opacity: 0.08; filter: blur(6px); }
 
-/* subtle parallax for hero background */
+/* hero parallax overlay */
 .hero-parallax {
   position: absolute;
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background-image: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02), transparent 8%),
-                    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01), transparent 6%);
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02), transparent 8%),
+    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01), transparent 6%);
   mix-blend-mode: overlay;
   opacity: 0.6;
   transform: translateZ(0);
 }
 
-/* --- Animated border accent for content blocks --- */
+/* content block animated accent (blur effect kept subtle) */
 .content-block {
   position: relative;
   overflow: visible;
   z-index: 5;
 }
-
-.content-block::after{
+.content-block::after {
   content: "";
   position: absolute;
   inset: -6px;
@@ -598,13 +572,11 @@ img { max-width: 100%; height: auto; display: block; }
   filter: blur(8px);
   opacity: 0.7;
   z-index: -1;
-  transition: opacity 240ms ease;
+  transition: opacity var(--t-medium) ease, transform var(--t-medium) ease;
 }
+.content-block:hover::after { opacity: 1; transform: scale(1.01); }
 
-/* on hover, glow stronger */
-.content-block:hover::after{ opacity: 1; transform: scale(1.01); }
-
-/* --- Cursor glow for desktop --- */
+/* cursor glow (desktop only) */
 .cursor-glow {
   position: fixed;
   pointer-events: none;
@@ -614,19 +586,19 @@ img { max-width: 100%; height: auto; display: block; }
   border-radius: 50%;
   background: radial-gradient(circle at 40% 40%, rgba(201,168,106,0.14), transparent 40%);
   transform: translate(-50%, -50%) scale(0.9);
-  transition: transform 160ms ease, opacity 160ms ease;
+  transition: transform var(--t-fast) ease, opacity var(--t-fast) ease;
   opacity: 0.0;
   mix-blend-mode: screen;
   will-change: transform, opacity;
 }
 
-/* show on hover of interactive elements */
+/* show on hover of interactive elements using sibling selector fallback (works if .cursor-glow is placed after interactive elements) */
 a:hover ~ .cursor-glow, button:hover ~ .cursor-glow, .arcane-btn:hover ~ .cursor-glow {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1.05);
 }
 
-/* --- Subtle scroll-based rune trail --- */
+/* rune trail */
 .rune-trail {
   position: fixed;
   right: 12%;
@@ -644,45 +616,63 @@ a:hover ~ .cursor-glow, button:hover ~ .cursor-glow, .arcane-btn:hover ~ .cursor
   border-radius: 8px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.45);
   transform-origin: center;
-  transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease;
+  transition: transform var(--t-long) cubic-bezier(.2,.9,.2,1), opacity var(--t-long) ease;
   opacity: 0.9;
 }
-
-/* when user scrolls, small pop */
 .rune-trail.pop .trail-glyph { transform: translateY(-8px) scale(1.03); }
 
-/* --- Performance: reduce effects on small screens --- */
+/* -------------------------
+   Performance & Accessibility
+   - Reduce heavy effects on small screens
+   - Respect prefers-reduced-motion
+   ------------------------- */
 @media (max-width: 720px) {
-  .side-rune { display: none; }
-  .orb { display: none; }
-  .cursor-glow { display: none; }
-  .rune-trail { display: none; }
+  .side-rune, .orb, .cursor-glow, .rune-trail { display: none; }
   .content-block::after { filter: blur(6px); opacity: 0.6; }
+  .sigil { filter: none; opacity: 0.12; }
 }
 
-/* --- Accessibility: reduce motion --- */
+/* Reduced motion: remove or simplify animations */
 @media (prefers-reduced-motion: reduce) {
-  .orb, .sigil, .rune, .shimmer::before, .cursor-glow { animation: none !important; transition: none !important; transform: none !important; }
+  .orb, .sigil, .rune, .shimmer::before, .cursor-glow, .rune-trail { animation: none !important; transition: none !important; transform: none !important; }
 }
 
-/* --- Utility: hide sides quickly --- */
+/* Utility to quickly hide sides if needed */
 .hide-sides .side-rune, .hide-sides .orb-layer, .hide-sides .rune-trail { display: none !important; }
-.header-logo-wrap {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;          /* display size */
-  height: 64px;
-  padding: 4px;
-  border-radius: 10px;
-  background: rgba(0,0,0,0.15);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.45);
+
+/* Prevent layout shift for header elements */
+.logo, .title, .nav-link { will-change: transform, opacity; }
+
+/* General accessibility & small-target improvements */
+a { -webkit-tap-highlight-color: transparent; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* Small screens tweaks */
+@media (max-width: 520px) {
+  .sigil { width: 160px; height: 160px; opacity: 0.12; }
+  .logo { width: 120px; }
+  .title { font-size: 20px; }
+  .hero { padding: 36px 12px; }
+  .hero-title { font-size: 28px; }
+  .rune-img { height: 140px; }
+
+  .lightbox img {
+    max-height: 75vh;
+    max-width: 85vw;
+  }
+
+  .lb-outerContainer,
+  .lb-container,
+  .lb-dataContainer {
+    max-width: 90vw;
+    max-height: 80vh;
+  }
 }
 
-.header-logo-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  image-rendering: auto;
-  filter: drop-shadow(0 0 6px rgba(201,168,106,0.5));
-}
+/* =========================================
+   End consolidated stylesheet
+   Notes:
+   - Keep heavy decorative layers optional (use .hide-sides to disable)
+   - Prefer lazy-loading images (loading="lazy") and IntersectionObserver for .glyph reveals
+   - Consider moving or lazily injecting orb/sigil DOM for improved initial paint
+   ========================================= */
