@@ -1,53 +1,36 @@
 /* =========================================
-   Wizards of Ark — Consolidated & Optimized Stylesheet
+   Wizards of Ark — Clean Consolidated Stylesheet
    Version: 2026-08-17 (refactor)
-   - Single :root for variables
-   - Duplicate rules removed (sigil, root)
-   - Animations limited to transform/opacity
-   - Focus-visible accessibility styles
-   - Performance-friendly media queries
    ========================================= */
 
 /* -------------------------
-   Variables (single source)
+   Variables
    ------------------------- */
 :root {
-  /* Colors */
   --gold: #c9a86a;
   --purple-dark: #1a0f2e;
   --purple-mid: #2e1a4f;
   --purple-light: #4b2e7a;
   --text-light: #e8e3f0;
 
-  /* Accents / effects */
   --rune-glow: rgba(201,168,106,0.75);
   --accent-glow: rgba(201,168,106,0.18);
   --orb-color: rgba(201,168,106,0.12);
   --rune-color: rgba(120,80,200,0.08);
 
-  /* Layout */
   --header-max-width: 1200px;
   --header-padding-mobile: 12px;
   --header-padding-desktop: 10px;
-  --side-width: 72px;
-  --max-orbs-desktop: 12;
-  --max-orbs-mobile: 5;
 
-  /* Sigil sizes and animation */
-  --sigil-width-desktop: 360px;
-  --sigil-width-desktop-alt: 320px;
-  --sigil-width-tablet: 320px;
-  --sigil-width-mobile: 160px;
-  --sigil-opacity: 0.16;
+  --sigil-size-desktop: 760px;
+  --sigil-size-mobile: 220px;
+  --sigil-opacity: 0.20;
   --sigil-spin-duration: 36s;
-  --sigil-spin-duration-slower: 48s;
 
-  /* Timing */
   --t-fast: 160ms;
   --t-medium: 220ms;
   --t-long: 420ms;
 
-  /* Shadows / opacities (centralized to avoid magic numbers) */
   --shadow-strong: rgba(0,0,0,0.45);
   --shadow-soft: rgba(0,0,0,0.25);
   --gold-soft: rgba(201,168,106,0.12);
@@ -56,21 +39,19 @@
 /* -------------------------
    Reset / Base
    ------------------------- */
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { height: 100%; }
 
 body {
-  background: radial-gradient(circle at center, var(--purple-mid) 0%, var(--purple-dark) 100%);
+  background: radial-gradient(circle at center, var(--purple-mid), var(--purple-dark));
   color: var(--text-light);
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-   
+}
+
+/* -------------------------
+   Header
    ------------------------- */
-/* Header container */
 .site-header {
   width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
@@ -81,9 +62,8 @@ body {
   z-index: 50;
 }
 
-/* Inner layout */
 .header-inner {
-  max-width: 1200px;
+  max-width: var(--header-max-width);
   margin: 0 auto;
   padding: 0 16px;
   display: flex;
@@ -93,18 +73,12 @@ body {
   position: relative;
 }
 
-/* === FINAL COMPACT HEADER OVERRIDE === */
-
+/* Compact header */
 .compact-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   padding: 12px 0;
   text-align: center;
 }
 
-/* Brand block */
 .brand {
   position: relative;
   display: flex;
@@ -112,196 +86,65 @@ body {
   align-items: center;
 }
 
-/* SIGIL — bigger than logo + spinning */
-/* === FINAL OVERRIDE: FORCE SIGIL TO SPIN === */
-
-.sigil {
-  animation: sigilSpin 36s linear infinite !important;
-  transform-origin: 50% 50% !important;
-  will-change: transform !important;
-}
-
-/* Merge translate + rotate so nothing cancels animation */
-@keyframes sigilSpin {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) !important;
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg) !important;
-  }
-}
-
-
-/* LOGO — smaller than sigil */
-.main-logo {
-  width: 230px !important;   /* perfect size */
-  height: auto !important;
-  display: block !important;
-  filter: drop-shadow(0 0 10px rgba(201,168,106,0.6)) !important;
-}
-
-/* Title */
-.title {
-  font-family: 'Uncial Antiqua', serif !important;
-  font-size: 46px !important;
-  color: var(--gold) !important;
-  text-shadow: 0 0 12px rgba(201,168,106,0.55) !important;
-  margin-top: 8px !important;
-}
-
-/* Navigation */
-.nav {
-  display: flex !important;
-  gap: 12px !important;
-  justify-content: center !important;
-  margin-top: 10px !important;
-}
-
-.nav-link {
-  font-family: 'Spectral', serif !important;
-  font-weight: 600 !important;
-  color: var(--gold) !important;
-  text-decoration: none !important;
-  padding: 6px 14px !important;
-  border-radius: 6px !important;
-  background: rgba(201,168,106,0.08) !important;
-  border: 1px solid rgba(201,168,106,0.18) !important;
-  box-shadow: 0 0 6px rgba(0,0,0,0.25) !important;
-  transition: 160ms ease !important;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  transform: translateY(-2px) !important;
-  background: rgba(201,168,106,0.15) !important;
-  box-shadow: 0 6px 18px rgba(201,168,106,0.12) !important;
-}
-
-/* Desktop scaling */
-@media (min-width: 900px) {
-  .main-logo {
-    width: 250px; /* slightly larger on desktop */
-  }
-
-  .title {
-    font-size: 50px;
-  }
-
-  .sigil {
-    width: 700px;
-    height: 700px;
-  }
-}
-
 /* -------------------------
-   Sigil (single definition)
-   - Animates only transform & opacity
-   - Sizes controlled with variables
+   SIGIL — FINAL CLEAN VERSION
    ------------------------- */
 .sigil {
   position: absolute;
-  top: 46%;
+  top: 50%;
   left: 50%;
-  width: var(--sigil-width-tablet);
-  height: var(--sigil-width-tablet);
+  width: var(--sigil-size-desktop);
+  height: var(--sigil-size-desktop);
   background: url('assets/sigil.png') no-repeat center/contain;
   opacity: var(--sigil-opacity);
-  filter: drop-shadow(0 0 36px rgba(201,168,106,0.55));
-  transform: translate(-50%, -62%) rotate(0deg);
+  transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 1;
-  will-change: transform, opacity;
+  z-index: -1;
   animation: sigilSpin var(--sigil-spin-duration) linear infinite;
+  transform-origin: 50% 50%;
 }
 
-/* Reduced size on smaller screens */
+@keyframes sigilSpin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Mobile sigil */
 @media (max-width: 900px) {
   .sigil {
-    width: 220px;
-    height: 220px;
-    top: 48%;
-    transform: translate(-50%, -60%);
-    opacity: 0.18;
-    animation-duration: var(--sigil-spin-duration-slower);
-  }
-}
-
-/* Desktop adjustments */
-@media (min-width: 900px) {
-  .sigil {
-    width: var(--sigil-width-desktop);
-    height: var(--sigil-width-desktop);
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: var(--sigil-size-mobile);
+    height: var(--sigil-size-mobile);
     opacity: 0.14;
-    filter: drop-shadow(0 0 40px rgba(201,168,106,0.55));
   }
 }
 
-/* Small screens */
-@media (max-width: 520px) {
-  .sigil {
-    width: var(--sigil-width-mobile);
-    height: var(--sigil-width-mobile);
-    opacity: 0.12;
-    filter: none; /* reduce expensive filter on small devices */
-    transform: translate(-50%, -60%);
-  }
-}
-
-/* Keyframes (transform-only) */
-@keyframes sigilSpin {
-  from { transform: translate(-50%, -62%) rotate(0deg); }
-  to   { transform: translate(-50%, -62%) rotate(360deg); }
-}
-
-/* Respect reduced motion */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .sigil { animation: none; transform: translate(-50%, -62%); }
+  .sigil { animation: none; }
 }
 
 /* -------------------------
    Logo & Title
    ------------------------- */
-.logo {
-  width: 140px;
+.main-logo {
+  width: 230px;
   height: auto;
   display: block;
-  filter: drop-shadow(0 0 12px rgba(201,168,106,0.5));
-  z-index: 5;
-  transition: width var(--t-fast) ease;
+  filter: drop-shadow(0 0 10px rgba(201,168,106,0.6));
 }
 
 .title {
   font-family: 'Uncial Antiqua', serif;
-  font-size: 28px;
+  font-size: 46px;
   color: var(--gold);
-  text-shadow: 0 0 10px rgba(201,168,106,0.45);
-  margin-top: 6px;
-  z-index: 5;
-  line-height: 1;
+  text-shadow: 0 0 12px rgba(201,168,106,0.55);
+  margin-top: 8px;
 }
 
-/* Header logo wrapper utility */
-.header-logo-wrap {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  padding: 4px;
-  border-radius: 10px;
-  background: rgba(0,0,0,0.15);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.45);
-}
-
-.header-logo-wrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  image-rendering: auto;
-  filter: drop-shadow(0 0 6px rgba(201,168,106,0.5));
+/* Desktop scaling */
+@media (min-width: 900px) {
+  .main-logo { width: 250px; }
+  .title { font-size: 50px; }
 }
 
 /* -------------------------
@@ -309,10 +152,9 @@ body {
    ------------------------- */
 .nav {
   display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
+  gap: 12px;
   justify-content: center;
-  width: 100%;
+  margin-top: 10px;
 }
 
 .nav-link {
@@ -320,42 +162,24 @@ body {
   font-weight: 600;
   color: var(--gold);
   text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background: rgba(201,168,106,0.08);
   border: 1px solid rgba(201,168,106,0.18);
-  padding: 6px 12px;
-  border-radius: 8px;
-  background: rgba(201,168,106,0.06);
-  box-shadow: 0 0 8px var(--shadow-soft);
-  transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease, background var(--t-fast) ease;
-  font-size: 14px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.25);
+  transition: var(--t-fast);
 }
 
-/* Hover and active (transform/opacity only where possible) */
 .nav-link:hover,
 .nav-link.active {
   transform: translateY(-2px);
-  background: rgba(201,168,106,0.12);
-  box-shadow: 0 6px 18px rgba(201,168,106,0.08);
+  background: rgba(201,168,106,0.15);
+  box-shadow: 0 6px 18px rgba(201,168,106,0.12);
 }
 
-/* Focus-visible accessibility (keyboard) */
-.nav-link,
-.arcane-btn,
-a,
-button {
-  outline: none;
-}
-.nav-link:focus-visible,
-.arcane-btn:focus-visible,
-a:focus-visible,
-button:focus-visible {
-  box-shadow: 0 0 0 3px rgba(201,168,106,0.22), 0 6px 18px rgba(201,168,106,0.06);
-  transform: translateY(-2px);
-  border-color: rgba(201,168,106,0.28);
-  background: rgba(201,168,106,0.08);
-  border-radius: 8px;
-}
-
-/* Divider */
+/* -------------------------
+   Divider
+   ------------------------- */
 .header-divider {
   width: 100%;
   height: 1px;
@@ -364,34 +188,24 @@ button:focus-visible {
 }
 
 /* -------------------------
-   Compact Header Modifier
-   ------------------------- */
-.compact-header .site-header { padding: 8px 0; }
-.compact-header .header-inner { gap: 6px; padding: 0 12px; }
-.compact-header .sigil { width: 180px; height: 180px; opacity: 0.12; }
-.compact-header .logo { width: 120px; }
-.compact-header .title { font-size: 22px; margin-top: 4px; }
-.compact-header .nav-link { padding: 6px 10px; font-size: 13px; }
-
-/* -------------------------
-   Desktop layout
+   Desktop header layout
    ------------------------- */
 @media (min-width: 900px) {
   .header-inner {
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
     padding: 0 20px;
+  }
+
+  .brand {
+    flex-direction: row;
     gap: 12px;
   }
 
-  .brand { flex-direction: row; align-items: center; gap: 12px; justify-content: flex-start; }
-
-  .logo { width: 160px; }
-  .title { font-size: 36px; margin-top: 0; }
-
-  .nav { justify-content: flex-end; gap: 12px; width: auto; }
-  .nav-link { padding: 8px 16px; font-size: 15px; }
+  .nav {
+    justify-content: flex-end;
+    gap: 12px;
+  }
 }
 
 /* -------------------------
@@ -416,21 +230,6 @@ button:focus-visible {
   font-size: 16px;
   max-width: 760px;
   margin: 0 auto 22px;
-  color: var(--text-light);
-}
-
-/* Arcane Button */
-.arcane-btn {
-  font-family: 'Spectral', serif;
-  font-weight: 600;
-  color: var(--gold);
-  text-decoration: none;
-  border: 2px solid rgba(201,168,106,0.5);
-  padding: 10px 22px;
-  border-radius: 8px;
-  background: linear-gradient(180deg, rgba(40,20,80,0.75), rgba(20,10,40,0.95));
-  box-shadow: 0 8px 28px rgba(201,168,106,0.08);
-  transition: transform var(--t-fast) ease, box-shadow var(--t-fast) ease;
 }
 
 /* -------------------------
@@ -451,8 +250,6 @@ button:focus-visible {
   text-shadow: 0 0 10px rgba(201,168,106,0.45);
 }
 
-.feature-list { margin: 12px 0 22px 20px; line-height: 1.6; }
-
 /* -------------------------
    Gallery
    ------------------------- */
@@ -463,24 +260,15 @@ button:focus-visible {
   margin: 28px 0 48px;
 }
 
-.gallery-item {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-}
-
 .gallery-item-title {
   font-family: 'Spectral', serif;
   font-size: 14px;
   color: var(--gold);
   text-align: center;
   padding: 10px 6px 0;
-  line-height: 1.3;
   text-shadow: 0 0 6px rgba(201,168,106,0.3);
 }
 
-/* Images: prefer lazy loading in HTML */
 .rune-img {
   width: 100%;
   height: 160px;
@@ -488,9 +276,7 @@ button:focus-visible {
   border-radius: 10px;
   border: 1px solid rgba(201,168,106,0.12);
   box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  transition: transform var(--t-medium) cubic-bezier(.2,.9,.2,1), box-shadow var(--t-medium) ease;
-  display: block;
-  background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12));
+  transition: var(--t-medium);
 }
 
 .rune-img:hover {
@@ -498,7 +284,9 @@ button:focus-visible {
   box-shadow: 0 18px 40px rgba(0,0,0,0.45);
 }
 
-/* Shimmer (optimized to reduce GPU load) */
+/* -------------------------
+   Shimmer
+   ------------------------- */
 .shimmer { position: relative; overflow: hidden; }
 .shimmer::before {
   content: "";
@@ -510,33 +298,12 @@ button:focus-visible {
   background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
   animation: shimmerMove 2.8s linear infinite;
   opacity: 0.18;
-  will-change: transform;
-}
-@keyframes shimmerMove { from { transform: translateX(0); } to { transform: translateX(120%); } }
-
-/* Glyph reveal for intersection-observer */
-.glyph { opacity: 0; transform: translateY(10px); transition: opacity var(--t-long) ease, transform var(--t-long) ease; }
-.glyph.visible { opacity: 1; transform: translateY(0); }
-
-/* -------------------------
-   Lightbox2 Responsive Fixes (grouped, prefer specificity over !important)
-   ------------------------- */
-.lb-loader,
-.lb-nav { max-width: 100%; }
-
-.lightbox { padding-bottom: 0; }
-
-.lightbox img {
-  max-height: 85vh;
-  max-width: 90vw;
-  width: auto;
-  height: auto;
-  object-fit: contain;
 }
 
-.lb-outerContainer,
-.lb-container,
-.lb-dataContainer { max-width: 95vw; max-height: 90vh; }
+@keyframes shimmerMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(120%); }
+}
 
 /* -------------------------
    Footer
@@ -548,264 +315,3 @@ button:focus-visible {
   color: rgba(201,168,106,0.8);
   font-size: 13px;
 }
-
-/* -------------------------
-   Ambient / Decorative Layers
-   - side runes, orb layer, rune trail
-   - keep pointer-events: none and hide on small screens
-   ------------------------- */
-.site-with-sides { position: relative; overflow-x: hidden; }
-
-.side-rune {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: var(--side-width);
-  pointer-events: none;
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.9;
-}
-.side-rune.left { left: 0; }
-.side-rune.right { right: 0; }
-
-/* subtle repeating background */
-.side-rune::before {
-  content: "";
-  display:block;
-  width:100%;
-  height:100%;
-  background-image:
-    radial-gradient(circle at 50% 20%, rgba(255,255,255,0.02) 0, transparent 20%),
-    linear-gradient(180deg, rgba(255,255,255,0.01), transparent 30%);
-  background-size: 28px 120px, 100% 100%;
-  transform: translateZ(0);
-  mix-blend-mode: overlay;
-  filter: blur(0.6px) saturate(1.05);
-}
-
-/* stacked runes */
-.side-rune .rune-stack { display:flex; flex-direction:column; gap:18px; align-items:center; transform: translateY(6vh); opacity: 0.95; }
-.side-rune .rune {
-  width: 36px;
-  height: 36px;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 40%),
-              linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(120,80,200,0.06), inset 0 1px 0 rgba(255,255,255,0.02);
-  transform-origin: center;
-  animation: runeFloat 6s ease-in-out infinite;
-  will-change: transform, opacity;
-  opacity: 0.95;
-}
-/* stagger durations */
-.side-rune .rune:nth-child(odd){ animation-duration: 5.6s; }
-.side-rune .rune:nth-child(even){ animation-duration: 6.8s; animation-delay: 0.2s; }
-
-@keyframes runeFloat {
-  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
-  50% { transform: translateY(-8px) rotate(6deg) scale(1.02); opacity: 1; }
-  100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
-}
-
-/* Orb layer (ambient) */
-.orb-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  pointer-events: none;
-  overflow: hidden;
-  mix-blend-mode: screen;
-}
-.orb {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), rgba(201,168,106,0.06) 40%, transparent 60%);
-  filter: blur(10px) saturate(1.1);
-  opacity: 0.12;
-  transform: translate3d(0,0,0);
-  will-change: transform, opacity;
-}
-.orb.small { width: 44px; height: 44px; opacity: 0.08; filter: blur(6px); }
-
-/* hero parallax overlay */
-.hero-parallax {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02), transparent 8%),
-    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01), transparent 6%);
-  mix-blend-mode: overlay;
-  opacity: 0.6;
-  transform: translateZ(0);
-}
-
-/* content block animated accent (blur effect kept subtle) */
-.content-block {
-  position: relative;
-  overflow: visible;
-  z-index: 5;
-}
-.content-block::after {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 14px;
-  background: linear-gradient(90deg, rgba(201,168,106,0.06), rgba(120,80,200,0.03), rgba(201,168,106,0.06));
-  filter: blur(8px);
-  opacity: 0.7;
-  z-index: -1;
-  transition: opacity var(--t-medium) ease, transform var(--t-medium) ease;
-}
-.content-block:hover::after { opacity: 1; transform: scale(1.01); }
-
-/* cursor glow (desktop only) */
-.cursor-glow {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, rgba(201,168,106,0.14), transparent 40%);
-  transform: translate(-50%, -50%) scale(0.9);
-  transition: transform var(--t-fast) ease, opacity var(--t-fast) ease;
-  opacity: 0.0;
-  mix-blend-mode: screen;
-  will-change: transform, opacity;
-}
-
-/* show on hover of interactive elements using sibling selector fallback (works if .cursor-glow is placed after interactive elements) */
-a:hover ~ .cursor-glow, button:hover ~ .cursor-glow, .arcane-btn:hover ~ .cursor-glow {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1.05);
-}
-
-/* rune trail */
-.rune-trail {
-  position: fixed;
-  right: 12%;
-  bottom: 8%;
-  z-index: 45;
-  pointer-events: none;
-  opacity: 0.9;
-}
-.rune-trail .trail-glyph {
-  display:block;
-  width: 56px;
-  height: 56px;
-  margin-bottom: 10px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
-  transform-origin: center;
-  transition: transform var(--t-long) cubic-bezier(.2,.9,.2,1), opacity var(--t-long) ease;
-  opacity: 0.9;
-}
-.rune-trail.pop .trail-glyph { transform: translateY(-8px) scale(1.03); }
-
-/* -------------------------
-   Performance & Accessibility
-   - Reduce heavy effects on small screens
-   - Respect prefers-reduced-motion
-   ------------------------- */
-@media (max-width: 720px) {
-  .side-rune, .orb, .cursor-glow, .rune-trail { display: none; }
-  .content-block::after { filter: blur(6px); opacity: 0.6; }
-  .sigil { filter: none; opacity: 0.12; }
-}
-
-/* Reduced motion: remove or simplify animations */
-@media (prefers-reduced-motion: reduce) {
-  .orb, .sigil, .rune, .shimmer::before, .cursor-glow, .rune-trail { animation: none !important; transition: none !important; transform: none !important; }
-}
-
-/* Utility to quickly hide sides if needed */
-.hide-sides .side-rune, .hide-sides .orb-layer, .hide-sides .rune-trail { display: none !important; }
-
-/* Prevent layout shift for header elements */
-.logo, .title, .nav-link { will-change: transform, opacity; }
-
-/* General accessibility & small-target improvements */
-a { -webkit-tap-highlight-color: transparent; }
-img { max-width: 100%; height: auto; display: block; }
-
-/* Small screens tweaks */
-@media (max-width: 520px) {
-  .sigil { width: 160px; height: 160px; opacity: 0.12; }
-  .logo { width: 120px; }
-  .title { font-size: 20px; }
-  .hero { padding: 36px 12px; }
-  .hero-title { font-size: 28px; }
-  .rune-img { height: 140px; }
-
-  .lightbox img {
-    max-height: 75vh;
-    max-width: 85vw;
-  }
-
-  .lb-outerContainer,
-  .lb-container,
-  .lb-dataContainer {
-    max-width: 90vw;
-    max-height: 80vh;
-  }
-}
-
-/* === FORCE SIGIL TO SPIN === */
-
-.sigil {
-  animation: sigilSpin 36s linear infinite !important;
-  transform-origin: center center !important;
-}
-
-/* Keyframes override */
-@keyframes sigilSpin {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(360deg);
-  }
-}
-/* === FORCE SIGIL TO SPIN, OVERRIDE ALL OTHER RULES === */
-
-.sigil {
-  animation: sigilSpin 36s linear infinite !important;
-  transform-origin: 50% 50% !important;
-  will-change: transform !important;
-}
-
-/* Re-declare keyframes at bottom so nothing overrides them */
-@keyframes sigilSpin {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) !important;
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg) !important;
-  }
-}
-/* === FINAL OVERRIDE: FORCE SIGIL TO SPIN === */
-
-.sigil {
-  animation: sigilSpin 36s linear infinite !important;
-  transform-origin: 50% 50% !important;
-  will-change: transform !important;
-}
-
-/* Merge translate + rotate so nothing cancels animation */
-@keyframes sigilSpin {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg) !important;
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(360deg) !important;
-  }
-}
-
