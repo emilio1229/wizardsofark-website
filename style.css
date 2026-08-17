@@ -118,8 +118,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 700px;
-  height: 700px;
+  width: 600px;
+  height: 600px;
   background: url('assets/sigil.png') no-repeat center/contain;
   opacity: 0.18;
   transform: translate(-50%, -50%);
@@ -133,23 +133,22 @@ body {
   to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Main logo — force full size */
+/* Main logo — tuned to 240 px */
 .main-logo {
-  width: 320px;          /* visually large crest */
+  width: 240px;
   height: auto;
-  max-width: none;       /* removes browser limit */
   display: block;
   margin: 0 auto;
-  filter: drop-shadow(0 0 12px rgba(201,168,106,0.6));
+  filter: drop-shadow(0 0 10px rgba(201,168,106,0.6));
 }
 
 /* Title below logo */
 .title {
   font-family: 'Uncial Antiqua', serif;
-  font-size: 48px;
+  font-size: 44px;
   color: var(--gold);
-  text-shadow: 0 0 14px rgba(201,168,106,0.55);
-  margin-top: 10px;
+  text-shadow: 0 0 12px rgba(201,168,106,0.55);
+  margin-top: 8px;
 }
 
 /* Navigation flush under title */
@@ -157,7 +156,7 @@ body {
   display: flex;
   gap: 12px;
   justify-content: center;
-  margin-top: 14px;
+  margin-top: 12px;
 }
 
 .nav-link {
@@ -183,18 +182,19 @@ body {
 /* Desktop scaling */
 @media (min-width: 900px) {
   .main-logo {
-    width: 400px;        /* larger crest on desktop */
+    width: 260px; /* slightly larger crest on desktop */
   }
 
   .title {
-    font-size: 56px;
+    font-size: 50px;
   }
 
   .sigil {
-    width: 800px;
-    height: 800px;
+    width: 700px;
+    height: 700px;
   }
 }
+
 
 /* -------------------------
    Sigil (single definition)
