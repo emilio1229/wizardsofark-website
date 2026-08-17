@@ -99,9 +99,9 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 20px 0;
-  position: relative;
+  padding: 14px 0; /* compact */
   text-align: center;
+  position: relative;
 }
 
 /* Brand block */
@@ -110,16 +110,15 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
-/* Sigil behind logo */
+/* Sigil (larger than logo) */
 .sigil {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 600px;
-  height: 600px;
+  width: 480px;   /* sigil bigger */
+  height: 480px;
   background: url('assets/sigil.png') no-repeat center/contain;
   opacity: 0.18;
   transform: translate(-50%, -50%);
@@ -133,12 +132,11 @@ body {
   to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Main logo — tuned to 240 px */
+/* Logo (smaller than sigil, compact) */
 .main-logo {
-  width: 240px;
+  width: 220px;   /* perfect size */
   height: auto;
   display: block;
-  margin: 0 auto;
   filter: drop-shadow(0 0 10px rgba(201,168,106,0.6));
 }
 
@@ -156,7 +154,7 @@ body {
   display: flex;
   gap: 12px;
   justify-content: center;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .nav-link {
@@ -182,19 +180,18 @@ body {
 /* Desktop scaling */
 @media (min-width: 900px) {
   .main-logo {
-    width: 260px; /* slightly larger crest on desktop */
+    width: 240px; /* slightly larger on desktop */
   }
 
   .title {
-    font-size: 50px;
+    font-size: 48px;
   }
 
   .sigil {
-    width: 700px;
-    height: 700px;
+    width: 520px;
+    height: 520px;
   }
 }
-
 
 /* -------------------------
    Sigil (single definition)
