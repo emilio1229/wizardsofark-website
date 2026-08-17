@@ -93,74 +93,71 @@ body {
   position: relative;
 }
 
-/* Vertical emblem header */
-.vertical-brand {
+/* Compact header layout */
+.compact-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  padding: 20px 0;
   position: relative;
   text-align: center;
-  padding: 60px 0;
 }
 
-/* Logo wrapper */
-.header-logo-wrap {
+/* Brand block */
+.brand {
+  position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
-  background: rgba(0,0,0,0.22);
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.55);
 }
 
-/* Force the actual image to scale up */
-.main-logo {
-  width: 100%;
-  max-width: 600px;   /* controls how large the image can get */
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 0 16px rgba(201,168,106,0.6));
-}
-
-/* Title below logo */
-.title {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 72px;
-  color: var(--gold);
-  text-shadow: 0 0 20px rgba(201,168,106,0.65);
-  margin-top: 28px;
-}
-
-/* Sigil centered behind logo */
+/* Sigil behind logo */
 .sigil {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 950px;
-  height: 950px;
+  width: 700px;
+  height: 700px;
   background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.20;
-  transform: translate(-50%, -60%);
+  opacity: 0.18;
+  transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: -1;
   animation: sigilSpin 36s linear infinite;
 }
 
 @keyframes sigilSpin {
-  from { transform: translate(-50%, -60%) rotate(0deg); }
-  to   { transform: translate(-50%, -60%) rotate(360deg); }
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Navigation below title */
+/* Main logo — force full size */
+.main-logo {
+  width: 320px;          /* visually large crest */
+  height: auto;
+  max-width: none;       /* removes browser limit */
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 12px rgba(201,168,106,0.6));
+}
+
+/* Title below logo */
+.title {
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 48px;
+  color: var(--gold);
+  text-shadow: 0 0 14px rgba(201,168,106,0.55);
+  margin-top: 10px;
+}
+
+/* Navigation flush under title */
 .nav {
   display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
+  gap: 12px;
   justify-content: center;
-  margin-top: 32px;
+  margin-top: 14px;
 }
 
 .nav-link {
@@ -168,11 +165,11 @@ body {
   font-weight: 600;
   color: var(--gold);
   text-decoration: none;
-  padding: 10px 22px;
-  border-radius: 8px;
+  padding: 6px 14px;
+  border-radius: 6px;
   background: rgba(201,168,106,0.08);
   border: 1px solid rgba(201,168,106,0.18);
-  box-shadow: 0 0 8px rgba(0,0,0,0.25);
+  box-shadow: 0 0 6px rgba(0,0,0,0.25);
   transition: 160ms ease;
 }
 
@@ -183,21 +180,19 @@ body {
   box-shadow: 0 6px 18px rgba(201,168,106,0.12);
 }
 
-/* Desktop adjustments */
+/* Desktop scaling */
 @media (min-width: 900px) {
   .main-logo {
-    max-width: 700px; /* even larger crest on desktop */
+    width: 400px;        /* larger crest on desktop */
   }
 
   .title {
-    font-size: 84px;
-    margin-top: 32px;
+    font-size: 56px;
   }
 
   .sigil {
-    width: 1100px;
-    height: 1100px;
-    opacity: 0.18;
+    width: 800px;
+    height: 800px;
   }
 }
 
