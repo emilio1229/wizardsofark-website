@@ -774,4 +774,21 @@ img { max-width: 100%; height: auto; display: block; }
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+/* === FORCE SIGIL TO SPIN, OVERRIDE ALL OTHER RULES === */
+
+.sigil {
+  animation: sigilSpin 36s linear infinite !important;
+  transform-origin: 50% 50% !important;
+  will-change: transform !important;
+}
+
+/* Re-declare keyframes at bottom so nothing overrides them */
+@keyframes sigilSpin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) !important;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) !important;
+  }
+}
 
