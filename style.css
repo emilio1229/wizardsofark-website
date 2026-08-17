@@ -93,15 +93,15 @@ body {
   position: relative;
 }
 
-/* Compact header layout */
+/* === FINAL COMPACT HEADER OVERRIDE === */
+
 .compact-header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 14px 0; /* compact */
+  padding: 12px 0;
   text-align: center;
-  position: relative;
 }
 
 /* Brand block */
@@ -114,17 +114,17 @@ body {
 
 /* SIGIL — bigger than logo + spinning */
 .sigil {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 620px;   /* bigger sigil */
-  height: 620px;
-  background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.20;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: -1;
-  animation: sigilSpin 36s linear infinite;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 780px !important;   /* BIGGER SIGIL */
+  height: 780px !important;
+  background: url('assets/sigil.png') no-repeat center/contain !important;
+  opacity: 0.20 !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: none !important;
+  z-index: -1 !important;
+  animation: sigilSpin 36s linear infinite !important;
 }
 
 @keyframes sigilSpin {
@@ -134,47 +134,47 @@ body {
 
 /* LOGO — smaller than sigil */
 .main-logo {
-  width: 230px;   /* perfect size */
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 0 10px rgba(201,168,106,0.6));
+  width: 230px !important;   /* perfect size */
+  height: auto !important;
+  display: block !important;
+  filter: drop-shadow(0 0 10px rgba(201,168,106,0.6)) !important;
 }
 
-/* Title below logo */
+/* Title */
 .title {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 46px;
-  color: var(--gold);
-  text-shadow: 0 0 12px rgba(201,168,106,0.55);
-  margin-top: 8px;
+  font-family: 'Uncial Antiqua', serif !important;
+  font-size: 46px !important;
+  color: var(--gold) !important;
+  text-shadow: 0 0 12px rgba(201,168,106,0.55) !important;
+  margin-top: 8px !important;
 }
 
-/* Navigation flush under title */
+/* Navigation */
 .nav {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 10px;
+  display: flex !important;
+  gap: 12px !important;
+  justify-content: center !important;
+  margin-top: 10px !important;
 }
 
 .nav-link {
-  font-family: 'Spectral', serif;
-  font-weight: 600;
-  color: var(--gold);
-  text-decoration: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  background: rgba(201,168,106,0.08);
-  border: 1px solid rgba(201,168,106,0.18);
-  box-shadow: 0 0 6px rgba(0,0,0,0.25);
-  transition: 160ms ease;
+  font-family: 'Spectral', serif !important;
+  font-weight: 600 !important;
+  color: var(--gold) !important;
+  text-decoration: none !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  background: rgba(201,168,106,0.08) !important;
+  border: 1px solid rgba(201,168,106,0.18) !important;
+  box-shadow: 0 0 6px rgba(0,0,0,0.25) !important;
+  transition: 160ms ease !important;
 }
 
 .nav-link:hover,
 .nav-link.active {
-  transform: translateY(-2px);
-  background: rgba(201,168,106,0.15);
-  box-shadow: 0 6px 18px rgba(201,168,106,0.12);
+  transform: translateY(-2px) !important;
+  background: rgba(201,168,106,0.15) !important;
+  box-shadow: 0 6px 18px rgba(201,168,106,0.12) !important;
 }
 
 /* Desktop scaling */
