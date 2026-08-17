@@ -102,17 +102,18 @@ body {
   width: 100%;
   position: relative;
   text-align: center;
+  padding: 40px 0; /* gives breathing room for the big crest */
 }
 
-/* Larger crest */
+/* MASSIVE crest */
 .header-logo-wrap {
-  width: 300px;
-  height: 300px;
+  width: 420px;      /* was 300px — now truly large */
+  height: 420px;
   margin: 0 auto;
-  padding: 10px;
-  border-radius: 18px;
+  padding: 12px;
+  border-radius: 20px;
   background: rgba(0,0,0,0.22);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.55);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -122,16 +123,16 @@ body {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 0 12px rgba(201,168,106,0.55));
+  filter: drop-shadow(0 0 14px rgba(201,168,106,0.6));
 }
 
 /* Title below logo */
 .title {
   font-family: 'Uncial Antiqua', serif;
-  font-size: 52px;
+  font-size: 64px;
   color: var(--gold);
-  text-shadow: 0 0 14px rgba(201,168,106,0.6);
-  margin-top: 18px;
+  text-shadow: 0 0 18px rgba(201,168,106,0.65);
+  margin-top: 24px;
 }
 
 /* Sigil centered behind logo */
@@ -139,8 +140,8 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 600px;
-  height: 600px;
+  width: 800px;      /* scale up to match the larger crest */
+  height: 800px;
   background: url('assets/sigil.png') no-repeat center/contain;
   opacity: 0.20;
   transform: translate(-50%, -60%);
@@ -154,13 +155,13 @@ body {
   to   { transform: translate(-50%, -60%) rotate(360deg); }
 }
 
-/* Navigation stays below title */
+/* Navigation below title */
 .nav {
   display: flex;
-  gap: 14px;
+  gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 28px;
 }
 
 .nav-link {
@@ -168,7 +169,7 @@ body {
   font-weight: 600;
   color: var(--gold);
   text-decoration: none;
-  padding: 10px 18px;
+  padding: 10px 20px;
   border-radius: 8px;
   background: rgba(201,168,106,0.08);
   border: 1px solid rgba(201,168,106,0.18);
@@ -186,21 +187,22 @@ body {
 /* Desktop adjustments */
 @media (min-width: 900px) {
   .header-logo-wrap {
-    width: 360px;
-    height: 360px;
+    width: 480px;    /* even larger on desktop */
+    height: 480px;
   }
 
   .title {
-    font-size: 60px;
-    margin-top: 20px;
+    font-size: 72px;
+    margin-top: 28px;
   }
 
   .sigil {
-    width: 720px;
-    height: 720px;
+    width: 900px;
+    height: 900px;
     opacity: 0.18;
   }
 }
+
 
 
 /* -------------------------
