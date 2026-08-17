@@ -76,34 +76,147 @@ body {
 .site-header {
   width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
-  padding: var(--header-padding-mobile) 0;
-  position: relative;
+  padding: 12px 0;
   border-bottom: 1px solid rgba(201,168,106,0.18);
-  box-shadow: 0 6px 24px var(--shadow-strong);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45);
+  position: relative;
   z-index: 50;
 }
 
+/* Inner layout */
 .header-inner {
-  width: 100%;
-  max-width: var(--header-max-width);
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 0 16px;
+  gap: 10px;
   position: relative;
 }
 
-/* Brand */
+/* Brand block */
 .brand {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  z-index: 5;
+  position: relative;
 }
 
+/* Logo wrapper */
+.header-logo-wrap {
+  width: 64px;
+  height: 64px;
+  padding: 4px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.18);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 6px rgba(201,168,106,0.5));
+}
+
+/* Title */
+.title {
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 32px;
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(201,168,106,0.55);
+  margin-top: 6px;
+}
+
+/* Sigil behind logo */
+.sigil {
+  position: absolute;
+  top: 46%;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  background: url('assets/sigil.png') no-repeat center/contain;
+  opacity: 0.20;
+  transform: translate(-50%, -62%);
+  pointer-events: none;
+  z-index: -1;
+  animation: sigilSpin 36s linear infinite;
+}
+
+@keyframes sigilSpin {
+  from { transform: translate(-50%, -62%) rotate(0deg); }
+  to   { transform: translate(-50%, -62%) rotate(360deg); }
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.nav-link {
+  font-family: 'Spectral', serif;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: rgba(201,168,106,0.08);
+  border: 1px solid rgba(201,168,106,0.18);
+  box-shadow: 0 0 8px rgba(0,0,0,0.25);
+  transition: 160ms ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  transform: translateY(-2px);
+  background: rgba(201,168,106,0.15);
+  box-shadow: 0 6px 18px rgba(201,168,106,0.12);
+}
+
+/* Divider */
+.header-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,168,106,0.12), transparent);
+  opacity: 0.6;
+}
+
+/* Desktop layout */
+@media (min-width: 900px) {
+  .header-inner {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .title {
+    margin-top: 0;
+    font-size: 36px;
+  }
+
+  .header-logo-wrap {
+    width: 72px;
+    height: 72px;
+  }
+
+  .sigil {
+    width: 360px;
+    height: 360px;
+    opacity: 0.18;
+  }
+}
 /* -------------------------
    Sigil (single definition)
    - Animates only transform & opacity
