@@ -667,3 +667,22 @@ a:hover ~ .cursor-glow, button:hover ~ .cursor-glow, .arcane-btn:hover ~ .cursor
 
 /* --- Utility: hide sides quickly --- */
 .hide-sides .side-rune, .hide-sides .orb-layer, .hide-sides .rune-trail { display: none !important; }
+.header-logo-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;          /* display size */
+  height: 64px;
+  padding: 4px;
+  border-radius: 10px;
+  background: rgba(0,0,0,0.15);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.45);
+}
+
+.header-logo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: auto;
+  filter: drop-shadow(0 0 6px rgba(201,168,106,0.5));
+}
