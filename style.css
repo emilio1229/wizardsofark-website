@@ -113,20 +113,24 @@ body {
 }
 
 /* SIGIL — bigger than logo + spinning */
+/* === FINAL OVERRIDE: FORCE SIGIL TO SPIN === */
+
 .sigil {
-  ...
-  background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.20;
-  transform: translate(-50%, -50%);
-  transform-origin: 50% 50%;
-  pointer-events: none;
-  z-index: -1;
-  animation: sigilSpin var(--sigil-spin-duration, 36s) linear infinite;
+  animation: sigilSpin 36s linear infinite !important;
+  transform-origin: 50% 50% !important;
+  will-change: transform !important;
 }
+
+/* Merge translate + rotate so nothing cancels animation */
 @keyframes sigilSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) !important;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) !important;
+  }
 }
+
 
 /* LOGO — smaller than sigil */
 .main-logo {
@@ -779,6 +783,23 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 /* Re-declare keyframes at bottom so nothing overrides them */
+@keyframes sigilSpin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) !important;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) !important;
+  }
+}
+/* === FINAL OVERRIDE: FORCE SIGIL TO SPIN === */
+
+.sigil {
+  animation: sigilSpin 36s linear infinite !important;
+  transform-origin: 50% 50% !important;
+  will-change: transform !important;
+}
+
+/* Merge translate + rotate so nothing cancels animation */
 @keyframes sigilSpin {
   0% {
     transform: translate(-50%, -50%) rotate(0deg) !important;
