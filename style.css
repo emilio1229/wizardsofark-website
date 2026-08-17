@@ -758,10 +758,20 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
-/* =========================================
-   End consolidated stylesheet
-   Notes:
-   - Keep heavy decorative layers optional (use .hide-sides to disable)
-   - Prefer lazy-loading images (loading="lazy") and IntersectionObserver for .glyph reveals
-   - Consider moving or lazily injecting orb/sigil DOM for improved initial paint
-   ========================================= */
+/* === FORCE SIGIL TO SPIN === */
+
+.sigil {
+  animation: sigilSpin 36s linear infinite !important;
+  transform-origin: center center !important;
+}
+
+/* Keyframes override */
+@keyframes sigilSpin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
