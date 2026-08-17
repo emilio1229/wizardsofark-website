@@ -413,3 +413,104 @@ body {
   .title { font-size: 46px; }
   .sigil { width: 1280px; height: 1280px; }
 }
+/* =========================================
+   Wizards of Ark — Oversized Sigil (Visible + Dominant)
+   ========================================= */
+
+.compact-header {
+  padding: 6px 0;
+  text-align: center;
+  overflow: visible; /* allow sigil to extend beyond header */
+}
+
+.header-inner {
+  gap: 4px;
+  padding: 0 12px;
+  position: relative;
+  overflow: visible;
+}
+
+/* Brand block */
+.brand {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 5; /* keep logo/title above sigil */
+}
+
+/* SIGIL — truly larger, glowing, spinning */
+.sigil {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1600px; /* visually dominant */
+  height: 1600px;
+  background: url('assets/sigil.png') no-repeat center/contain;
+  opacity: 0.26; /* stronger visibility */
+  transform: translate(-50%, -50%) scale(1.1);
+  pointer-events: none;
+  z-index: 1; /* behind logo/title */
+  animation: sigilSpin 36s linear infinite;
+  transform-origin: 50% 50%;
+  filter: drop-shadow(0 0 60px rgba(201,168,106,0.45));
+}
+
+@keyframes sigilSpin {
+  0% { transform: translate(-50%, -50%) scale(1.1) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) scale(1.1) rotate(360deg); }
+}
+
+/* LOGO — smaller than sigil */
+.main-logo {
+  width: 210px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(201,168,106,0.6));
+}
+
+/* Title — tight spacing */
+.title {
+  font-family: 'Uncial Antiqua', serif;
+  font-size: 42px;
+  color: var(--gold);
+  text-shadow: 0 0 12px rgba(201,168,106,0.55);
+  margin-top: 4px;
+}
+
+/* Navigation — compact */
+.nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.nav-link {
+  font-family: 'Spectral', serif;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: rgba(201,168,106,0.08);
+  border: 1px solid rgba(201,168,106,0.18);
+  box-shadow: 0 0 6px rgba(0,0,0,0.25);
+  transition: 160ms ease;
+  font-size: 14px;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  transform: translateY(-2px);
+  background: rgba(201,168,106,0.15);
+  box-shadow: 0 6px 18px rgba(201,168,106,0.12);
+}
+
+/* Desktop scaling */
+@media (min-width: 900px) {
+  .main-logo { width: 230px; }
+  .title { font-size: 46px; }
+  .sigil { width: 1600px; height: 1600px; }
+}
