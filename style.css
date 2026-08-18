@@ -291,3 +291,19 @@ body {
     inset 0 0 16px rgba(201,168,106,0.35);
   border-color: rgba(201,168,106,0.75);
 }
+/* === FINAL SIGIL FIX — MAKES IT VISUALLY BIGGER === */
+
+.site-header,
+.header-inner {
+  overflow: visible !important;
+}
+
+/* Move sigil DOWN so more of it is visible */
+.sigil {
+  top: 65% !important; /* was 50% — this reveals the circle */
+  width: 2000px !important;
+  height: 2000px !important;
+  transform: translate(-50%, -50%) scale(1.25) !important;
+  opacity: 0.32 !important;
+  z-index: 1 !important;
+}
