@@ -386,4 +386,83 @@ body {
 
 .site-footer p {
   margin: 0;
-  font
+  font-size: 18px;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.discord-footer {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 20px;
+  color: var(--gold);
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 2px solid rgba(201,168,106,0.4);
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.discord-footer:hover {
+  background: rgba(201,168,106,0.2);
+  box-shadow: 0 0 12px rgba(201,168,106,0.5);
+}
+
+/* =========================================
+   MAIN CONTENT + GALLERY
+   ========================================= */
+
+.main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  box-sizing: border-box;
+}
+
+.content-block {
+  margin: 0 auto 34px;
+  padding: 22px 20px;
+  background: rgba(20,10,40,0.35);
+  border-radius: 10px;
+  border: 1px solid rgba(201,168,106,0.12);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.section-title { margin-top: 0; margin-bottom: 12px; }
+
+.feature-list {
+  margin: 12px 0 0 0;
+  padding-left: 1.15em;
+  line-height: 1.6;
+}
+
+.home-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+/* Small screens: reduce padding and keep everything readable */
+@media (max-width: 900px) {
+  .main { padding: 20px 18px; max-width: 920px; }
+  .content-block { padding: 18px 14px; }
+  .realm-button { font-size: 20px; padding: 12px 32px; }
+}
+
+/* Very small screens: full width with comfortable gutters */
+@media (max-width: 480px) {
+  .main { padding: 16px 14px; }
+  .content-block { padding: 14px 12px; }
+  .home-gallery { gap: 10px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+}
+
+/* Responsive sigil fallback for small screens */
+@media (max-width: 600px) {
+  .main-logo { width: 180px; }
+  .title { font-size: 28px; }
+  .sigil-wrap { width: 180px; height: 180px; }
+  .site-header { min-height: 220px; }
+  .council-card { flex-direction: column; text-align: center; }
+  .council-icon { width: 100px; height: 100px; }
+}
