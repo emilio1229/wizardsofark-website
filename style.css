@@ -359,3 +359,25 @@ body {
     height: 100px;
   }
 }
+/* ===== Ensure sigil is visible and header has room ===== */
+.site-header {
+  min-height: 480px; /* room for 600px sigil */
+}
+
+/* Make sure sigil is visible and uses the correct asset */
+.site-header .sigil-wrap,
+.site-header .sigil {
+  display: block;
+  visibility: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Sigil background fallback and sizing */
+.site-header .sigil {
+  background-image: url('assets/sigil.png');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  opacity: 0.10;
+}
