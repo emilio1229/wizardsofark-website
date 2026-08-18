@@ -525,3 +525,44 @@ body {
   .content-block { padding: 14px 12px; }
   .home-gallery { gap: 10px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
 }
+/* ===== Force full-size spinning sigil (place at end of style.css) ===== */
+.site-header { min-height: 520px; } /* ensure plenty of vertical room */
+
+.header-inner { position: relative; z-index: 60; } /* keep header content above sigil */
+
+.sigil-wrap {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 600px !important;
+  height: 600px !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  animation: sigilSpin 36s linear infinite !important;
+}
+
+.sigil {
+  width: 100% !important;
+  height: 100% !important;
+  background-image: url('assets/sigil.png') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  opacity: 0.10 !important;
+  pointer-events: none !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* keep the same spin keyframes if not present */
+@keyframes sigilSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* small-screen fallback so sigil doesn't overwhelm mobile */
+@media (max-width: 600px) {
+  .sigil-wrap { width: 180px !important; height: 180px !important; }
+  .site-header { min-height: 220px; }
+}
