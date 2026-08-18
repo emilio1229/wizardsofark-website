@@ -32,18 +32,12 @@
       <h1 class="title">The Wizards of Ark</h1>
     </div>
 
-    <div class="spellbook">
-  <div class="book-cover">
-    <span class="book-title">Spellbook</span>
-  </div>
-
-  <div class="book-pages">
-    <a href="index.html" class="page-link">Home</a>
-    <a href="server-info.html" class="page-link">Server Info</a>
-    <a href="store.html" class="page-link">Store</a>
-    <a href="contact.html" class="page-link">Contact</a>
-  </div>
-</div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="server-info.html" class="nav-link">Server Info</a>
+      <a href="store.html" class="nav-link">Store</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
 
   </div>
 </header>
@@ -74,14 +68,6 @@
     <a href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener noreferrer" class="discord-btn">📜 Message Us on Discord</a>
   </footer>
 
-  <script defer src="site-effects.bundle.js"></script>
-<script>
-  const cover = document.querySelector('.book-cover');
-  const pages = document.querySelector('.book-pages');
-
-  cover.addEventListener('click', () => {
-    pages.style.display = pages.style.display === 'flex' ? 'none' : 'flex';
-  });
-</script>
+<script defer src="site-effects.bundle.js"></script>
 </body>
 </html>
