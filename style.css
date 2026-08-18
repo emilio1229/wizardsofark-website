@@ -16,6 +16,70 @@
   --t-fast: 160ms;
   --shadow-soft: rgba(0,0,0,0.25);
 }
+/* ====== Site typography — match Council page exactly ====== */
+
+/* Body text uses Inter for readability */
+body,
+p,
+li,
+ol,
+ul,
+.muted,
+.bot-list p,
+.role,
+.duty {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  color: var(--text-light);
+  line-height: 1.55;
+}
+
+/* Page main title (site title) — Uncial Antiqua like council */
+.title,
+.brand .title,
+header .title,
+h1.site-title {
+  font-family: "Uncial Antiqua", serif;
+  color: var(--gold);
+  font-size: 42px;
+  letter-spacing: 0.6px;
+  text-shadow: 0 0 10px rgba(201,168,106,0.45);
+}
+
+/* Section and block titles — Spectral (serif) like council */
+.section-title,
+h2,
+h3,
+.council-section,
+.content-block .section-title {
+  font-family: "Spectral", serif;
+  color: var(--gold);
+  font-weight: 600;
+  text-shadow: 0 0 12px rgba(201,168,106,0.35);
+}
+
+/* Smaller headings and list headings */
+h4, h5, h6 {
+  font-family: "Spectral", serif;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+/* Navigation and button text */
+.nav-link,
+.realm-button,
+.discord-footer,
+.discord-btn {
+  font-family: "Spectral", serif;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* Ensure titles keep responsive scale similar to council */
+@media (max-width: 600px) {
+  .title { font-size: 28px; }
+  .section-title { font-size: 20px; }
+  .realm-button { font-size: 20px; padding: 12px 32px; }
+}
 
 /* -------------------------
    Reset / Base
