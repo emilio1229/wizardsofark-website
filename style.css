@@ -111,6 +111,7 @@ body {
   min-height: 480px;
 }
 
+/* Header layout: stacked on small screens, side-by-side on wide screens */
 .header-inner {
   max-width: var(--header-max-width);
   margin: 0 auto;
@@ -122,13 +123,31 @@ body {
   position: relative;
 }
 
-.brand {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  z-index: 5;
+/* On wider screens match Council: brand left, nav right, centered vertically */
+@media (min-width: 920px) {
+  .header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  /* keep brand content aligned left within its column */
+  .brand {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  /* nav sits to the right and keeps its centered look */
+  .nav {
+    justify-content: flex-end;
+  }
+}
+
+/* small tweak: keep brand centered on very small screens */
+@media (max-width: 520px) {
+  .brand { align-items: center; text-align: center; }
+  .nav { justify-content: center; gap: 8px; }
 }
 
 /* =========================================
