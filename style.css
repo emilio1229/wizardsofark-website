@@ -33,6 +33,10 @@ body {
    Header — Dominant Centered Sigil
    ========================================= */
 .site-header {
+  padding: 120px 0; /* makes your current sigil visible */
+  overflow: visible;
+}
+.site-header {
   width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
   padding: 6px 0;
