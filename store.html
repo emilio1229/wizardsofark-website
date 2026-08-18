@@ -15,40 +15,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <!-- keep site-effects first so your main stylesheet can safely override it -->
+  <!-- load effects first, then your main stylesheet so style.css can override -->
   <link rel="stylesheet" href="site-effects.bundle.css">
   <link rel="stylesheet" href="style.css">
-
-  <!-- Small safety overrides to ensure the sigil and header show across pages -->
-  <style>
-    /* ensure header has room for the 600px sigil */
-    .site-header { min-height: 480px; }
-
-    /* force sigil visible if other bundles try to hide it */
-    .site-header .sigil-wrap,
-    .site-header .sigil {
-      display: block !important;
-      visibility: visible !important;
-      opacity: 0.10 !important;
-      pointer-events: none !important;
-      z-index: 1 !important;
-    }
-
-    /* ensure the sigil background image loads even if other rules conflict */
-    .site-header .sigil {
-      background-image: url('assets/sigil.png') !important;
-      background-repeat: no-repeat !important;
-      background-position: center center !important;
-      background-size: contain !important;
-    }
-  </style>
 </head>
 <body class="site-with-sides">
   <a class="skip-link" href="#main" style="position:absolute;left:-9999px;">Skip to content</a>
 
-  <!-- ===========================
-       HEADER (consistent with council)
-  =========================== -->
+  <!-- HEADER consistent with council -->
   <header class="site-header shimmer">
     <div class="header-inner compact-header">
 
@@ -126,11 +100,5 @@
       💰 Visit Our Discord Shop
     </a>
   </footer>
-
-  <!-- Quick checklist for you (no action required if everything works):
-       1) Hard-refresh the page (Ctrl/Cmd+Shift+R) to clear cached CSS.
-       2) Confirm assets/sigil.png exists and is reachable (open URL directly).
-       3) If site-effects.bundle.css still hides the sigil, remove or reorder it so style.css is last.
-  -->
 </body>
 </html>
