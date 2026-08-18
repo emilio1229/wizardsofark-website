@@ -82,7 +82,7 @@ body {
   height: 600px(--sigil-size);
 
   background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.26(--sigil-opacity);
+  opacity: 0.18(--sigil-opacity);
 
   transform: translate(-50%, -50%) rotate(0deg);
   transform-origin: 50% 50%;
@@ -260,4 +260,23 @@ body {
   border-top: 1px solid rgba(201,168,106,0.08);
   color: rgba(201,168,106,0.8);
   font-size: 13px;
+}
+/* === Make 600px sigil visible + spinning === */
+.sigil {
+  width: 600px !important;
+  height: 600px !important;
+
+  top: 70% !important;   /* moved DOWN so it becomes visible */
+  left: 50% !important;
+
+  transform: translate(-50%, -50%) rotate(0deg) !important;
+  opacity: 0.18 !important;
+
+  animation: sigilSpin 36s linear infinite !important;
+  transform-origin: 50% 50% !important;
+}
+
+@keyframes sigilSpin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
