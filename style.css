@@ -261,19 +261,25 @@ body {
   color: rgba(201,168,106,0.8);
   font-size: 13px;
 }
-/* === Make 600px sigil visible + spinning === */
+/* === FINAL SIGIL FIX — 600px, lighter, spinning, perfect placement === */
 .sigil {
   width: 600px !important;
   height: 600px !important;
 
-  top: 70% !important;   /* moved DOWN so it becomes visible */
+  top: 78% !important;   /* perfect placement you liked */
   left: 50% !important;
 
+  /* IMPORTANT: rotation must be inside the same transform */
   transform: translate(-50%, -50%) rotate(0deg) !important;
-  opacity: 0.18 !important;
+
+  /* make sigil lighter */
+  opacity: 0.12 !important;
 
   animation: sigilSpin 36s linear infinite !important;
   transform-origin: 50% 50% !important;
+
+  pointer-events: none !important;
+  z-index: 1 !important;
 }
 
 @keyframes sigilSpin {
