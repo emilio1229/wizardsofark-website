@@ -1,5 +1,5 @@
 /* =========================================
-   Wizards of Ark — Final Working Stylesheet
+   Wizards of Ark — Clean Working Stylesheet
    ========================================= */
 
 /* -------------------------
@@ -13,16 +13,11 @@
 
   --header-max-width: 1200px;
 
-  --sigil-size-desktop: 1800px;
-  --sigil-size-tablet: 1200px;
-  --sigil-size-mobile: 700px;
-  --sigil-opacity: 0.28;
+  --sigil-size: 600px;        /* medium size */
+  --sigil-opacity: 0.18;      /* lighter sigil */
   --sigil-spin-duration: 36s;
 
   --t-fast: 160ms;
-  --t-medium: 220ms;
-  --t-long: 420ms;
-
   --shadow-soft: rgba(0,0,0,0.25);
 }
 
@@ -40,13 +35,13 @@ body {
 }
 
 /* =========================================
-   HEADER — SIGIL BEHIND LOGO (WORKING)
+   HEADER — Compact + Sigil Behind Logo
    ========================================= */
 
 .site-header {
   width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
-  padding: 140px 0 40px; /* TALL ENOUGH TO SHOW SIGIL */
+  padding: 70px 0 30px; /* compact */
   border-bottom: 1px solid rgba(201,168,106,0.18);
   box-shadow: 0 6px 24px rgba(0,0,0,0.45);
   position: relative;
@@ -61,7 +56,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 6px;
   position: relative;
   overflow: visible;
 }
@@ -71,73 +66,76 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  z-index: 5; /* crest above sigil */
+  gap: 4px;
+  z-index: 5;
 }
 
-/* SIGIL — centered, huge, behind everything */
+/* =========================================
+   SIGIL — medium, lighter, spinning, centered
+   ========================================= */
+
 .sigil {
   position: absolute;
-  top: 50%;
+  top: 52%;
   left: 50%;
-  width: var(--sigil-size-desktop);
-  height: var(--sigil-size-desktop);
+  width: var(--sigil-size);
+  height: var(--sigil-size);
+
   background: url('assets/sigil.png') no-repeat center/contain;
   opacity: var(--sigil-opacity);
-  transform: translate(-50%, -50%) scale(1.15);
+
+  transform: translate(-50%, -50%) rotate(0deg);
+  transform-origin: 50% 50%;
+
+  animation: sigilSpin var(--sigil-spin-duration) linear infinite;
+
   pointer-events: none;
   z-index: 1;
-  animation: sigilSpin var(--sigil-spin-duration) linear infinite;
-  transform-origin: 50% 50%;
-  filter: drop-shadow(0 0 100px rgba(201,168,106,0.45));
 }
 
 @keyframes sigilSpin {
-  0% { transform: translate(-50%, -50%) scale(1.15) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) scale(1.15) rotate(360deg); }
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Responsive sigil */
-@media (max-width: 900px) {
-  .sigil {
-    width: var(--sigil-size-tablet);
-    height: var(--sigil-size-tablet);
-    opacity: 0.26;
-  }
-}
+/* =========================================
+   LOGO — darker than sigil
+   ========================================= */
 
-@media (max-width: 520px) {
-  .sigil {
-    width: var(--sigil-size-mobile);
-    height: var(--sigil-size-mobile);
-    opacity: 0.22;
-    filter: none;
-  }
-}
-
-/* LOGO */
 .main-logo {
   width: 230px;
   height: auto;
   display: block;
-  filter: drop-shadow(0 0 10px rgba(201,168,106,0.6));
+
+  /* darker logo */
+  filter: brightness(0.75) drop-shadow(0 0 6px rgba(0,0,0,0.6));
 }
 
-/* TITLE */
+/* =========================================
+   TITLE — darker than sigil
+   ========================================= */
+
 .title {
   font-family: 'Uncial Antiqua', serif;
-  font-size: 46px;
+  font-size: 42px;
   color: var(--gold);
-  text-shadow: 0 0 12px rgba(201,168,106,0.55);
-  margin-top: 6px;
+
+  /* darker text */
+  filter: brightness(0.85);
+
+  text-shadow: 0 0 10px rgba(201,168,106,0.45);
+  margin-top: 2px;
 }
 
-/* NAVIGATION */
+/* =========================================
+   NAVIGATION
+   ========================================= */
+
 .nav {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .nav-link {
@@ -145,7 +143,7 @@ body {
   font-weight: 600;
   color: var(--gold);
   text-decoration: none;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 6px;
   background: rgba(201,168,106,0.08);
   border: 1px solid rgba(201,168,106,0.18);
@@ -160,25 +158,65 @@ body {
   box-shadow: 0 6px 18px rgba(201,168,106,0.12);
 }
 
-/* Desktop header layout */
-@media (min-width: 900px) {
-  .header-inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    gap: 12px;
-  }
+/* =========================================
+   Realm Button — moved down
+   ========================================= */
 
-  .brand {
-    flex-direction: row;
-    gap: 12px;
-  }
+.realm-button-wrap {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px; /* moved down */
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 20;
+}
 
-  .nav {
-    justify-content: flex-end;
-    gap: 12px;
-  }
+.realm-button {
+  display: inline-block;
+  padding: 14px 40px;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Spectral', serif;
+  color: var(--gold);
+  text-decoration: none;
+
+  background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(20,10,40,0.95));
+  border: 2px solid rgba(201,168,106,0.55);
+  border-radius: 14px;
+
+  box-shadow:
+    0 0 18px rgba(201,168,106,0.45),
+    inset 0 0 12px rgba(201,168,106,0.25);
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.realm-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+  opacity: 0.35;
+  transform: skewX(-20deg);
+  animation: realmShimmer 2.8s linear infinite;
+}
+
+@keyframes realmShimmer {
+  from { left: -120%; }
+  to { left: 120%; }
+}
+
+.realm-button:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow:
+    0 0 28px rgba(201,168,106,0.75),
+    inset 0 0 16px rgba(201,168,106,0.35);
+  border-color: rgba(201,168,106,0.75);
 }
 
 /* =========================================
@@ -227,90 +265,4 @@ body {
   border-top: 1px solid rgba(201,168,106,0.08);
   color: rgba(201,168,106,0.8);
   font-size: 13px;
-}
-
-/* =========================================
-   Arcane Fancy Button — Centered Under Header
-   ========================================= */
-
-.realm-button-wrap {
-  width: 100%;
-  text-align: center;
-  margin-top: -30px; /* pulls closer to header */
-  margin-bottom: 40px;
-  position: relative;
-  z-index: 20; /* above sigil */
-}
-
-.realm-button {
-  display: inline-block;
-  padding: 14px 40px;
-  font-size: 24px;
-  font-weight: 700;
-  font-family: 'Spectral', serif;
-  color: var(--gold);
-  text-decoration: none;
-
-  background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(20,10,40,0.95));
-  border: 2px solid rgba(201,168,106,0.55);
-  border-radius: 14px;
-
-  box-shadow:
-    0 0 18px rgba(201,168,106,0.45),
-    inset 0 0 12px rgba(201,168,106,0.25);
-
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Gold shimmer sweep */
-.realm-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 120%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
-  opacity: 0.35;
-  transform: skewX(-20deg);
-  animation: realmShimmer 2.8s linear infinite;
-}
-
-@keyframes realmShimmer {
-  from { left: -120%; }
-  to { left: 120%; }
-}
-
-/* Hover effect */
-.realm-button:hover {
-  transform: translateY(-4px) scale(1.06);
-  box-shadow:
-    0 0 28px rgba(201,168,106,0.75),
-    inset 0 0 16px rgba(201,168,106,0.35);
-  border-color: rgba(201,168,106,0.75);
-}
-/* === Perfect Medium Sigil — bigger than logo, not huge === */
-
-.sigil {
-  width: 600px !important;
-  height: 600px !important;
-
-  top: 52% !important;   /* visually centered */
-  left: 50% !important;
-
-  transform: translate(-50%, -50%) scale(1.0) !important;
-
-  opacity: 0.26 !important;
-  z-index: 1 !important;
-}
-/* === Restore Sigil Spin === */
-.sigil {
-  animation: sigilSpin 36s linear infinite !important;
-  transform-origin: 50% 50% !important;
-}
-/* === Move Realm Button Down === */
-.realm-button-wrap {
-  margin-top: 20px !important;   /* adjust this number to taste */
 }
