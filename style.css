@@ -13,8 +13,8 @@
 
   --header-max-width: 1200px;
 
-  --sigil-size: 600px;        /* perfect size */
-  --sigil-opacity: 0.18;      /* lighter */
+  --sigil-size: 600px;
+  --sigil-opacity: 0.10;
   --sigil-spin-duration: 36s;
 
   --t-fast: 160ms;
@@ -41,7 +41,7 @@ body {
 .site-header {
   width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
-  padding: 70px 0 30px; /* compact */
+  padding: 70px 0 30px;
   border-bottom: 1px solid rgba(201,168,106,0.18);
   box-shadow: 0 6px 24px rgba(0,0,0,0.45);
   position: relative;
@@ -89,7 +89,7 @@ body {
   font-family: 'Uncial Antiqua', serif;
   font-size: 42px;
   color: var(--gold);
-  filter: brightness(2;
+  filter: brightness(2); /* FIXED */
   text-shadow: 0 0 10px rgba(201,168,106,0.45);
   margin-top: 2px;
 }
@@ -233,22 +233,24 @@ body {
   color: rgba(201,168,106,0.8);
   font-size: 13px;
 }
-/* === FINAL SIGIL FIX — 600px, lighter, spinning, perfect placement === */
+
+/* =========================================
+   FINAL SIGIL FIX — 600px, lighter, spinning
+   ========================================= */
+
 .sigil {
   width: 600px !important;
   height: 600px !important;
 
-  top: 78% !important;   /* perfect placement you liked */
+  top: 78% !important;
   left: 50% !important;
 
-  /* IMPORTANT: rotation must be inside the same transform */
   transform: translate(-50%, -50%) rotate(0deg) !important;
+  transform-origin: 50% 50% !important;
 
-  /* make sigil lighter */
   opacity: 0.10 !important;
 
   animation: sigilSpin 36s linear infinite !important;
-  transform-origin: 50% 50% !important;
 
   pointer-events: none !important;
   z-index: 1 !important;
