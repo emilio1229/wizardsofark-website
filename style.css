@@ -78,11 +78,11 @@ body {
   position: absolute;
   top: 52%;
   left: 50%;
-  width: var(--sigil-size);
-  height: var(--sigil-size);
+  width: 600px(--sigil-size);
+  height: 600px(--sigil-size);
 
   background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: var(--sigil-opacity);
+  opacity: 0.26(--sigil-opacity);
 
   transform: translate(-50%, -50%) rotate(0deg);
   transform-origin: 50% 50%;
