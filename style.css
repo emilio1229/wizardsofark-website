@@ -463,3 +463,84 @@ body {
     padding: 6px 12px;
   }
 }
+/* ===========================
+   FULL RESPONSIVE FIX — ALL DEVICES
+   =========================== */
+@media (max-width: 900px) {
+
+  /* Header layout */
+  .header-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .main-logo {
+    width: 180px;
+  }
+
+  .title {
+    font-size: 30px;
+  }
+
+  /* Sigil scaling */
+  .sigil-wrap {
+    width: 260px;
+    height: 260px;
+  }
+
+  /* Navigation */
+  .nav {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .nav-link {
+    font-size: 18px;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Council container */
+  .council-container {
+    padding: 10px;
+    margin-top: 20px;
+  }
+
+  .council-title {
+    font-size: 34px;
+  }
+
+  .council-section {
+    font-size: 24px;
+  }
+
+  /* Council cards */
+  .council-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 16px;
+  }
+
+  .council-icon {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 12px;
+  }
+
+  /* Bot list */
+  .bot-list p {
+    text-align: center;
+    font-size: 16px;
+  }
+
+  /* Footer */
+  .site-footer {
+    padding: 20px 0;
+  }
+
+  .discord-footer {
+    font-size: 18px;
+    padding: 8px 14px;
+  }
+}
