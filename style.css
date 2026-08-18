@@ -13,7 +13,7 @@
 
   --header-max-width: 1200px;
 
-  --sigil-size: 600px;        /* medium size */
+  --sigil-size: 600px;        /* perfect medium size */
   --sigil-opacity: 0.18;      /* lighter sigil */
   --sigil-spin-duration: 36s;
 
@@ -71,7 +71,7 @@ body {
 }
 
 /* =========================================
-   SIGIL — medium, lighter, spinning, centered
+   SIGIL — 600px, lighter, spinning, centered
    ========================================= */
 
 .sigil {
@@ -106,8 +106,6 @@ body {
   width: 230px;
   height: auto;
   display: block;
-
-  /* darker logo */
   filter: brightness(0.75) drop-shadow(0 0 6px rgba(0,0,0,0.6));
 }
 
@@ -119,10 +117,7 @@ body {
   font-family: 'Uncial Antiqua', serif;
   font-size: 42px;
   color: var(--gold);
-
-  /* darker text */
   filter: brightness(0.85);
-
   text-shadow: 0 0 10px rgba(201,168,106,0.45);
   margin-top: 2px;
 }
@@ -159,13 +154,13 @@ body {
 }
 
 /* =========================================
-   Realm Button — moved down
+   Realm Button — centered under header
    ========================================= */
 
 .realm-button-wrap {
   width: 100%;
   text-align: center;
-  margin-top: 50px; /* moved down */
+  margin-top: 50px;
   margin-bottom: 40px;
   position: relative;
   z-index: 20;
@@ -220,7 +215,7 @@ body {
 }
 
 /* =========================================
-   HERO / CONTENT / FOOTER (unchanged)
+   HERO / CONTENT / FOOTER
    ========================================= */
 
 .hero {
