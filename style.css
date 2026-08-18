@@ -534,3 +534,23 @@ img { max-width: 100%; height: auto; display: block; }
   .hero-title { font-size: 28px; }
   .rune-img { height: 140px; }
 }
+/* === FIX: MAKE SIGIL ACTUALLY VISIBLE === */
+.site-header {
+  padding-top: 240px !important;   /* increases header height */
+  padding-bottom: 60px !important; /* keeps nav close */
+  overflow: visible !important;    /* lets sigil extend */
+}
+
+.header-inner {
+  padding-top: 40px !important;    /* centers crest inside taller header */
+  overflow: visible !important;
+}
+
+.brand {
+  z-index: 5 !important;           /* crest stays above sigil */
+}
+
+.sigil {
+  top: 50% !important;             /* true center */
+  transform: translate(-50%, -50%) scale(1.2) !important;
+}
