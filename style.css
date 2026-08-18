@@ -65,26 +65,26 @@ body {
 }
 
 /* =========================================
-   CLEAN GLOBAL SIGIL SYSTEM
+   GLOBAL SIGIL SYSTEM (CLEAN)
    ========================================= */
 
 .sigil-wrap {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 600px;
-  height: 600px;
+  width: 600px;      /* BIG SIGIL RESTORED */
+  height: 600px;     /* BIG SIGIL RESTORED */
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
-  animation: sigilSpin 40s linear infinite;
+  animation: sigilSpin 36s linear infinite; /* your old speed */
 }
 
 .sigil {
   width: 100%;
   height: 100%;
   background: url('assets/sigil.png') no-repeat center center / contain;
-  opacity: 0.12;
+  opacity: 0.10; /* your old glow */
   pointer-events: none;
 }
 
@@ -147,6 +147,68 @@ body {
   transform: translateY(-2px);
   background: rgba(201,168,106,0.15);
   box-shadow: 0 6px 18px rgba(201,168,106,0.12);
+}
+
+/* =========================================
+   FANCY REALM BUTTON (RESTORED)
+   ========================================= */
+
+.realm-button-wrap {
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  position: relative;
+  z-index: 20;
+}
+
+.realm-button {
+  display: inline-block;
+  padding: 14px 40px;
+  font-size: 24px;
+  font-weight: 700;
+  font-family: 'Spectral', serif;
+  color: var(--gold);
+  text-decoration: none;
+
+  background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(20,10,40,0.95));
+  border: 2px solid rgba(201,168,106,0.55);
+  border-radius: 14px;
+
+  box-shadow:
+    0 0 18px rgba(201,168,106,0.45),
+    inset 0 0 12px rgba(201,168,106,0.25);
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer effect */
+.realm-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+  opacity: 0.35;
+  transform: skewX(-20deg);
+  animation: realmShimmer 2.8s linear infinite;
+}
+
+@keyframes realmShimmer {
+  from { left: -120%; }
+  to { left: 120%; }
+}
+
+.realm-button:hover {
+  transform: translateY(-4px) scale(1.06);
+  box-shadow:
+    0 0 28px rgba(201,168,106,0.75),
+    inset 0 0 16px rgba(201,168,106,0.35);
+  border-color: rgba(201,168,106,0.75);
 }
 
 /* =========================================
@@ -280,8 +342,8 @@ body {
   }
 
   .sigil-wrap {
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 180px;
   }
 
   .council-card {
@@ -292,49 +354,5 @@ body {
   .council-icon {
     width: 100px;
     height: 100px;
-  }
-}
-/* ============================================================
-   OPTIONAL SIGIL ENHANCEMENTS — SAFE VERSION
-   (Restores your old behavior without overriding header layout)
-   ============================================================ */
-
-/* Larger dramatic spin on big screens */
-@media (min-width: 1200px) {
-  .sigil-wrap {
-    width: 480px;
-    height: 480px;
-    animation-duration: 36s; /* your old speed */
-  }
-
-  .sigil {
-    opacity: 0.10; /* your old glow */
-  }
-}
-
-/* Medium spin for laptops */
-@media (min-width: 900px) and (max-width: 1199px) {
-  .sigil-wrap {
-    width: 380px;
-    height: 380px;
-    animation-duration: 38s;
-  }
-}
-
-/* Small spin for tablets */
-@media (min-width: 600px) and (max-width: 899px) {
-  .sigil-wrap {
-    width: 260px;
-    height: 260px;
-    animation-duration: 40s;
-  }
-}
-
-/* Tiny spin for mobile */
-@media (max-width: 599px) {
-  .sigil-wrap {
-    width: 180px;
-    height: 180px;
-    animation-duration: 42s;
   }
 }
