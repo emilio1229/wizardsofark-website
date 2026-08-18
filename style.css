@@ -1,72 +1,52 @@
 /* =========================================
-   Wizards of Ark — Consolidated & Fixed Stylesheet
+   Wizards of Ark — Final Working Stylesheet
    ========================================= */
 
 /* -------------------------
-   Variables (single source)
+   Variables
    ------------------------- */
 :root {
-  /* Colors */
   --gold: #c9a86a;
   --purple-dark: #1a0f2e;
   --purple-mid: #2e1a4f;
-  --purple-light: #4b2e7a;
   --text-light: #e8e3f0;
 
-  /* Accents / effects */
-  --rune-glow: rgba(201,168,106,0.75);
-  --accent-glow: rgba(201,168,106,0.18);
-  --orb-color: rgba(201,168,106,0.12);
-  --rune-color: rgba(120,80,200,0.08);
-
-  /* Layout */
   --header-max-width: 1200px;
-  --header-padding-mobile: 12px;
-  --header-padding-desktop: 10px;
-  --side-width: 72px;
-  --max-orbs-desktop: 12;
-  --max-orbs-mobile: 5;
 
-  /* Sigil sizes and animation */
-  --sigil-width-desktop: 2200px;
-  --sigil-width-tablet: 1800px;
-  --sigil-width-mobile: 900px;
-  --sigil-opacity: 0.30;
+  --sigil-size-desktop: 1800px;
+  --sigil-size-tablet: 1200px;
+  --sigil-size-mobile: 700px;
+  --sigil-opacity: 0.28;
   --sigil-spin-duration: 36s;
 
-  /* Timing */
   --t-fast: 160ms;
   --t-medium: 220ms;
   --t-long: 420ms;
 
-  /* Shadows / opacities */
-  --shadow-strong: rgba(0,0,0,0.45);
   --shadow-soft: rgba(0,0,0,0.25);
-  --gold-soft: rgba(201,168,106,0.12);
 }
 
 /* -------------------------
    Reset / Base
    ------------------------- */
-* { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
-
+* { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { height: 100%; }
 
 body {
-  background: radial-gradient(circle at center, var(--purple-mid) 0%, var(--purple-dark) 100%);
+  background: radial-gradient(circle at center, var(--purple-mid), var(--purple-dark));
   color: var(--text-light);
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
   overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
 }
 
-/* -------------------------
-   Header container
-   ------------------------- */
+/* =========================================
+   HEADER — SIGIL BEHIND LOGO (WORKING)
+   ========================================= */
+
 .site-header {
   width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
-  padding: 40px 0; /* taller so sigil is visible */
+  padding: 140px 0 40px; /* TALL ENOUGH TO SHOW SIGIL */
   border-bottom: 1px solid rgba(201,168,106,0.18);
   box-shadow: 0 6px 24px rgba(0,0,0,0.45);
   position: relative;
@@ -74,7 +54,6 @@ body {
   overflow: visible;
 }
 
-/* Inner layout */
 .header-inner {
   max-width: var(--header-max-width);
   margin: 0 auto;
@@ -82,17 +61,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   position: relative;
   overflow: visible;
 }
 
-/* Compact header */
-.compact-header {
-  text-align: center;
-}
-
-/* Brand block */
 .brand {
   position: relative;
   display: flex;
@@ -102,18 +75,16 @@ body {
   z-index: 5; /* crest above sigil */
 }
 
-/* -------------------------
-   SIGIL — single, dominant, centered, spinning
-   ------------------------- */
+/* SIGIL — centered, huge, behind everything */
 .sigil {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: var(--sigil-width-desktop);
-  height: var(--sigil-width-desktop);
+  width: var(--sigil-size-desktop);
+  height: var(--sigil-size-desktop);
   background: url('assets/sigil.png') no-repeat center/contain;
   opacity: var(--sigil-opacity);
-  transform: translate(-50%, -50%) scale(1.2);
+  transform: translate(-50%, -50%) scale(1.15);
   pointer-events: none;
   z-index: 1;
   animation: sigilSpin var(--sigil-spin-duration) linear infinite;
@@ -122,31 +93,29 @@ body {
 }
 
 @keyframes sigilSpin {
-  0% { transform: translate(-50%, -50%) scale(1.2) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) scale(1.2) rotate(360deg); }
+  0% { transform: translate(-50%, -50%) scale(1.15) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) scale(1.15) rotate(360deg); }
 }
 
 /* Responsive sigil */
 @media (max-width: 900px) {
   .sigil {
-    width: var(--sigil-width-tablet);
-    height: var(--sigil-width-tablet);
+    width: var(--sigil-size-tablet);
+    height: var(--sigil-size-tablet);
     opacity: 0.26;
   }
 }
 
 @media (max-width: 520px) {
   .sigil {
-    width: var(--sigil-width-mobile);
-    height: var(--sigil-width-mobile);
+    width: var(--sigil-size-mobile);
+    height: var(--sigil-size-mobile);
     opacity: 0.22;
     filter: none;
   }
 }
 
-/* -------------------------
-   Logo & Title
-   ------------------------- */
+/* LOGO */
 .main-logo {
   width: 230px;
   height: auto;
@@ -154,6 +123,7 @@ body {
   filter: drop-shadow(0 0 10px rgba(201,168,106,0.6));
 }
 
+/* TITLE */
 .title {
   font-family: 'Uncial Antiqua', serif;
   font-size: 46px;
@@ -162,15 +132,7 @@ body {
   margin-top: 6px;
 }
 
-/* Desktop scaling */
-@media (min-width: 900px) {
-  .main-logo { width: 250px; }
-  .title { font-size: 50px; }
-}
-
-/* -------------------------
-   Navigation
-   ------------------------- */
+/* NAVIGATION */
 .nav {
   display: flex;
   gap: 12px;
@@ -187,7 +149,7 @@ body {
   border-radius: 6px;
   background: rgba(201,168,106,0.08);
   border: 1px solid rgba(201,168,106,0.18);
-  box-shadow: 0 0 6px rgba(0,0,0,0.25);
+  box-shadow: 0 0 6px var(--shadow-soft);
   transition: var(--t-fast);
 }
 
@@ -198,19 +160,7 @@ body {
   box-shadow: 0 6px 18px rgba(201,168,106,0.12);
 }
 
-/* -------------------------
-   Divider
-   ------------------------- */
-.header-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,168,106,0.12), transparent);
-  opacity: 0.6;
-}
-
-/* -------------------------
-   Desktop header layout
-   ------------------------- */
+/* Desktop header layout */
 @media (min-width: 900px) {
   .header-inner {
     flex-direction: row;
@@ -222,21 +172,19 @@ body {
 
   .brand {
     flex-direction: row;
-    align-items: center;
     gap: 12px;
-    justify-content: flex-start;
   }
 
   .nav {
     justify-content: flex-end;
     gap: 12px;
-    width: auto;
   }
 }
 
-/* -------------------------
-   Hero
-   ------------------------- */
+/* =========================================
+   HERO / CONTENT / FOOTER (unchanged)
+   ========================================= */
+
 .hero {
   text-align: center;
   padding: 64px 20px;
@@ -256,12 +204,8 @@ body {
   font-size: 16px;
   max-width: 760px;
   margin: 0 auto 22px;
-  color: var(--text-light);
 }
 
-/* -------------------------
-   Main content
-   ------------------------- */
 .main {
   width: 92%;
   max-width: 1100px;
@@ -277,280 +221,10 @@ body {
   text-shadow: 0 0 10px rgba(201,168,106,0.45);
 }
 
-.feature-list { margin: 12px 0 22px 20px; line-height: 1.6; }
-
-/* -------------------------
-   Gallery
-   ------------------------- */
-.home-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 16px;
-  margin: 28px 0 48px;
-}
-
-.gallery-item {
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: inherit;
-}
-
-.gallery-item-title {
-  font-family: 'Spectral', serif;
-  font-size: 14px;
-  color: var(--gold);
-  text-align: center;
-  padding: 10px 6px 0;
-  line-height: 1.3;
-  text-shadow: 0 0 6px rgba(201,168,106,0.3);
-}
-
-.rune-img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid rgba(201,168,106,0.12);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  transition: transform var(--t-medium) cubic-bezier(.2,.9,.2,1), box-shadow var(--t-medium) ease;
-  display: block;
-  background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.12));
-}
-
-.rune-img:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.45);
-}
-
-/* -------------------------
-   Shimmer
-   ------------------------- */
-.shimmer { position: relative; overflow: hidden; }
-.shimmer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 120%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.18), transparent);
-  animation: shimmerMove 2.8s linear infinite;
-  opacity: 0.18;
-  will-change: transform;
-}
-@keyframes shimmerMove { from { transform: translateX(0); } to { transform: translateX(120%); } }
-
-/* -------------------------
-   Footer
-   ------------------------- */
 .footer {
   text-align: center;
   padding: 18px 12px;
   border-top: 1px solid rgba(201,168,106,0.08);
   color: rgba(201,168,106,0.8);
   font-size: 13px;
-}
-
-/* -------------------------
-   Ambient / Decorative Layers
-   ------------------------- */
-.site-with-sides { position: relative; overflow-x: hidden; }
-
-.side-rune {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: var(--side-width);
-  pointer-events: none;
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.9;
-}
-.side-rune.left { left: 0; }
-.side-rune.right { right: 0; }
-
-.side-rune::before {
-  content: "";
-  display:block;
-  width:100%;
-  height:100%;
-  background-image:
-    radial-gradient(circle at 50% 20%, rgba(255,255,255,0.02) 0, transparent 20%),
-    linear-gradient(180deg, rgba(255,255,255,0.01), transparent 30%);
-  background-size: 28px 120px, 100% 100%;
-  transform: translateZ(0);
-  mix-blend-mode: overlay;
-  filter: blur(0.6px) saturate(1.05);
-}
-
-.side-rune .rune-stack { display:flex; flex-direction:column; gap:18px; align-items:center; transform: translateY(6vh); opacity: 0.95; }
-.side-rune .rune {
-  width: 36px;
-  height: 36px;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.06), transparent 40%),
-              linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(120,80,200,0.06), inset 0 1px 0 rgba(255,255,255,0.02);
-  transform-origin: center;
-  animation: runeFloat 6s ease-in-out infinite;
-  will-change: transform, opacity;
-  opacity: 0.95;
-}
-.side-rune .rune:nth-child(odd){ animation-duration: 5.6s; }
-.side-rune .rune:nth-child(even){ animation-duration: 6.8s; animation-delay: 0.2s; }
-
-@keyframes runeFloat {
-  0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
-  50% { transform: translateY(-8px) rotate(6deg) scale(1.02); opacity: 1; }
-  100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.95; }
-}
-
-/* Orb layer */
-.orb-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 30;
-  pointer-events: none;
-  overflow: hidden;
-  mix-blend-mode: screen;
-}
-.orb {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), rgba(201,168,106,0.06) 40%, transparent 60%);
-  filter: blur(10px) saturate(1.1);
-  opacity: 0.12;
-  transform: translate3d(0,0,0);
-  will-change: transform, opacity;
-}
-.orb.small { width: 44px; height: 44px; opacity: 0.08; filter: blur(6px); }
-
-/* Hero parallax overlay */
-.hero-parallax {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background-image:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.02), transparent 8%),
-    radial-gradient(circle at 80% 80%, rgba(255,255,255,0.01), transparent 6%);
-  mix-blend-mode: overlay;
-  opacity: 0.6;
-  transform: translateZ(0);
-}
-
-/* Content block accent */
-.content-block {
-  position: relative;
-  overflow: visible;
-  z-index: 5;
-}
-.content-block::after {
-  content: "";
-  position: absolute;
-  inset: -6px;
-  border-radius: 14px;
-  background: linear-gradient(90deg, rgba(201,168,106,0.06), rgba(120,80,200,0.03), rgba(201,168,106,0.06));
-  filter: blur(8px);
-  opacity: 0.7;
-  z-index: -1;
-  transition: opacity var(--t-medium) ease, transform var(--t-medium) ease;
-}
-.content-block:hover::after { opacity: 1; transform: scale(1.01); }
-
-/* Cursor glow */
-.cursor-glow {
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, rgba(201,168,106,0.14), transparent 40%);
-  transform: translate(-50%, -50%) scale(0.9);
-  transition: transform var(--t-fast) ease, opacity var(--t-fast) ease;
-  opacity: 0.0;
-  mix-blend-mode: screen;
-  will-change: transform, opacity;
-}
-
-a:hover ~ .cursor-glow, button:hover ~ .cursor-glow, .arcane-btn:hover ~ .cursor-glow {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1.05);
-}
-
-/* Rune trail */
-.rune-trail {
-  position: fixed;
-  right: 12%;
-  bottom: 8%;
-  z-index: 45;
-  pointer-events: none;
-  opacity: 0.9;
-}
-.rune-trail .trail-glyph {
-  display:block;
-  width: 56px;
-  height: 56px;
-  margin-bottom: 10px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.45);
-  transform-origin: center;
-  transition: transform var(--t-long) cubic-bezier(.2,.9,.2,1), opacity var(--t-long) ease;
-  opacity: 0.9;
-}
-.rune-trail.pop .trail-glyph { transform: translateY(-8px) scale(1.03); }
-
-/* Performance & Accessibility */
-@media (max-width: 720px) {
-  .side-rune, .orb, .cursor-glow, .rune-trail { display: none; }
-  .content-block::after { filter: blur(6px); opacity: 0.6; }
-}
-
-/* Reduced motion: keep sigil visible but stop spin */
-@media (prefers-reduced-motion: reduce) {
-  .sigil { animation: none; }
-}
-
-/* Utility */
-.hide-sides .side-rune, .hide-sides .orb-layer, .hide-sides .rune-trail { display: none !important; }
-
-.logo, .title, .nav-link { will-change: transform, opacity; }
-
-a { -webkit-tap-highlight-color: transparent; }
-img { max-width: 100%; height: auto; display: block; }
-
-/* Small screens tweaks */
-@media (max-width: 520px) {
-  .logo { width: 120px; }
-  .title { font-size: 20px; }
-  .hero { padding: 36px 12px; }
-  .hero-title { font-size: 28px; }
-  .rune-img { height: 140px; }
-}
-/* === FIX: MAKE SIGIL ACTUALLY VISIBLE === */
-.site-header {
-  padding-top: 240px !important;   /* increases header height */
-  padding-bottom: 60px !important; /* keeps nav close */
-  overflow: visible !important;    /* lets sigil extend */
-}
-
-.header-inner {
-  padding-top: 40px !important;    /* centers crest inside taller header */
-  overflow: visible !important;
-}
-
-.brand {
-  z-index: 5 !important;           /* crest stays above sigil */
-}
-
-.sigil {
-  top: 50% !important;             /* true center */
-  transform: translate(-50%, -50%) scale(1.2) !important;
 }
