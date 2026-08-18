@@ -248,7 +248,7 @@ body {
   transform: translate(-50%, -50%) rotate(0deg) !important;
   transform-origin: 50% 50% !important;
 
-  opacity: 0.8 !important;
+  opacity: 0.08 !important;
 
   animation: sigilSpin 36s linear infinite !important;
 
