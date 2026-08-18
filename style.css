@@ -1,5 +1,6 @@
 /* =========================================
-   Wizards of Ark — Clean Working Stylesheet
+   Wizards of Ark — Cleaned Stylesheet
+   Consolidated header + sigil rules
    ========================================= */
 
 /* -------------------------
@@ -16,9 +17,10 @@
   --t-fast: 160ms;
   --shadow-soft: rgba(0,0,0,0.25);
 }
-/* ====== Site typography — match Council page exactly ====== */
 
-/* Body text uses Inter for readability */
+/* -------------------------
+   Base typography
+   ------------------------- */
 body,
 p,
 li,
@@ -33,7 +35,7 @@ ul,
   line-height: 1.55;
 }
 
-/* Page main title (site title) — Uncial Antiqua like council */
+/* Page main title (site title) */
 .title,
 .brand .title,
 header .title,
@@ -45,7 +47,7 @@ h1.site-title {
   text-shadow: 0 0 10px rgba(201,168,106,0.45);
 }
 
-/* Section and block titles — Spectral (serif) like council */
+/* Section and block titles */
 .section-title,
 h2,
 h3,
@@ -57,14 +59,12 @@ h3,
   text-shadow: 0 0 12px rgba(201,168,106,0.35);
 }
 
-/* Smaller headings and list headings */
 h4, h5, h6 {
   font-family: "Spectral", serif;
   color: var(--gold);
   font-weight: 500;
 }
 
-/* Navigation and button text */
 .nav-link,
 .realm-button,
 .discord-footer,
@@ -74,7 +74,7 @@ h4, h5, h6 {
   font-weight: 600;
 }
 
-/* Ensure titles keep responsive scale similar to council */
+/* Responsive title scaling */
 @media (max-width: 600px) {
   .title { font-size: 28px; }
   .section-title { font-size: 20px; }
@@ -106,9 +106,7 @@ body {
   box-shadow: 0 6px 24px rgba(0,0,0,0.45);
   position: relative;
   z-index: 50;
-
-  /* ⭐ FIX: Make header tall enough for 600px sigil */
-  min-height: 480px;
+  min-height: 520px; /* canonical final value */
 }
 
 /* Header layout: stacked on small screens, side-by-side on wide screens */
@@ -121,9 +119,10 @@ body {
   align-items: center;
   gap: 6px;
   position: relative;
+  z-index: 60; /* keep content above sigil */
 }
 
-/* On wider screens match Council: brand left, nav right, centered vertically */
+/* Wide screens: brand left, nav right, vertically centered */
 @media (min-width: 920px) {
   .header-inner {
     flex-direction: row;
@@ -132,20 +131,24 @@ body {
     gap: 12px;
   }
 
-  /* keep brand content aligned left within its column */
   .brand {
-    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
     text-align: left;
   }
 
-  /* nav sits to the right and keeps its centered look */
+  .brand .title { margin: 0; }
+
   .nav {
     justify-content: flex-end;
+    gap: 12px;
   }
 }
 
-/* small tweak: keep brand centered on very small screens */
-@media (max-width: 520px) {
+/* Small screens: keep stacked and centered */
+@media (max-width: 919px) {
   .brand { align-items: center; text-align: center; }
   .nav { justify-content: center; gap: 8px; }
 }
@@ -158,20 +161,23 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 600px;      /* ⭐ BIG SIGIL RESTORED */
-  height: 600px;     /* ⭐ BIG SIGIL RESTORED */
+  width: 600px;      /* BIG SIGIL */
+  height: 600px;     /* BIG SIGIL */
   transform: translate(-50%, -50%);
   pointer-events: none;
   z-index: 1;
-  animation: sigilSpin 36s linear infinite; /* ⭐ Your old spin speed */
+  animation: sigilSpin 36s linear infinite;
+  will-change: transform;
 }
 
 .sigil {
   width: 100%;
   height: 100%;
   background: url('assets/sigil.png') no-repeat center center / contain;
-  opacity: 0.10; /* ⭐ Your old glow */
+  opacity: 0.10;
   pointer-events: none;
+  display: block;
+  visibility: visible;
 }
 
 @keyframes sigilSpin {
@@ -203,7 +209,7 @@ body {
 }
 
 /* =========================================
-   NAVIGATION — SIDE-BY-SIDE ALWAYS
+   NAVIGATION
    ========================================= */
 
 .nav {
@@ -236,7 +242,7 @@ body {
 }
 
 /* =========================================
-   FANCY REALM BUTTON (RESTORED)
+   FANCY REALM BUTTON
    ========================================= */
 
 .realm-button-wrap {
@@ -256,21 +262,17 @@ body {
   font-family: 'Spectral', serif;
   color: var(--gold);
   text-decoration: none;
-
   background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(20,10,40,0.95));
   border: 2px solid rgba(201,168,106,0.55);
   border-radius: 14px;
-
   box-shadow:
     0 0 18px rgba(201,168,106,0.45),
     inset 0 0 12px rgba(201,168,106,0.25);
-
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
-/* Shimmer effect */
 .realm-button::before {
   content: "";
   position: absolute;
@@ -354,15 +356,8 @@ body {
   box-shadow: 0 0 15px rgba(201,168,106,0.4);
 }
 
-.role {
-  font-size: 18px;
-  opacity: 0.9;
-}
-
-.duty {
-  font-size: 16px;
-  opacity: 0.75;
-}
+.role { font-size: 18px; opacity: 0.9; }
+.duty { font-size: 16px; opacity: 0.75; }
 
 .bot-list p {
   background: rgba(20,10,40,0.45);
@@ -391,263 +386,4 @@ body {
 
 .site-footer p {
   margin: 0;
-  font-size: 18px;
-  color: var(--gold);
-  opacity: 0.85;
-}
-
-.discord-footer {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 20px;
-  color: var(--gold);
-  text-decoration: none;
-  padding: 8px 16px;
-  border: 2px solid rgba(201,168,106,0.4);
-  border-radius: 8px;
-  transition: 0.3s ease;
-}
-
-.discord-footer:hover {
-  background: rgba(201,168,106,0.2);
-  box-shadow: 0 0 12px rgba(201,168,106,0.5);
-}
-
-/* =========================================
-   RESPONSIVE FIXES
-   ========================================= */
-
-@media (max-width: 600px) {
-
-  .main-logo {
-    width: 180px;
-  }
-
-  .title {
-    font-size: 28px;
-  }
-
-  .sigil-wrap {
-    width: 180px;
-    height: 180px;
-  }
-
-  .council-card {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .council-icon {
-    width: 100px;
-    height: 100px;
-  }
-}
-/* ===== Ensure sigil is visible and header has room ===== */
-.site-header {
-  min-height: 480px; /* room for 600px sigil */
-}
-
-/* Make sure sigil is visible and uses the correct asset */
-.site-header .sigil-wrap,
-.site-header .sigil {
-  display: block;
-  visibility: visible;
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Sigil background fallback and sizing */
-.site-header .sigil {
-  background-image: url('assets/sigil.png');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: contain;
-  opacity: 0.10;
-}
-/* ===== Center main content and add side padding ===== */
-.main {
-  max-width: 1100px;      /* width of the readable column */
-  margin: 0 auto;         /* center on the page */
-  padding: 28px 24px;     /* vertical + horizontal breathing room */
-  box-sizing: border-box;
-}
-
-/* Make content blocks visually contained and centered */
-.content-block {
-  margin: 0 auto 34px;
-  padding: 22px 20px;
-  background: rgba(20,10,40,0.35);
-  border-radius: 10px;
-  border: 1px solid rgba(201,168,106,0.12);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-}
-
-/* Ensure section titles align with the centered column */
-.section-title {
-  margin-top: 0;
-  margin-bottom: 12px;
-}
-
-/* Improve list spacing and keep lists within the centered column */
-.feature-list {
-  margin: 12px 0 0 0;
-  padding-left: 1.15em;
-  line-height: 1.6;
-}
-
-/* Gallery stays centered and constrained to the content column */
-.home-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 14px;
-  margin-top: 14px;
-}
-
-/* Make sure footer text aligns with the centered column */
-.site-footer,
-.footer {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 28px 24px;
-  box-sizing: border-box;
-}
-
-/* Small screens: reduce padding and keep everything readable */
-@media (max-width: 900px) {
-  .main { padding: 20px 18px; max-width: 920px; }
-  .content-block { padding: 18px 14px; }
-  .realm-button { font-size: 20px; padding: 12px 32px; }
-}
-
-/* Very small screens: full width with comfortable gutters */
-@media (max-width: 480px) {
-  .main { padding: 16px 14px; }
-  .content-block { padding: 14px 12px; }
-  .home-gallery { gap: 10px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-}
-/* ===== Force full-size spinning sigil (place at end of style.css) ===== */
-.site-header { min-height: 520px; } /* ensure plenty of vertical room */
-
-.header-inner { position: relative; z-index: 60; } /* keep header content above sigil */
-
-.sigil-wrap {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  width: 600px !important;
-  height: 600px !important;
-  transform: translate(-50%, -50%) !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-  animation: sigilSpin 36s linear infinite !important;
-}
-
-.sigil {
-  width: 100% !important;
-  height: 100% !important;
-  background-image: url('assets/sigil.png') !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  background-size: contain !important;
-  opacity: 0.10 !important;
-  pointer-events: none !important;
-  display: block !important;
-  visibility: visible !important;
-}
-
-/* keep the same spin keyframes if not present */
-@keyframes sigilSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* small-screen fallback so sigil doesn't overwhelm mobile */
-@media (max-width: 600px) {
-  .sigil-wrap { width: 180px !important; height: 180px !important; }
-  .site-header { min-height: 220px; }
-}
-/* ===== Header layout parity with Council ===== */
-.header-inner {
-  max-width: var(--header-max-width);
-  margin: 0 auto;
-  padding: 0 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  position: relative;
-  z-index: 60; /* keep content above sigil */
-}
-
-/* Wide screens: brand left, nav right, vertically centered */
-@media (min-width: 920px) {
-  .header-inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .brand {
-    align-items: flex-start;
-    text-align: left;
-    display: flex;
-    flex-direction: row;
-    gap: 14px;
-    align-items: center;
-  }
-
-  .brand .title { margin: 0; }
-
-  .nav {
-    justify-content: flex-end;
-    gap: 12px;
-  }
-}
-
-/* Small screens: keep stacked and centered */
-@media (max-width: 919px) {
-  .brand { align-items: center; text-align: center; }
-  .nav { justify-content: center; gap: 8px; }
-}
-
-/* ===== Force full-size spinning sigil and ensure visibility ===== */
-.site-header { min-height: 520px; } /* ensure vertical room */
-
-.sigil-wrap {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  width: 600px !important;
-  height: 600px !important;
-  transform: translate(-50%, -50%) !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-  animation: sigilSpin 36s linear infinite !important;
-  will-change: transform;
-}
-
-.sigil {
-  width: 100% !important;
-  height: 100% !important;
-  background-image: url('assets/sigil.png') !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  background-size: contain !important;
-  opacity: 0.10 !important;
-  pointer-events: none !important;
-  display: block !important;
-  visibility: visible !important;
-}
-
-/* Keep the spin keyframes (redeclared to ensure they exist and are used) */
-@keyframes sigilSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Mobile fallback so sigil doesn't overwhelm small screens */
-@media (max-width: 600px) {
-  .sigil-wrap { width: 180px !important; height: 180px !important; }
-  .site-header { min-height: 220px; }
-}
+  font
