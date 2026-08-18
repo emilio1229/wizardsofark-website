@@ -69,33 +69,6 @@ body {
   gap: 4px;
   z-index: 5;
 }
-/* =========================================
-   SIGIL — 600px, lighter, spinning, centered
-   ========================================= */
-
-.sigil {
-  position: absolute;
-  top: 78%;               /* your perfect placement */
-  left: 50%;
-  width: 600px;           /* FIXED */
-  height: 600px;          /* FIXED */
-
-  background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.12;          /* FIXED — lighter */
-
-  transform: translate(-50%, -50%) rotate(0deg);
-  transform-origin: 50% 50%;
-
-  animation: sigilSpin 36s linear infinite;
-
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes sigilSpin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
 
 /* =========================================
    LOGO — darker than sigil
@@ -105,7 +78,7 @@ body {
   width: 230px;
   height: auto;
   display: block;
-  filter: brightness(0.75) drop-shadow(0 0 6px rgba(0,0,0,0.6));
+  filter: brightness(2) drop-shadow(0 0 6px rgba(0,0,0,0.6));
 }
 
 /* =========================================
@@ -116,7 +89,7 @@ body {
   font-family: 'Uncial Antiqua', serif;
   font-size: 42px;
   color: var(--gold);
-  filter: brightness(0.85);
+  filter: brightness(2;
   text-shadow: 0 0 10px rgba(201,168,106,0.45);
   margin-top: 2px;
 }
