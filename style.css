@@ -73,8 +73,9 @@ body {
 /* =========================================
    LOGO — darker than sigil
    ========================================= */
-
-.main-logo {
+   .main-logo {
+  opacity: 1 !important; /* fully visible */
+}
   width: 230px;
   height: auto;
   display: block;
