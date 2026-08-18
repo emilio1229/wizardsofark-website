@@ -13,8 +13,8 @@
 
   --header-max-width: 1200px;
 
-  --sigil-size: 600px;        /* perfect medium size */
-  --sigil-opacity: 0.18;      /* lighter sigil */
+  --sigil-size: 600px;        /* perfect size */
+  --sigil-opacity: 0.18;      /* lighter */
   --sigil-spin-duration: 36s;
 
   --t-fast: 160ms;
