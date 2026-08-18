@@ -260,21 +260,4 @@ body {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
-/* === FORCE SIGIL TO SPIN === */
-.sigil {
-  animation: spinForce 12s linear infinite !important;
-  transform-origin: 50% 50% !important;
-}
 
-@keyframes spinForce {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-.main-logo {
-  animation: logoTest 3s linear infinite !important;
-}
-
-@keyframes logoTest {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
