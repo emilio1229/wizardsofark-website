@@ -1,78 +1,80 @@
 <!doctype html>
 <html lang="en">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@300;400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>The Wizards of Ark — Home</title>
+  <meta name="description" content="Join The Wizards of Ark — a PvE ARK: Survival Ascended cluster with all official maps, boosted rates, active community, and regular events.">
+  <meta name="theme-color" content="#c9a86a">
+
+  <!-- Favicons -->
   <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="alternate icon" href="assets/favicon.ico">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<meta name="theme-color" content="#c9a86a">
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>The Wizards of Ark — Home</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
-  <!-- SEO -->
-  <meta name="description" content="Join The Wizards of Ark — a PvE ARK: Survival Ascended cluster with all official maps, boosted rates, active community, and regular events.">
-
-  <!-- Fonts: preconnect + load -->
+  <!-- Fonts (match Council) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@600&display=swap" rel="stylesheet">
-
-  <!-- Favicon -->
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#c9a86a">
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@300;400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <!-- Preload critical images -->
   <link rel="preload" href="assets/logo.png" as="image">
   <link rel="preload" href="assets/sigil.png" as="image">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="style.css?v=optimized104">
+  <!-- Load effects first, then your main stylesheet so style.css can override safely -->
   <link rel="stylesheet" href="site-effects.bundle.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" integrity="sha512-hb8QP223Zv5v7MXYzmGZB11M8BxkG3qK1gpAQewoOC/LA0kW0voFA+cJavDt6SY/3F8f6U7TY[...]
+  <link rel="stylesheet" href="style.css?v=optimized104">
+
+  <!-- Lightbox (gallery) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
 </head>
 
 <body class="site-with-sides">
   <a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
-<header class="site-header shimmer">
-  <div class="header-inner compact-header">
 
-    <div class="brand">
-      <div class="sigil-wrap">
-        <div class="sigil"></div>
+  <!-- ===========================
+       HEADER (consistent with Council)
+  =========================== -->
+  <header class="site-header shimmer">
+    <div class="header-inner compact-header">
+
+      <div class="brand">
+        <div class="sigil-wrap" aria-hidden="true">
+          <div class="sigil"></div>
+        </div>
+
+        <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
+        <h1 class="title">The Wizards of Ark</h1>
       </div>
 
-      <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="server-info.html" class="nav-link">Server Info</a>
+        <a href="store.html" class="nav-link">Store</a>
+        <a href="council.html" class="nav-link">Council</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
 
-      <h1 class="title">The Wizards of Ark</h1>
     </div>
+  </header>
 
-  <nav class="nav">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="server-info.html" class="nav-link">Server Info</a>
-    <a href="store.html" class="nav-link">Store</a>
-    <a href="council.html" class="nav-link">Council</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-</nav>
+  <div class="header-divider" aria-hidden="true"></div>
 
+  <!-- Centered realm button (restored fancy button) -->
+  <div class="realm-button-wrap" aria-hidden="false">
+    <a href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener" class="realm-button">
+      ✨ Enter The Realm ✨
+    </a>
   </div>
-</header>
-<div class="realm-button-wrap">
-  <a href="https://discord.gg/84FDUShzE" target="_blank" class="realm-button">
-    ✨ Enter The Realm ✨
-  </a>
-</div>
 
-
-
+  <!-- ===========================
+       MAIN CONTENT (unchanged text, updated structure & styling)
+  =========================== -->
   <main id="main" class="main">
 
     <section class="content-block fade-in">
       <h2 class="section-title">Welcome to the Wizards of Ark</h2>
-      <p>You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and Dedicated Admin Team
+      <p>You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and Dedicated Admin Team</p>
       <p>Our servers run on boosted but balanced rates with reduced weight to remove the grind while preserving the challenge — giving you the perfect environment to build, explore, and conquer.</p>
       <p>Whether you are here to tame legendary creatures, build powerful empires, participate in epic events, or simply find a home in the Ark — you belong here.</p>
 
@@ -81,7 +83,7 @@
         <li>Complete official map cluster</li>
         <li>Boosted but balanced rates with reduced weight</li>
         <li>Active PvE community</li>
-        <li>UK & US admin coverage</li>
+        <li>UK &amp; US admin coverage</li>
         <li>Admin shop and in-game shop</li>
         <li>Regular events, giveaways, and custom game modes</li>
         <li>Unique creatures, mods, and perks</li>
@@ -89,37 +91,39 @@
       </ul>
 
       <h3 class="section-title">Join the Adventure</h3>
-       <ul class="feature-list">
-       </section>
-    <p>How to Find Our Server – The Wizards of Ark 
-
--Jumping into the realm is easy!
- <ul class="feature-list">
-   <li>Open ARK: Survival Ascended</li>
-   <li>Go to Join Game</li>
-   <li>Select the Unofficial Tab</li>
-   <li>Set Game Mode: PvE</li>
-   <li>In the search bar, Type The Wizards of Ark</li>
-   <li>Make sure Password Protected is UNCHECKED!!</li>
-   <li>Select one of our maps, create your character, and Join</li>
+      <ul class="feature-list">
+        <!-- intentionally left empty in original content -->
       </ul>
 
- -If you don’t see the servers right away, refresh the list and double-check your filters. Can’t see The Wizards of Ark servers in-game?Follow these steps carefully:
- <ul class="feature-list">
-  <li>Enable Show Player Servers</li>
-  <li>Disable Show Password Protected Servers</li>
-  <li>Set Map Filter to All Maps</li>
-  <li>Set PvE / PvP Filter to PvE (or All)</li>
-  <li>Make sure you are on the Unofficial Tab</li>
-  <li>Search The Wizards of Ark and press Enter</li>
-  <li>Click Refresh</li>
-  <li>Enter the Realm</li>
+      <p><strong>How to Find Our Server – The Wizards of Ark</strong></p>
+
+      <p>-Jumping into the realm is easy!</p>
+      <ul class="feature-list">
+        <li>Open ARK: Survival Ascended</li>
+        <li>Go to Join Game</li>
+        <li>Select the Unofficial Tab</li>
+        <li>Set Game Mode: PvE</li>
+        <li>In the search bar, Type The Wizards of Ark</li>
+        <li>Make sure Password Protected is UNCHECKED!!</li>
+        <li>Select one of our maps, create your character, and Join</li>
       </ul>
- 
-    
- -Still not showing?Fully restart your game and repeat the steps above.If you’re still having trouble, open a ticket on Discord and an admin will help you get connected as soon as possible. We can’t wait to welcome you to The Wizards of Ark — where magic, dinos, and adventure collide.</p>
-      </section>
+
+      <p>-If you don’t see the servers right away, refresh the list and double-check your filters. Can’t see The Wizards of Ark servers in-game? Follow these steps carefully:</p>
+      <ul class="feature-list">
+        <li>Enable Show Player Servers</li>
+        <li>Disable Show Password Protected Servers</li>
+        <li>Set Map Filter to All Maps</li>
+        <li>Set PvE / PvP Filter to PvE (or All)</li>
+        <li>Make sure you are on the Unofficial Tab</li>
+        <li>Search The Wizards of Ark and press Enter</li>
+        <li>Click Refresh</li>
+        <li>Enter the Realm</li>
+      </ul>
+
+      <p>-Still not showing? Fully restart your game and repeat the steps above. If you’re still having trouble, open a ticket on Discord and an admin will help you get connected as soon as possible. We can’t wait to welcome you to The Wizards of Ark — where magic, dinos, and adventure collide.</p>
     </section>
+
+    <section class="content-block fade-in">
       <h3 class="section-title">IMPORTANT — Unlock the Realm</h3>
       <p>Before you can access the rest of the Discord, you must complete your first quest:</p>
       <ul class="feature-list">
@@ -127,7 +131,6 @@
         <li>Read the rules</li>
         <li>Press the <strong>Enter Realm</strong> button</li>
       </ul>
-
     </section>
 
     <section class="content-block fade-in">
@@ -199,11 +202,13 @@
 
   </main>
 
-  <footer class="footer">
+  <!-- Footer (consistent with Council) -->
+  <footer class="site-footer">
     <p class="footer-text">© 2026 The Wizards of Ark — Forged in Magic</p>
   </footer>
 
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js" integrity="sha512-H3QKp3ZXiDQbboEwya8KnUjDGRvh7wnH1WNYamganWHPIRUAJLJzea1OZO3OYcAxqklUu6akQIq2wXFcK8MTA[...]
+  <!-- Scripts -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
   <script defer src="site-effects.bundle.js"></script>
 
   <script>
