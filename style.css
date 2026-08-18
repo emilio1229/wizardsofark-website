@@ -78,7 +78,7 @@ body {
   width: 230px;
   height: auto;
   display: block;
-  filter: brightness(1) drop-shadow(0 0 6px rgba(0,0,0,0.6));
+  filter: brightness(1.5) drop-shadow(0 0 6px rgba(0,0,0,0.6));
 }
 
 /* =========================================
@@ -89,7 +89,7 @@ body {
   font-family: 'Uncial Antiqua', serif;
   font-size: 42px;
   color: var(--gold);
-  filter: brightness(1); /* FIXED */
+  filter: brightness(1.5); /* FIXED */
   text-shadow: 0 0 10px rgba(201,168,106,0.45);
   margin-top: 2px;
 }
