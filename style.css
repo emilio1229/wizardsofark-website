@@ -1,6 +1,6 @@
 /* =========================================
    Wizards of Ark — Clean Consolidated Stylesheet
-   Version: 2026-08-17 (refactor)
+   Version: 2026-08-17 (final)
    ========================================= */
 
 /* -------------------------
@@ -19,12 +19,6 @@
   --rune-color: rgba(120,80,200,0.08);
 
   --header-max-width: 1200px;
-  --header-padding-mobile: 12px;
-  --header-padding-desktop: 10px;
-
-  --sigil-size-desktop: 1020px;
-  --sigil-size-mobile: 300px;
-  --sigil-opacity: 0.20;
   --sigil-spin-duration: 36s;
 
   --t-fast: 160ms;
@@ -49,34 +43,31 @@ body {
   overflow-x: hidden;
 }
 
-/* -------------------------
-   Header
-   ------------------------- */
+/* =========================================
+   Wizards of Ark — Final Header (Dominant Sigil)
+   ========================================= */
+
 .site-header {
   width: 100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
-  padding: 12px 0;
+  padding: 6px 0;
   border-bottom: 1px solid rgba(201,168,106,0.18);
   box-shadow: 0 6px 24px rgba(0,0,0,0.45);
   position: relative;
   z-index: 50;
+  overflow: visible;
 }
 
 .header-inner {
   max-width: var(--header-max-width);
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 0 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
   position: relative;
-}
-
-/* Compact header */
-.compact-header {
-  padding: 12px 0;
-  text-align: center;
+  overflow: visible;
 }
 
 .brand {
@@ -84,77 +75,55 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 4px;
+  z-index: 5;
 }
 
-/* -------------------------
-   SIGIL — FINAL CLEAN VERSION
-   ------------------------- */
+/* SIGIL — truly dominant, glowing, spinning */
 .sigil {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: var(--sigil-size-desktop);
-  height: var(--sigil-size-desktop);
+  width: 1800px;
+  height: 1800px;
   background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: var(--sigil-opacity);
-  transform: translate(-50%, -50%);
+  opacity: 0.28;
+  transform: translate(-50%, -50%) scale(1.15);
   pointer-events: none;
-  z-index: -1;
+  z-index: 1;
   animation: sigilSpin var(--sigil-spin-duration) linear infinite;
   transform-origin: 50% 50%;
+  filter: drop-shadow(0 0 80px rgba(201,168,106,0.45));
 }
 
 @keyframes sigilSpin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
+  0% { transform: translate(-50%, -50%) scale(1.15) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) scale(1.15) rotate(360deg); }
 }
 
-/* Mobile sigil */
-@media (max-width: 900px) {
-  .sigil {
-    width: var(--sigil-size-mobile);
-    height: var(--sigil-size-mobile);
-    opacity: 0.14;
-  }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .sigil { animation: none; }
-}
-
-/* -------------------------
-   Logo & Title
-   ------------------------- */
+/* LOGO — smaller than sigil */
 .main-logo {
-  width: 230px;
+  width: 210px;
   height: auto;
   display: block;
   filter: drop-shadow(0 0 10px rgba(201,168,106,0.6));
 }
 
+/* Title — tight spacing */
 .title {
   font-family: 'Uncial Antiqua', serif;
-  font-size: 46px;
+  font-size: 42px;
   color: var(--gold);
   text-shadow: 0 0 12px rgba(201,168,106,0.55);
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
-/* Desktop scaling */
-@media (min-width: 900px) {
-  .main-logo { width: 250px; }
-  .title { font-size: 50px; }
-}
-
-/* -------------------------
-   Navigation
-   ------------------------- */
+/* Navigation — compact */
 .nav {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 6px;
 }
 
 .nav-link {
@@ -162,12 +131,13 @@ body {
   font-weight: 600;
   color: var(--gold);
   text-decoration: none;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 6px;
   background: rgba(201,168,106,0.08);
   border: 1px solid rgba(201,168,106,0.18);
   box-shadow: 0 0 6px rgba(0,0,0,0.25);
-  transition: var(--t-fast);
+  transition: 160ms ease;
+  font-size: 14px;
 }
 
 .nav-link:hover,
@@ -177,35 +147,11 @@ body {
   box-shadow: 0 6px 18px rgba(201,168,106,0.12);
 }
 
-/* -------------------------
-   Divider
-   ------------------------- */
-.header-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201,168,106,0.12), transparent);
-  opacity: 0.6;
-}
-
-/* -------------------------
-   Desktop header layout
-   ------------------------- */
+/* Desktop scaling */
 @media (min-width: 900px) {
-  .header-inner {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 0 20px;
-  }
-
-  .brand {
-    flex-direction: row;
-    gap: 12px;
-  }
-
-  .nav {
-    justify-content: flex-end;
-    gap: 12px;
-  }
+  .main-logo { width: 230px; }
+  .title { font-size: 46px; }
+  .sigil { width: 1800px; height: 1800px; }
 }
 
 /* -------------------------
@@ -230,24 +176,6 @@ body {
   font-size: 16px;
   max-width: 760px;
   margin: 0 auto 22px;
-}
-
-/* -------------------------
-   Main content
-   ------------------------- */
-.main {
-  width: 92%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding-bottom: 60px;
-}
-
-.section-title {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 30px;
-  color: var(--gold);
-  margin: 28px 0 12px;
-  text-shadow: 0 0 10px rgba(201,168,106,0.45);
 }
 
 /* -------------------------
@@ -314,203 +242,4 @@ body {
   border-top: 1px solid rgba(201,168,106,0.08);
   color: rgba(201,168,106,0.8);
   font-size: 13px;
-}
-/* =========================================
-   Wizards of Ark — Oversized Sigil + Tight Header
-   ========================================= */
-
-/* Compact header layout */
-.compact-header {
-  padding: 6px 0;
-  text-align: center;
-}
-
-.header-inner {
-  gap: 4px;
-  padding: 0 12px;
-}
-
-/* Brand block */
-.brand {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-/* SIGIL — visually dominant, spinning */
-.sigil {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1280px; /* larger than logo and header */
-  height: 1280px;
-  background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.22; /* slightly stronger visibility */
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-  z-index: -1;
-  animation: sigilSpin 36s linear infinite;
-  transform-origin: 50% 50%;
-  filter: drop-shadow(0 0 40px rgba(201,168,106,0.45));
-}
-
-@keyframes sigilSpin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* LOGO — smaller than sigil */
-.main-logo {
-  width: 210px;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 0 10px rgba(201,168,106,0.6));
-}
-
-/* Title — tight spacing */
-.title {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 42px;
-  color: var(--gold);
-  text-shadow: 0 0 12px rgba(201,168,106,0.55);
-  margin-top: 4px;
-}
-
-/* Navigation — compact */
-.nav {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 6px;
-}
-
-.nav-link {
-  font-family: 'Spectral', serif;
-  font-weight: 600;
-  color: var(--gold);
-  text-decoration: none;
-  padding: 5px 12px;
-  border-radius: 6px;
-  background: rgba(201,168,106,0.08);
-  border: 1px solid rgba(201,168,106,0.18);
-  box-shadow: 0 0 6px rgba(0,0,0,0.25);
-  transition: 160ms ease;
-  font-size: 14px;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  transform: translateY(-2px);
-  background: rgba(201,168,106,0.15);
-  box-shadow: 0 6px 18px rgba(201,168,106,0.12);
-}
-
-/* Desktop scaling */
-@media (min-width: 900px) {
-  .main-logo { width: 230px; }
-  .title { font-size: 46px; }
-  .sigil { width: 1280px; height: 1280px; }
-}
-/* =========================================
-   Wizards of Ark — Oversized Sigil (Visible + Dominant)
-   ========================================= */
-
-.compact-header {
-  padding: 6px 0;
-  text-align: center;
-  overflow: visible; /* allow sigil to extend beyond header */
-}
-
-.header-inner {
-  gap: 4px;
-  padding: 0 12px;
-  position: relative;
-  overflow: visible;
-}
-
-/* Brand block */
-.brand {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  z-index: 5; /* keep logo/title above sigil */
-}
-
-/* SIGIL — truly larger, glowing, spinning */
-.sigil {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1600px; /* visually dominant */
-  height: 1600px;
-  background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.26; /* stronger visibility */
-  transform: translate(-50%, -50%) scale(1.1);
-  pointer-events: none;
-  z-index: 1; /* behind logo/title */
-  animation: sigilSpin 36s linear infinite;
-  transform-origin: 50% 50%;
-  filter: drop-shadow(0 0 60px rgba(201,168,106,0.45));
-}
-
-@keyframes sigilSpin {
-  0% { transform: translate(-50%, -50%) scale(1.1) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) scale(1.1) rotate(360deg); }
-}
-
-/* LOGO — smaller than sigil */
-.main-logo {
-  width: 210px;
-  height: auto;
-  display: block;
-  filter: drop-shadow(0 0 10px rgba(201,168,106,0.6));
-}
-
-/* Title — tight spacing */
-.title {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 42px;
-  color: var(--gold);
-  text-shadow: 0 0 12px rgba(201,168,106,0.55);
-  margin-top: 4px;
-}
-
-/* Navigation — compact */
-.nav {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 6px;
-}
-
-.nav-link {
-  font-family: 'Spectral', serif;
-  font-weight: 600;
-  color: var(--gold);
-  text-decoration: none;
-  padding: 5px 12px;
-  border-radius: 6px;
-  background: rgba(201,168,106,0.08);
-  border: 1px solid rgba(201,168,106,0.18);
-  box-shadow: 0 0 6px rgba(0,0,0,0.25);
-  transition: 160ms ease;
-  font-size: 14px;
-}
-
-.nav-link:hover,
-.nav-link.active {
-  transform: translateY(-2px);
-  background: rgba(201,168,106,0.15);
-  box-shadow: 0 6px 18px rgba(201,168,106,0.12);
-}
-
-/* Desktop scaling */
-@media (min-width: 900px) {
-  .main-logo { width: 230px; }
-  .title { font-size: 46px; }
-  .sigil { width: 1600px; height: 1600px; }
 }
