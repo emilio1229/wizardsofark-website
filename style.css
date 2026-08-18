@@ -445,3 +445,64 @@ body {
   background-size: contain;
   opacity: 0.10;
 }
+/* ===== Center main content and add side padding ===== */
+.main {
+  max-width: 1100px;      /* width of the readable column */
+  margin: 0 auto;         /* center on the page */
+  padding: 28px 24px;     /* vertical + horizontal breathing room */
+  box-sizing: border-box;
+}
+
+/* Make content blocks visually contained and centered */
+.content-block {
+  margin: 0 auto 34px;
+  padding: 22px 20px;
+  background: rgba(20,10,40,0.35);
+  border-radius: 10px;
+  border: 1px solid rgba(201,168,106,0.12);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* Ensure section titles align with the centered column */
+.section-title {
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+/* Improve list spacing and keep lists within the centered column */
+.feature-list {
+  margin: 12px 0 0 0;
+  padding-left: 1.15em;
+  line-height: 1.6;
+}
+
+/* Gallery stays centered and constrained to the content column */
+.home-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+/* Make sure footer text aligns with the centered column */
+.site-footer,
+.footer {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px;
+  box-sizing: border-box;
+}
+
+/* Small screens: reduce padding and keep everything readable */
+@media (max-width: 900px) {
+  .main { padding: 20px 18px; max-width: 920px; }
+  .content-block { padding: 18px 14px; }
+  .realm-button { font-size: 20px; padding: 12px 32px; }
+}
+
+/* Very small screens: full width with comfortable gutters */
+@media (max-width: 480px) {
+  .main { padding: 16px 14px; }
+  .content-block { padding: 14px 12px; }
+  .home-gallery { gap: 10px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+}
