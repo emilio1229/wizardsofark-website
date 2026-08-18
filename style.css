@@ -228,33 +228,66 @@ body {
   color: rgba(201,168,106,0.8);
   font-size: 13px;
 }
-/* === Enter The Realm Button (Home Page) === */
+
+/* =========================================
+   Arcane Fancy Button — Centered Under Header
+   ========================================= */
 
 .realm-button-wrap {
   width: 100%;
   text-align: center;
-  margin-top: -20px; /* pulls it closer to header */
-  margin-bottom: 30px;
+  margin-top: -30px; /* pulls closer to header */
+  margin-bottom: 40px;
   position: relative;
-  z-index: 10; /* stays above sigil */
+  z-index: 20; /* above sigil */
 }
 
 .realm-button {
   display: inline-block;
-  padding: 12px 28px;
-  font-size: 20px;
+  padding: 14px 40px;
+  font-size: 24px;
   font-weight: 700;
+  font-family: 'Spectral', serif;
   color: var(--gold);
   text-decoration: none;
-  border: 2px solid rgba(201,168,106,0.45);
+
+  background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(20,10,40,0.95));
+  border: 2px solid rgba(201,168,106,0.55);
   border-radius: 14px;
-  background: radial-gradient(circle at center, rgba(201,168,106,0.15), rgba(20,10,40,0.85));
-  box-shadow: 0 0 18px rgba(201,168,106,0.35);
-  transition: all .3s ease;
+
+  box-shadow:
+    0 0 18px rgba(201,168,106,0.45),
+    inset 0 0 12px rgba(201,168,106,0.25);
+
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Gold shimmer sweep */
+.realm-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 120%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
+  opacity: 0.35;
+  transform: skewX(-20deg);
+  animation: realmShimmer 2.8s linear infinite;
+}
+
+@keyframes realmShimmer {
+  from { left: -120%; }
+  to { left: 120%; }
+}
+
+/* Hover effect */
 .realm-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 28px rgba(201,168,106,0.65);
-  border-color: rgba(201,168,106,0.65);
+  transform: translateY(-4px) scale(1.06);
+  box-shadow:
+    0 0 28px rgba(201,168,106,0.75),
+    inset 0 0 16px rgba(201,168,106,0.35);
+  border-color: rgba(201,168,106,0.75);
 }
