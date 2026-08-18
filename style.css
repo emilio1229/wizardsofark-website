@@ -294,3 +294,47 @@ body {
     height: 100px;
   }
 }
+/* ============================================================
+   OPTIONAL SIGIL ENHANCEMENTS — SAFE VERSION
+   (Restores your old behavior without overriding header layout)
+   ============================================================ */
+
+/* Larger dramatic spin on big screens */
+@media (min-width: 1200px) {
+  .sigil-wrap {
+    width: 480px;
+    height: 480px;
+    animation-duration: 36s; /* your old speed */
+  }
+
+  .sigil {
+    opacity: 0.10; /* your old glow */
+  }
+}
+
+/* Medium spin for laptops */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .sigil-wrap {
+    width: 380px;
+    height: 380px;
+    animation-duration: 38s;
+  }
+}
+
+/* Small spin for tablets */
+@media (min-width: 600px) and (max-width: 899px) {
+  .sigil-wrap {
+    width: 260px;
+    height: 260px;
+    animation-duration: 40s;
+  }
+}
+
+/* Tiny spin for mobile */
+@media (max-width: 599px) {
+  .sigil-wrap {
+    width: 180px;
+    height: 180px;
+    animation-duration: 42s;
+  }
+}
