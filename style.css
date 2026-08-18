@@ -260,4 +260,29 @@ body {
   0% { transform: translate(-50%, -50%) rotate(0deg); }
   100% { transform: translate(-50%, -50%) rotate(360deg); }
 }
+/* === FORCE SIGIL TO SPIN USING WRAPPER === */
+.sigil-wrap {
+  position: absolute;
+  top: 78%;
+  left: 50%;
+  width: 600px;
+  height: 600px;
+  transform: translate(-50%, -50%);
+  animation: sigilSpinForce 36s linear infinite !important;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sigil {
+  width: 100%;
+  height: 100%;
+  background: url('assets/sigil.png') no-repeat center/contain;
+  opacity: 0.10;
+  pointer-events: none;
+}
+
+@keyframes sigilSpinForce {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
 
