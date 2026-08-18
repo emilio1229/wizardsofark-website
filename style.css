@@ -566,3 +566,88 @@ body {
   .sigil-wrap { width: 180px !important; height: 180px !important; }
   .site-header { min-height: 220px; }
 }
+/* ===== Header layout parity with Council ===== */
+.header-inner {
+  max-width: var(--header-max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  z-index: 60; /* keep content above sigil */
+}
+
+/* Wide screens: brand left, nav right, vertically centered */
+@media (min-width: 920px) {
+  .header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .brand {
+    align-items: flex-start;
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
+  }
+
+  .brand .title { margin: 0; }
+
+  .nav {
+    justify-content: flex-end;
+    gap: 12px;
+  }
+}
+
+/* Small screens: keep stacked and centered */
+@media (max-width: 919px) {
+  .brand { align-items: center; text-align: center; }
+  .nav { justify-content: center; gap: 8px; }
+}
+
+/* ===== Force full-size spinning sigil and ensure visibility ===== */
+.site-header { min-height: 520px; } /* ensure vertical room */
+
+.sigil-wrap {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 600px !important;
+  height: 600px !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  animation: sigilSpin 36s linear infinite !important;
+  will-change: transform;
+}
+
+.sigil {
+  width: 100% !important;
+  height: 100% !important;
+  background-image: url('assets/sigil.png') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  opacity: 0.10 !important;
+  pointer-events: none !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Keep the spin keyframes (redeclared to ensure they exist and are used) */
+@keyframes sigilSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Mobile fallback so sigil doesn't overwhelm small screens */
+@media (max-width: 600px) {
+  .sigil-wrap { width: 180px !important; height: 180px !important; }
+  .site-header { min-height: 220px; }
+}
