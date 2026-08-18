@@ -263,7 +263,7 @@ body {
 /* === FORCE SIGIL TO SPIN USING WRAPPER === */
 .sigil-wrap {
   position: absolute;
-  top: 78%;
+  top: 50%;
   left: 50%;
   width: 600px;
   height: 600px;
