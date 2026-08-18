@@ -228,3 +228,33 @@ body {
   color: rgba(201,168,106,0.8);
   font-size: 13px;
 }
+/* === Enter The Realm Button (Home Page) === */
+
+.realm-button-wrap {
+  width: 100%;
+  text-align: center;
+  margin-top: -20px; /* pulls it closer to header */
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 10; /* stays above sigil */
+}
+
+.realm-button {
+  display: inline-block;
+  padding: 12px 28px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold);
+  text-decoration: none;
+  border: 2px solid rgba(201,168,106,0.45);
+  border-radius: 14px;
+  background: radial-gradient(circle at center, rgba(201,168,106,0.15), rgba(20,10,40,0.85));
+  box-shadow: 0 0 18px rgba(201,168,106,0.35);
+  transition: all .3s ease;
+}
+
+.realm-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 28px rgba(201,168,106,0.65);
+  border-color: rgba(201,168,106,0.65);
+}
