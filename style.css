@@ -13,10 +13,6 @@
 
   --header-max-width: 1200px;
 
-  --sigil-size: 600px;
-  --sigil-opacity: 0.08;
-  --sigil-spin-duration: 36s;
-
   --t-fast: 160ms;
   --shadow-soft: rgba(0,0,0,0.25);
 }
@@ -46,7 +42,6 @@ body {
   box-shadow: 0 6px 24px rgba(0,0,0,0.45);
   position: relative;
   z-index: 50;
-  overflow: visible;
 }
 
 .header-inner {
@@ -58,7 +53,6 @@ body {
   align-items: center;
   gap: 6px;
   position: relative;
-  overflow: visible;
 }
 
 .brand {
@@ -71,10 +65,39 @@ body {
 }
 
 /* =========================================
-   LOGO — darker than sigil
+   CLEAN GLOBAL SIGIL SYSTEM
    ========================================= */
-   .main-logo {
-  opacity: 2 !important; /* fully visible */
+
+.sigil-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  height: 320px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 1;
+  animation: sigilSpin 40s linear infinite;
+}
+
+.sigil {
+  width: 100%;
+  height: 100%;
+  background: url('assets/sigil.png') no-repeat center center / contain;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+@keyframes sigilSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* =========================================
+   LOGO
+   ========================================= */
+
+.main-logo {
   width: 300px;
   height: auto;
   display: block;
@@ -82,26 +105,27 @@ body {
 }
 
 /* =========================================
-   TITLE — darker than sigil
+   TITLE
    ========================================= */
 
 .title {
   font-family: 'Uncial Antiqua', serif;
   font-size: 42px;
   color: var(--gold);
-  filter: brightness(1.5); /* FIXED */
   text-shadow: 0 0 10px rgba(201,168,106,0.45);
   margin-top: 2px;
 }
 
 /* =========================================
-   NAVIGATION
+   NAVIGATION — SIDE-BY-SIDE ALWAYS
    ========================================= */
 
 .nav {
   display: flex;
-  gap: 10px;
+  flex-direction: row;
   justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
   margin-top: 6px;
 }
 
@@ -126,246 +150,147 @@ body {
 }
 
 /* =========================================
-   Realm Button — centered under header
-   ========================================= */
-
-.realm-button-wrap {
-  width: 100%;
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 40px;
-  position: relative;
-  z-index: 20;
-}
-
-.realm-button {
-  display: inline-block;
-  padding: 14px 40px;
-  font-size: 24px;
-  font-weight: 700;
-  font-family: 'Spectral', serif;
-  color: var(--gold);
-  text-decoration: none;
-
-  background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(20,10,40,0.95));
-  border: 2px solid rgba(201,168,106,0.55);
-  border-radius: 14px;
-
-  box-shadow:
-    0 0 18px rgba(201,168,106,0.45),
-    inset 0 0 12px rgba(201,168,106,0.25);
-
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.realm-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 120%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
-  opacity: 0.35;
-  transform: skewX(-20deg);
-  animation: realmShimmer 2.8s linear infinite;
-}
-
-@keyframes realmShimmer {
-  from { left: -120%; }
-  to { left: 120%; }
-}
-
-.realm-button:hover {
-  transform: translateY(-4px) scale(1.06);
-  box-shadow:
-    0 0 28px rgba(201,168,106,0.75),
-    inset 0 0 16px rgba(201,168,106,0.35);
-  border-color: rgba(201,168,106,0.75);
-}
-
-/* =========================================
-   HERO / CONTENT / FOOTER
-   ========================================= */
-
-.hero {
-  text-align: center;
-  padding: 64px 20px;
-  position: relative;
-  z-index: 3;
-}
-
-.hero-title {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 44px;
-  color: var(--gold);
-  text-shadow: 0 0 18px rgba(201,168,106,0.6);
-  margin-bottom: 14px;
-}
-
-.hero-text {
-  font-size: 16px;
-  max-width: 760px;
-  margin: 0 auto 22px;
-}
-
-.main {
-  width: 92%;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding-bottom: 60px;
-}
-
-.section-title {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 30px;
-  color: var(--gold);
-  margin: 28px 0 12px;
-  text-shadow: 0 0 10px rgba(201,168,106,0.45);
-}
-
-.footer {
-  text-align: center;
-  padding: 18px 12px;
-  border-top: 1px solid rgba(201,168,106,0.08);
-  color: rgba(201,168,106,0.8);
-  font-size: 13px;
-}
-
-/* =========================================
-   FINAL SIGIL FIX — 600px, lighter, spinning
-   ========================================= */
-
-.sigil {
-  width: 600px !important;
-  height: 600px !important;
-
-  top: 50% !important;
-  left: 50% !important;
-
-  transform: translate(-50%, -50%) rotate(0deg) !important;
-  transform-origin: 50% 50% !important;
-
-  opacity: 0.08 !important;
-
-  animation: sigilSpin 36s linear infinite !important;
-
-  pointer-events: none !important;
-  z-index: 1 !important;
-}
-
-@keyframes sigilSpin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-/* === FORCE SIGIL TO SPIN USING WRAPPER === */
-.sigil-wrap {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 600px;
-  transform: translate(-50%, -50%);
-  animation: sigilSpinForce 36s linear infinite !important;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.sigil {
-  width: 100%;
-  height: 100%;
-  background: url('assets/sigil.png') no-repeat center/contain;
-  opacity: 0.10;
-  pointer-events: none;
-}
-
-@keyframes sigilSpinForce {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-/* ================================
    ARCANE COUNCIL PAGE STYLING
-   ================================ */
+   ========================================= */
 
 .council-container {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 20px;
-    color: var(--gold);
-    font-family: 'Spectral', serif;
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+  color: var(--gold);
+  font-family: 'Spectral', serif;
 }
 
 .council-title {
-    text-align: center;
-    font-size: 48px;
-    margin-bottom: 10px;
-    text-shadow: 0 0 20px rgba(201,168,106,0.6);
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(201,168,106,0.6);
 }
 
 .council-subtitle {
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 40px;
-    opacity: 0.85;
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 40px;
+  opacity: 0.85;
 }
 
 .council-section {
-    font-size: 32px;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    text-shadow: 0 0 12px rgba(201,168,106,0.5);
-    border-bottom: 2px solid rgba(201,168,106,0.3);
-    padding-bottom: 6px;
+  font-size: 32px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 12px rgba(201,168,106,0.5);
+  border-bottom: 2px solid rgba(201,168,106,0.3);
+  padding-bottom: 6px;
 }
 
 .council-card {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    background: rgba(20,10,40,0.55);
-    border: 2px solid rgba(201,168,106,0.35);
-    padding: 18px;
-    border-radius: 12px;
-    margin-bottom: 18px;
-    box-shadow: 0 0 18px rgba(201,168,106,0.25);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(20,10,40,0.55);
+  border: 2px solid rgba(201,168,106,0.35);
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 0 18px rgba(201,168,106,0.25);
+  flex-wrap: wrap;
 }
 
 .council-icon {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid rgba(201,168,106,0.6);
-    box-shadow: 0 0 15px rgba(201,168,106,0.4);
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(201,168,106,0.6);
+  box-shadow: 0 0 15px rgba(201,168,106,0.4);
 }
 
 .role {
-    font-size: 18px;
-    opacity: 0.9;
+  font-size: 18px;
+  opacity: 0.9;
 }
 
 .duty {
-    font-size: 16px;
-    opacity: 0.75;
+  font-size: 16px;
+  opacity: 0.75;
 }
 
 .bot-list p {
-    background: rgba(20,10,40,0.45);
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid rgba(201,168,106,0.25);
-    margin-bottom: 8px;
+  background: rgba(20,10,40,0.45);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(201,168,106,0.25);
+  margin-bottom: 8px;
 }
 
 .principles li {
-    margin-bottom: 10px;
-    font-size: 18px;
+  margin-bottom: 10px;
+  font-size: 18px;
 }
 
-.contact-text {
-    font-size: 18px;
-    opacity: 0.85;
-    margin-bottom: 40px;
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.site-footer {
+  margin-top: 60px;
+  padding: 30px 0;
+  text-align: center;
+  background: rgba(20,10,40,0.45);
+  border-top: 2px solid rgba(201,168,106,0.35);
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 18px;
+  color: var(--gold);
+  opacity: 0.85;
+}
+
+.discord-footer {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 20px;
+  color: var(--gold);
+  text-decoration: none;
+  padding: 8px 16px;
+  border: 2px solid rgba(201,168,106,0.4);
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.discord-footer:hover {
+  background: rgba(201,168,106,0.2);
+  box-shadow: 0 0 12px rgba(201,168,106,0.5);
+}
+
+/* =========================================
+   RESPONSIVE FIXES
+   ========================================= */
+
+@media (max-width: 600px) {
+
+  .main-logo {
+    width: 180px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .sigil-wrap {
+    width: 200px;
+    height: 200px;
+  }
+
+  .council-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .council-icon {
+    width: 100px;
+    height: 100px;
+  }
 }
