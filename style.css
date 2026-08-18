@@ -291,17 +291,17 @@ body {
     inset 0 0 16px rgba(201,168,106,0.35);
   border-color: rgba(201,168,106,0.75);
 }
-/* === PERFECT SIGIL SIZE — fills header only === */
+/* === Perfect Medium Sigil — bigger than logo, not huge === */
 
 .sigil {
-  width: 1100px !important;
-  height: 1100px !important;
+  width: 600px !important;
+  height: 600px !important;
 
-  top: 52% !important;   /* slightly below true center */
+  top: 52% !important;   /* visually centered */
   left: 50% !important;
 
   transform: translate(-50%, -50%) scale(1.0) !important;
 
-  opacity: 0.28 !important;
+  opacity: 0.26 !important;
   z-index: 1 !important;
 }
