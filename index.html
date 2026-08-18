@@ -191,5 +191,14 @@
       window.addEventListener('load', ()=>{ document.querySelectorAll('.home-gallery a').forEach(a=>{ a.onclick = (e)=>{ e.stopPropagation(); }; }); if(window.lightbox && typeof lightbox.option === 'function') lightbox.option({fitImagesInViewport:true,resizeDuration:200,maxHeight:800,maxWidth:1000}); });
     })();
   </script>
+  <script>
+  const cover = document.querySelector('.book-cover');
+  const pages = document.querySelector('.book-pages');
+
+  cover.addEventListener('click', () => {
+    pages.style.display = pages.style.display === 'flex' ? 'none' : 'flex';
+  });
+</script>
+
 </body>
 </html>
