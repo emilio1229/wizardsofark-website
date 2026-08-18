@@ -305,3 +305,12 @@ body {
   opacity: 0.26 !important;
   z-index: 1 !important;
 }
+/* === Restore Sigil Spin === */
+.sigil {
+  animation: sigilSpin 36s linear infinite !important;
+  transform-origin: 50% 50% !important;
+}
+/* === Move Realm Button Down === */
+.realm-button-wrap {
+  margin-top: 20px !important;   /* adjust this number to taste */
+}
