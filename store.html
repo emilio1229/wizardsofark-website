@@ -1,53 +1,57 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png">
-<link rel="alternate icon" href="assets/favicon.ico">
-<meta name="theme-color" content="#c9a86a">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Wizards of Ark-Store</title>
+
+  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="alternate icon" href="assets/favicon.ico">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#c9a86a">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#c9a86a">
+
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="site-effects.bundle.css">
 </head>
 <body class="site-with-sides">
   <a class="skip-link" href="#main" style="position:absolute;left:-9999px;">Skip to content</a>
-<!-- ===========================
-     HEADER (correct version)
-=========================== -->
-<header class="site-header shimmer">
-  <div class="header-inner compact-header">
 
-    <div class="brand">
+  <!-- ===========================
+       HEADER (consistent with council)
+  =========================== -->
+  <header class="site-header shimmer">
+    <div class="header-inner compact-header">
 
-      <!-- Centered spinning sigil -->
-      <div class="sigil-wrap">
-        <div class="sigil"></div>
+      <div class="brand">
+
+        <!-- Centered spinning sigil -->
+        <div class="sigil-wrap">
+          <div class="sigil"></div>
+        </div>
+
+        <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
+        <h1 class="title">The Wizards of Ark</h1>
       </div>
 
-      <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
-      <h1 class="title">The Wizards of Ark</h1>
+      <nav class="nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="server-info.html" class="nav-link">Server Info</a>
+        <a href="store.html" class="nav-link">Store</a>
+        <a href="council.html" class="nav-link">Council</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
     </div>
+  </header>
 
-    <nav class="nav">
-      <a href="index.html" class="nav-link">Home</a>
-      <a href="server-info.html" class="nav-link">Server Info</a>
-      <a href="store.html" class="nav-link">Store</a>
-      <a href="council.html" class="nav-link">Council</a>
-      <a href="contact.html" class="nav-link">Contact</a>
-    </nav>
-
-  </div>
-</header>
   <div class="header-divider" aria-hidden="true"></div>
 
-   <main class="main">
+  <main id="main" class="main">
     <section class="content-block">
       <h2 class="section-title">Realm Shop Access</h2>
       <p>All shop purchases are handled <strong>exclusively through Discord</strong>. The website does not list packs or items at this time. To purchase anything from the Wizards of Ark shop, you must open a <strong>shop ticket</strong> in Discord.</p>
@@ -59,7 +63,7 @@
       <ol>
         <li>Join our Discord: <a href="https://discord.gg/84FDUShzE" target="_blank" class="discord-btn">
   💰 Make Your Purchase on Discord
-</a>
+</a></li>
 
         <li>Go to <strong>#shop-tickets</strong> and click the <strong>Open Shop Ticket</strong> button.</li>
         <li>In your ticket, include:
@@ -91,11 +95,11 @@
     </section>
   </main>
 
-  <footer class="footer">
-  <div>Visit our community store for bundles and rewards.</div>
-  <a href="https://discord.gg/84FDUShzE" target="_blank" class="discord-btn">
-    💰 Visit Our Discord Shop
-  </a>
-</footer>
+  <footer class="site-footer">
+    <div>Visit our community store for bundles and rewards.</div>
+    <a href="https://discord.gg/84FDUShzE" target="_blank" class="discord-footer">
+      💰 Visit Our Discord Shop
+    </a>
+  </footer>
 </body>
 </html>
