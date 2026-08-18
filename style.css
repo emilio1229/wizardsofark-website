@@ -33,7 +33,7 @@ body {
    Header — Dominant Centered Sigil
    ========================================= */
 .site-header {
-  padding: 120px 0; /* makes your current sigil visible */
+  padding: 200px 0; /* makes your current sigil visible */
   overflow: visible;
 }
 .site-header {
