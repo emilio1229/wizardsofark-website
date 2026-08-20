@@ -523,16 +523,21 @@ body {
   margin-left: 6px;
   vertical-align: middle;
 }
-/* ---------- Sigil: keep 600x600 but allow rotation ---------- */
+/* ---------- Force centered 600x600 sigil and keep rotation ---------- */
+.site-header {
+  position: relative !important;
+  overflow: visible !important;
+}
 
-/* Outer wrapper: fixed position + translate only (no rotation) */
+/* Outer wrapper: only positioning and size (no rotation) */
+.site-header > .sigil-wrap,
 .site-header .sigil-wrap {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
   width: 600px !important;
   height: 600px !important;
-  transform: translate(-50%, -50%) !important; /* only translate here */
+  transform: translate(-50%, -50%) !important;
   pointer-events: none !important;
   z-index: 1 !important;
   will-change: transform;
@@ -542,7 +547,8 @@ body {
 }
 
 /* Inner sigil: background image and rotation animation */
-.site-header .sigil {
+.site-header > .sigil-wrap > .sigil,
+.site-header .sigil-wrap .sigil {
   width: 100% !important;
   height: 100% !important;
   background-image: url('assets/sigil.png') !important;
@@ -553,20 +559,19 @@ body {
   pointer-events: none !important;
   display: block !important;
   visibility: visible !important;
-
-  /* Rotate the inner element — this allows translate on the wrapper to remain static */
-  animation: sigilRotate 36s linear infinite !important;
   transform-origin: 50% 50% !important;
+  animation: sigilRotate 36s linear infinite !important;
 }
 
-/* Keyframes only rotate the inner .sigil */
+/* Rotation keyframes */
 @keyframes sigilRotate {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 
-/* Responsive fallback */
+/* Responsive fallback for narrow viewports */
 @media (max-width: 920px) {
+  .site-header > .sigil-wrap,
   .site-header .sigil-wrap {
     width: 220px !important;
     height: 220px !important;
