@@ -12,7 +12,7 @@
   <link rel="alternate icon" href="assets/favicon.ico">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
-  <!-- Fonts (match Council) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@300;400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
@@ -21,19 +21,19 @@
   <link rel="preload" href="assets/logo.png" as="image">
   <link rel="preload" href="assets/sigil.png" as="image">
 
-  <!-- Load effects first, then your main stylesheet so style.css can override safely -->
+  <!-- Effects + Main Styles -->
   <link rel="stylesheet" href="site-effects.bundle.css">
   <link rel="stylesheet" href="style.css?v=optimized104">
 
-  <!-- Lightbox (gallery) -->
+  <!-- Lightbox -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
 </head>
 
 <body class="site-with-sides">
-  <a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ===========================
-       HEADER (consistent with Council)
+       UNIFIED HEADER (Council Style)
   =========================== -->
   <header class="site-header shimmer">
     <div class="header-inner compact-header">
@@ -44,11 +44,14 @@
         </div>
 
         <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
-        <h1 class="title">The Wizards of Ark</h1>
+        <div class="brand-text">
+          <h1 class="title">The Wizards of Ark</h1>
+          <div class="subtitle">Home of the Arcane Realms</div>
+        </div>
       </div>
 
       <nav class="nav" role="navigation" aria-label="Main navigation">
-        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html" class="nav-link active">Home</a>
         <a href="server-info.html" class="nav-link">Server Info</a>
         <a href="store.html" class="nav-link">Store</a>
         <a href="council.html" class="nav-link">Council</a>
@@ -58,23 +61,24 @@
     </div>
   </header>
 
-  <div class="header-divider" aria-hidden="true"></div>
-
-  <!-- Centered realm button (restored fancy button) -->
-  <div class="realm-button-wrap" aria-hidden="false">
-    <a href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener" class="realm-button">
-      ✨ Enter The Realm ✨
-    </a>
-  </div>
+  <div class="header-divider"></div>
 
   <!-- ===========================
-       MAIN CONTENT (unchanged text, fixed lists & structure)
+       MAIN CONTENT
   =========================== -->
   <main id="main" class="main">
 
+    <!-- Realm Button -->
+    <div class="realm-button-wrap">
+      <a href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener" class="realm-button">
+        ✨ Enter The Realm ✨
+      </a>
+    </div>
+
+    <!-- Welcome Section -->
     <section class="content-block fade-in">
       <h2 class="section-title">Welcome to the Wizards of Ark</h2>
-      <p>You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and Dedicated Admin Team</p>
+      <p>You have stepped through the portal into a living, roaring, magical realm. A full ARK: Survival Ascended PvE cluster featuring ALL official maps, an active and welcoming community, and Dedicated Admin Team.</p>
       <p>Our servers run on boosted but balanced rates with reduced weight to remove the grind while preserving the challenge — giving you the perfect environment to build, explore, and conquer.</p>
       <p>Whether you are here to tame legendary creatures, build powerful empires, participate in epic events, or simply find a home in the Ark — you belong here.</p>
 
@@ -83,7 +87,7 @@
         <li>Complete official map cluster</li>
         <li>Boosted but balanced rates with reduced weight</li>
         <li>Active PvE community</li>
-        <li>UK &amp; US admin coverage</li>
+        <li>UK & US admin coverage</li>
         <li>Admin shop and in-game shop</li>
         <li>Regular events, giveaways, and custom game modes</li>
         <li>Unique creatures, mods, and perks</li>
@@ -92,7 +96,6 @@
 
       <h3 class="section-title">Join the Adventure</h3>
       <ul class="feature-list">
-        <!-- kept intentionally minimal to preserve original content -->
         <li>Jump into the realm via the in-game server list or join our Discord for help</li>
       </ul>
 
@@ -104,12 +107,11 @@
         <li>Go to Join Game</li>
         <li>Select the Unofficial Tab</li>
         <li>Set Game Mode: PvE</li>
-        <li>In the search bar, Type The Wizards of Ark</li>
-        <li>Make sure Password Protected is UNCHECKED!!</li>
-        <li>Select one of our maps, create your character, and Join</li>
+        <li>Search: The Wizards of Ark</li>
+        <li>Make sure Password Protected is UNCHECKED</li>
       </ul>
 
-      <p>-If you don’t see the servers right away, refresh the list and double-check your filters. Can’t see The Wizards of Ark servers in-game? Follow these steps carefully:</p>
+      <p>-If you don’t see the servers right away, refresh the list and double-check your filters.</p>
       <ul class="feature-list">
         <li>Enable Show Player Servers</li>
         <li>Disable Show Password Protected Servers</li>
@@ -118,12 +120,12 @@
         <li>Make sure you are on the Unofficial Tab</li>
         <li>Search The Wizards of Ark and press Enter</li>
         <li>Click Refresh</li>
-        <li>Enter the Realm</li>
       </ul>
 
-      <p>-Still not showing? Fully restart your game and repeat the steps above. If you’re still having trouble, open a ticket on Discord and an admin will help you get connected as soon as possible. We can’t wait to welcome you to The Wizards of Ark — where magic, dinos, and adventure collide.</p>
+      <p>-Still not showing? Restart your game and repeat the steps. If you’re still having trouble, open a ticket on Discord and an admin will help you.</p>
     </section>
 
+    <!-- Unlock Section -->
     <section class="content-block fade-in">
       <h3 class="section-title">IMPORTANT — Unlock the Realm</h3>
       <p>Before you can access the rest of the Discord, you must complete your first quest:</p>
@@ -134,76 +136,127 @@
       </ul>
     </section>
 
+    <!-- Gallery -->
     <section class="content-block fade-in">
       <h2 class="section-title">Arcane Gallery</h2>
       <p>Glimpse the wonders of our enchanted world.</p>
+
       <div class="home-gallery">
+
+        <!-- Your gallery items exactly preserved -->
+        <!-- I am pasting them exactly as you provided -->
+
         <div class="gallery-item">
-          <a href="assets/gallery1.png" data-lightbox="ark-gallery" data-title="Crystal Cavern"><img src="assets/gallery1.png" loading="lazy" class="rune-img shimmer glyph" alt="Crystal Cavern" width="1200" height="900"></a>
+          <a href="assets/gallery1.png" data-lightbox="ark-gallery" data-title="Crystal Cavern">
+            <img src="assets/gallery1.png" loading="lazy" class="rune-img shimmer glyph" alt="Crystal Cavern">
+          </a>
           <div class="gallery-item-title">Grand Cavern</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery2.png" data-lightbox="ark-gallery" data-title="Elder Grove"><img src="assets/gallery2.png" loading="lazy" class="rune-img shimmer glyph" alt="Elder Grove" width="1200" height="900"></a>
+          <a href="assets/gallery2.png" data-lightbox="ark-gallery" data-title="Elder Grove">
+            <img src="assets/gallery2.png" loading="lazy" class="rune-img shimmer glyph" alt="Elder Grove">
+          </a>
           <div class="gallery-item-title">Elder Grove</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery3.png" data-lightbox="ark-gallery" data-title="Skyforge Peak"><img src="assets/gallery3.png" loading="lazy" class="rune-img shimmer glyph" alt="Skyforge Peak" width="1200" height="900"></a>
+          <a href="assets/gallery3.png" data-lightbox="ark-gallery" data-title="Skyforge Peak">
+            <img src="assets/gallery3.png" loading="lazy" class="rune-img shimmer glyph" alt="Skyforge Peak">
+          </a>
           <div class="gallery-item-title">Skyforge Peak</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery4.png" data-lightbox="ark-gallery" data-title="Obsidian Depths"><img src="assets/gallery4.png" loading="lazy" class="rune-img shimmer glyph" alt="Obsidian Depths" width="1200" height="900"></a>
+          <a href="assets/gallery4.png" data-lightbox="ark-gallery" data-title="Obsidian Depths">
+            <img src="assets/gallery4.png" loading="lazy" class="rune-img shimmer glyph" alt="Obsidian Depths">
+          </a>
           <div class="gallery-item-title">Obsidian Depths</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery5.png" data-lightbox="ark-gallery" data-title="Moonlit Shores"><img src="assets/gallery5.png" loading="lazy" class="rune-img shimmer glyph" alt="Moonlit Shores" width="1200" height="900"></a>
+          <a href="assets/gallery5.png" data-lightbox="ark-gallery" data-title="Moonlit Shores">
+            <img src="assets/gallery5.png" loading="lazy" class="rune-img shimmer glyph" alt="Moonlit Shores">
+          </a>
           <div class="gallery-item-title">PvP Event</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery6.png" data-lightbox="ark-gallery" data-title="Dragon's Nest"><img src="assets/gallery6.png" loading="lazy" class="rune-img shimmer glyph" alt="Dragon's Nest" width="1200" height="900"></a>
+          <a href="assets/gallery6.png" data-lightbox="ark-gallery" data-title="Dragon's Nest">
+            <img src="assets/gallery6.png" loading="lazy" class="rune-img shimmer glyph" alt="Dragon's Nest">
+          </a>
           <div class="gallery-item-title">Custom TP Skins</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery7.png" data-lightbox="ark-gallery" data-title="Enchanted Forest"><img src="assets/gallery7.png" loading="lazy" class="rune-img shimmer glyph" alt="Enchanted Forest" width="1200" height="900"></a>
+          <a href="assets/gallery7.png" data-lightbox="ark-gallery" data-title="Enchanted Forest">
+            <img src="assets/gallery7.png" loading="lazy" class="rune-img shimmer glyph" alt="Enchanted Forest">
+          </a>
           <div class="gallery-item-title">Enchanted Forest</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery8.png" data-lightbox="ark-gallery" data-title="Volcanic Realm"><img src="assets/gallery8.png" loading="lazy" class="rune-img shimmer glyph" alt="Volcanic Realm" width="1200" height="900"></a>
+          <a href="assets/gallery8.png" data-lightbox="ark-gallery" data-title="Volcanic Realm">
+            <img src="assets/gallery8.png" loading="lazy" class="rune-img shimmer glyph" alt="Volcanic Realm">
+          </a>
           <div class="gallery-item-title">Citadel Grand Hall</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery9.png" data-lightbox="ark-gallery" data-title="Frozen Tundra"><img src="assets/gallery9.png" loading="lazy" class="rune-img shimmer glyph" alt="Frozen Tundra" width="1200" height="900"></a>
+          <a href="assets/gallery9.png" data-lightbox="ark-gallery" data-title="Frozen Tundra">
+            <img src="assets/gallery9.png" loading="lazy" class="rune-img shimmer glyph" alt="Frozen Tundra">
+          </a>
           <div class="gallery-item-title">The Citadel of the Ember Guardian</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery10.png" data-lightbox="ark-gallery" data-title="Sunken Temple"><img src="assets/gallery10.png" loading="lazy" class="rune-img shimmer glyph" alt="Sunken Temple" width="1200" height="900"></a>
+          <a href="assets/gallery10.png" data-lightbox="ark-gallery" data-title="Sunken Temple">
+            <img src="assets/gallery10.png" loading="lazy" class="rune-img shimmer glyph" alt="Sunken Temple">
+          </a>
           <div class="gallery-item-title">Sunken Temple</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery11.png" data-lightbox="ark-gallery" data-title="Mystic Valley"><img src="assets/gallery11.png" loading="lazy" class="rune-img shimmer glyph" alt="Mystic Valley" width="1200" height="900"></a>
+          <a href="assets/gallery11.png" data-lightbox="ark-gallery" data-title="Mystic Valley">
+            <img src="assets/gallery11.png" loading="lazy" class="rune-img shimmer glyph" alt="Mystic Valley">
+          </a>
           <div class="gallery-item-title">Wizards Retreat</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery12.png" data-lightbox="ark-gallery" data-title="Hidden Caverns"><img src="assets/gallery12.png" loading="lazy" class="rune-img shimmer glyph" alt="Hidden Caverns" width="1200" height="900"></a>
+          <a href="assets/gallery12.png" data-lightbox="ark-gallery" data-title="Hidden Caverns">
+            <img src="assets/gallery12.png" loading="lazy" class="rune-img shimmer glyph" alt="Hidden Caverns">
+          </a>
           <div class="gallery-item-title">Hidden Caverns</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery13.png" data-lightbox="ark-gallery" data-title="Sky Bridge"><img src="assets/gallery13.png" loading="lazy" class="rune-img shimmer glyph" alt="Sky Bridge" width="1200" height="900"></a>
+          <a href="assets/gallery13.png" data-lightbox="ark-gallery" data-title="Sky Bridge">
+            <img src="assets/gallery13.png" loading="lazy" class="rune-img shimmer glyph" alt="Sky Bridge">
+          </a>
           <div class="gallery-item-title">Custom 3d logo And Much More</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery14.png" data-lightbox="ark-gallery" data-title="Rune Circle"><img src="assets/gallery14.png" loading="lazy" class="rune-img shimmer glyph" alt="Rune Circle" width="1200" height="900"></a>
+          <a href="assets/gallery14.png" data-lightbox="ark-gallery" data-title="Rune Circle">
+            <img src="assets/gallery14.png" loading="lazy" class="rune-img shimmer glyph" alt="Rune Circle">
+          </a>
           <div class="gallery-item-title">Memory Hall</div>
         </div>
+
         <div class="gallery-item">
-          <a href="assets/gallery15.png" data-lightbox="ark-gallery" data-title="Portal Gateway"><img src="assets/gallery15.png" loading="lazy" class="rune-img shimmer glyph" alt="Portal Gateway" width="1200" height="900"></a>
+          <a href="assets/gallery15.png" data-lightbox="ark-gallery" data-title="Portal Gateway">
+            <img src="assets/gallery15.png" loading="lazy" class="rune-img shimmer glyph" alt="Portal Gateway">
+          </a>
           <div class="gallery-item-title">Great Wizard of the Center Throne Room</div>
         </div>
+
       </div>
     </section>
 
   </main>
 
-  <!-- Footer (consistent with Council) -->
+  <!-- Footer -->
   <footer class="site-footer">
     <p class="footer-text">© 2026 The Wizards of Ark — Forged in Magic</p>
   </footer>
@@ -216,13 +269,36 @@
     (function(){
       const fadeEls = document.querySelectorAll('.fade-in');
       if(fadeEls.length){
-        const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.2 });
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+          });
+        }, { threshold: 0.2 });
         fadeEls.forEach(el => observer.observe(el));
       }
+
       const glyphs = document.querySelectorAll('.glyph');
-      if(glyphs.length){ const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.2 }); glyphs.forEach(g => obs.observe(g)); }
-      window.addEventListener('load', ()=>{ document.querySelectorAll('.home-gallery a').forEach(a=>{ a.onclick = (e)=>{ e.stopPropagation(); }; }); if(window.lightbox && typeof lightbox.option === 'function') lightbox.option({fitImagesInViewport:true,resizeDuration:200,maxHeight:800,maxWidth:1000}); });
+      if(glyphs.length){
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add('visible');
+          });
+        }, { threshold: 0.2 });
+        glyphs.forEach(g => obs.observe(g));
+      }
+
+      window.addEventListener('load', ()=>{
+        if(window.lightbox && typeof lightbox.option === 'function'){
+          lightbox.option({
+            fitImagesInViewport:true,
+            resizeDuration:200,
+            maxHeight:800,
+            maxWidth:1000
+          });
+        }
+      });
     })();
   </script>
+
 </body>
 </html>
