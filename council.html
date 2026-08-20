@@ -2,46 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Arcane Council |The Wizards of Ark</title>
+    <title>The Wizards of Ark — Arcane Council</title>
 
-    <!-- Favicon -->
+    <!-- Favicons -->
     <link rel="icon" type="image/png" href="assets/favicon-32.png">
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@300;400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <!-- Effects + Main Styles -->
+    <link rel="stylesheet" href="site-effects.bundle.css">
+    <link rel="stylesheet" href="style.css?v=optimized104">
 </head>
 
-<body>
+<body class="site-with-sides">
+    <a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ===========================
-     HEADER (correct version)
+     UNIFIED HEADER (Council Style)
 =========================== -->
-  <header class="site-header shimmer">
+<header class="site-header shimmer">
     <div class="header-inner compact-header">
 
-      <div class="brand">
-        <div class="sigil-wrap" aria-hidden="true">
-          <div class="sigil"></div>
+        <div class="brand">
+            <div class="sigil-wrap" aria-hidden="true">
+                <div class="sigil"></div>
+            </div>
+
+            <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
+            <div class="brand-text">
+                <h1 class="title">The Wizards of Ark</h1>
+                <div class="subtitle">The Arcane Council</div>
+            </div>
         </div>
 
-        <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
-        <h1 class="title">The Wizards of Ark</h1>
-      </div>
-
-      <nav class="nav" role="navigation" aria-label="Main navigation">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="server-info.html" class="nav-link">Server Info</a>
-        <a href="store.html" class="nav-link active" aria-current="page">Store</a>
-        <a href="council.html" class="nav-link">Council</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-      </nav>
+        <nav class="nav" role="navigation" aria-label="Main navigation">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="server-info.html" class="nav-link">Server Info</a>
+            <a href="store.html" class="nav-link">Store</a>
+            <a href="council.html" class="nav-link active">Council</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+        </nav>
 
     </div>
-  </header>
+</header>
 
+<div class="header-divider"></div>
 
 <!-- ===========================
      COUNCIL CONTENT
 =========================== -->
+<main id="main" class="main">
+
 <div class="council-container">
 
     <h1 class="council-title">THE ARCANE COUNCIL</h1>
@@ -122,7 +136,7 @@
     </div>
 
     <!-- BOTS -->
-    <h2 class="council-section">Arcane Automatation</h2>
+    <h2 class="council-section">Arcane Automation</h2>
 
     <div class="bot-list">
         <p>Wizards of Ark Bot — Realm automation & announcements</p>
@@ -147,9 +161,10 @@
 
 </div>
 
+</main>
 
 <!-- ===========================
-     FOOTER (centered + premium)
+     FOOTER
 =========================== -->
 <footer class="site-footer">
     <div class="footer-inner">
@@ -157,6 +172,9 @@
         <a href="https://discord.gg/YOURINVITE" class="discord-footer">Join the Discord</a>
     </div>
 </footer>
+
+<!-- Scripts -->
+<script defer src="site-effects.bundle.js"></script>
 
 </body>
 </html>
