@@ -1,382 +1,419 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png">
-<link rel="alternate icon" href="assets/favicon.ico">
-<meta name="theme-color" content="#c9a86a">
-<meta charset="utf-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Wizards of Ark — Server Info & Full Rules</title>
+  <meta name="theme-color" content="#c9a86a">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@300;400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Favicons -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#c9a86a">
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Effects + Main Styles -->
   <link rel="stylesheet" href="site-effects.bundle.css">
+  <link rel="stylesheet" href="style.css?v=optimized104">
+
   <style>
-    details{background:rgba(255,255,255,0.06);border:1px solid rgba(201,168,106,0.12);border-radius:12px;padding:14px 18px;margin-bottom:18px;box-shadow:0 6px 20px rgba(0,0,0,0.45);}
-    summary{font-family:var(--glyph);font-size:22px;color:var(--gold);cursor:pointer;outline:none}
-    details[open]{background:rgba(255,255,255,0.10)}
+    details {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--panel-border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+      cursor: pointer;
+    }
+    summary {
+      font-family: var(--glyph);
+      font-size: 22px;
+      color: var(--gold);
+      cursor: pointer;
+      outline: none;
+    }
+    details[open] {
+      background: rgba(255,255,255,0.10);
+    }
+    details p, details ul, details li {
+      margin-top: 12px;
+      line-height: 1.6;
+    }
   </style>
 </head>
-<body class="site-with-sides compact-header">
-  <a class="skip-link" href="#main" style="position:absolute;left:-9999px;">Skip to content</a>
-<header class="site-header shimmer">
-  <div class="header-inner compact-header">
 
-    <div class="brand">
-      <div class="sigil-wrap">
-        <div class="sigil"></div>
+<body class="site-with-sides">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===========================
+       UNIFIED HEADER (Council Style)
+  =========================== -->
+  <header class="site-header shimmer">
+    <div class="header-inner compact-header">
+
+      <div class="brand">
+        <div class="sigil-wrap" aria-hidden="true">
+          <div class="sigil"></div>
+        </div>
+
+        <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
+        <div class="brand-text">
+          <h1 class="title">The Wizards of Ark</h1>
+          <div class="subtitle">Server Info & Full Rules</div>
+        </div>
       </div>
 
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="server-info.html" class="nav-link active">Server Info</a>
+        <a href="store.html" class="nav-link">Store</a>
+        <a href="council.html" class="nav-link">Council</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
 
-      <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
-
-      <h1 class="title">The Wizards of Ark</h1>
     </div>
+  </header>
 
-   <nav class="nav">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="server-info.html" class="nav-link">Server Info</a>
-    <a href="store.html" class="nav-link">Store</a>
-    <a href="council.html" class="nav-link">Council</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-</nav>
+  <div class="header-divider"></div>
 
-
-  </div>
-</header>
-
-
-  <div class="header-divider" aria-hidden="true"></div>
-
+  <!-- ===========================
+       MAIN CONTENT
+  =========================== -->
   <main id="main" class="main">
-    <section class="content-block">
+
+    <section class="content-block fade-in">
       <h2 class="section-title">Full Server Rules & Settings</h2>
-      
-      <p>Below is the complete rule list and server configuration for the Wizards of Ark PvE cluster. All sections are collapsible for easier reading.</p>
-   
+      <p>Below is the complete, unedited rule list and server configuration for the Wizards of Ark PvE cluster. All sections are collapsible for easier reading.</p>
     </section>
 
+    <!-- BUILDING RULES -->
     <details>
-  <summary>Building Rules (BR)</summary>
+      <summary>Building Rules (BR)</summary>
+      <p><strong>BR1 — Base Limits</strong></p>
+      <ul>
+        <li>Max 2 bases per tribe, per map</li>
+        <li>3rd base = removed without warning</li>
+        <li>Bases must be at least 500 meters apart</li>
+        <li>Main bases may not exceed a 500m radius</li>
+        <li>Exceptions require neighbor agreement + admin approval</li>
+      </ul>
 
-  <h4>BR1 — Base Limits</h4>
-  <ul>
-    <li>Max 2 bases per tribe, per map</li>
-    <li>3rd base = removed without warning</li>
-    <li>Bases must be at least 500 meters apart (measured from main base centers)</li>
-    <li>Main bases may not exceed a 500m radius — larger counts as a second base</li>
-    <li>Exceptions require neighbor agreement and admin approval via ticket</li>
-  </ul>
+      <p><strong>BR2 — No Exploit Builds</strong></p>
+      <ul>
+        <li>No under-map / mesh / glitch areas</li>
+        <li>No artifact caves</li>
+        <li>No obelisks</li>
+        <li>No Ovis Island (Astraeos)</li>
+        <li>No Explorer Notes & Bob’s Tales Notes</li>
+        <li>No spawn zones</li>
+        <li>No Valguero Red Zone</li>
+        <li>No Aberration surfaces or entrances</li>
+        <li>No dino nests</li>
+        <li>No Wyvern trenches</li>
+        <li>No high-resource spawn zones</li>
+      </ul>
 
-  <h4>BR2 — No Exploit Builds</h4>
-  <p>You may not build or enter:</p>
-  <ul>
-    <li>Under-map / mesh / glitch areas</li>
-    <li>Artifact caves</li>
-    <li>Obelisks</li>
-    <li>Ovis Island (Astraeos)</li>
-    <li>Explorer Notes & Bob’s Tales Notes</li>
-    <li>Spawn zones</li>
-    <li>Valguero Red Zone & entrances</li>
-    <li>Aberration surfaces & entrances (including Valguero Abb zone)</li>
-    <li>Dino nests (Wyvern, Deinonychus, Rock Drake, etc.)</li>
-    <li>Wyvern trenches</li>
-    <li>High-resource spawn zones</li>
-  </ul>
-  <p>No meshing or stacking inside any structures including cloning chambers, traps, gates, chairs, terminals, and Gacha Gavagers.</p>
-  <p><strong>Violations may result in immediate admin removal without warning.</strong></p>
+      <p><strong>BR3 — Structure Management</strong></p>
+      <ul>
+        <li>No structure spam</li>
+        <li>Temporary build pieces must be removed</li>
+        <li>Max 10,000 structures per tribe, per map</li>
+        <li>Max 8 Gacha Gavagers</li>
+        <li>Max 3 Ocean Platforms</li>
+        <li>Max 4 cloning chambers</li>
+        <li>Max 3 teleporters (2 must be unlocked)</li>
+        <li>Tek Replicators must be turned off before logout</li>
+        <li>Oil rigs must remain unlocked</li>
+      </ul>
+    </details>
 
-  <h4>BR3 — Structure Management</h4>
-  <ul>
-    <li>No structure spam</li>
-    <li>Temporary build pieces must be removed</li>
-    <li>Max 10,000 structures per tribe, per map</li>
-    <li>Max 8 Gacha Gavagers per tribe, per map</li>
-    <li>Max 3 Ocean Platforms per tribe, per map</li>
-    <li>Max 4 cloning chambers/terminals per tribe, per map</li>
-    <li>Max 3 teleporters per tribe, per map (must have at least 2 unlocked)</li>
-    <li>Tek Replicators must be turned off before logout</li>
-    <li>Oil rigs must remain unlocked (small box allowed for personal oil storage)</li>
-  </ul>
-</details>
+    <!-- TAMING RULES -->
+    <details>
+      <summary>Taming & Creature Rules (TR)</summary>
+      <p><strong>TR1 — Tame Management</strong></p>
+      <ul>
+        <li>No blocking resources or paths</li>
+        <li>No dinos left at obelisks or caves</li>
+        <li>Abandoned dinos may be removed</li>
+      </ul>
 
-<details>
-  <summary>Taming & Creature Rules (TR)</summary>
+      <p><strong>TR2 — Tame Limits & Behavior</strong></p>
+      <ul>
+        <li>No stacking dinos</li>
+        <li>No stealing or trapping tames</li>
+        <li>First hit = claim</li>
+      </ul>
 
-  <h4>TR1 — Tame Management</h4>
-  <ul>
-    <li>Do not block resources, paths, or access routes with tames</li>
-    <li>Do not leave dinos at spawn points, obelisks, caves, or high-traffic areas</li>
-    <li>Any dinos left at obelisks or inside caves will be destroyed without warning</li>
-    <li>Abandoned, neglected, or misplaced dinos may be removed by admins</li>
-  </ul>
+      <p><strong>TR3 — Starter Creature Balance</strong></p>
+      <ul>
+        <li>No A-tier or S-tier dinos to new players</li>
+        <li>No mutated or overpowered dinos</li>
+        <li>New players = less than 7 days in Discord</li>
+        <li>All gifted dinos must be spayed/neutered</li>
+      </ul>
+    </details>
 
-  <h4>TR2 — Tame Limits & Behavior</h4>
-  <ul>
-    <li>No stacking of dinos at any time</li>
-    <li>Players may not steal, trap, claim, or interfere with another player’s tames</li>
-    <li>Wild tames follow the rule: first hit = claim</li>
-    <li>All disputes require clear proof</li>
-  </ul>
+    <!-- GAMEPLAY RULES -->
+    <details>
+      <summary>Gameplay & Performance Rules (GR)</summary>
+      <p><strong>GR1 — Fair Play</strong></p>
+      <ul>
+        <li>No hacking, exploiting, duping, macros, glitching</li>
+      </ul>
 
-  <h4>TR3 — Starter Creature Balance</h4>
-  <p>Brand new players are here to experience the game properly.</p>
-  <ul>
-    <li>Do NOT give A-Tier or S-Tier dinos to new players</li>
-    <li>Do NOT give mutated or overpowered dinos of any kind</li>
-    <li>New players = less than 7 days in Discord</li>
-    <li>All gifted dinos must be spayed or neutered</li>
-  </ul>
-  <p>Giving end-game creatures to new players destroys progression and is strictly forbidden.</p>
-</details>
+      <p><strong>GR2 — Player Restrictions</strong></p>
+      <ul>
+        <li>One character per player</li>
+        <li>No alts or shared accounts</li>
+      </ul>
 
-<details>
-  <summary>Gameplay & Performance Rules (GR)</summary>
+      <p><strong>GR3 — Safe Zones</strong></p>
+      <ul>
+        <li>No structures or tames at spawns, obelisks, teleport pads</li>
+      </ul>
 
-  <h4>GR1 — Fair Play</h4>
-  <p>No hacking, exploiting, bug abuse, macros, duping, glitching, cave exploits, 50/50 abuse, or plugin abuse.</p>
+      <p><strong>GR4 — Griefing (ZERO TOLERANCE)</strong></p>
+      <ul>
+        <li>No blocking bases or paths</li>
+        <li>No trapping players</li>
+        <li>No stealing tames or drops</li>
+        <li>No luring wilds to bases</li>
+        <li>No harassment or trolling</li>
+      </ul>
 
-  <h4>GR2 — Player Restrictions</h4>
-  <ul>
-    <li>One character per player</li>
-    <li>No alts or shared accounts</li>
-  </ul>
+      <p><strong>GR5 — Performance</strong></p>
+      <ul>
+        <li>Lag-causing bases may be wiped</li>
+      </ul>
+    </details>
 
-  <h4>GR3 — Safe Zones</h4>
-  <p>No structures or tames at spawns, obelisks, or teleport pads.</p>
+    <!-- TRIBE RULES -->
+    <details>
+      <summary>Tribe & Player Rules (PR)</summary>
+      <ul>
+        <li>Max 6 members per tribe</li>
+        <li>No “Human”, “123”, offensive names</li>
+        <li>No duplicate tribe names</li>
+        <li>Admins do not replace losses caused by tribe actions</li>
+        <li>No harassment or hate speech</li>
+        <li>No advertising other servers</li>
+        <li>No real-money trades</li>
+        <li>Scams = permanent ban</li>
+      </ul>
+    </details>
 
-  <h4>GR4 — Griefing (ZERO TOLERANCE)</h4>
-  <p>Includes: blocking bases or paths, trapping players, stealing tames or drops, luring wilds to bases, harassment, trolling, provocation, or interfering with breeding.</p>
+    <!-- ADMIN RULES -->
+    <details>
+      <summary>Admin & Enforcement (AR)</summary>
+      <ul>
+        <li>Admins may remove rule-breaking content</li>
+        <li>Violations may result in wipes, suspensions, bans</li>
+        <li>Appeals must go through tickets</li>
+        <li>No DMing admins for rule enforcement</li>
+      </ul>
+    </details>
 
-  <h4>GR5 — Performance</h4>
-  <p>Overbuilt bases, excessive structures, or dino hoarding causing lag may be wiped.</p>
-</details>
+    <!-- ECONOMY RULES -->
+    <details>
+      <summary>Trading & Economy Protection Rules</summary>
+      <p><strong>Mutated Dino Trading</strong></p>
+      <ul>
+        <li>All mutated dinos must be spayed/neutered before trading</li>
+      </ul>
 
-<details>
-  <summary>Tribe & Player Rules (PR)</summary>
+      <p><strong>Breeding Line Ownership</strong></p>
+      <ul>
+        <li>No reselling breedable lines without permission</li>
+        <li>Cannot resell for less than breeder’s price</li>
+      </ul>
 
-  <h4>PR1 — Tribe Size</h4>
-  <p>Max 6 members per tribe, per map</p>
+      <p><strong>Monthly Pack Restrictions</strong></p>
+      <ul>
+        <li>Monthly Pack creatures may only be traded among owners during active month</li>
+      </ul>
 
-  <h4>PR2 — Names</h4>
-  <p>No “Human” (any language), no “123”, no random strings, no offensive names.</p>
+      <p><strong>Trade Documentation</strong></p>
+      <ul>
+        <li>All trades must be documented in PvE Trading Channel</li>
+      </ul>
 
-  <h4>PR3 — Tribe Names</h4>
-  <p>No duplicate tribe names across the cluster.</p>
+      <p><strong>New Player Protection</strong></p>
+      <ul>
+        <li>No giving dinos to players under 7 days</li>
+      </ul>
 
-  <h4>PR4 — Tribe Integrity</h4>
-  <p>Admins do not replace losses caused by internal tribe actions.</p>
+      <p><strong>Enforcement</strong></p>
+      <ul>
+        <li>Violations may result in warnings, removals, suspensions, bans</li>
+      </ul>
+    </details>
 
-  <h4>PR5 — Conduct</h4>
-  <p>No harassment, hate speech, toxic behavior, or offensive language.</p>
+    <!-- SERVER SETTINGS -->
+    <details>
+      <summary>Server Settings</summary>
+      <ul>
+        <li>Cluster Type: PvE</li>
+        <li>Crossplay Enabled</li>
+        <li>Platforms: PC / Xbox / PlayStation</li>
+        <li>Maps: All Official Maps</li>
+        <li>Max Player Level: 190</li>
+        <li>Tribe Max: 6</li>
+        <li>Max structures: 10,000</li>
+        <li>Max Ocean Platforms: 3</li>
+        <li>Max Cloning Chambers: 4</li>
+        <li>Max Gacha Gavagers: 8</li>
+        <li>Max bases: 2 per map</li>
+      </ul>
+    </details>
 
-  <h4>PR6 — Advertising & Trading</h4>
-  <ul>
-    <li>No advertising other servers.</li>
-    <li>No real-money trades.</li>
-    <li>Scams = permanent ban.</li>
-  </ul>
-</details>
+    <!-- RATES -->
+    <details>
+      <summary>General Rates</summary>
+      <ul>
+        <li>XP: 1.5×</li>
+        <li>Harvest: 5×</li>
+        <li>Taming: 10×</li>
+        <li>Resource Respawn: 0.8× delay</li>
+        <li>Player Weight: x15</li>
+        <li>Cryopods Enabled</li>
+      </ul>
+    </details>
 
-<details>
-  <summary>Admin & Enforcement (AR)</summary>
-  <ul>
-    <li>Admins may remove any rule-breaking content</li>
-    <li>Violations may result in wipes, suspensions, or bans</li>
-    <li>Appeals and issues must go through #support tickets</li>
-    <li>Do NOT DM admins or owners for rule enforcement</li>
-    <li>Do not pull admins into voice for rule issues — use tickets only</li>
-  </ul>
-  <p><strong>Respect the Realm | Protect the Magic | The Wizards of Ark</strong><br>Rules subject to change</p>
-</details>
+    <!-- DECAY -->
+    <details>
+      <summary>Decay Timers</summary>
+      <ul>
+        <li>Thatch: 4 days</li>
+        <li>Wood/Adobe: 12 days</li>
+        <li>Stone: 18 days</li>
+        <li>Metal: 24 days</li>
+        <li>Tek: 30 days</li>
+        <li>Creature Decay: 14 days</li>
+        <li>Death Bag: 1 hour</li>
+      </ul>
+    </details>
 
-<details>
-  <summary>Trading & Economy Protection Rules</summary>
-  <p>To protect the long-term health of the cluster economy and the value of players' breeding projects, the following rules are now in effect.</p>
+    <!-- DINO SETTINGS -->
+    <details>
+      <summary>Dino Settings</summary>
+      <ul>
+        <li>Max Wild Level: 150</li>
+        <li>Egg Hatch: x10</li>
+        <li>Maturation: x15</li>
+        <li>Mating Interval: x10</li>
+        <li>Imprint: 100% per cuddle</li>
+        <li>Dino Weight: x8</li>
+        <li>Flyer Carry Enabled</li>
+        <li>Dino Decay: 14 days</li>
+        <li>Auto Dino Wipe: Every 24h</li>
+      </ul>
+    </details>
 
-  <h4>Mutated Dino Trading</h4>
-  <p>All mutated dinos traded between players must be spayed or neutered before being traded. This helps breeders protect the time and effort invested into their lines and prevents uncontrolled redistribution of breeding stock.</p>
+    <!-- SERVER MANAGEMENT -->
+    <details>
+      <summary>Server Management</summary>
+      <ul>
+        <li>Save Interval: 15–30 minutes</li>
+        <li>Restart: 03:00 AM PST</li>
+        <li>Dino Wipe: 01:00 PM GMT</li>
+        <li>Cleanup: Every Sunday</li>
+        <li>Corpse Locator Enabled</li>
+        <li>Admin Logging Enabled</li>
+      </ul>
+    </details>
 
-  <h4>Breeding Line Ownership & Resale</h4>
-  <p>Players may not resell breedable lines obtained from another breeder without the breeder's explicit permission. If permission is granted, those lines may not be resold for less than the original breeder's advertised price. Respect the work, time, and resources invested by breeders in developing their lines.</p>
+    <!-- NOTES -->
+    <details>
+      <summary>Notes & Restart Changes</summary>
+      <p>Extended daylight, shorter nights. Rates may adjust during events.</p>
+      <p><strong>Daily Restart Time:</strong> 03:00 AM PST / 10:00 AM GMT</p>
+    </details>
 
-  <h4>Monthly Pack Dino Restrictions</h4>
-  <p>Monthly Pack creatures, whether purchased or won through events, giveaways, or competitions, may only be traded between players who own that month's pack during the active month. Monthly Pack creatures may not be distributed to players who did not purchase that month's pack while the pack is active. Once a new Monthly Pack is released, creatures from the previous month's pack may be traded freely.</p>
+    <!-- PERFORMANCE -->
+    <details>
+      <summary>Performance Updates</summary>
+      <ul>
+        <li>Tame limit reduced to 80</li>
+        <li>Auto-destroy enabled</li>
+        <li>Expired creatures no longer claimable</li>
+      </ul>
+    </details>
 
-  <h4>Trade Documentation Requirement</h4>
-  <p>All trades must be documented through the PvE Trading Channel on Discord. Trades conducted exclusively through DMs, private messages, or undocumented in-game exchanges are not permitted. Trade records help staff resolve disputes and ensure transparency within the economy.</p>
+    <!-- DINO DEPOT -->
+    <details>
+      <summary>Dino Depot Changes</summary>
+      <ul>
+        <li>Transfer/Upload disabled</li>
+        <li>Passive production disabled</li>
+        <li>Egg production disabled</li>
+        <li>Poop generation disabled</li>
+        <li>Fertilizer distribution disabled</li>
+      </ul>
+    </details>
 
-  <h4>New Player Progression Protection</h4>
-  <p>Giving away dinos to players who have been on the cluster for less than 7 days is not permitted. ARK is a survival game, and early-game progression is intended to be part of the experience. We appreciate the generosity of our community, but we do not want to eliminate the early-game challenge for new survivors. New players already have access to Starter Packs and other beginner-friendly benefits.</p>
+    <!-- MODS -->
+    <details>
+      <summary>Active Mods</summary>
+      <ul>
+        <li>Cybers Structures QoL+</li>
+        <li>Dino Depot</li>
+        <li>Awesome Spyglass!</li>
+        <li>Auto Engrams!</li>
+        <li>Helena Bot Companion</li>
+        <li>Resonant’s Shop Mod</li>
+        <li>Additions Ascended</li>
+        <li>Astraeos</li>
+        <li>Dragon’s Kingdom</li>
+        <li>Shiny! Dinos Ascended</li>
+        <li>Zytharian Critters</li>
+        <li>Hatzegopteryx Kukulkan</li>
+      </ul>
+    </details>
 
-  <h4>Trade Transparency & Verification</h4>
-  <p>All trades involving Monthly Pack creatures, Shop creatures, or breeding lines must clearly identify the original breeder or seller if requested by staff. Failure to provide accurate information regarding the source of traded creatures may be treated as an attempt to circumvent these rules.</p>
+    <!-- SHOP GUIDE -->
+    <details>
+      <summary>Resonant In-Game Shop Guide</summary>
+      <p><strong>Access:</strong> PC: F1 • Console: Radial Wheel</p>
+      <p><strong>Points:</strong> Earn 100 points every 30 minutes</p>
+      <p><strong>Purchases:</strong> Dinos, potions, custom packages</p>
+      <p><strong>Trading Points:</strong> Allowed</p>
+      <p><strong>Tips:</strong> Save for high-value dinos</p>
+    </details>
 
-  <h4>Enforcement</h4>
-  <p>Any attempt to circumvent these rules, exploit loopholes, or undermine the cluster economy may result in administrative action. Violations may result in warnings, removal of creatures, temporary suspensions, or permanent bans depending on the severity and frequency of the offense.</p>
+    <!-- CS TRIBUTE -->
+    <details>
+      <summary>CS Tribute Terminal Guide</summary>
+      <p>Convert non-transferable items into travel form.</p>
+      <p>Each player can claim 3 Tribute Terminals per map.</p>
+    </details>
 
-  <p>These rules are intended to protect the long-term health and sustainability of the cluster economy, preserve a fair and balanced economy, protect the significant time and resources breeders have invested into developing their lines, maintain the value of Monthly Packs and Shop purchases, and ensure that all players progress through the game as intended.</p>
-</details>
-
-<details>
-  <summary>Server Settings & Rates</summary>
-
-  <h4>Server Settings</h4>
-  <ul>
-    <li>Cluster Type: PvE</li>
-    <li>Crossplay Cluster: Enabled</li>
-    <li>Platforms: PC / Xbox / PlayStation</li>
-    <li>Current Maps: All Official Maps</li>
-    <li>Max Player Level: 190</li>
-    <li>Alliances: Allowed</li>
-    <li>Tribe Max: 6 players</li>
-    <li>Max structures per tribe, per map: 10,000</li>
-    <li>Max Ocean Platforms: 3 per tribe, per map</li>
-    <li>Max Cloning Chambers: 4 per tribe, per map</li>
-    <li>Max Item Aggregator: 8 per tribe, per map</li>
-    <li>Max Vivaruim: 8 per tribe, per map</li>
-    <li>Max Gacha Gavagers: 8 per tribe, per map</li>
-    <li>Max bases per tribe: 2 per map</li>
-  </ul>
-
-  <h4>General Rates</h4>
-  <ul>
-    <li>XP: 1.5×</li>
-    <li>Harvesting: 5×</li>
-    <li>Taming Speed: 10×</li>
-    <li>Resource Respawn: 0.8× delay (faster regrowth)</li>
-    <li>Player Health Recovery: 2×</li>
-    <li>Player Resistance: 0.6×</li>
-    <li>Player Food & Water Drain: 0.2×</li>
-    <li>Player Weight: x15</li>
-    <li>Cryopods: Enabled (no sickness / no fridge required)</li>
-    <li>Structure Pickup: Enabled</li>
-  </ul>
-
-  <h4>Decay Timers</h4>
-  <ul>
-    <li>Thatch: 4 Days</li>
-    <li>Adobe: 12 Days</li>
-    <li>Wood: 12 Days</li>
-    <li>Stone: 18 Days</li>
-    <li>Metal: 24 Days</li>
-    <li>Greenhouse: 24 Days</li>
-    <li>Tek: 30 Days</li>
-    <li>Oil Pump: 3 Days</li>
-    <li>Gas Pump: 6 Days</li>
-    <li>Creature decay timer: 14 Days</li>
-    <li>Death Bag Decay: 1 Hour</li>
-  </ul>
-
-  <h4>Dino Settings</h4>
-  <ul>
-    <li>Max Wild Level: 150</li>
-    <li>Egg Hatch Speed: x10</li>
-    <li>Maturation Speed: x15</li>
-    <li>Mating Interval: x10</li>
-    <li>Baby Imprint: 100 % per cuddle</li>
-    <li>Dino Weight: x8</li>
-    <li>Flyer Carry: Enabled (PvE safe)</li>
-    <li>Dino Decay: Enabled (14 days)</li>
-    <li>Auto Dino Wipe: Every 24 h (server-wide broadcast)</li>
-  </ul>
-
-  <h4>Server Management</h4>
-  <ul>
-    <li>Save Interval: Every 15-30 minutes</li>
-    <li>Scheduled Restart: 03:00am PST / 10:00am GMT</li>
-    <li>Dino Wipe: 01:00pm GMT / 5:00am PST</li>
-    <li>Decay & Cleanup Runs: Every Sunday</li>
-    <li>Corpse Locator: Enabled</li>
-    <li>Admin Logging: Enabled</li>
-  </ul>
-
-</details>
-
-<details>
-  <summary>Notes & Performance Updates</summary>
-  <p>Extended daylight, shorter nights. Rates may adjust slightly during events or weekends. Check #announcements for future updates and tweaks.</p>
-
-  <h4>Daily Restart Time Changes</h4>
-  <p>The daily restart time for all maps has now been changed to: 03:00AM (PST) / 10:00AM (GMT). This time was selected because it is when the fewest players are online and more admins are available to respond quickly if issues occur after restart.</p>
-
-  <h4>Server Performance Update & Important Changes</h4>
-  <p>To help reduce lag and improve overall server performance, we’ve made some necessary changes to the cluster.</p>
-  <ul>
-    <li><strong>Tame Limit Reduced</strong> — The tame limit (amount of creatures deployed) has been reduced to 80 per tribe, per map.</li>
-    <li><strong>Auto Destroy Enabled</strong> — Auto-destroy for structures and creatures has now been enabled. When structure decay timers expire, they will be destroyed automatically. When creature timers expire, they will also be removed automatically. Expired creatures will no longer become claimable.</li>
-  </ul>
-
-  <h4>Dino Depot Changes</h4>
-  <p>Disabled Dino Depot Features to reduce background processing and lag:</p>
-  <ul>
-    <li>Transfer / Upload from Dino Depot</li>
-    <li>Passive production</li>
-    <li>Unfertilized egg production</li>
-    <li>Poop generation</li>
-    <li>Fertilizer distribution</li>
-  </ul>
-
-  <p>These changes are intended to reduce background processing, which should help lower lag and improve overall server reliability. We will re-evaluate and potentially re-enable some features once stability improves.</p>
-</details>
-
-<details>
-  <summary>Active Mods & Creature Additions</summary>
-  <h4>QOL / Gameplay Improvements</h4>
-  <ul>
-    <li>Cybers Structures QoL+</li>
-    <li>Dino Depot</li>
-    <li>Awesome Spyglass!</li>
-    <li>Awesome ARK Tools</li>
-    <li>Auto Engrams!</li>
-    <li>Helena Bot Companion</li>
-    <li>Resonant’s Shop Mod</li>
-    <li>Alfa Stack 2.5k – 50% Weight</li>
-    <li>Wizards of Ark Mods & Utilities</li>
-  </ul>
-
-  <h4>Creature & Dino Additions</h4>
-  <ul>
-    <li>Additions Ascended: Acrocanthosaurus — Normal variant only</li>
-    <li>Additions Ascended: Brachiosaurus — Active with balanced spawns</li>
-    <li>S-Dino Variants — Enabled (Arctic & Pygmy Gryphons disabled)</li>
-    <li>Astraeos – Mythological Creatures — Active</li>
-    <li>Dragon’s Kingdom — Active with limited spawns</li>
-    <li>Draconis Glaucus — Custom aquatic dragon creature</li>
-    <li>Gryphons — Mountain Gryphons enabled</li>
-    <li>Shiny! Dinos Ascended — Rare spawns only</li>
-    <li>Zytharian Critters – Additional Tek Dinos — Active</li>
-    <li>Hatzegopteryx Kukulkan - Awesome freemium flyers</li>
-  </ul>
-</details>
-
-<details>
-  <summary>Resonant In-Game Shop Guide</summary>
-  <p>The Resonant Shop is your go-to system for earning rewards and purchasing powerful items and dinos — all directly in-game.</p>
-  <h4>How to Access the Shop</h4>
-  <p>PC: Press F1 to open the Shop UI. Console: Use your radial wheel and select the Shop (square or x).</p>
-  <h4>How Points Work</h4>
-  <p>Earn 100 points every 30 minutes just by playing. Points are added automatically — no action needed.</p>
-  <h4>What You Can Buy</h4>
-  <p>Spend your points on dinos, potions, and custom packages. Each package shows exactly what you’ll get before you buy.</p>
-</details>
-
-<details>
-  <summary>Transfer & Map-Hopping Tips</summary>
-  <p>When hopping between maps, don’t transfer too quickly. If you load in and leave again within 1–2 minutes, the server may not finish saving your character, inventory, dinos (especially DinoBalls), or mod data. To stay safe: stay on each map 3–5 minutes before transferring, keep important dinos in cryopods/cryofridges, and avoid carrying all your breeders while map-hopping.</p>
-</details>
+    <!-- TRANSFER TIPS -->
+    <details>
+      <summary>Transfer Safety Tips</summary>
+      <ul>
+        <li>Stay 3–5 minutes before transferring</li>
+        <li>Keep important dinos in cryopods</li>
+        <li>Avoid map hopping too fast</li>
+      </ul>
+    </details>
 
   </main>
 
-  <footer class="footer">
+  <!-- ===========================
+       FOOTER
+  =========================== -->
+  <footer class="site-footer">
     <div>Rules subject to change.</div>
-    <a href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener noreferrer" class="discord-btn">⚔️ Check Discord for Updates</a>
+    <a href="https://discord.gg/84FDUShzE" target="_blank" class="discord-footer">
+      ⚔️ Check Discord for Updates
+    </a>
   </footer>
 
+  <!-- Scripts -->
   <script defer src="site-effects.bundle.js"></script>
+
 </body>
 </html>
