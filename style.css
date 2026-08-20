@@ -16,6 +16,8 @@
 
   --t-fast: 160ms;
   --shadow-soft: rgba(0,0,0,0.25);
+
+  --panel-border: rgba(201,168,106,0.25);
 }
 
 /* -------------------------
@@ -45,6 +47,16 @@ h1.site-title {
   font-size: 42px;
   letter-spacing: 0.6px;
   text-shadow: 0 0 10px rgba(201,168,106,0.45);
+}
+
+/* ⭐ NEW — Page subtitle support */
+.subtitle {
+  font-family: "Spectral", serif;
+  font-size: 20px;
+  color: var(--gold);
+  opacity: 0.85;
+  margin-top: -4px;
+  text-shadow: 0 0 8px rgba(201,168,106,0.35);
 }
 
 /* Section and block titles */
@@ -77,6 +89,7 @@ h4, h5, h6 {
 /* Responsive title scaling */
 @media (max-width: 600px) {
   .title { font-size: 28px; }
+  .subtitle { font-size: 16px; } /* ⭐ NEW */
   .section-title { font-size: 20px; }
   .realm-button { font-size: 20px; padding: 12px 32px; }
 }
@@ -106,10 +119,9 @@ body {
   box-shadow: 0 6px 24px rgba(0,0,0,0.45);
   position: relative;
   z-index: 50;
-  min-height: 520px; /* canonical final value */
+  min-height: 520px;
 }
 
-/* Header layout: stacked on small screens, side-by-side on wide screens */
 .header-inner {
   max-width: var(--header-max-width);
   margin: 0 auto;
@@ -119,10 +131,9 @@ body {
   align-items: center;
   gap: 6px;
   position: relative;
-  z-index: 60; /* keep content above sigil */
+  z-index: 60;
 }
 
-/* Wide screens: brand left, nav right, vertically centered */
 @media (min-width: 920px) {
   .header-inner {
     flex-direction: row;
@@ -140,6 +151,7 @@ body {
   }
 
   .brand .title { margin: 0; }
+  .subtitle { margin-left: 4px; } /* ⭐ NEW */
 
   .nav {
     justify-content: flex-end;
@@ -147,7 +159,6 @@ body {
   }
 }
 
-/* Small screens: keep stacked and centered */
 @media (max-width: 919px) {
   .brand { align-items: center; text-align: center; }
   .nav { justify-content: center; gap: 8px; }
@@ -161,10 +172,10 @@ body {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 600px;      /* BIG SIGIL */
-  height: 600px;     /* BIG SIGIL */
+  width: 600px;
+  height: 600px;
   transform: translate(-50%, -50%);
-  pointer-events: none;
+  pointer-events: none !important; /* ⭐ UPDATED */
   z-index: 1;
   animation: sigilSpin 36s linear infinite;
   will-change: transform;
@@ -175,7 +186,7 @@ body {
   height: 100%;
   background: url('assets/sigil.png') no-repeat center center / contain;
   opacity: 0.10;
-  pointer-events: none;
+  pointer-events: none !important; /* ⭐ UPDATED */
   display: block;
   visibility: visible;
 }
@@ -194,18 +205,6 @@ body {
   height: auto;
   display: block;
   filter: brightness(2) drop-shadow(0 0 6px rgba(0,0,0,0.6));
-}
-
-/* =========================================
-   TITLE
-   ========================================= */
-
-.title {
-  font-family: 'Uncial Antiqua', serif;
-  font-size: 42px;
-  color: var(--gold);
-  text-shadow: 0 0 10px rgba(201,168,106,0.45);
-  margin-top: 2px;
 }
 
 /* =========================================
@@ -271,24 +270,6 @@ body {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-}
-
-.realm-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 120%;
-  height: 100%;
-  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.25), transparent);
-  opacity: 0.35;
-  transform: skewX(-20deg);
-  animation: realmShimmer 2.8s linear infinite;
-}
-
-@keyframes realmShimmer {
-  from { left: -120%; }
-  to { left: 120%; }
 }
 
 .realm-button:hover {
@@ -384,7 +365,8 @@ body {
   border-top: 2px solid rgba(201,168,106,0.35);
 }
 
-.site-footer p {
+.site-footer p,
+.footer-text {
   margin: 0;
   font-size: 18px;
   color: var(--gold);
@@ -461,8 +443,30 @@ body {
 @media (max-width: 600px) {
   .main-logo { width: 180px; }
   .title { font-size: 28px; }
+  .subtitle { font-size: 16px; }
   .sigil-wrap { width: 180px; height: 180px; }
-  .site-header { min-height: 220px; }
+  .site-header { min-height: 260px; }
   .council-card { flex-direction: column; text-align: center; }
   .council-icon { width: 100px; height: 100px; }
+}
+
+/* =========================================
+   ⭐ LIGHTBOX FIX — Prevent Sigil/Header Blocking
+   ========================================= */
+
+.lb-overlay,
+.lightboxOverlay,
+.lb-dataContainer {
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+.lb-close {
+  z-index: 1000000 !important;
+}
+
+/* Sigil should NEVER block clicks */
+.sigil-wrap,
+.sigil {
+  pointer-events: none !important;
 }
