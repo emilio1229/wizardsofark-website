@@ -470,3 +470,56 @@ body {
 .sigil {
   pointer-events: none !important;
 }
+/* Store section alignment and visibility fixes */
+.content-block {
+  padding: 26px 24px; /* slightly more comfortable padding for list-heavy blocks */
+}
+
+.store-steps {
+  margin: 12px 0 0 0;
+  padding-left: 0;
+  counter-reset: step;
+  list-style: none;
+}
+
+.store-steps > li {
+  counter-increment: step;
+  margin-bottom: 12px;
+  color: var(--text-light);
+  position: relative;
+  padding-left: 2.4em;
+}
+
+/* numeric step marker */
+.store-steps > li::before {
+  content: counter(step) ".";
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: "Spectral", serif;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 18px;
+  width: 2em;
+  text-align: left;
+}
+
+/* nested bullet list inside steps */
+.store-notes {
+  margin: 8px 0 0 0;
+  padding-left: 1.15em;
+  list-style: disc;
+  color: var(--text-light);
+}
+
+.store-notes li {
+  margin-bottom: 6px;
+  opacity: 1;
+}
+
+/* ensure discord button keeps its visual weight inside lists */
+.store-steps .discord-btn {
+  display: inline-block;
+  margin-left: 6px;
+  vertical-align: middle;
+}
