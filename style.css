@@ -547,33 +547,35 @@ body {
 }
 
 /* Inner sigil: background image and rotation animation */
-.site-header > .sigil-wrap > .sigil,
-.site-header .sigil-wrap .sigil {
+.site-header { position: relative !important; overflow: visible !important; }
+
+.site-header > .sigil-wrap {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 600px !important;
+  height: 600px !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  overflow: visible !important;
+}
+
+.site-header > .sigil-wrap > .sigil {
   width: 100% !important;
   height: 100% !important;
-  background-image: url('assets/sigil.png') !important;
+  background-image: url('/wizardsofark-website/assets/sigil.png') !important;
   background-repeat: no-repeat !important;
   background-position: center center !important;
   background-size: contain !important;
   opacity: 0.10 !important;
   pointer-events: none !important;
-  display: block !important;
-  visibility: visible !important;
-  transform-origin: 50% 50% !important;
   animation: sigilRotate 36s linear infinite !important;
+  transform-origin: 50% 50% !important;
 }
 
-/* Rotation keyframes */
-@keyframes sigilRotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
+@keyframes sigilRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-/* Responsive fallback for narrow viewports */
 @media (max-width: 920px) {
-  .site-header > .sigil-wrap,
-  .site-header .sigil-wrap {
-    width: 220px !important;
-    height: 220px !important;
-  }
+  .site-header > .sigil-wrap { width: 220px !important; height: 220px !important; }
 }
