@@ -4,67 +4,41 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Wizards of Ark — Home</title>
-  <meta name="description" content="Join The Wizards of Ark — a PvE ARK: Survival Ascended cluster with all official maps, boosted rates, active community, and regular events.">
-  <meta name="theme-color" content="#c9a86a">
 
   <!-- Favicons -->
-  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
-  <link rel="alternate icon" href="assets/favicon.ico">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/svg+xml" href="/wizardsofark-website/assets/favicon.svg">
+  <link rel="icon" type="image/x-icon" href="/wizardsofark-website/assets/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/wizardsofark-website/assets/favicon-16.png">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@300;400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
-  <!-- Preload critical images -->
-  <link rel="preload" href="assets/logo.png" as="image">
-  <link rel="preload" href="assets/sigil.png" as="image">
-
-  <!-- Effects + Main Styles -->
-  <link rel="stylesheet" href="site-effects.bundle.css">
-  <link rel="stylesheet" href="style.css?v=optimized104">
-
-  <!-- Lightbox -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="/wizardsofark-website/style.css">
 </head>
+<body>
+  <header class="site-header">
+    <!-- Sigil (direct child of header) -->
+    <div class="sigil-wrap" aria-hidden="true">
+      <div class="sigil"></div>
+    </div>
 
-<body class="site-with-sides">
-
-  <!-- ===========================
-       UNIFIED HEADER (Council Style)
-  =========================== -->
-  <header class="site-header shimmer">
-    <div class="header-inner compact-header">
-
+    <div class="header-inner">
       <div class="brand">
-        <div class="sigil-wrap" aria-hidden="true">
-          <div class="sigil"></div>
-        </div>
-
-        <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
-        <div class="brand-text">
+        <img src="/wizardsofark-website/assets/logo.png" alt="Wizards of Ark" class="main-logo">
+        <div>
           <h1 class="title">The Wizards of Ark</h1>
-          <div class="subtitle">Home of the Arcane Realms</div>
+          <div class="subtitle">Forged in Magic</div>
         </div>
       </div>
 
-      <nav class="nav" role="navigation" aria-label="Main navigation">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="server-info.html" class="nav-link">Server Info</a>
-        <a href="store.html" class="nav-link">Store</a>
-        <a href="council.html" class="nav-link">Council</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a class="nav-link active" href="/wizardsofark-website/index.html">Home</a>
+        <a class="nav-link" href="/wizardsofark-website/server-info.html">Server Info</a>
+        <a class="nav-link" href="/wizardsofark-website/council.html">Arcane Council</a>
+        <a class="nav-link" href="/wizardsofark-website/store.html">Store</a>
+        <a class="nav-link" href="/wizardsofark-website/contact.html">Contact</a>
       </nav>
-
     </div>
   </header>
 
-  <div class="header-divider"></div>
-
-  <!-- ===========================
-       MAIN CONTENT
-  =========================== -->
   <main id="main" class="main">
 
     <!-- Realm Button -->
@@ -141,9 +115,6 @@
       <p>Glimpse the wonders of our enchanted world.</p>
 
       <div class="home-gallery">
-
-        <!-- Your gallery items exactly preserved -->
-        <!-- I am pasting them exactly as you provided -->
 
         <div class="gallery-item">
           <a href="assets/gallery1.png" data-lightbox="ark-gallery" data-title="Crystal Cavern">
@@ -255,49 +226,24 @@
 
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
-    <p class="footer-text">© 2026 The Wizards of Ark — Forged in Magic</p>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <p class="footer-note">Visit our community store for bundles and rewards.</p>
+        <div class="footer-actions">
+          <a href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener" class="discord-footer">💰 Visit Our Discord Shop</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-text">© 2026 The Wizards of Ark — Forged in Magic</p>
+      </div>
+    </div>
   </footer>
 
-  <!-- Scripts -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-  <script defer src="site-effects.bundle.js"></script>
-
-  <script>
-    (function(){
-      const fadeEls = document.querySelectorAll('.fade-in');
-      if(fadeEls.length){
-        const observer = new IntersectionObserver(entries => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-          });
-        }, { threshold: 0.2 });
-        fadeEls.forEach(el => observer.observe(el));
-      }
-
-      const glyphs = document.querySelectorAll('.glyph');
-      if(glyphs.length){
-        const obs = new IntersectionObserver(entries => {
-          entries.forEach(e => {
-            if (e.isIntersecting) e.target.classList.add('visible');
-          });
-        }, { threshold: 0.2 });
-        glyphs.forEach(g => obs.observe(g));
-      }
-
-      window.addEventListener('load', ()=>{
-        if(window.lightbox && typeof lightbox.option === 'function'){
-          lightbox.option({
-            fitImagesInViewport:true,
-            resizeDuration:200,
-            maxHeight:800,
-            maxWidth:1000
-          });
-        }
-      });
-    })();
-  </script>
-
+  <!-- Scripts: jQuery first, then site bundle, then site init -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/wizardsofark-website/site-effects.bundle.js"></script>
+  <script src="/wizardsofark-website/assets/site-init.js"></script>
 </body>
 </html>
