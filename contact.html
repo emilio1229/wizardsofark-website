@@ -1,80 +1,114 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="assets/favicon-16.png" sizes="16x16" type="image/png">
-<link rel="alternate icon" href="assets/favicon.ico">
-<meta name="theme-color" content="#c9a86a">
-<meta charset="utf-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Wizards of Ark — Contact & Support</title>
+  <meta name="theme-color" content="#c9a86a">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#c9a86a">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="site-effects.bundle.css">
-</head>
-<body class="site-with-sides">
-  <a class="skip-link" href="#main" style="position:absolute;left:-9999px;">Skip to content</a>
-<header class="site-header shimmer">
-  <div class="header-inner compact-header">
+  <link href="https://fonts.googleapis.com/css2?family=Uncial+Antiqua&family=Spectral:wght@300;400;600;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    <div class="brand">
-      <div class="sigil-wrap">
-        <div class="sigil"></div>
+  <!-- Favicons -->
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Effects + Main Styles -->
+  <link rel="stylesheet" href="site-effects.bundle.css">
+  <link rel="stylesheet" href="style.css?v=optimized104">
+</head>
+
+<body class="site-with-sides">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ===========================
+       UNIFIED HEADER (Council Style)
+  =========================== -->
+  <header class="site-header shimmer">
+    <div class="header-inner compact-header">
+
+      <div class="brand">
+        <div class="sigil-wrap" aria-hidden="true">
+          <div class="sigil"></div>
+        </div>
+
+        <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
+        <div class="brand-text">
+          <h1 class="title">The Wizards of Ark</h1>
+          <div class="subtitle">Contact & Support</div>
+        </div>
       </div>
 
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="server-info.html" class="nav-link">Server Info</a>
+        <a href="store.html" class="nav-link">Store</a>
+        <a href="council.html" class="nav-link">Council</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
 
-      <img src="assets/logo.png" alt="Wizards of Ark Logo" class="main-logo">
-
-      <h1 class="title">The Wizards of Ark</h1>
     </div>
+  </header>
 
-   <nav class="nav">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="server-info.html" class="nav-link">Server Info</a>
-    <a href="store.html" class="nav-link">Store</a>
-    <a href="council.html" class="nav-link">Council</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-</nav>
+  <div class="header-divider"></div>
 
-
-  </div>
-</header>
-
-
- <div class="header-divider" aria-hidden="true"></div>
-
+  <!-- ===========================
+       MAIN CONTENT
+  =========================== -->
   <main id="main" class="main">
-    <section class="content-block">
+
+    <section class="content-block fade-in">
       <h2 class="section-title">Support — Discord Tickets Only</h2>
       <p>All support, rule clarifications, appeals, and shop issues are handled exclusively through our Discord ticket system. This ensures staff can track, log, and resolve issues fairly and transparently.</p>
       <p class="muted">Do not DM admins or owners for enforcement — open a ticket so we can log and act on reports properly.</p>
-      </section>
+    </section>
 
-    <section class="content-block">
+    <section class="content-block fade-in">
       <h3 class="section-title">How to Open a Ticket</h3>
       <ol>
-        <li>Join our Discord: <a href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener noreferrer">📜 Open a Ticket on Discord</a></li>
+        <li>
+          Join our Discord:
+          <a href="https://discord.gg/84FDUShzE" target="_blank" class="discord-btn">
+            📜 Open a Ticket on Discord
+          </a>
+        </li>
         <li>Go to <strong>#support</strong> and click the <strong>Open Ticket</strong> button (or follow the pinned instructions in that channel).</li>
         <li>Provide clear details: server/map, character name, timestamps, coordinates, and screenshots where applicable.</li>
+        <li>Staff will respond in your ticket — keep the ticket thread for follow-up and evidence.</li>
       </ol>
-      </section>
-        
-    <section class="content-block">
+    </section>
+
+    <section class="content-block fade-in">
+      <h3 class="section-title">What to Include in a Ticket</h3>
+      <ul>
+        <li>Map name and coordinates</li>
+        <li>Character name and tribe</li>
+        <li>Exact time (in-game or real time) and a short description of the issue</li>
+        <li>Screenshots, video clips, or logs if available</li>
+      </ul>
+    </section>
+
+    <section class="content-block fade-in">
       <h3 class="section-title">Urgent Issues After Restarts</h3>
       <p>For urgent problems immediately after a restart, open a ticket and include server, character name, and a short description — admins monitor logs and will prioritize critical issues.</p>
       <p class="muted">Respect the Realm | Protect the Magic | The Wizards of Ark</p>
-     </section>
+    </section>
+
   </main>
 
-  <footer class="footer">
+  <!-- ===========================
+       FOOTER
+  =========================== -->
+  <footer class="site-footer">
     <div>Need help? or Have questions?</div>
-    <a href="https://discord.gg/84FDUShzE" target="_blank" rel="noopener noreferrer" class="discord-btn">📜 Message Us on Discord</a>
+    <a href="https://discord.gg/84FDUShzE" target="_blank" class="discord-btn">
+      📜 Message Us on Discord
+    </a>
   </footer>
 
-<script defer src="site-effects.bundle.js"></script>
+  <!-- Scripts -->
+  <script defer src="site-effects.bundle.js"></script>
+
 </body>
 </html>
