@@ -523,3 +523,45 @@ body {
   margin-left: 6px;
   vertical-align: middle;
 }
+/* Force sigil to render at 600x600 on wide screens and remain behind header */
+.site-header .sigil-wrap {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 600px !important;
+  height: 600px !important;
+  transform: translate(-50%, -50%) !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  animation: sigilSpin 36s linear infinite !important;
+  will-change: transform;
+  max-width: none !important;
+  max-height: none !important;
+}
+
+/* Ensure the sigil background scales correctly and is visible */
+.site-header .sigil {
+  width: 100% !important;
+  height: 100% !important;
+  background-image: url('assets/sigil.png') !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: contain !important;
+  opacity: 0.10 !important;
+  pointer-events: none !important;
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Prevent ancestor clipping: allow overflow visible on header */
+.site-header {
+  overflow: visible !important;
+}
+
+/* Responsive fallback: scale sigil down on narrow screens */
+@media (max-width: 920px) {
+  .site-header .sigil-wrap {
+    width: 220px !important;
+    height: 220px !important;
+  }
+}
