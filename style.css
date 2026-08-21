@@ -1,9 +1,9 @@
 /* =========================================
-   Wizards of Ark — Updated style.css
-   - Removed sigil rules
-   - Added authoritative hero header background
-   - Lightbox z-index fixes
-   - Consolidated and cleaned styles
+   Wizards of Ark — Fixed style.css
+   - Uses /assets/header-hero.jpg only (no 404 path)
+   - Centers header logo/title/subtitle/nav on all screens
+   - Keeps gradient fallback
+   - Lightbox z-index fixes retained
    ========================================= */
 
 /* ---------- Root variables ---------- */
@@ -18,7 +18,7 @@
   --panel-border: rgba(201,168,106,0.25);
 }
 
-/* ---------- Base typography & reset ---------- */
+/* ---------- Reset & base ---------- */
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
 body{
@@ -29,7 +29,7 @@ body{
   overflow-x:hidden;
 }
 
-/* Headings / brand */
+/* ---------- Brand / headings ---------- */
 .title,
 .brand .title,
 header .title,
@@ -39,6 +39,7 @@ h1.site-title {
   font-size:42px;
   letter-spacing:0.6px;
   text-shadow:0 0 10px rgba(201,168,106,0.45);
+  margin: 0;
 }
 
 .subtitle {
@@ -46,7 +47,7 @@ h1.site-title {
   font-size:20px;
   color:var(--gold);
   opacity:0.85;
-  margin-top:-4px;
+  margin-top:6px;
   text-shadow:0 0 8px rgba(201,168,106,0.35);
 }
 
@@ -56,82 +57,110 @@ h1.site-title {
   .subtitle{font-size:16px}
 }
 
-/* ---------- Header / hero ---------- */
+/* ---------- Header / hero (centered on all screens) ---------- */
 /* Primary header container */
 .site-header{
   width:100%;
+  /* gradient fallback; background-image for hero is set in .hero-header below */
   background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
-  padding: 70px 0 30px;
+  padding: 48px 0 28px;
   border-bottom: 1px solid rgba(201,168,106,0.18);
   box-shadow: 0 6px 24px rgba(0,0,0,0.45);
   position: relative;
   z-index: 50;
-  min-height: 520px;
+  min-height: 420px;
   overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-/* Inner layout */
+/* Inner layout: always center content */
 .header-inner{
-  max-width:var(--header-max-width);
-  margin:0 auto;
-  padding:0 16px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:6px;
-  position:relative;
-  z-index:60;
+  width: 100%;
+  max-width: var(--header-max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 60;
 }
 
+/* On wide screens keep items centered but allow horizontal layout for spacing */
 @media (min-width:920px){
-  .header-inner{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}
-  .brand{display:flex;flex-direction:row;gap:14px;align-items:center;text-align:left}
-  .brand .title{margin:0}
-  .subtitle{margin-left:4px}
-  .nav{justify-content:flex-end;gap:12px}
+  .header-inner {
+    flex-direction: column; /* keep stacked and centered for consistent centering */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
 }
 
-@media (max-width:919px){
-  .brand{align-items:center;text-align:center}
-  .nav{justify-content:center;gap:8px}
+/* Brand block centered */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  text-align: center;
 }
 
 /* Logo */
 .main-logo{
-  width:300px;height:auto;display:block;
-  filter:brightness(2) drop-shadow(0 0 6px rgba(0,0,0,0.6));
+  width: 260px;
+  height: auto;
+  display: block;
+  filter: brightness(2) drop-shadow(0 0 6px rgba(0,0,0,0.6));
+  margin: 0 auto;
 }
-@media (max-width:600px){ .main-logo{width:180px} }
+@media (max-width:600px){ .main-logo{width:160px} }
 
-/* Navigation */
-.nav{display:flex;flex-direction:row;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+/* Navigation centered and stacked under brand on all screens */
+.nav{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* Nav links */
 .nav-link{
-  font-family:'Spectral',serif;font-weight:600;color:var(--gold);text-decoration:none;
-  padding:5px 12px;border-radius:6px;background:rgba(201,168,106,0.08);
-  border:1px solid rgba(201,168,106,0.18);box-shadow:0 0 6px var(--shadow-soft);
+  font-family:'Spectral',serif;
+  font-weight:600;
+  color:var(--gold);
+  text-decoration:none;
+  padding:6px 12px;
+  border-radius:6px;
+  background:rgba(201,168,106,0.08);
+  border:1px solid rgba(201,168,106,0.18);
+  box-shadow:0 0 6px var(--shadow-soft);
   transition:var(--t-fast);
+  display:inline-block;
+  text-align:center;
 }
 .nav-link:hover,.nav-link.active{
-  transform:translateY(-2px);background:rgba(201,168,106,0.15);
+  transform:translateY(-2px);
+  background:rgba(201,168,106,0.15);
   box-shadow:0 6px 18px rgba(201,168,106,0.12);
 }
 
-/* Realm CTA */
-.realm-button-wrap{width:100%;text-align:center;margin-top:50px;margin-bottom:40px;position:relative;z-index:20}
+/* Realm CTA centered */
+.realm-button-wrap{width:100%;text-align:center;margin-top:36px;margin-bottom:28px;position:relative;z-index:20}
 .realm-button{
-  display:inline-block;padding:14px 40px;font-size:24px;font-weight:700;font-family:'Spectral',serif;
+  display:inline-block;padding:12px 36px;font-size:20px;font-weight:700;font-family:'Spectral',serif;
   color:var(--gold);text-decoration:none;
   background:linear-gradient(180deg, rgba(40,20,80,0.85), rgba(20,10,40,0.95));
   border:2px solid rgba(201,168,106,0.55);border-radius:14px;
   box-shadow:0 0 18px rgba(201,168,106,0.45), inset 0 0 12px rgba(201,168,106,0.25);
   transition:all .3s ease;position:relative;overflow:hidden;
 }
-.realm-button:hover{ transform:translateY(-4px) scale(1.06); box-shadow:0 0 28px rgba(201,168,106,0.75); border-color:rgba(201,168,106,0.75) }
-
-/* ---------- Remove sigil system (no-op) ----------
-   All sigil-related CSS removed to avoid conflicts.
-   If any HTML still contains .sigil-wrap or .sigil, they will be inert.
-*/
+.realm-button:hover{ transform:translateY(-4px) scale(1.04); box-shadow:0 0 28px rgba(201,168,106,0.75); border-color:rgba(201,168,106,0.75) }
 
 /* ---------- Lightbox / overlay fixes ---------- */
 .lb-overlay,
@@ -167,14 +196,14 @@ h1.site-title {
 .discord-footer{display:inline-block;margin-top:10px;font-size:20px;color:var(--gold);text-decoration:none;padding:8px 16px;border:2px solid rgba(201,168,106,0.4);border-radius:8px;transition:0.3s}
 .discord-footer:hover{background:rgba(201,168,106,0.2);box-shadow:0 0 12px rgba(201,168,106,0.5)}
 
-/* ---------- Accessibility / focus ---------- */
+/* Accessibility */
 a:focus{outline:3px solid rgba(201,168,106,0.28);outline-offset:2px}
 
-/* ---------- Responsive tweaks ---------- */
+/* Responsive tweaks */
 @media (max-width:900px){
   .main{padding:20px 18px;max-width:920px}
   .content-block{padding:18px 14px}
-  .realm-button{font-size:20px;padding:12px 32px}
+  .realm-button{font-size:18px;padding:10px 28px}
 }
 @media (max-width:480px){
   .main{padding:16px 14px}
@@ -182,64 +211,65 @@ a:focus{outline:3px solid rgba(201,168,106,0.28);outline-offset:2px}
   .home-gallery{gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
 }
 
-/* ---------- Authoritative HERO rule (place at end to avoid overrides) ---------- */
+/* ---------- Authoritative HERO rule (end of file) ---------- */
 /* Use this class on the header element: <header class="site-header hero-header"> */
 header.site-header.hero-header{
-  /* try both common roots so subfolder installs work */
-  background-image: url('/assets/header-hero.jpg'), url('/wizardsofarkwebsite/assets/header-hero.jpg');
+  /* single canonical path to avoid 404s */
+  background-image: url('/assets/header-hero.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   min-height: 420px;
   z-index: 60; /* keep header content above background */
   position: relative;
+  /* ensure the gradient fallback remains visible if image fails */
+  background-color: transparent;
+}
+
+/* Mobile-specific: smaller min-height and ensure background is applied */
+@media (max-width: 920px) {
+  header.site-header.hero-header {
+    background-image: url('/assets/header-hero-mobile.jpg'), url('/assets/header-hero.jpg');
+    background-size: cover !important;
+    background-position: center center !important;
+    min-height: 320px !important;
+  }
 }
 
 /* Fallback if image missing: keep gradient visible */
 header.site-header.hero-header[style*="background-image: none"], header.site-header.hero-header:empty{
-  background-image: linear-gradient(180deg, var(--purple-mid), var(--purple-dark));
+  background-image: none;
+  background: linear-gradient(180deg, var(--purple-mid), var(--purple-dark));
 }
-/* Ensure content-block keeps internal spacing and lists stay inside */
+
+/* Ensure content-block spacing and list behavior */
 .content-block {
-  box-sizing: border-box;        /* include padding in width calculations */
-  padding: 22px 20px;            /* keep comfortable inner gutters */
-  overflow-wrap: break-word;     /* prevent long words/links from overflowing */
+  box-sizing: border-box;
+  padding: 22px 20px;
+  overflow-wrap: break-word;
   word-break: break-word;
   hyphens: auto;
 }
-
-/* Reset default list spacing so ol stays inside the box */
 .content-block ol,
 .content-block ul {
-  margin: 0 0 0 1.25em;          /* left indent inside the box, no top margin */
+  margin: 0 0 0 1.25em;
   padding: 0;
   line-height: 1.6;
 }
-
-/* Make each list item layout-friendly */
 .content-block ol li,
 .content-block ul li {
-  margin: 0 0 12px 0;            /* vertical spacing between items */
+  margin: 0 0 12px 0;
   padding: 0;
 }
-
-/* Keep inline links from expanding the line height or overflowing */
 .content-block a.discord-btn {
   display: inline-block;
   vertical-align: middle;
   margin-left: 8px;
   padding: 6px 10px;
   font-size: 16px;
-  white-space: normal;           /* allow wrapping inside the button if needed */
+  white-space: normal;
   max-width: 100%;
   box-sizing: border-box;
 }
 
-/* If you use a fade-in utility that sets opacity/transform, ensure layout preserved */
-.fade-in {
-  opacity: 1;
-  transform: none;
-  transition: opacity 300ms ease, transform 300ms ease;
-}
-
-/* ---------- End of stylesheet ---------- */
+/* End of stylesheet */
