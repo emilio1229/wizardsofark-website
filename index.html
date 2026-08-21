@@ -250,10 +250,20 @@
     <p class="footer-text">© 2026 The Wizards of Ark — Forged in Magic</p>
   </footer>
 
-  <!-- Scripts -->
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-  <script defer src="site-effects.bundle.js"></script>
+  <!-- Lightbox CSS (put in head if you prefer) -->
+  <link rel="stylesheet" href="/assets/lightbox.min.css">
 
+  <!-- Scripts: jQuery first, then plugins/bundles that depend on it -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- Lightbox JS (must come after jQuery) -->
+  <script src="/assets/lightbox.min.js"></script>
+
+  <!-- Your site bundle (only include once) -->
+  <script src="/assets/site-effects.bundle.js"></script>
+  <script src="/assets/site-init.js"></script>
+
+  <!-- Inline site helpers (intersection observers, lightbox options) -->
   <script>
     (function(){
       const fadeEls = document.querySelectorAll('.fade-in');
@@ -289,36 +299,24 @@
     })();
   </script>
 
-<!-- Safe lightbox guard: paste after all other scripts -->
-<!-- Load jQuery first (CDN) -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Your site bundles and plugins that depend on jQuery -->
-<script src="/assets/site-effects.bundle.js"></script>
-<script src="/assets/site-init.js"></script>
-
-<!-- Safe lightbox guard (temporary) -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  try {
-    // If a global init exists, call it safely
-    if (typeof window.lightboxInit === 'function') {
-      try { window.lightboxInit(); } catch (e) { console.warn('lightboxInit failed', e); }
-    }
-
-    // If jQuery exists but plugin is missing, define a harmless no-op plugin
-    if (window.jQuery) {
-      if (typeof jQuery.fn.lightbox !== 'function') {
-        jQuery.fn.lightbox = function(){ return this; };
-        console.warn('Defined no-op jQuery.fn.lightbox to prevent errors.');
+  <!-- Safe lightbox guard (keeps page from crashing while you confirm plugin) -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    try {
+      if (window.jQuery) {
+        if (typeof jQuery.fn.lightbox !== 'function' && typeof window.lightbox === 'undefined') {
+          // define a harmless no-op so any plugin calls won't throw
+          jQuery.fn.lightbox = function(){ return this; };
+          console.warn('Defined no-op jQuery.fn.lightbox to prevent errors.');
+        }
+      } else {
+        console.warn('jQuery not found; ensure jQuery is loaded before plugins.');
       }
-    } else {
-      console.warn('jQuery not found; lightbox plugin may not initialize.');
+    } catch (err) {
+      console.warn('Lightbox guard error:', err);
     }
-  } catch (err) {
-    console.warn('Safe lightbox guard caught error:', err);
-  }
-});
-</script>
+  });
+  </script>
+
 </body>
 </html>
