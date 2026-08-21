@@ -290,13 +290,23 @@
   </script>
 
 <!-- Safe lightbox guard: paste after all other scripts -->
+<!-- Load jQuery first (CDN) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Your site bundles and plugins that depend on jQuery -->
+<script src="/assets/site-effects.bundle.js"></script>
+<script src="/assets/site-init.js"></script>
+
+<!-- Safe lightbox guard (temporary) -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   try {
+    // If a global init exists, call it safely
     if (typeof window.lightboxInit === 'function') {
       try { window.lightboxInit(); } catch (e) { console.warn('lightboxInit failed', e); }
     }
 
+    // If jQuery exists but plugin is missing, define a harmless no-op plugin
     if (window.jQuery) {
       if (typeof jQuery.fn.lightbox !== 'function') {
         jQuery.fn.lightbox = function(){ return this; };
