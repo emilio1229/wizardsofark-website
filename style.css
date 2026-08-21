@@ -457,5 +457,31 @@ code, pre, kbd, samp {
 /* Styling for unordered store steps */
 .store-steps { list-style: disc; padding-left: 1.25em; margin: 18px auto 0; max-width: 720px; text-align: left; }
 .store-steps > li { margin-bottom: 12px; }
+/* Hide visual markers for store steps while keeping semantic list for screen readers */
+.store-steps {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.store-steps > li {
+  margin: 0 0 12px 0;
+  padding-left: 0;
+  position: relative;
+}
+
+/* Optional: add a subtle custom marker (comment out if you want no marker at all) */
+/*
+.store-steps > li::before {
+  content: "•";
+  color: var(--gold);
+  font-weight: 700;
+  display: inline-block;
+  width: 1.2em;
+  margin-right: 6px;
+  position: relative;
+  left: -0.2em;
+}
+*/
 
 /* End of stylesheet */
