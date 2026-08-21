@@ -241,5 +241,18 @@ header.site-header.hero-header[style*="background-image: none"], header.site-hea
   transform: none;
   transition: opacity 300ms ease, transform 300ms ease;
 }
+/* Force hero background on small screens (place at end of style.css) */
+@media (max-width: 920px) {
+  header.site-header.hero-header {
+    /* try both common roots so subfolder installs work */
+    background-image: url('/assets/header-hero.jpg'), url('/wizardsofarkwebsite/assets/header-hero.jpg') !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+    background-size: cover !important;
+    min-height: 320px !important;
+    -webkit-background-size: cover !important;
+    z-index: 60 !important;
+  }
+}
 
 /* ---------- End of stylesheet ---------- */
