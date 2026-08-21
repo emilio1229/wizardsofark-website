@@ -437,5 +437,69 @@ header.site-header.hero-header[style*="background-image: none"], header.site-hea
   #store-purchase .content-block { padding: 14px 12px; max-width: 92%; }
   #store-purchase .store-steps { max-width: 100%; margin-left: 0.6em; }
 }
+/* ---------- Global colored text (use brand color, avoid white) ---------- */
+/* Prefer placing this after other rules so it wins when needed */
+:root {
+  /* keep the original variables but ensure a single authoritative color for text */
+  --brand-text: var(--gold);
+}
+
+/* Apply brand color broadly */
+body,
+p,
+li,
+ol,
+ul,
+.content-block,
+.main,
+.footer-text,
+.muted,
+.bot-list p,
+.role,
+.duty {
+  color: var(--brand-text) !important;
+}
+
+/* Headings and brand elements */
+.title,
+.brand .title,
+header .title,
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.subtitle {
+  color: var(--brand-text) !important;
+  text-shadow: 0 0 10px rgba(201,168,106,0.35);
+}
+
+/* Links, nav, and CTAs */
+a,
+.nav-link,
+.discord-btn,
+.realm-button,
+.discord-footer {
+  color: var(--brand-text) !important;
+  border-color: rgba(201,168,106,0.18) !important;
+}
+
+/* Ensure muted or secondary text remains readable (slightly dimmed) */
+.muted,
+.content-block .muted,
+.store-notes li {
+  color: rgba(201,168,106,0.92) !important;
+  opacity: 0.95;
+}
+
+/* Exceptions: keep code, pre, and small UI elements readable (dark text on light backgrounds) */
+code, pre, kbd, samp {
+  color: inherit;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* If any element still uses white via inline styles or third-party CSS, force a fallback */
+*[style*="color: #fff"], *[style*="color:#fff"], *[style*="color: white"] {
+  color: var(--brand-text) !important;
+}
 
 /* End of stylesheet */
