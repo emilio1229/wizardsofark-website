@@ -454,5 +454,8 @@ code, pre, kbd, samp {
 *[style*="color: #fff"], *[style*="color:#fff"], *[style*="color: white"] {
   color: var(--brand-text) !important;
 }
+/* Styling for unordered store steps */
+.store-steps { list-style: disc; padding-left: 1.25em; margin: 18px auto 0; max-width: 720px; text-align: left; }
+.store-steps > li { margin-bottom: 12px; }
 
 /* End of stylesheet */
