@@ -1,118 +1,65 @@
 /* =========================================
-   Wizards of Ark — Cleaned Stylesheet
-   Consolidated header + sigil rules
+   Wizards of Ark — Updated style.css
+   - Removed sigil rules
+   - Added authoritative hero header background
+   - Lightbox z-index fixes
+   - Consolidated and cleaned styles
    ========================================= */
 
-/* -------------------------
-   Variables
-   ------------------------- */
+/* ---------- Root variables ---------- */
 :root{
   --gold: #c9a86a;
   --purple-dark: #1a0f2e;
   --purple-mid: #2e1a4f;
   --text-light: #e8e3f0;
-
   --header-max-width: 1200px;
-
   --t-fast: 160ms;
   --shadow-soft: rgba(0,0,0,0.25);
-
   --panel-border: rgba(201,168,106,0.25);
 }
 
-/* -------------------------
-   Base typography
-   ------------------------- */
-body,
-p,
-li,
-ol,
-ul,
-.muted,
-.bot-list p,
-.role,
-.duty {
-  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  color: var(--text-light);
-  line-height: 1.55;
+/* ---------- Base typography & reset ---------- */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{
+  background: radial-gradient(circle at center, var(--purple-mid), var(--purple-dark));
+  color:var(--text-light);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
 }
 
-/* Page main title (site title) */
+/* Headings / brand */
 .title,
 .brand .title,
 header .title,
 h1.site-title {
   font-family: "Uncial Antiqua", serif;
-  color: var(--gold);
-  font-size: 42px;
-  letter-spacing: 0.6px;
-  text-shadow: 0 0 10px rgba(201,168,106,0.45);
+  color:var(--gold);
+  font-size:42px;
+  letter-spacing:0.6px;
+  text-shadow:0 0 10px rgba(201,168,106,0.45);
 }
 
-/* ⭐ NEW — Page subtitle support */
 .subtitle {
   font-family: "Spectral", serif;
-  font-size: 20px;
-  color: var(--gold);
-  opacity: 0.85;
-  margin-top: -4px;
-  text-shadow: 0 0 8px rgba(201,168,106,0.35);
+  font-size:20px;
+  color:var(--gold);
+  opacity:0.85;
+  margin-top:-4px;
+  text-shadow:0 0 8px rgba(201,168,106,0.35);
 }
 
-/* Section and block titles */
-.section-title,
-h2,
-h3,
-.council-section,
-.content-block .section-title {
-  font-family: "Spectral", serif;
-  color: var(--gold);
-  font-weight: 600;
-  text-shadow: 0 0 12px rgba(201,168,106,0.35);
+/* Responsive scaling */
+@media (max-width:600px){
+  .title{font-size:28px}
+  .subtitle{font-size:16px}
 }
 
-h4, h5, h6 {
-  font-family: "Spectral", serif;
-  color: var(--gold);
-  font-weight: 500;
-}
-
-.nav-link,
-.realm-button,
-.discord-footer,
-.discord-btn {
-  font-family: "Spectral", serif;
-  color: var(--gold);
-  font-weight: 600;
-}
-
-/* Responsive title scaling */
-@media (max-width: 600px) {
-  .title { font-size: 28px; }
-  .subtitle { font-size: 16px; } /* ⭐ NEW */
-  .section-title { font-size: 20px; }
-  .realm-button { font-size: 20px; padding: 12px 32px; }
-}
-
-/* -------------------------
-   Reset / Base
-   ------------------------- */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-html, body { height: 100%; }
-
-body {
-  background: radial-gradient(circle at center, var(--purple-mid), var(--purple-dark));
-  color: var(--text-light);
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-  overflow-x: hidden;
-}
-
-/* =========================================
-   HEADER — Compact + Sigil Behind Logo
-   ========================================= */
-
-.site-header {
-  width: 100%;
+/* ---------- Header / hero ---------- */
+/* Primary header container */
+.site-header{
+  width:100%;
   background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
   padding: 70px 0 30px;
   border-bottom: 1px solid rgba(201,168,106,0.18);
@@ -120,462 +67,137 @@ body {
   position: relative;
   z-index: 50;
   min-height: 520px;
+  overflow: visible;
 }
 
-.header-inner {
-  max-width: var(--header-max-width);
-  margin: 0 auto;
-  padding: 0 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  position: relative;
-  z-index: 60;
+/* Inner layout */
+.header-inner{
+  max-width:var(--header-max-width);
+  margin:0 auto;
+  padding:0 16px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  position:relative;
+  z-index:60;
 }
 
-@media (min-width: 920px) {
-  .header-inner {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .brand {
-    display: flex;
-    flex-direction: row;
-    gap: 14px;
-    align-items: center;
-    text-align: left;
-  }
-
-  .brand .title { margin: 0; }
-  .subtitle { margin-left: 4px; } /* ⭐ NEW */
-
-  .nav {
-    justify-content: flex-end;
-    gap: 12px;
-  }
+@media (min-width:920px){
+  .header-inner{flex-direction:row;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;flex-direction:row;gap:14px;align-items:center;text-align:left}
+  .brand .title{margin:0}
+  .subtitle{margin-left:4px}
+  .nav{justify-content:flex-end;gap:12px}
 }
 
-@media (max-width: 919px) {
-  .brand { align-items: center; text-align: center; }
-  .nav { justify-content: center; gap: 8px; }
+@media (max-width:919px){
+  .brand{align-items:center;text-align:center}
+  .nav{justify-content:center;gap:8px}
 }
 
-/* =========================================
-   GLOBAL SIGIL SYSTEM (BIG + SPINNING)
-   ========================================= */
+/* Logo */
+.main-logo{
+  width:300px;height:auto;display:block;
+  filter:brightness(2) drop-shadow(0 0 6px rgba(0,0,0,0.6));
+}
+@media (max-width:600px){ .main-logo{width:180px} }
 
-.sigil-wrap {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 600px;
-  height: 600px;
-  transform: translate(-50%, -50%);
-  pointer-events: none !important; /* ⭐ UPDATED */
-  z-index: 1;
-  animation: sigilSpin 36s linear infinite;
-  will-change: transform;
+/* Navigation */
+.nav{display:flex;flex-direction:row;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:6px}
+.nav-link{
+  font-family:'Spectral',serif;font-weight:600;color:var(--gold);text-decoration:none;
+  padding:5px 12px;border-radius:6px;background:rgba(201,168,106,0.08);
+  border:1px solid rgba(201,168,106,0.18);box-shadow:0 0 6px var(--shadow-soft);
+  transition:var(--t-fast);
+}
+.nav-link:hover,.nav-link.active{
+  transform:translateY(-2px);background:rgba(201,168,106,0.15);
+  box-shadow:0 6px 18px rgba(201,168,106,0.12);
 }
 
-.sigil {
-  width: 100%;
-  height: 100%;
-  background: url('assets/sigil.png') no-repeat center center / contain;
-  opacity: 0.10;
-  pointer-events: none !important; /* ⭐ UPDATED */
-  display: block;
-  visibility: visible;
+/* Realm CTA */
+.realm-button-wrap{width:100%;text-align:center;margin-top:50px;margin-bottom:40px;position:relative;z-index:20}
+.realm-button{
+  display:inline-block;padding:14px 40px;font-size:24px;font-weight:700;font-family:'Spectral',serif;
+  color:var(--gold);text-decoration:none;
+  background:linear-gradient(180deg, rgba(40,20,80,0.85), rgba(20,10,40,0.95));
+  border:2px solid rgba(201,168,106,0.55);border-radius:14px;
+  box-shadow:0 0 18px rgba(201,168,106,0.45), inset 0 0 12px rgba(201,168,106,0.25);
+  transition:all .3s ease;position:relative;overflow:hidden;
 }
+.realm-button:hover{ transform:translateY(-4px) scale(1.06); box-shadow:0 0 28px rgba(201,168,106,0.75); border-color:rgba(201,168,106,0.75) }
 
-@keyframes sigilSpin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
-}
+/* ---------- Remove sigil system (no-op) ----------
+   All sigil-related CSS removed to avoid conflicts.
+   If any HTML still contains .sigil-wrap or .sigil, they will be inert.
+*/
 
-/* =========================================
-   LOGO
-   ========================================= */
-
-.main-logo {
-  width: 300px;
-  height: auto;
-  display: block;
-  filter: brightness(2) drop-shadow(0 0 6px rgba(0,0,0,0.6));
-}
-
-/* =========================================
-   NAVIGATION
-   ========================================= */
-
-.nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-top: 6px;
-}
-
-.nav-link {
-  font-family: 'Spectral', serif;
-  font-weight: 600;
-  color: var(--gold);
-  text-decoration: none;
-  padding: 5px 12px;
-  border-radius: 6px;
-  background: rgba(201,168,106,0.08);
-  border: 1px solid rgba(201,168,106,0.18);
-  box-shadow: 0 0 6px var(--shadow-soft);
-  transition: var(--t-fast);
-}
-
-.nav-link:hover,
-.nav-link.active {
-  transform: translateY(-2px);
-  background: rgba(201,168,106,0.15);
-  box-shadow: 0 6px 18px rgba(201,168,106,0.12);
-}
-
-/* =========================================
-   FANCY REALM BUTTON
-   ========================================= */
-
-.realm-button-wrap {
-  width: 100%;
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 40px;
-  position: relative;
-  z-index: 20;
-}
-
-.realm-button {
-  display: inline-block;
-  padding: 14px 40px;
-  font-size: 24px;
-  font-weight: 700;
-  font-family: 'Spectral', serif;
-  color: var(--gold);
-  text-decoration: none;
-  background: linear-gradient(180deg, rgba(40,20,80,0.85), rgba(20,10,40,0.95));
-  border: 2px solid rgba(201,168,106,0.55);
-  border-radius: 14px;
-  box-shadow:
-    0 0 18px rgba(201,168,106,0.45),
-    inset 0 0 12px rgba(201,168,106,0.25);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.realm-button:hover {
-  transform: translateY(-4px) scale(1.06);
-  box-shadow:
-    0 0 28px rgba(201,168,106,0.75),
-    inset 0 0 16px rgba(201,168,106,0.35);
-  border-color: rgba(201,168,106,0.75);
-}
-
-/* =========================================
-   ARCANE COUNCIL PAGE STYLING
-   ========================================= */
-
-.council-container {
-  max-width: 900px;
-  margin: 60px auto;
-  padding: 20px;
-  color: var(--gold);
-  font-family: 'Spectral', serif;
-}
-
-.council-title {
-  text-align: center;
-  font-size: 48px;
-  margin-bottom: 10px;
-  text-shadow: 0 0 20px rgba(201,168,106,0.6);
-}
-
-.council-subtitle {
-  text-align: center;
-  font-size: 20px;
-  margin-bottom: 40px;
-  opacity: 0.85;
-}
-
-.council-section {
-  font-size: 32px;
-  margin-top: 40px;
-  margin-bottom: 20px;
-  text-shadow: 0 0 12px rgba(201,168,106,0.5);
-  border-bottom: 2px solid rgba(201,168,106,0.3);
-  padding-bottom: 6px;
-}
-
-.council-card {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  background: rgba(20,10,40,0.55);
-  border: 2px solid rgba(201,168,106,0.35);
-  padding: 18px;
-  border-radius: 12px;
-  margin-bottom: 18px;
-  box-shadow: 0 0 18px rgba(201,168,106,0.25);
-  flex-wrap: wrap;
-}
-
-.council-icon {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid rgba(201,168,106,0.6);
-  box-shadow: 0 0 15px rgba(201,168,106,0.4);
-}
-
-.role { font-size: 18px; opacity: 0.9; }
-.duty { font-size: 16px; opacity: 0.75; }
-
-.bot-list p {
-  background: rgba(20,10,40,0.45);
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid rgba(201,168,106,0.25);
-  margin-bottom: 8px;
-}
-
-.principles li {
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-
-/* =========================================
-   FOOTER
-   ========================================= */
-
-.site-footer {
-  margin-top: 60px;
-  padding: 30px 0;
-  text-align: center;
-  background: rgba(20,10,40,0.45);
-  border-top: 2px solid rgba(201,168,106,0.35);
-}
-
-.site-footer p,
-.footer-text {
-  margin: 0;
-  font-size: 18px;
-  color: var(--gold);
-  opacity: 0.85;
-}
-
-.discord-footer {
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 20px;
-  color: var(--gold);
-  text-decoration: none;
-  padding: 8px 16px;
-  border: 2px solid rgba(201,168,106,0.4);
-  border-radius: 8px;
-  transition: 0.3s ease;
-}
-
-.discord-footer:hover {
-  background: rgba(201,168,106,0.2);
-  box-shadow: 0 0 12px rgba(201,168,106,0.5);
-}
-
-/* =========================================
-   MAIN CONTENT + GALLERY
-   ========================================= */
-
-.main {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 28px 24px;
-  box-sizing: border-box;
-}
-
-.content-block {
-  margin: 0 auto 34px;
-  padding: 22px 20px;
-  background: rgba(20,10,40,0.35);
-  border-radius: 10px;
-  border: 1px solid rgba(201,168,106,0.12);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-}
-
-.section-title { margin-top: 0; margin-bottom: 12px; }
-
-.feature-list {
-  margin: 12px 0 0 0;
-  padding-left: 1.15em;
-  line-height: 1.6;
-}
-
-.home-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 14px;
-  margin-top: 14px;
-}
-
-/* Small screens: reduce padding and keep everything readable */
-@media (max-width: 900px) {
-  .main { padding: 20px 18px; max-width: 920px; }
-  .content-block { padding: 18px 14px; }
-  .realm-button { font-size: 20px; padding: 12px 32px; }
-}
-
-/* Very small screens: full width with comfortable gutters */
-@media (max-width: 480px) {
-  .main { padding: 16px 14px; }
-  .content-block { padding: 14px 12px; }
-  .home-gallery { gap: 10px; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-}
-
-/* Responsive sigil fallback for small screens */
-@media (max-width: 600px) {
-  .main-logo { width: 180px; }
-  .title { font-size: 28px; }
-  .subtitle { font-size: 16px; }
-  .sigil-wrap { width: 180px; height: 180px; }
-  .site-header { min-height: 260px; }
-  .council-card { flex-direction: column; text-align: center; }
-  .council-icon { width: 100px; height: 100px; }
-}
-
-/* =========================================
-   ⭐ LIGHTBOX FIX — Prevent Sigil/Header Blocking
-   ========================================= */
-
+/* ---------- Lightbox / overlay fixes ---------- */
 .lb-overlay,
 .lightboxOverlay,
-.lb-dataContainer {
-  z-index: 999999 !important;
-  pointer-events: auto !important;
+.lb-dataContainer { z-index: 999999 !important; pointer-events: auto !important; }
+.lb-close { z-index: 1000000 !important; }
+
+/* ---------- Main content / cards / gallery ---------- */
+.main{max-width:1100px;margin:0 auto;padding:28px 24px;box-sizing:border-box}
+.content-block{
+  margin:0 auto 34px;padding:22px 20px;background:rgba(20,10,40,0.35);
+  border-radius:10px;border:1px solid rgba(201,168,106,0.12);box-shadow:0 6px 18px rgba(0,0,0,0.35);
+}
+.section-title{margin-top:0;margin-bottom:12px}
+.home-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px}
+
+/* Council styles */
+.council-container{max-width:900px;margin:60px auto;padding:20px;color:var(--gold);font-family:'Spectral',serif}
+.council-title{text-align:center;font-size:48px;margin-bottom:10px;text-shadow:0 0 20px rgba(201,168,106,0.6)}
+.council-subtitle{text-align:center;font-size:20px;margin-bottom:40px;opacity:0.85}
+.council-section{font-size:32px;margin-top:40px;margin-bottom:20px;text-shadow:0 0 12px rgba(201,168,106,0.5);border-bottom:2px solid rgba(201,168,106,0.3);padding-bottom:6px}
+.council-card{display:flex;align-items:center;gap:20px;background:rgba(20,10,40,0.55);border:2px solid rgba(201,168,106,0.35);padding:18px;border-radius:12px;margin-bottom:18px;box-shadow:0 0 18px rgba(201,168,106,0.25);flex-wrap:wrap}
+.council-icon{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid rgba(201,168,106,0.6);box-shadow:0 0 15px rgba(201,168,106,0.4)}
+
+/* Store steps */
+.store-steps{margin:12px 0 0 0;padding-left:0;counter-reset:step;list-style:none}
+.store-steps>li{counter-increment:step;margin-bottom:12px;color:var(--text-light);position:relative;padding-left:2.4em}
+.store-steps>li::before{content:counter(step) ".";position:absolute;left:0;top:0;font-family:"Spectral",serif;color:var(--gold);font-weight:700;font-size:18px;width:2em;text-align:left}
+
+/* Footer */
+.site-footer{margin-top:60px;padding:30px 0;text-align:center;background:rgba(20,10,40,0.45);border-top:2px solid rgba(201,168,106,0.35)}
+.site-footer p,.footer-text{margin:0;font-size:18px;color:var(--gold);opacity:0.85}
+.discord-footer{display:inline-block;margin-top:10px;font-size:20px;color:var(--gold);text-decoration:none;padding:8px 16px;border:2px solid rgba(201,168,106,0.4);border-radius:8px;transition:0.3s}
+.discord-footer:hover{background:rgba(201,168,106,0.2);box-shadow:0 0 12px rgba(201,168,106,0.5)}
+
+/* ---------- Accessibility / focus ---------- */
+a:focus{outline:3px solid rgba(201,168,106,0.28);outline-offset:2px}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width:900px){
+  .main{padding:20px 18px;max-width:920px}
+  .content-block{padding:18px 14px}
+  .realm-button{font-size:20px;padding:12px 32px}
+}
+@media (max-width:480px){
+  .main{padding:16px 14px}
+  .content-block{padding:14px 12px}
+  .home-gallery{gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
 }
 
-.lb-close {
-  z-index: 1000000 !important;
-}
-
-/* Sigil should NEVER block clicks */
-.sigil-wrap,
-.sigil {
-  pointer-events: none !important;
-}
-/* Store section alignment and visibility fixes */
-.content-block {
-  padding: 26px 24px; /* slightly more comfortable padding for list-heavy blocks */
-}
-
-.store-steps {
-  margin: 12px 0 0 0;
-  padding-left: 0;
-  counter-reset: step;
-  list-style: none;
-}
-
-.store-steps > li {
-  counter-increment: step;
-  margin-bottom: 12px;
-  color: var(--text-light);
+/* ---------- Authoritative HERO rule (place at end to avoid overrides) ---------- */
+/* Use this class on the header element: <header class="site-header hero-header"> */
+header.site-header.hero-header{
+  /* try both common roots so subfolder installs work */
+  background-image: url('/assets/header-hero.jpg'), url('/wizardsofarkwebsite/assets/header-hero.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  min-height: 420px;
+  z-index: 60; /* keep header content above background */
   position: relative;
-  padding-left: 2.4em;
 }
 
-/* numeric step marker */
-.store-steps > li::before {
-  content: counter(step) ".";
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-family: "Spectral", serif;
-  color: var(--gold);
-  font-weight: 700;
-  font-size: 18px;
-  width: 2em;
-  text-align: left;
+/* Fallback if image missing: keep gradient visible */
+header.site-header.hero-header[style*="background-image: none"], header.site-header.hero-header:empty{
+  background-image: linear-gradient(180deg, var(--purple-mid), var(--purple-dark));
 }
 
-/* nested bullet list inside steps */
-.store-notes {
-  margin: 8px 0 0 0;
-  padding-left: 1.15em;
-  list-style: disc;
-  color: var(--text-light);
-}
-
-.store-notes li {
-  margin-bottom: 6px;
-  opacity: 1;
-}
-
-/* ensure discord button keeps its visual weight inside lists */
-.store-steps .discord-btn {
-  display: inline-block;
-  margin-left: 6px;
-  vertical-align: middle;
-}
-/* ---------- Force centered 600x600 sigil and keep rotation ---------- */
-.site-header {
-  position: relative !important;
-  overflow: visible !important;
-}
-
-/* Outer wrapper: only positioning and size (no rotation) */
-.site-header > .sigil-wrap,
-.site-header .sigil-wrap {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  width: 600px !important;
-  height: 600px !important;
-  transform: translate(-50%, -50%) !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-  will-change: transform;
-  max-width: none !important;
-  max-height: none !important;
-  overflow: visible !important;
-}
-
-/* Inner sigil: background image and rotation animation */
-.site-header { position: relative !important; overflow: visible !important; }
-
-.site-header > .sigil-wrap {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  width: 600px !important;
-  height: 600px !important;
-  transform: translate(-50%, -50%) !important;
-  pointer-events: none !important;
-  z-index: 1 !important;
-  overflow: visible !important;
-}
-
-.site-header > .sigil-wrap > .sigil {
-  width: 100% !important;
-  height: 100% !important;
-  background-image: url('/wizardsofark-website/assets/sigil.png') !important;
-  background-repeat: no-repeat !important;
-  background-position: center center !important;
-  background-size: contain !important;
-  opacity: 0.10 !important;
-  pointer-events: none !important;
-  animation: sigilRotate 36s linear infinite !important;
-  transform-origin: 50% 50% !important;
-}
-
-@keyframes sigilRotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-@media (max-width: 920px) {
-  .site-header > .sigil-wrap { width: 220px !important; height: 220px !important; }
-}
+/* ---------- End of stylesheet ---------- */
