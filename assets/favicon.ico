@@ -1,0 +1,1 @@
+convert /path/to/site/assets/favicon-32.png /path/to/site/assets/favicon-16.png -define icon:auto-resize=64,48,32,16 /path/to/site/assets/favicon.ico
