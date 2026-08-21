@@ -289,5 +289,26 @@
     })();
   </script>
 
+<!-- Safe lightbox guard: paste after all other scripts -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    if (typeof window.lightboxInit === 'function') {
+      try { window.lightboxInit(); } catch (e) { console.warn('lightboxInit failed', e); }
+    }
+
+    if (window.jQuery) {
+      if (typeof jQuery.fn.lightbox !== 'function') {
+        jQuery.fn.lightbox = function(){ return this; };
+        console.warn('Defined no-op jQuery.fn.lightbox to prevent errors.');
+      }
+    } else {
+      console.warn('jQuery not found; lightbox plugin may not initialize.');
+    }
+  } catch (err) {
+    console.warn('Safe lightbox guard caught error:', err);
+  }
+});
+</script>
 </body>
 </html>
