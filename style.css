@@ -616,5 +616,65 @@ code, pre, kbd, samp {
 *[style*="color: #fff"], *[style*="color:#fff"], *[style*="color: white"] {
   color: var(--site-brand-text) !important;
 }
+/* Store section: clean, centered, colored text, no visible numbers */
+#store-purchase { display:flex; justify-content:center; padding:18px 12px; }
+#store-purchase .store-inner { width:100%; max-width:820px; margin:0 auto; box-sizing:border-box; }
+#store-purchase .store-header { text-align:center; margin-bottom:12px; }
+#store-purchase .store-sub { color: rgba(201,168,106,0.92); margin-top:6px; }
+
+/* CTA */
+.discord-cta {
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  background: linear-gradient(180deg, rgba(201,168,106,0.12), rgba(201,168,106,0.06));
+  border:1px solid rgba(201,168,106,0.14);
+  color: var(--brand-text, #c9a86a);
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:700;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+.discord-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.35); }
+
+/* Steps: unordered, no markers, left-aligned inside centered block */
+#store-purchase .store-steps {
+  list-style: none;
+  padding-left: 0;
+  margin: 18px auto 0;
+  max-width:720px;
+  text-align:left;
+  line-height:1.6;
+  color: var(--brand-text, #c9a86a);
+}
+#store-purchase .store-steps > li {
+  margin: 0 0 14px 0;
+  padding-left: 0;
+  background: rgba(255,255,255,0.02);
+  border-radius:8px;
+  padding:12px;
+  border:1px solid rgba(201,168,106,0.06);
+}
+
+/* Nested notes */
+#store-purchase .store-notes {
+  margin-top:8px;
+  margin-left: 0.6em;
+  padding-left: 1em;
+  list-style: disc;
+  color: rgba(201,168,106,0.95);
+}
+#store-purchase .store-notes li { margin-bottom:6px; }
+
+/* Footer note */
+#store-purchase .store-footer { margin-top:10px; text-align:center; color: rgba(201,168,106,0.88); }
+
+/* Small screens */
+@media (max-width:480px) {
+  #store-purchase .store-inner { padding:12px; }
+  #store-purchase .store-steps > li { padding:10px; }
+  .discord-cta { width:100%; justify-content:center; padding:12px; }
+}
 
 /* End of stylesheet */
