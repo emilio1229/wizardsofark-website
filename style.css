@@ -199,5 +199,47 @@ header.site-header.hero-header{
 header.site-header.hero-header[style*="background-image: none"], header.site-header.hero-header:empty{
   background-image: linear-gradient(180deg, var(--purple-mid), var(--purple-dark));
 }
+/* Ensure content-block keeps internal spacing and lists stay inside */
+.content-block {
+  box-sizing: border-box;        /* include padding in width calculations */
+  padding: 22px 20px;            /* keep comfortable inner gutters */
+  overflow-wrap: break-word;     /* prevent long words/links from overflowing */
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Reset default list spacing so ol stays inside the box */
+.content-block ol,
+.content-block ul {
+  margin: 0 0 0 1.25em;          /* left indent inside the box, no top margin */
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Make each list item layout-friendly */
+.content-block ol li,
+.content-block ul li {
+  margin: 0 0 12px 0;            /* vertical spacing between items */
+  padding: 0;
+}
+
+/* Keep inline links from expanding the line height or overflowing */
+.content-block a.discord-btn {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: 16px;
+  white-space: normal;           /* allow wrapping inside the button if needed */
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* If you use a fade-in utility that sets opacity/transform, ensure layout preserved */
+.fade-in {
+  opacity: 1;
+  transform: none;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
 
 /* ---------- End of stylesheet ---------- */
