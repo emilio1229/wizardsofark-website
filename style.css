@@ -271,5 +271,50 @@ header.site-header.hero-header[style*="background-image: none"], header.site-hea
   max-width: 100%;
   box-sizing: border-box;
 }
+/* Store purchase list styling */
+.content-block .store-steps {
+  margin: 0 0 0 1.25em;
+  padding: 0;
+  list-style-position: inside;   /* numbers inside the padded box */
+  line-height: 1.6;
+  counter-reset: step;
+  word-break: break-word;
+}
+
+.content-block .store-steps > li {
+  margin: 0 0 12px 0;
+  padding-left: 0;
+}
+
+/* Nested notes inside a step */
+.content-block .store-notes {
+  margin: 8px 0 0 1.15em;
+  padding-left: 1.15em;
+  list-style: disc;
+  color: var(--text-light);
+}
+
+.content-block .store-notes li {
+  margin-bottom: 6px;
+  opacity: 1;
+}
+
+/* Make the Discord button inline and wrap safely */
+.content-block a.discord-btn {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: 16px;
+  white-space: normal;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure the content-block keeps its padding on small screens */
+@media (max-width: 480px) {
+  .content-block { padding: 14px 12px; }
+  .content-block .store-steps { margin-left: 1em; }
+}
 
 /* End of stylesheet */
