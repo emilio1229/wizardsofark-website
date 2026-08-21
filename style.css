@@ -316,5 +316,78 @@ header.site-header.hero-header[style*="background-image: none"], header.site-hea
   .content-block { padding: 14px 12px; }
   .content-block .store-steps { margin-left: 1em; }
 }
+/* Gallery layout and responsive images */
+.home-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+/* Each gallery tile */
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(20,10,40,0.08);
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  border: 1px solid rgba(201,168,106,0.06);
+}
+
+/* Hover/active affordance */
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* Image sizing */
+.rune-img {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  border-radius: 6px;
+  display: block;
+  object-fit: cover;
+}
+
+/* Caption styling */
+.gallery-item-title {
+  margin-top: 8px;
+  font-family: 'Spectral', serif;
+  color: var(--gold);
+  font-size: 14px;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* Nested notes and accessibility */
+.home-gallery a {
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Lightbox spacing guard (ensures overlay sits above header) */
+.lb-overlay,
+.lightboxOverlay,
+.lb-dataContainer {
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .home-gallery {
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  .rune-img { max-width: 220px; }
+  .gallery-item { padding: 8px; }
+}
 
 /* End of stylesheet */
