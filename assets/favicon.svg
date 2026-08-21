@@ -1,8 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-label="Wizards of Ark">
-  <!-- Raster fallback: uses the 32px PNG if available -->
-  <image href="favicon-32.png" x="0" y="0" width="64" height="64" preserveAspectRatio="xMidYMid slice"/>
-</svg>
 // site-effects.bundle.js (minimal placeholder)
 // - marks active nav link
 // - adds keyboard support for realm-button
