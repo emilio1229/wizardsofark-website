@@ -1,11 +1,9 @@
 /* =========================================
-   Wizards of Ark — Unified style.css
-   - Single authoritative root
-   - Consistent page container widths and centering
-   - Header/hero centered on all screens
-   - Gallery, store, council, footer aligned
-   - Removes visible numbers from store steps
-   - Lightbox z-index safety
+   Wizards of Ark — Fixed style.css
+   - Uses /assets/header-hero.jpg only (no 404 path)
+   - Centers header logo/title/subtitle/nav on all screens
+   - Keeps gradient fallback
+   - Lightbox z-index fixes retained
    ========================================= */
 
 /* ---------- Root variables ---------- */
@@ -13,11 +11,11 @@
   --gold: #c9a86a;
   --purple-dark: #1a0f2e;
   --purple-mid: #2e1a4f;
-  --brand-text: var(--gold);
+  --text-light: #e8e3f0;
   --header-max-width: 1200px;
-  --page-max-width: 1100px;
   --t-fast: 160ms;
   --shadow-soft: rgba(0,0,0,0.25);
+  --panel-border: rgba(201,168,106,0.25);
 }
 
 /* ---------- Reset & base ---------- */
@@ -25,46 +23,45 @@
 html,body{height:100%}
 body{
   background: radial-gradient(circle at center, var(--purple-mid), var(--purple-dark));
-  color:var(--brand-text);
+  color:var(--text-light);
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  line-height:1.45;
 }
 
-/* ---------- Global layout container ---------- */
-.main {
-  width:100%;
-  max-width:var(--page-max-width);
-  margin: 0 auto;
-  padding: 28px 24px;
-  box-sizing: border-box;
+/* ---------- Brand / headings ---------- */
+.title,
+.brand .title,
+header .title,
+h1.site-title {
+  font-family: "Uncial Antiqua", serif;
+  color:var(--gold);
+  font-size:42px;
+  letter-spacing:0.6px;
+  text-shadow:0 0 10px rgba(201,168,106,0.45);
+  margin: 0;
 }
 
-/* Content blocks (cards) */
-.content-block{
-  margin: 0 auto 34px;
-  padding: 22px 20px;
-  background: rgba(20,10,40,0.35);
-  border-radius: 10px;
-  border: 1px solid rgba(201,168,106,0.12);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-  color: var(--brand-text);
-}
-
-/* Section titles */
-.section-title {
-  margin-top: 0;
-  margin-bottom: 12px;
-  color: var(--brand-text);
+.subtitle {
   font-family: "Spectral", serif;
+  font-size:20px;
+  color:var(--gold);
+  opacity:0.85;
+  margin-top:6px;
+  text-shadow:0 0 8px rgba(201,168,106,0.35);
 }
 
-/* ---------- Header / hero (centered) ---------- */
+/* Responsive scaling */
+@media (max-width:600px){
+  .title{font-size:28px}
+  .subtitle{font-size:16px}
+}
+
+/* ---------- Header / hero (centered on all screens) ---------- */
+/* Primary header container */
 .site-header{
   width:100%;
+  /* gradient fallback; background-image for hero is set in .hero-header below */
   background: linear-gradient(180deg, rgba(40,20,80,0.9), rgba(10,5,25,0.95));
   padding: 48px 0 28px;
   border-bottom: 1px solid rgba(201,168,106,0.18);
@@ -73,147 +70,418 @@ body{
   z-index: 50;
   min-height: 420px;
   overflow: visible;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
-/* Hero background (canonical path) */
+/* Inner layout: always center content */
+.header-inner{
+  width: 100%;
+  max-width: var(--header-max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  z-index: 60;
+}
+
+/* On wide screens keep items centered but allow horizontal layout for spacing */
+@media (min-width:920px){
+  .header-inner {
+    flex-direction: column; /* keep stacked and centered for consistent centering */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+/* Brand block centered */
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  text-align: center;
+}
+
+/* Logo */
+.main-logo{
+  width: 260px;
+  height: auto;
+  display: block;
+  filter: brightness(2) drop-shadow(0 0 6px rgba(0,0,0,0.6));
+  margin: 0 auto;
+}
+@media (max-width:600px){ .main-logo{width:160px} }
+
+/* Navigation centered and stacked under brand on all screens */
+.nav{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* Nav links */
+.nav-link{
+  font-family:'Spectral',serif;
+  font-weight:600;
+  color:var(--gold);
+  text-decoration:none;
+  padding:6px 12px;
+  border-radius:6px;
+  background:rgba(201,168,106,0.08);
+  border:1px solid rgba(201,168,106,0.18);
+  box-shadow:0 0 6px var(--shadow-soft);
+  transition:var(--t-fast);
+  display:inline-block;
+  text-align:center;
+}
+.nav-link:hover,.nav-link.active{
+  transform:translateY(-2px);
+  background:rgba(201,168,106,0.15);
+  box-shadow:0 6px 18px rgba(201,168,106,0.12);
+}
+
+/* Realm CTA centered */
+.realm-button-wrap{width:100%;text-align:center;margin-top:36px;margin-bottom:28px;position:relative;z-index:20}
+.realm-button{
+  display:inline-block;padding:12px 36px;font-size:20px;font-weight:700;font-family:'Spectral',serif;
+  color:var(--gold);text-decoration:none;
+  background:linear-gradient(180deg, rgba(40,20,80,0.85), rgba(20,10,40,0.95));
+  border:2px solid rgba(201,168,106,0.55);border-radius:14px;
+  box-shadow:0 0 18px rgba(201,168,106,0.45), inset 0 0 12px rgba(201,168,106,0.25);
+  transition:all .3s ease;position:relative;overflow:hidden;
+}
+.realm-button:hover{ transform:translateY(-4px) scale(1.04); box-shadow:0 0 28px rgba(201,168,106,0.75); border-color:rgba(201,168,106,0.75) }
+
+/* ---------- Lightbox / overlay fixes ---------- */
+.lb-overlay,
+.lightboxOverlay,
+.lb-dataContainer { z-index: 999999 !important; pointer-events: auto !important; }
+.lb-close { z-index: 1000000 !important; }
+
+/* ---------- Main content / cards / gallery ---------- */
+.main{max-width:1100px;margin:0 auto;padding:28px 24px;box-sizing:border-box}
+.content-block{
+  margin:0 auto 34px;padding:22px 20px;background:rgba(20,10,40,0.35);
+  border-radius:10px;border:1px solid rgba(201,168,106,0.12);box-shadow:0 6px 18px rgba(0,0,0,0.35);
+}
+.section-title{margin-top:0;margin-bottom:12px}
+.home-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px}
+
+/* Council styles */
+.council-container{max-width:900px;margin:60px auto;padding:20px;color:var(--gold);font-family:'Spectral',serif}
+.council-title{text-align:center;font-size:48px;margin-bottom:10px;text-shadow:0 0 20px rgba(201,168,106,0.6)}
+.council-subtitle{text-align:center;font-size:20px;margin-bottom:40px;opacity:0.85}
+.council-section{font-size:32px;margin-top:40px;margin-bottom:20px;text-shadow:0 0 12px rgba(201,168,106,0.5);border-bottom:2px solid rgba(201,168,106,0.3);padding-bottom:6px}
+.council-card{display:flex;align-items:center;gap:20px;background:rgba(20,10,40,0.55);border:2px solid rgba(201,168,106,0.35);padding:18px;border-radius:12px;margin-bottom:18px;box-shadow:0 0 18px rgba(201,168,106,0.25);flex-wrap:wrap}
+.council-icon{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid rgba(201,168,106,0.6);box-shadow:0 0 15px rgba(201,168,106,0.4)}
+
+/* Store steps */
+.store-steps{margin:12px 0 0 0;padding-left:0;counter-reset:step;list-style:none}
+.store-steps>li{counter-increment:step;margin-bottom:12px;color:var(--text-light);position:relative;padding-left:2.4em}
+.store-steps>li::before{content:counter(step) ".";position:absolute;left:0;top:0;font-family:"Spectral",serif;color:var(--gold);font-weight:700;font-size:18px;width:2em;text-align:left}
+
+/* Footer */
+.site-footer{margin-top:60px;padding:30px 0;text-align:center;background:rgba(20,10,40,0.45);border-top:2px solid rgba(201,168,106,0.35)}
+.site-footer p,.footer-text{margin:0;font-size:18px;color:var(--gold);opacity:0.85}
+.discord-footer{display:inline-block;margin-top:10px;font-size:20px;color:var(--gold);text-decoration:none;padding:8px 16px;border:2px solid rgba(201,168,106,0.4);border-radius:8px;transition:0.3s}
+.discord-footer:hover{background:rgba(201,168,106,0.2);box-shadow:0 0 12px rgba(201,168,106,0.5)}
+
+/* Accessibility */
+a:focus{outline:3px solid rgba(201,168,106,0.28);outline-offset:2px}
+
+/* Responsive tweaks */
+@media (max-width:900px){
+  .main{padding:20px 18px;max-width:920px}
+  .content-block{padding:18px 14px}
+  .realm-button{font-size:18px;padding:10px 28px}
+}
+@media (max-width:480px){
+  .main{padding:16px 14px}
+  .content-block{padding:14px 12px}
+  .home-gallery{gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+}
+
+/* ---------- Authoritative HERO rule (end of file) ---------- */
+/* Use this class on the header element: <header class="site-header hero-header"> */
 header.site-header.hero-header{
+  /* single canonical path to avoid 404s */
   background-image: url('/assets/header-hero.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
   min-height: 420px;
+  z-index: 60; /* keep header content above background */
   position: relative;
-  z-index: 50;
+  /* ensure the gradient fallback remains visible if image fails */
+  background-color: transparent;
 }
 
-/* Inner header content always centered */
-.header-inner{
-  width:100%;
-  max-width:var(--header-max-width);
-  margin:0 auto;
-  padding:0 16px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:8px;
-  position:relative;
-  z-index:60;
+/* Mobile-specific: smaller min-height and ensure background is applied */
+@media (max-width: 920px) {
+  header.site-header.hero-header {
+    background-image: url('/assets/header-hero-mobile.jpg'), url('/assets/header-hero.jpg');
+    background-size: cover !important;
+    background-position: center center !important;
+    min-height: 320px !important;
+  }
 }
 
-/* Brand block */
-.brand{
-  display:flex;
-  flex-direction:column;
-  gap:6px;
-  align-items:center;
-  text-align:center;
-}
-.title, .brand .title, header .title, h1.site-title {
-  font-family: "Uncial Antiqua", serif;
-  color:var(--brand-text);
-  font-size:42px;
-  letter-spacing:0.6px;
-  text-shadow:0 0 10px rgba(201,168,106,0.45);
-  margin:0;
-}
-.subtitle {
-  font-family: "Spectral", serif;
-  font-size:20px;
-  color:var(--brand-text);
-  opacity:0.95;
-  margin-top:6px;
-  text-shadow:0 0 8px rgba(201,168,106,0.35);
+/* Fallback if image missing: keep gradient visible */
+header.site-header.hero-header[style*="background-image: none"], header.site-header.hero-header:empty{
+  background-image: none;
+  background: linear-gradient(180deg, var(--purple-mid), var(--purple-dark));
 }
 
-/* Logo */
-.main-logo{
-  width:260px;height:auto;display:block;margin:0 auto;
-  filter:brightness(2) drop-shadow(0 0 6px rgba(0,0,0,0.6));
+/* Ensure content-block spacing and list behavior */
+.content-block {
+  box-sizing: border-box;
+  padding: 22px 20px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
-@media (max-width:600px){ .main-logo{width:160px} }
+.content-block ol,
+.content-block ul {
+  margin: 0 0 0 1.25em;
+  padding: 0;
+  line-height: 1.6;
+}
+.content-block ol li,
+.content-block ul li {
+  margin: 0 0 12px 0;
+  padding: 0;
+}
+.content-block a.discord-btn {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: 16px;
+  white-space: normal;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+/* Store purchase list styling */
+.content-block .store-steps {
+  margin: 0 0 0 1.25em;
+  padding: 0;
+  list-style-position: inside;   /* numbers inside the padded box */
+  line-height: 1.6;
+  counter-reset: step;
+  word-break: break-word;
+}
 
-/* Navigation centered */
-.nav{
-  display:flex;
-  flex-direction:row;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  margin-top:8px;
-}
-.nav-link{
-  font-family:'Spectral',serif;font-weight:600;color:var(--brand-text);text-decoration:none;
-  padding:6px 12px;border-radius:6px;background:rgba(201,168,106,0.06);
-  border:1px solid rgba(201,168,106,0.12);box-shadow:0 0 6px var(--shadow-soft);
-  transition:var(--t-fast);display:inline-block;text-align:center;
-}
-.nav-link:hover,.nav-link.active{
-  transform:translateY(-2px);background:rgba(201,168,106,0.12);
-  box-shadow:0 6px 18px rgba(201,168,106,0.12);
+.content-block .store-steps > li {
+  margin: 0 0 12px 0;
+  padding-left: 0;
 }
 
-/* ---------- Gallery ---------- */
+/* Nested notes inside a step */
+.content-block .store-notes {
+  margin: 8px 0 0 1.15em;
+  padding-left: 1.15em;
+  list-style: disc;
+  color: var(--text-light);
+}
+
+.content-block .store-notes li {
+  margin-bottom: 6px;
+  opacity: 1;
+}
+
+/* Make the Discord button inline and wrap safely */
+.content-block a.discord-btn {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 8px;
+  padding: 6px 10px;
+  font-size: 16px;
+  white-space: normal;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure the content-block keeps its padding on small screens */
+@media (max-width: 480px) {
+  .content-block { padding: 14px 12px; }
+  .content-block .store-steps { margin-left: 1em; }
+}
+/* Gallery layout and responsive images */
 .home-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 14px;
   align-items: start;
 }
+
+/* Each gallery tile */
 .gallery-item {
-  display:flex;flex-direction:column;align-items:center;text-align:center;
-  background: rgba(20,10,40,0.08);padding:10px;border-radius:8px;overflow:hidden;
-  transition: transform 180ms ease, box-shadow 180ms ease;border:1px solid rgba(201,168,106,0.06);
-}
-.gallery-item:hover{ transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.35); }
-.rune-img{ width:100%; height:auto; max-width:320px; border-radius:6px; display:block; object-fit:cover; }
-.gallery-item-title{ margin-top:8px; font-family:'Spectral',serif; color:var(--brand-text); font-size:14px; line-height:1.2; }
-
-/* ---------- Store section (centered, no visible numbers) ---------- */
-#store-purchase { display:flex; justify-content:center; padding-left:12px; padding-right:12px; }
-#store-purchase .content-block { width:100%; max-width:820px; margin:0 auto; text-align:center; padding:22px 20px; box-sizing:border-box; }
-#store-purchase .store-steps { margin:18px auto 0; padding:0; max-width:720px; text-align:left; line-height:1.6; list-style:none; }
-#store-purchase .store-steps > li { margin:0 0 12px 0; padding-left:0; position:relative; }
-#store-purchase .store-notes { margin:8px 0 0 1.15em; padding-left:1.15em; list-style:disc; color:rgba(201,168,106,0.95); }
-#store-purchase .discord-btn { display:inline-block; margin-left:8px; padding:6px 10px; white-space:normal; box-sizing:border-box; background:rgba(201,168,106,0.06); border:1px solid rgba(201,168,106,0.12); border-radius:6px; color:var(--brand-text); text-decoration:none; }
-
-/* ---------- Council styles (kept aligned) ---------- */
-.council-container{max-width:900px;margin:60px auto;padding:20px;color:var(--brand-text);font-family:'Spectral',serif}
-.council-title{text-align:center;font-size:48px;margin-bottom:10px;text-shadow:0 0 20px rgba(201,168,106,0.6)}
-.council-subtitle{text-align:center;font-size:20px;margin-bottom:40px;opacity:0.85}
-.council-section{font-size:32px;margin-top:40px;margin-bottom:20px;text-shadow:0 0 12px rgba(201,168,106,0.5);border-bottom:2px solid rgba(201,168,106,0.3);padding-bottom:6px}
-
-/* ---------- Footer ---------- */
-.site-footer{margin-top:60px;padding:30px 0;text-align:center;background:rgba(20,10,40,0.45);border-top:2px solid rgba(201,168,106,0.35)}
-.site-footer p,.footer-text{margin:0;font-size:18px;color:var(--brand-text);opacity:0.95}
-
-/* ---------- Lightbox / overlay fixes ---------- */
-.lb-overlay, .lightboxOverlay, .lb-dataContainer { z-index: 999999 !important; pointer-events: auto !important; }
-.lb-close { z-index: 1000000 !important; }
-
-/* ---------- Accessibility / focus ---------- */
-a:focus{outline:3px solid rgba(201,168,106,0.28);outline-offset:2px}
-
-/* ---------- Responsive tweaks ---------- */
-@media (max-width:900px){
-  .main{padding:20px 18px;max-width:920px}
-  .content-block{padding:18px 14px}
-}
-@media (max-width:480px){
-  .main{padding:16px 14px}
-  .content-block{padding:14px 12px}
-  .home-gallery{gap:10px;grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
-  .rune-img{ max-width:220px; }
-  #store-purchase .content-block{ padding:14px 12px; max-width:92%; }
-  #store-purchase .store-steps{ margin-left:0.6em; }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: rgba(20,10,40,0.08);
+  padding: 10px;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  border: 1px solid rgba(201,168,106,0.06);
 }
 
-/* ---------- Force brand color over inline white styles (last-resort) ---------- */
-*[style*="color: #fff"], *[style*="color:#fff"], *[style*="color: white"] {
+/* Hover/active affordance */
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+/* Image sizing */
+.rune-img {
+  width: 100%;
+  height: auto;
+  max-width: 320px;
+  border-radius: 6px;
+  display: block;
+  object-fit: cover;
+}
+
+/* Caption styling */
+.gallery-item-title {
+  margin-top: 8px;
+  font-family: 'Spectral', serif;
+  color: var(--gold);
+  font-size: 14px;
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+/* Nested notes and accessibility */
+.home-gallery a {
+  display: inline-block;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Lightbox spacing guard (ensures overlay sits above header) */
+.lb-overlay,
+.lightboxOverlay,
+.lb-dataContainer {
+  z-index: 999999 !important;
+  pointer-events: auto !important;
+}
+
+/* Small screens */
+@media (max-width: 480px) {
+  .home-gallery {
+    gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  }
+  .rune-img { max-width: 220px; }
+  .gallery-item { padding: 8px; }
+}
+
+/* ---------- Global colored text (use brand color, avoid white) ---------- */
+/* Prefer placing this after other rules so it wins when needed */
+:root {
+  /* keep the original variables but ensure a single authoritative color for text */
+  --brand-text: var(--gold);
+}
+
+/* Apply brand color broadly */
+body,
+p,
+li,
+ol,
+ul,
+.content-block,
+.main,
+.footer-text,
+.muted,
+.bot-list p,
+.role,
+.duty {
   color: var(--brand-text) !important;
 }
 
-/* ---------- End of stylesheet ---------- */
+/* Headings and brand elements */
+.title,
+.brand .title,
+header .title,
+h1, h2, h3, h4, h5, h6,
+.section-title,
+.subtitle {
+  color: var(--brand-text) !important;
+  text-shadow: 0 0 10px rgba(201,168,106,0.35);
+}
+
+/* Links, nav, and CTAs */
+a,
+.nav-link,
+.discord-btn,
+.realm-button,
+.discord-footer {
+  color: var(--brand-text) !important;
+  border-color: rgba(201,168,106,0.18) !important;
+}
+
+/* Ensure muted or secondary text remains readable (slightly dimmed) */
+.muted,
+.content-block .muted,
+.store-notes li {
+  color: rgba(201,168,106,0.92) !important;
+  opacity: 0.95;
+}
+
+/* Exceptions: keep code, pre, and small UI elements readable (dark text on light backgrounds) */
+code, pre, kbd, samp {
+  color: inherit;
+  background: rgba(255,255,255,0.06);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* If any element still uses white via inline styles or third-party CSS, force a fallback */
+*[style*="color: #fff"], *[style*="color:#fff"], *[style*="color: white"] {
+  color: var(--brand-text) !important;
+}
+/* Styling for unordered store steps */
+.store-steps { list-style: disc; padding-left: 1.25em; margin: 18px auto 0; max-width: 720px; text-align: left; }
+.store-steps > li { margin-bottom: 12px; }
+/* Hide visual markers for store steps while keeping semantic list for screen readers */
+.store-steps {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+.store-steps > li {
+  margin: 0 0 12px 0;
+  padding-left: 0;
+  position: relative;
+}
+
+/* Optional: add a subtle custom marker (comment out if you want no marker at all) */
+/*
+.store-steps > li::before {
+  content: "•";
+  color: var(--gold);
+  font-weight: 700;
+  display: inline-block;
+  width: 1.2em;
+  margin-right: 6px;
+  position: relative;
+  left: -0.2em;
+}
+*/
+
+/* End of stylesheet */
