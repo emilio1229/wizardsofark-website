@@ -136,7 +136,19 @@ function SiteLayout(): JSX.Element {
                 {siteMeta.footer}
               </Typography>
             </Box>
-            <Button variant="outlined" color="primary" href={siteMeta.discordUrl} target="_blank" rel="noreferrer">
+            <Button
+              variant="contained"
+              href={siteMeta.discordUrl}
+              target="_blank"
+              rel="noreferrer"
+              sx={{
+                bgcolor: 'secondary.main',
+                color: 'primary.dark',
+                '&:hover': {
+                  bgcolor: 'secondary.light',
+                },
+              }}
+            >
               Join Discord
             </Button>
           </Stack>
