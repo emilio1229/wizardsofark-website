@@ -378,12 +378,14 @@ function HomePage(): JSX.Element {
             <Stack spacing={2}>
               <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
                 <Box>
-                  <Typography variant="overline" sx={{ color: 'text.secondary', letterSpacing: 3.2 }}>
+                  <Typography variant="overline" sx={{ color: 'secondary.light', letterSpacing: 3.2 }}>
                     Arcane Gallery
                   </Typography>
-                  <Typography variant="h5">{selectedImage.caption}</Typography>
+                  <Typography variant="h5" sx={{ color: 'secondary.main' }}>
+                    {selectedImage.caption}
+                  </Typography>
                 </Box>
-                <IconButton onClick={closeCarousel} aria-label="Close gallery carousel">
+                <IconButton onClick={closeCarousel} aria-label="Close gallery carousel" sx={{ color: 'secondary.main' }}>
                   <CloseIcon />
                 </IconButton>
               </Stack>
@@ -427,7 +429,18 @@ function HomePage(): JSX.Element {
                 </IconButton>
               </Box>
 
-              <Stack direction="row" spacing={1.25} sx={{ overflowX: 'auto', pb: 0.5 }}>
+              <Stack
+                direction="row"
+                spacing={1.25}
+                sx={{
+                  overflowX: 'auto',
+                  pb: 0.5,
+                  scrollbarWidth: 'none',
+                  '&::-webkit-scrollbar': {
+                    display: 'none',
+                  },
+                }}
+              >
                 {galleryImages.map((image, index) => {
                   const isActive = index === selectedImageIndex;
 
