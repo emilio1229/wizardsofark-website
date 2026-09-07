@@ -1,5 +1,12 @@
-project = "wizards-of-ark"
-service = "web"
+$schema = "https://railway.com/railway.schema.json"
+
+[build]
+builder = "RAILPACK"
+buildCommand = "yarn build"
 
 [deploy]
-  command = "npm install && npm run build"
+startCommand = "yarn start"
+healthcheckPath = "/health"
+healthcheckTimeout = 120
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 10
