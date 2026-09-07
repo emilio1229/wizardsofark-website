@@ -41,12 +41,10 @@ This project is configured for Railway with [railway.toml](./railway.toml).
 
 ### Build and start settings
 
-- Builder: `RAILPACK`
-- Build command: `yarn build`
-- Start command: `yarn start`
+- Builder: `DOCKERFILE`
 - Healthcheck path: `/health`
 
-Railway will build the Vite app into `dist` and then run the Express server in [server.js](./server.js), which serves the built SPA and handles direct refreshes on React Router paths.
+Railway will build the Docker image defined in [Dockerfile](./Dockerfile). The final container serves the built SPA with nginx, listens on Railway's injected `PORT`, and exposes a dedicated `/health` endpoint for deploy health checks.
 
 ### Connect the repo
 
@@ -93,5 +91,6 @@ After Railway marks the domain as active:
 
 ### Notes
 
-- The repo still includes a Dockerfile for container builds, but Railway is explicitly configured to use `RAILPACK` instead.
-- The React app uses clean routes, and the Express server handles SPA fallback for inner pages like `/store` and `/council`.
+- Railway is explicitly configured to use the root [Dockerfile](./Dockerfile) for builds.
+- nginx serves the SPA and handles refreshes on inner routes like `/store` and `/council`.
+- [server.js](./server.js) remains available for local or alternative Node-based serving, but Railway is not using it in the Docker deployment path.
