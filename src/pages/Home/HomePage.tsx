@@ -13,6 +13,7 @@ function HomePage(): JSX.Element {
         description={siteMeta.description}
         backgroundImage="/assets/community/media/skyforge-peak.png"
         fillParent
+        overlayOpacity={0.6}
         titleOffset={{ xs: '22%', md: '28%' }}
         bottomGap="grow"
         primaryAction={{ label: 'View Servers', href: '/servers' }}

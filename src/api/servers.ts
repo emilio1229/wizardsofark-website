@@ -1,57 +1,92 @@
-import { arkMaps, servers, toServerSummary } from '../data/servers';
-import type { ArkMap, ServerDetail, ServerSummary } from '../types';
+import { arkMaps } from '../data/servers';
+import type { ArkMap, ServerDetail } from '../types';
 import type { ApiResult } from './client';
+import {
+  fetchLiveServerById,
+  fetchMaps as fetchLiveMaps,
+  fetchServersNetwork,
+  getMapById as getLiveMapById,
+} from '../features/servers/api/liveServersApi';
+import type { LiveServer, ServersNetworkResponse } from '../features/servers/types/liveServers';
+import { serverEnrichmentByMapId } from '../data/serverEnrichment';
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+export type { ServersNetworkResponse, LiveServer };
 
-function withJitter(server: ServerDetail): ServerDetail {
-  if (server.status !== 'online') {
-    return server;
-  }
-
-  const delta = Math.floor(Math.random() * 3) - 1;
-  const players = Math.max(0, Math.min(server.maxPlayers, server.players + delta));
-  return { ...server, players };
+export async function fetchServersNetworkResult(): Promise<ApiResult<ServersNetworkResponse>> {
+  return fetchServersNetwork();
 }
 
-export async function fetchServers(): Promise<ApiResult<ServerSummary[]>> {
-  await delay(350);
-  try {
-    const data = servers.map((server) => toServerSummary(withJitter(server)));
-    return { status: 'success', data, updatedAt: new Date().toISOString() };
-  } catch (error) {
+/** @deprecated Prefer fetchServersNetworkResult — kept for callers expecting a list shape. */
+export async function fetchServers(): Promise<ApiResult<LiveServer[]>> {
+  const result = await fetchServersNetwork();
+  if (result.status === 'error') {
     return {
       status: 'error',
-      error: error instanceof Error ? error : new Error('Failed to load servers'),
+      error: result.error,
+      updatedAt: result.updatedAt,
     };
   }
+  return {
+    status: 'success',
+    data: result.data.servers,
+    updatedAt: result.updatedAt,
+  };
 }
 
 export async function fetchServerById(serverId: string): Promise<ApiResult<ServerDetail | null>> {
-  await delay(280);
-  try {
-    const found = servers.find((server) => server.id === serverId);
-    if (!found) {
-      return { status: 'success', data: null, updatedAt: new Date().toISOString() };
-    }
-    return {
-      status: 'success',
-      data: withJitter(found),
-      updatedAt: new Date().toISOString(),
-    };
-  } catch (error) {
+  const result = await fetchLiveServerById(serverId);
+  if (result.status === 'error') {
     return {
       status: 'error',
-      error: error instanceof Error ? error : new Error('Failed to load server'),
+      error: result.error,
+      updatedAt: result.updatedAt,
     };
   }
+  if (!result.data) {
+    return { status: 'success', data: null, updatedAt: result.updatedAt };
+  }
+
+  const live = result.data;
+  const enrichment = serverEnrichmentByMapId[live.mapId];
+
+  const detail: ServerDetail = {
+    id: live.id,
+    name: live.name,
+    mapId: live.mapId,
+    mapName: live.map,
+    status: live.status,
+    players: live.players ?? 0,
+    maxPlayers: live.maxPlayers ?? 0,
+    playerUtilization: live.playerUtilization,
+    gameMode: live.isPve === null ? 'Unknown' : live.isPve ? 'PvE' : 'PvP',
+    type: 'Unofficial',
+    ip: live.ip,
+    port: live.gamePort,
+    gamePort: live.gamePort,
+    queryPort: live.queryPort,
+    version: live.version ?? 'Unavailable',
+    firstSeen: live.firstSeen,
+    lastSeen: live.lastSeen,
+    lastChecked: live.lastChecked,
+    missingSince: live.missingSince,
+    description:
+      enrichment?.description ??
+      `${live.map} — live status from the public ASA unofficial server list.`,
+    mods: enrichment?.mods ?? [],
+    settings: enrichment?.settings ?? [],
+    rules: enrichment?.rules ?? ['Follow General and Building rules'],
+    recentPlayers: [],
+    statusExplanation: live.statusExplanation ?? null,
+    statusHistory: live.statusHistory,
+  };
+
+  return { status: 'success', data: detail, updatedAt: result.updatedAt };
 }
 
 export async function fetchMaps(): Promise<ApiResult<ArkMap[]>> {
-  await delay(120);
-  return { status: 'success', data: arkMaps, updatedAt: new Date().toISOString() };
+  return fetchLiveMaps();
 }
 
 export function getMapById(mapId: string): ArkMap | undefined {
-  return arkMaps.find((map) => map.id === mapId);
+  return getLiveMapById(mapId) ?? arkMaps.find((map) => map.id === mapId);
 }

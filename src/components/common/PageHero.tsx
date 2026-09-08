@@ -34,6 +34,8 @@ type PageHeroProps = {
   /** Smaller promo banner for secondary pages (supports overlapping content). */
   compact?: boolean;
   overlay?: 'horizontal' | 'vertical' | 'both';
+  /** Darken strength of the hero scrim (1 = full overlay, lower = more background visible). */
+  overlayOpacity?: number;
 };
 
 export function PageHero({
@@ -54,6 +56,7 @@ export function PageHero({
   titleOffset,
   bottomGap = { xs: 6, md: 8 },
   overlay = 'both',
+  overlayOpacity = 1,
 }: PageHeroProps): JSX.Element {
   const renderAction = (action: HeroAction | undefined, variant: ButtonProps['variant']) => {
     if (!action) {
@@ -130,6 +133,7 @@ export function PageHero({
         sx={{
           position: 'absolute',
           inset: 0,
+          opacity: overlayOpacity,
           background:
             overlay === 'horizontal'
               ? woaTokens.gradients.heroOverlay

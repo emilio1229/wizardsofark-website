@@ -1,16 +1,22 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchServerById, fetchServers } from '../api/servers';
+import { fetchServerById, fetchServersNetworkResult } from '../api/servers';
 import { fetchCouncil } from '../api/council';
 import { fetchShopItems, fetchEosBalance } from '../api/shop';
 import { fetchCommunityActivity, fetchCommunityCategories, fetchCommunityMedia } from '../api/community';
 import { fetchRules } from '../api/rules';
 
-export function useServers() {
+export function useServersNetwork() {
   return useQuery({
-    queryKey: ['servers'],
-    queryFn: fetchServers,
-    refetchInterval: 45_000,
+    queryKey: ['servers', 'network'],
+    queryFn: fetchServersNetworkResult,
+    refetchInterval: 60_000,
+    placeholderData: (previous) => previous,
   });
+}
+
+/** @deprecated Prefer useServersNetwork for summary + server list. */
+export function useServers() {
+  return useServersNetwork();
 }
 
 export function useServer(serverId: string) {
@@ -18,7 +24,8 @@ export function useServer(serverId: string) {
     queryKey: ['servers', serverId],
     queryFn: () => fetchServerById(serverId),
     enabled: Boolean(serverId),
-    refetchInterval: 45_000,
+    refetchInterval: 60_000,
+    placeholderData: (previous) => previous,
   });
 }
 

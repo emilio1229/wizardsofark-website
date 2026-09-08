@@ -16,6 +16,7 @@ declare module '@mui/material/styles' {
       warning: string;
       maintenance: string;
       restarting: string;
+      possiblyUpdating: string;
     };
     border: {
       default: string;
@@ -38,6 +39,7 @@ declare module '@mui/material/styles' {
       warning: string;
       maintenance: string;
       restarting: string;
+      possiblyUpdating: string;
     };
     border?: {
       default: string;
@@ -107,6 +109,7 @@ export const palette = {
     warning: woaTokens.colours.status.warning,
     maintenance: woaTokens.colours.status.maintenance,
     restarting: woaTokens.colours.status.restarting,
+    possiblyUpdating: woaTokens.colours.status.possiblyUpdating,
   },
   border: {
     default: woaTokens.colours.border.default,

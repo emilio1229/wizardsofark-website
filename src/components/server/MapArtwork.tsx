@@ -6,7 +6,7 @@ import { woaTokens } from '../../theme/tokens';
 type MapArtworkProps = {
   src?: string;
   alt: string;
-  height?: number | string;
+  height?: number | string | Record<string, number | string>;
   overlay?: boolean;
   label?: string;
 };
