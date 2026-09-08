@@ -6,7 +6,7 @@ services:
     environment:
       PORT: "8080"
       HOST: "0.0.0.0"
-      DATABASE_PATH: /data/woa-servers.sqlite
+      DATABASE_PATH: /app/data/woa-servers.sqlite
       STATIC_DIR: /app/dist
       SERVER_NAME_FILTER: The Wizards Of Ark
       POLL_INTERVAL_SECONDS: "60"
@@ -14,7 +14,7 @@ services:
       OFFLINE_THRESHOLD_SECONDS: "600"
       CACHE_TTL_SECONDS: "45"
     volumes:
-      - woa-server-data:/data
+      - woa-server-data:/app/data
     restart: unless-stopped
 
 volumes:

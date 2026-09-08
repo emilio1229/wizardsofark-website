@@ -2,8 +2,12 @@
 
 [build]
 builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
 
 [deploy]
+# Explicitly pin the Fastify monitor; a dashboard Start Command override
+# (e.g. nginx / yarn start) will crash this image immediately.
+startCommand = "node backend/dist/index.js"
 healthcheckPath = "/health"
 healthcheckTimeout = 120
 restartPolicyType = "ON_FAILURE"

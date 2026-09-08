@@ -81,8 +81,8 @@ docs/
 
 ```bash
 yarn build
-# Run the Fastify process with STATIC_DIR pointing at the Vite build,
-# or run `yarn start:api` + `yarn start` (Express proxies /api).
+# Run the Fastify process with STATIC_DIR pointing at the Vite build
+# (`yarn start` after `yarn build`), or `yarn start:api` for API-only.
 ```
 
 Example single-process production env:
@@ -90,7 +90,7 @@ Example single-process production env:
 ```bash
 PORT=8080
 STATIC_DIR=../dist
-DATABASE_PATH=../data/woa-servers.sqlite
+DATABASE_PATH=/app/data/woa-servers.sqlite
 SERVER_NAME_FILTER="The Wizards Of Ark"
 ```
 
@@ -99,6 +99,16 @@ SERVER_NAME_FILTER="The Wizards Of Ark"
 ```bash
 docker compose up --build
 ```
+
+Railway builds from the `Dockerfile` (`railway.toml`). The start command must be:
+
+```text
+node backend/dist/index.js
+```
+
+Clear any dashboard Start Command leftover from the old nginx image (e.g. `nginx` / `yarn start`), or set it to the command above. If `DATABASE_PATH` is set in Railway variables, prefer `/app/data/woa-servers.sqlite`.
+
+Healthcheck: `GET /health`.
 
 Site: http://localhost:8081  
 Health: http://localhost:8081/health  

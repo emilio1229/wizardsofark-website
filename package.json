@@ -9,7 +9,7 @@
     "dev:api": "yarn --cwd backend dev",
     "dev:all": "yarn --cwd backend dev & yarn dev",
     "preview": "vite preview",
-    "start": "node server.js",
+    "start": "node backend/dist/index.js",
     "start:api": "yarn --cwd backend start",
     "build": "tsc --noEmit && vite build && yarn --cwd backend build",
     "test:api": "yarn --cwd backend test",
