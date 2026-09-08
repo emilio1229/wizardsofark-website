@@ -18,5 +18,7 @@ Full guide: [docs/CONTENT.md](../../../docs/CONTENT.md)
 | Lost Colony | `lost-colony.jpg` | ✓ |
 | Astraeos | `astraeos.jpg` | ✓ |
 | Dragontopia | `dragontopia.jpg` | ✓ |
+| Amissa | `amissa.jpg` | ✓ |
+| Bjarnheim | `bjarnheim.jpg` | ✓ |
 
 Suggested size: **1200×675**. Prefer JPG/WebP under ~500KB.

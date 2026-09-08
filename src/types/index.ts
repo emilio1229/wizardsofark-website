@@ -1,4 +1,9 @@
-export type ServerStatus = 'online' | 'offline' | 'restarting' | 'maintenance';
+export type ServerStatus =
+  | 'online'
+  | 'offline'
+  | 'restarting'
+  | 'possibly_updating'
+  | 'maintenance';
 
 export type NavLinkItem = {
   label: string;
@@ -16,25 +21,46 @@ export type ServerSummary = {
   id: string;
   name: string;
   mapId: string;
+  mapName?: string;
   status: ServerStatus;
   players: number;
   maxPlayers: number;
-  gameMode: string;
+  playerUtilization?: number | null;
+  gameMode?: string;
   type?: string;
+  ip?: string;
+  gamePort?: number;
+  queryPort?: number | null;
+  version?: string | null;
+  lastSeen?: string | null;
+  lastChecked?: string;
 };
 
 export type ServerDetail = ServerSummary & {
   ip: string;
   port: number;
-  uptimeSeconds: number;
+  gamePort?: number;
+  queryPort?: number | null;
+  uptimeSeconds?: number;
   version: string;
-  lastRestart: string;
-  nextRestart: string;
+  lastRestart?: string;
+  nextRestart?: string;
+  firstSeen?: string;
+  lastSeen?: string | null;
+  lastChecked?: string;
+  missingSince?: string | null;
   description: string;
   mods: string[];
   settings: Array<{ label: string; value: string }>;
   rules: string[];
   recentPlayers: PlayerSummary[];
+  statusExplanation?: string | null;
+  statusHistory?: Array<{
+    fromStatus: ServerStatus | null;
+    toStatus: ServerStatus;
+    observedAt: string;
+    note: string | null;
+  }>;
 };
 
 export type PlayerSummary = {

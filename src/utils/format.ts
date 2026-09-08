@@ -9,6 +9,8 @@ export function getStatusColour(status: ServerStatus): string {
       return woaTokens.colours.status.offline;
     case 'restarting':
       return woaTokens.colours.status.restarting;
+    case 'possibly_updating':
+      return woaTokens.colours.status.possiblyUpdating;
     case 'maintenance':
       return woaTokens.colours.status.maintenance;
     default:
@@ -17,7 +19,20 @@ export function getStatusColour(status: ServerStatus): string {
 }
 
 export function formatStatusLabel(status: ServerStatus): string {
-  return status.charAt(0).toUpperCase() + status.slice(1);
+  switch (status) {
+    case 'possibly_updating':
+      return 'Possibly Updating';
+    case 'online':
+      return 'Online';
+    case 'offline':
+      return 'Offline';
+    case 'restarting':
+      return 'Restarting';
+    case 'maintenance':
+      return 'Maintenance';
+    default:
+      return status;
+  }
 }
 
 export function formatPlayerCount(players: number, maxPlayers: number): string {

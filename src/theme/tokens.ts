@@ -29,6 +29,7 @@ export const woaTokens = {
       warning: '#FFB547',
       maintenance: '#9A80FF',
       restarting: '#FFB547',
+      possiblyUpdating: '#4F8CFF',
     },
     text: {
       primary: '#F5F3FA',
