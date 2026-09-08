@@ -1,18 +1,61 @@
-# Wizards of Ark — React Site
+# Wizards of Ark — Community Portal
 
-This repository now contains a React single-page application built with Vite and Material UI for the Wizards of Ark ARK: Survival Ascended cluster.
+Production-oriented React SPA for the Wizards of Ark ARK: Survival Ascended community.
+
+**Stack:** React · TypeScript · Material UI · React Router · TanStack Query · Framer Motion · Vite
+
+## Routes
+
+| Path | Page |
+|------|------|
+| `/` | Home |
+| `/servers` | Server browser |
+| `/servers/:serverId` | Server detail |
+| `/council` | Magical council experience |
+| `/community` | Community hub |
+| `/community/media` | Media gallery (images & videos) |
+| `/shop` | EOS shop |
+| `/rules` | Rules |
+
+Legacy redirects: `/store` → `/shop`, `/server-info` → `/servers`, `/contact` → `/community`.
+
+## Content & assets
+
+To add maps, council portraits, events, shop items, or rules — see:
+
+**[docs/CONTENT.md](./docs/CONTENT.md)**
+
+Asset folders:
+
+```text
+public/assets/
+  branding/     logos
+  backgrounds/  heroes
+  council/      member portraits
+  maps/         ARK map art
+  community/    events, guides, builds, media
+  shop/         EOS product images
+  effects/      staff / FX
+  gallery/      general archive
+```
 
 ## Structure
 
-- `src/app` — router and top-level app wiring
-- `src/components` — shared layout and reusable UI sections
-- `src/data` — structured site content used by the page components
-- `src/pages` — route-level page components
-- `src/theme` — Material UI theme configuration
-- `src/styles` — global styling enhancements
-- `public/assets` — static images and icons copied to the final build
-- `server.js` — optional Express server for serving `dist`
-- `Dockerfile`, `nginx.conf` — production container build and SPA hosting config
+```text
+src/
+  api/          API client + domain fetchers (mock → real API ready)
+  assets/       path helpers for public assets
+  components/   shared UI by domain (common, navigation, server, council, …)
+  data/         structured content / mock sources
+  hooks/        React Query hooks
+  layouts/      App shell
+  pages/        route-level views
+  services/     permissions and future domain services
+  theme/        tokens, palette, typography, MUI overrides
+  types/        shared TypeScript models
+docs/
+  CONTENT.md    how to edit and manage site content
+```
 
 ## Local development
 
@@ -28,69 +71,13 @@ yarn build
 yarn start
 ```
 
-## Docker
+## Docker / Railway
 
 ```bash
-docker build -t woa-site:latest .
-docker run --rm -p 8080:80 woa-site:latest
+docker compose up --build
 ```
 
-## Railway Deployment
+Site: http://localhost:8081  
+Health: http://localhost:8081/health
 
-This project is configured for Railway with [railway.toml](./railway.toml).
-
-### Build and start settings
-
-- Builder: `DOCKERFILE`
-- Healthcheck path: `/health`
-
-Railway will build the Docker image defined in [Dockerfile](./Dockerfile). The final container serves the built SPA with nginx, listens on Railway's injected `PORT`, and exposes a dedicated `/health` endpoint for deploy health checks.
-
-### Connect the repo
-
-1. Push this repository to GitHub.
-2. In Railway, create a new project.
-3. Choose `Deploy from GitHub repo` and select this repository.
-4. Railway should pick up [railway.toml](./railway.toml) automatically.
-5. After the first deploy, confirm the service is healthy at `/health`.
-
-### Connect the custom domain
-
-1. Open the Railway service.
-2. Go to `Settings` or `Networking`, then add `thewizardsofark.com` as a custom domain.
-3. Add `www.thewizardsofark.com` too if you want both hosts.
-4. Copy the DNS records Railway shows and add them at your domain provider.
-5. Wait for Railway to verify the records and issue TLS.
-
-### DNS checklist
-
-Use the exact values Railway gives you in the domain setup screen. The usual flow is:
-
-1. Add the apex domain `thewizardsofark.com` in Railway.
-2. Add the `www` host separately if you want `www.thewizardsofark.com` to work too.
-3. At your registrar or DNS provider, remove any old records still pointing at GitHub Pages, Vercel, or another host for the same names.
-4. Create or update the DNS records exactly as Railway requests for each hostname.
-5. Wait for DNS to propagate, then refresh the domain status in Railway.
-6. Confirm both the Railway-generated domain and your custom domain load the site.
-
-### Domain cutover checks
-
-After Railway marks the domain as active:
-
-1. Open `/health` on the Railway domain and on your custom domain to confirm the service is reachable.
-2. Open `/council` or another inner route directly to confirm SPA routing works after refresh.
-3. Decide which hostname should be canonical: `thewizardsofark.com` or `www.thewizardsofark.com`.
-4. If you want one canonical host, configure a redirect at the DNS or edge layer you use.
-
-### If DNS does not verify
-
-- Recheck that the hostname matches exactly, especially `@` for the apex and `www` for the subdomain.
-- Make sure there is only one active record set for each hostname.
-- If you use Cloudflare or another proxying DNS provider, start with proxying disabled until verification succeeds.
-- Give DNS time to propagate before changing records again.
-
-### Notes
-
-- Railway is explicitly configured to use the root [Dockerfile](./Dockerfile) for builds.
-- nginx serves the SPA and handles refreshes on inner routes like `/store` and `/council`.
-- [server.js](./server.js) remains available for local or alternative Node-based serving, but Railway is not using it in the Docker deployment path.
+See `Dockerfile`, `docker-compose.yml`, `nginx.conf`, and `railway.toml`.

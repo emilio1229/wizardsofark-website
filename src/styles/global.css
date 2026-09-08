@@ -2,44 +2,13 @@ html {
   scroll-behavior: smooth;
 }
 
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   min-width: 320px;
-  background:
-    radial-gradient(circle at top right, rgba(201, 168, 106, 0.18), transparent 20%),
-    radial-gradient(circle at 72% 12%, rgba(111, 86, 161, 0.24), transparent 24%),
-    radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.2), transparent 22%),
-    #201338;
-  color: #f0e2bb;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(circle at 20% 20%, rgba(201, 168, 106, 0.05) 0, rgba(201, 168, 106, 0.05) 8rem, transparent 8rem),
-    radial-gradient(circle at 90% 85%, rgba(255, 255, 255, 0.03) 0, rgba(255, 255, 255, 0.03) 10rem, transparent 10rem),
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: auto, auto, 42px 42px, 42px 42px;
-  opacity: 0.75;
-  mask-image: radial-gradient(circle at center, black 40%, transparent 88%);
-}
-
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(40rem 18rem at 58% 5%, rgba(255, 255, 255, 0.12), transparent),
-    radial-gradient(32rem 20rem at 0% 55%, rgba(201, 168, 106, 0.06), transparent);
+#root {
+  min-height: 100vh;
 }
 
 a {
@@ -47,15 +16,6 @@ a {
   text-decoration: none;
 }
 
-#root {
-  min-height: 100vh;
-}
-
 img {
   max-width: 100%;
-}
-
-::selection {
-  background: rgba(201, 168, 106, 0.55);
-  color: #111;
 }
