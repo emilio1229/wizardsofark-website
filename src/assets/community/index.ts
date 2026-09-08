@@ -1,0 +1,1 @@
+export { communityImagePath } from '../paths';

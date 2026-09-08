@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 64" fill="none" role="img" aria-label="Wizards of Ark">
+  <defs>
+    <linearGradient id="g" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#B983FF"/>
+      <stop offset="1" stop-color="#6E35D8"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(0,0)">
+    <path d="M32 4 L56 52 H8 Z" stroke="url(#g)" stroke-width="2.5" fill="rgba(155,92,255,0.12)"/>
+    <path d="M32 16 L44 42 H20 Z" stroke="#D6B36A" stroke-width="1.5" fill="none"/>
+    <circle cx="32" cy="30" r="5" fill="#9B5CFF" stroke="#F0D89A" stroke-width="1"/>
+  </g>
+  <text x="78" y="40" fill="#F5F3FA" font-family="Cinzel, Georgia, serif" font-size="26" font-weight="700" letter-spacing="4">WIZARDS OF ARK</text>
+</svg>

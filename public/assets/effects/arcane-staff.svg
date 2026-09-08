@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 420" fill="none" role="img" aria-label="Arcane wizard staff">
+  <defs>
+    <linearGradient id="wood" x1="60" y1="90" x2="60" y2="410" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8B6340"/>
+      <stop offset="35%" stop-color="#5C3D24"/>
+      <stop offset="100%" stop-color="#2A1C12"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="40" y1="70" x2="80" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#F0D89A"/>
+      <stop offset="55%" stop-color="#D6B36A"/>
+      <stop offset="100%" stop-color="#8F6A2C"/>
+    </linearGradient>
+    <radialGradient id="crystal" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+      <stop offset="35%" stop-color="#9B5CFF" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#6E35D8" stop-opacity="0.4"/>
+    </radialGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <path d="M54 118 C52 180 51 250 50 330 C49.5 360 49 385 52 405 C54 412 66 412 68 405 C71 385 70.5 360 70 330 C69 250 68 180 66 118 Z" fill="url(#wood)"/>
+  <path d="M58 120 C57 200 56 280 55.5 340" stroke="rgba(240,216,154,0.18)" stroke-width="2" stroke-linecap="round"/>
+
+  <ellipse cx="60" cy="248" rx="16" ry="6" fill="url(#gold)"/>
+  <path d="M44 148 H76 L78 162 H42 Z" fill="url(#gold)"/>
+  <path d="M42 118 C36 108 34 92 42 78 C48 70 52 66 60 64 C68 66 72 70 78 78 C86 92 84 108 78 118 L70 130 H50 Z" fill="url(#gold)"/>
+  <path d="M40 100 C28 88 30 70 42 66" stroke="url(#gold)" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M80 100 C92 88 90 70 78 66" stroke="url(#gold)" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M60 62 C60 48 60 40 60 34" stroke="url(#gold)" stroke-width="3.5" stroke-linecap="round"/>
+
+  <circle cx="60" cy="58" r="34" fill="#9B5CFF" opacity="0.14"/>
+  <g filter="url(#glow)">
+    <path d="M60 28 L78 58 L60 92 L42 58 Z" fill="url(#crystal)" stroke="rgba(255,255,255,0.55)" stroke-width="1.25"/>
+    <path d="M60 34 L70 58 L60 82" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" fill="none"/>
+    <circle cx="56" cy="52" r="3.5" fill="rgba(255,255,255,0.7)"/>
+  </g>
+
+  <path d="M52 400 L60 416 L68 400 Z" fill="url(#gold)"/>
+</svg>

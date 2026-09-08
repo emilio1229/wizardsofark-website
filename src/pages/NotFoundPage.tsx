@@ -1,21 +1,26 @@
-import { Button, Container, Stack, Typography } from '@mui/material';
+import { Box, Button, Container, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-import SectionCard from '../components/SectionCard';
+import { GlassPanel } from '../components/common/GlassPanel';
 
 function NotFoundPage(): JSX.Element {
   return (
-    <Container maxWidth="sm" sx={{ py: 12 }}>
-      <SectionCard>
-        <Stack spacing={2} alignItems="flex-start">
-          <Typography variant="heroTitle">Lost Between Realms</Typography>
-          <Typography color="text.secondary">
-            The page you asked for does not exist in this route structure.
-          </Typography>
-          <Button component={RouterLink} to="/" variant="contained" color="primary">
+    <Container sx={{ py: 10, maxWidth: 720 }}>
+      <GlassPanel sx={{ textAlign: 'center' }}>
+        <Typography variant="overline" sx={{ color: 'gold.main' }}>
+          Lost in the Realm
+        </Typography>
+        <Typography variant="h2" sx={{ mt: 1, mb: 2 }}>
+          404
+        </Typography>
+        <Typography color="text.secondary" sx={{ mb: 3 }}>
+          This path does not exist in the Wizards of Ark portal.
+        </Typography>
+        <Box>
+          <Button component={RouterLink} to="/" variant="contained">
             Return Home
           </Button>
-        </Stack>
-      </SectionCard>
+        </Box>
+      </GlassPanel>
     </Container>
   );
 }

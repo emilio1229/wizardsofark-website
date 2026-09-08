@@ -1,0 +1,1 @@
+export { councilImagePath } from '../paths';

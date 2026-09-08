@@ -1,0 +1,1 @@
+export { mapImagePath } from '../paths';

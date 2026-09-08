@@ -1,0 +1,1 @@
+export { shopImagePath } from '../paths';
