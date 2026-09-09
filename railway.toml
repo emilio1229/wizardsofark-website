@@ -1,17 +1,15 @@
 "$schema" = "https://railway.com/railway.schema.json"
 
-# Default service config for woa-api when this file is used as the API service root.
-# On Railway, create three services:
-#   1) PostgreSQL plugin
-#   2) woa-api  — root directory / Dockerfile: docker/Dockerfile.api
-#   3) woa-web  — Dockerfile: docker/Dockerfile.web (set VITE_API_URL / VITE_WS_URL build args)
+# Default for the API service only.
+# For woa-web: Settings → Config-as-code → docker/railway.web.toml
+# (Do not put startCommand here — it applies to every service using this file
+# and makes the web service crash. API start comes from docker/Dockerfile.api CMD.)
 
 [build]
 builder = "DOCKERFILE"
 dockerfilePath = "docker/Dockerfile.api"
 
 [deploy]
-startCommand = "./start.sh"
 healthcheckPath = "/health"
 healthcheckTimeout = 300
 restartPolicyType = "ON_FAILURE"
