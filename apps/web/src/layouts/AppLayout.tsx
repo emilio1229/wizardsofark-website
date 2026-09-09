@@ -14,9 +14,10 @@ export function AppLayout(): JSX.Element {
     <Box
       sx={{
         minHeight: '100vh',
-        height: isHome ? '100dvh' : undefined,
-        maxHeight: isHome ? '100dvh' : undefined,
-        overflow: isHome ? 'hidden' : undefined,
+        // Desktop home stays one viewport; mobile must scroll when hero + cards + footer stack.
+        height: isHome ? { xs: 'auto', md: '100dvh' } : undefined,
+        maxHeight: isHome ? { xs: 'none', md: '100dvh' } : undefined,
+        overflow: isHome ? { xs: 'visible', md: 'hidden' } : undefined,
         display: 'flex',
         flexDirection: 'column',
       }}
@@ -28,7 +29,7 @@ export function AppLayout(): JSX.Element {
           flexGrow: 1,
           minHeight: 0,
           pt: { xs: '64px', md: '72px' },
-          display: isHome ? 'flex' : undefined,
+          display: isHome ? { xs: 'block', md: 'flex' } : undefined,
           flexDirection: isHome ? 'column' : undefined,
         }}
       >

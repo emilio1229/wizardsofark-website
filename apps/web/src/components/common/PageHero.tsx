@@ -30,7 +30,7 @@ type PageHeroProps = {
   /** Push the title block down from the top of the hero (e.g. "33%"). */
   titleOffset?: string | { xs?: string; md?: string };
   /** Extra space between the title block and bottomContent. Use "grow" to fill leftover room. */
-  bottomGap?: number | { xs?: number; md?: number } | 'grow';
+  bottomGap?: number | { xs?: number | 'grow'; md?: number | 'grow' } | 'grow';
   /** Smaller promo banner for secondary pages (supports overlapping content). */
   compact?: boolean;
   overlay?: 'horizontal' | 'vertical' | 'both';
@@ -102,14 +102,17 @@ export function PageHero({
     <Box
       sx={{
         position: 'relative',
-        overflow: 'hidden',
+        overflow: fillParent ? { xs: 'visible', md: 'hidden' } : 'hidden',
         ...(fillParent
           ? {
-              flex: 1,
-              minHeight: 0,
+              // Mobile: natural document flow so stacked content can scroll.
+              // Desktop: fill the locked viewport under the header.
+              flex: { xs: 'none', md: 1 },
+              minHeight: { xs: '100svh', md: 0 },
               mt: { xs: '-64px', md: '-72px' },
-              height: { xs: 'calc(100% + 64px)', md: 'calc(100% + 72px)' },
+              height: { xs: 'auto', md: 'calc(100% + 72px)' },
               width: '100%',
+              pb: { xs: 3, md: 0 },
             }
           : {
               minHeight: resolvedMinHeight,
@@ -147,7 +150,7 @@ export function PageHero({
         sx={{
           position: 'relative',
           maxWidth: woaTokens.layout.maxWidth,
-          height: fillParent ? '100%' : undefined,
+          height: fillParent ? { xs: 'auto', md: '100%' } : undefined,
           pt: titleOffset
             ? titleOffset
             : bleedUnderHeader
@@ -156,13 +159,13 @@ export function PageHero({
                 ? { xs: 3, md: 4 }
                 : { xs: 6, md: 8 },
           // Extra bottom padding so overlapping panels can sit on the banner.
-          pb: compact ? { xs: 3, md: 4 } : { xs: 2, md: 2.5 },
+          pb: compact ? { xs: 3, md: 4 } : { xs: 3, md: 2.5 },
           px: { xs: 2, md: 4 },
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'flex-start',
-          minHeight: 0,
+          minHeight: fillParent ? { xs: 'auto', md: 0 } : 0,
         }}
       >
         <Stack
@@ -209,21 +212,47 @@ export function PageHero({
           {children}
         </Stack>
         {bottomContent ? (
-          bottomGap === 'grow' ? (
-            <Box
-              sx={{
-                flexGrow: 1,
-                minHeight: { xs: 48, md: 72 },
-                display: 'flex',
-                alignItems: 'center',
-                width: '100%',
-              }}
-            >
-              <Box sx={{ width: '100%' }}>{bottomContent}</Box>
-            </Box>
-          ) : (
-            <Box sx={{ width: '100%', mt: bottomGap, flexShrink: 0 }}>{bottomContent}</Box>
-          )
+          (() => {
+            const growOnXs = bottomGap === 'grow' || (typeof bottomGap === 'object' && bottomGap.xs === 'grow');
+            const growOnMd = bottomGap === 'grow' || (typeof bottomGap === 'object' && bottomGap.md === 'grow');
+            const mtXs =
+              typeof bottomGap === 'number'
+                ? bottomGap
+                : typeof bottomGap === 'object' && typeof bottomGap.xs === 'number'
+                  ? bottomGap.xs
+                  : growOnXs
+                    ? 0
+                    : 3;
+            const mtMd =
+              typeof bottomGap === 'number'
+                ? bottomGap
+                : typeof bottomGap === 'object' && typeof bottomGap.md === 'number'
+                  ? bottomGap.md
+                  : growOnMd
+                    ? 0
+                    : 8;
+
+            if (growOnXs || growOnMd) {
+              return (
+                <Box
+                  sx={{
+                    flexGrow: { xs: growOnXs ? 1 : 0, md: growOnMd ? 1 : 0 },
+                    minHeight: { xs: growOnXs ? 48 : 0, md: growOnMd ? 72 : 0 },
+                    mt: { xs: mtXs, md: mtMd },
+                    display: 'flex',
+                    alignItems: 'center',
+                    width: '100%',
+                  }}
+                >
+                  <Box sx={{ width: '100%' }}>{bottomContent}</Box>
+                </Box>
+              );
+            }
+
+            return (
+              <Box sx={{ width: '100%', mt: bottomGap, flexShrink: 0 }}>{bottomContent}</Box>
+            );
+          })()
         ) : null}
       </Container>
     </Box>

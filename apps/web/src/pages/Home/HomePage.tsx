@@ -6,7 +6,15 @@ import { FeatureCard } from '../../components/community/CommunityCards';
 
 function HomePage(): JSX.Element {
   return (
-    <Box sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column', width: '100%' }}>
+    <Box
+      sx={{
+        flex: { xs: 'none', md: 1 },
+        minHeight: { xs: 'auto', md: 0 },
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%',
+      }}
+    >
       <PageHero
         title="WIZARDS OF ARK"
         subtitle={siteMeta.tagline}
@@ -14,8 +22,8 @@ function HomePage(): JSX.Element {
         backgroundImage="/assets/community/media/skyforge-peak.png"
         fillParent
         overlayOpacity={0.6}
-        titleOffset={{ xs: '22%', md: '28%' }}
-        bottomGap="grow"
+        titleOffset={{ xs: '18%', md: '28%' }}
+        bottomGap={{ xs: 3, md: 'grow' }}
         primaryAction={{ label: 'View Servers', href: '/servers' }}
         secondaryAction={{ label: 'Meet the Council', href: '/council' }}
         bottomContent={
