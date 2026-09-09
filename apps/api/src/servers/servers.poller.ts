@@ -24,13 +24,15 @@ export class ServersPoller implements OnModuleInit, OnModuleDestroy {
     @Inject(LOCK_STORE) private readonly lockStore: LockStore,
   ) {}
 
-  async onModuleInit(): Promise<void> {
+  onModuleInit(): void {
     const intervalMs = this.configService.get<number>('arkServerPollIntervalMs', 60_000);
-    await this.runOnce();
+    // Do not await the first poll — Nest blocks listen()/health until onModuleInit
+    // resolves, which trips Railway healthchecks when the ASA CDN is slow.
     this.timer = setInterval(() => {
       void this.runOnce();
     }, intervalMs);
     this.timer.unref?.();
+    void this.runOnce();
     this.logger.log(`ASA poller started (interval=${intervalMs}ms)`);
   }
 

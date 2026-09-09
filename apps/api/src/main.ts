@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
@@ -7,9 +8,12 @@ import { AppModule } from './app.module';
 import { HealthService } from './health/health.service';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule, {
-    bufferLogs: true,
-  });
+  // Immediate stdout so Railway logs show progress before Nest finishes init
+  console.log(
+    `[bootstrap] starting woa-api NODE_ENV=${process.env.NODE_ENV ?? ''} PORT=${process.env.PORT ?? ''}`,
+  );
+
+  const app = await NestFactory.create(AppModule);
 
   const config = app.get(ConfigService);
   const logger = new Logger('Bootstrap');
