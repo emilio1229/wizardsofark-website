@@ -1,16 +1,15 @@
 "$schema" = "https://railway.com/railway.schema.json"
 
-# Default for the API service only.
-# For woa-web: Settings → Config-as-code → docker/railway.web.toml
-# (Do not put startCommand here — it applies to every service using this file
-# and makes the web service crash. API start comes from docker/Dockerfile.api CMD.)
-
-[build]
-builder = "DOCKERFILE"
-dockerfilePath = "docker/Dockerfile.api"
-
-[deploy]
-healthcheckPath = "/health"
-healthcheckTimeout = 300
-restartPolicyType = "ON_FAILURE"
-restartPolicyMaxRetries = 10
+# IMPORTANT (monorepo):
+# Do NOT set dockerfilePath or startCommand here.
+# Railway applies this file to every service and will overwrite woa-web
+# back to the API image on each deploy.
+#
+# Set these in each service dashboard instead:
+#   woa-api  → Settings → Build → Dockerfile path: docker/Dockerfile.api
+#              Settings → Deploy → Start command:  (leave empty; image CMD runs ./start.sh)
+#              Settings → Deploy → Healthcheck:    /health
+#   woa-web  → Settings → Build → Dockerfile path: docker/Dockerfile.web
+#              Settings → Deploy → Start command:  (empty)
+#              Settings → Deploy → Healthcheck:    /health
+#              Optional config file: docker/railway.web.toml
