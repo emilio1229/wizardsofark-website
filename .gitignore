@@ -5,6 +5,9 @@ yarn-error.log
 /data/
 *.sqlite
 *.sqlite-*
-backend/.env
 .env
-backend/dist
+apps/api/.env
+apps/web/.env
+backend/.env
+coverage
+*.log

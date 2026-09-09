@@ -12,3 +12,7 @@ dist
 coverage
 terminals
 agent-transcripts
+data
+backend
+apps/web/dist
+apps/api/dist

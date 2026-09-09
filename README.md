@@ -1,115 +1,142 @@
 # Wizards of Ark — Community Portal
 
-Production-oriented React SPA for the Wizards of Ark ARK: Survival Ascended community.
+Production-oriented full-stack community portal for the Wizards of Ark ARK: Survival Ascended cluster.
 
-**Stack:** React · TypeScript · Material UI · React Router · TanStack Query · Framer Motion · Vite · Fastify · SQLite
+**Stack:** React · TypeScript · Material UI · Redux Toolkit · RTK Query · Vite · NestJS · Prisma · PostgreSQL · Socket.IO · Docker · Railway
 
-## Routes
+## Architecture
+
+```text
+Browser ──► apps/web (Vite SPA + Redux/RTK Query + Socket.IO client)
+                │
+                ▼
+           apps/api (NestJS REST /api/v1 + WebSockets)
+                │
+        ┌───────┼────────┐
+        ▼       ▼        ▼
+   PostgreSQL  ASA CDN  Redis (optional / future)
+```
+
+Shared types live in `packages/shared` and are consumed by both web and api.
+
+## Monorepo layout
+
+```text
+apps/web/          React SPA (theme, pages, Redux store)
+apps/api/          NestJS API, Prisma, ASA poller, Socket.IO
+packages/shared/   Shared TS types & constants
+docker/            Dockerfiles + nginx config
+```
+
+## Prerequisites
+
+- Node.js 20+
+- Yarn 1.22.x
+- Docker (optional, for Compose / Postgres)
+
+## Local setup
+
+```bash
+yarn install
+yarn build:shared
+
+# Start Postgres (Compose)
+docker compose up -d postgres
+
+# Configure API
+cp apps/api/.env.example apps/api/.env
+# DATABASE_URL=postgresql://woa:woa@localhost:5432/woa?schema=public
+
+yarn prisma:generate
+yarn workspace @woa/api exec prisma migrate deploy
+yarn prisma:seed
+
+# Terminal A — API
+yarn dev:api
+
+# Terminal B — Vite (proxies /api and /socket.io → :3001)
+yarn dev
+```
+
+Or both:
+
+```bash
+yarn dev:all
+```
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `yarn dev` | Vite web app |
+| `yarn dev:api` | NestJS watch mode |
+| `yarn build` | shared → api → web |
+| `yarn test` | API unit tests |
+| `yarn prisma:generate` | Generate Prisma client |
+| `yarn prisma:migrate` | Dev migrations |
+| `yarn prisma:seed` | Seed maps / council / settings |
+
+## Environment
+
+**Web (`VITE_*` only — never put secrets here)**
+
+- `VITE_API_URL` — default `/api/v1`
+- `VITE_WS_URL` — Socket.IO origin (empty = same origin / Vite proxy)
+- `VITE_API_PROXY_TARGET` — local Nest URL for Vite proxy
+
+**API** — see [`apps/api/.env.example`](apps/api/.env.example)
+
+## API surface
+
+| Method | Path |
+|--------|------|
+| GET | `/health` |
+| GET | `/api/v1/health` |
+| GET | `/api/v1/servers` |
+| GET | `/api/v1/servers/:id` |
+| GET | `/api/v1/servers/:id/status` |
+| GET | `/api/v1/maps` |
+| GET | `/api/v1/council` |
+
+Responses (non-health) use `{ "data": ..., "meta": {} }`.
+
+## Docker Compose
+
+```bash
+docker compose up --build
+```
+
+- Web: http://localhost:8080 (nginx proxies `/api` + `/socket.io` → API)
+- API: http://localhost:3001
+- Postgres: localhost:5432
+
+Optional Redis: `docker compose --profile redis up -d redis`
+
+## Railway
+
+Create a project with:
+
+1. **PostgreSQL** plugin → provides `DATABASE_URL`
+2. **woa-api** — Dockerfile `docker/Dockerfile.api`, health `/health`, bind `PORT`
+3. **woa-web** — Dockerfile `docker/Dockerfile.web`, build args `VITE_API_URL` / `VITE_WS_URL` pointing at the public API URL
+
+Set `FRONTEND_URL` / `CORS_ORIGIN` on the API to the web domain.
+
+## Routes (SPA)
 
 | Path | Page |
 |------|------|
 | `/` | Home |
 | `/servers` | Live ASA server browser |
 | `/servers/:serverId` | Server detail |
-| `/council` | Magical council experience |
+| `/council` | Magical council |
 | `/community` | Community hub |
-| `/community/media` | Media gallery (images & videos) |
-| `/shop` | EOS shop |
+| `/community/media` | Media gallery |
+| `/shop` | Shop |
 | `/rules` | Rules |
 
-Legacy redirects: `/store` → `/shop`, `/server-info` → `/servers`, `/contact` → `/community`.
+## Content
 
-## Live server monitoring
+Editorial map artwork, shop copy, community media, and enrichment notes still live under `apps/web/src/data` and `apps/web/public/assets`. Council/maps catalogue is also seeded into Postgres for the API.
 
-The `/servers` page is backed by a Node/Fastify monitor that:
-
-1. Polls the public ASA unofficial server list
-2. Filters servers by `SERVER_NAME_FILTER` (default: `The Wizards Of Ark`)
-3. Persists known servers + status history in SQLite
-4. Exposes `GET /api/servers` for the React app
-
-Observed ASA fields are documented in [`docs/ASA_SERVER_LIST_FIELDS.md`](./docs/ASA_SERVER_LIST_FIELDS.md).
-
-Browser clients never hit the ASA CDN directly.
-
-### Local development
-
-```bash
-yarn install
-
-# Terminal 1 — monitor API (port 3001)
-yarn dev:api
-
-# Terminal 2 — Vite SPA (proxies /api → 3001)
-yarn dev
-```
-
-Config examples:
-
-- root [`.env.example`](./.env.example)
-- backend [`backend/.env.example`](./backend/.env.example)
-
-### API tests
-
-```bash
-yarn test:api
-```
-
-## Content & assets
-
-To add maps, council portraits, events, shop items, or rules — see:
-
-**[docs/CONTENT.md](./docs/CONTENT.md)**
-
-## Structure
-
-```text
-backend/        ASA poller, state engine, SQLite, /api/servers
-src/
-  api/          API client + domain fetchers
-  features/servers/  live server types/utils
-  components/   shared UI by domain
-  data/         editorial content (maps, enrichment, council, …)
-  pages/        route-level views
-  theme/        tokens, palette, typography, MUI overrides
-docs/
-  ASA_SERVER_LIST_FIELDS.md
-  CONTENT.md
-```
-
-## Production
-
-```bash
-yarn build
-# Run the Fastify process with STATIC_DIR pointing at the Vite build
-# (`yarn start` after `yarn build`), or `yarn start:api` for API-only.
-```
-
-Example single-process production env:
-
-```bash
-PORT=8080
-STATIC_DIR=../dist
-DATABASE_PATH=/app/data/woa-servers.sqlite
-SERVER_NAME_FILTER="The Wizards Of Ark"
-```
-
-## Docker / Railway
-
-```bash
-docker compose up --build
-```
-
-Railway builds from the `Dockerfile` (`railway.toml`). The start command must be:
-
-```text
-node backend/dist/index.js
-```
-
-Clear any dashboard Start Command leftover from the old nginx image (e.g. `nginx` / `yarn start`), or set it to the command above. If `DATABASE_PATH` is set in Railway variables, prefer `/app/data/woa-servers.sqlite`.
-
-Healthcheck: `GET /health`.
-
-Site: http://localhost:8081  
-Health: http://localhost:8081/health  
-API: http://localhost:8081/api/servers
+See [`docs/CONTENT.md`](docs/CONTENT.md) and [`docs/ASA_SERVER_LIST_FIELDS.md`](docs/ASA_SERVER_LIST_FIELDS.md).

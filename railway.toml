@@ -1,13 +1,17 @@
 "$schema" = "https://railway.com/railway.schema.json"
 
+# Default service config for woa-api when this file is used as the API service root.
+# On Railway, create three services:
+#   1) PostgreSQL plugin
+#   2) woa-api  — root directory / Dockerfile: docker/Dockerfile.api
+#   3) woa-web  — Dockerfile: docker/Dockerfile.web (set VITE_API_URL / VITE_WS_URL build args)
+
 [build]
 builder = "DOCKERFILE"
-dockerfilePath = "Dockerfile"
+dockerfilePath = "docker/Dockerfile.api"
 
 [deploy]
-# Explicitly pin the Fastify monitor; a dashboard Start Command override
-# (e.g. nginx / yarn start) will crash this image immediately.
-startCommand = "node backend/dist/index.js"
+startCommand = "npx prisma migrate deploy && node dist/main.js"
 healthcheckPath = "/health"
 healthcheckTimeout = 120
 restartPolicyType = "ON_FAILURE"
