@@ -7,18 +7,19 @@ import helmet from 'helmet';
 import { AppModule } from './app.module';
 import { HealthService } from './health/health.service';
 
-async function bootstrap(): Promise<void> {
-  // Immediate stdout so Railway logs show progress before Nest finishes init
-  console.log(
-    `[bootstrap] starting woa-api NODE_ENV=${process.env.NODE_ENV ?? ''} PORT=${process.env.PORT ?? ''}`,
-  );
+// Log before Nest init so Railway deploy logs always show progress
+console.log(
+  `[bootstrap] loading woa-api NODE_ENV=${process.env.NODE_ENV ?? ''} PORT=${process.env.PORT ?? ''} HOST=${process.env.HOST ?? ''}`,
+);
 
+async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
 
   const config = app.get(ConfigService);
   const logger = new Logger('Bootstrap');
-  const port = config.get<number>('port', 3001);
-  const host = config.get<string>('host', '0.0.0.0');
+  // Prefer raw process.env.PORT so Railway networking port always wins
+  const port = Number(process.env.PORT ?? config.get<number>('port', 3001));
+  const host = process.env.HOST ?? config.get<string>('host', '0.0.0.0');
   const corsOrigin = config.get<string>('corsOrigin', '*');
   const frontendUrl = config.get<string>('frontendUrl', 'http://localhost:5173');
 
