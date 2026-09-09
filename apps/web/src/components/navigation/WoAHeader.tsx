@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   AppBar,
   Avatar,
@@ -18,16 +18,32 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import CloseIcon from '@mui/icons-material/Close';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { features } from '../../config/features';
 import { navLinks, siteMeta } from '../../data/site';
 import { woaTokens } from '../../theme/tokens';
 
 export function WoAHeader(): JSX.Element {
   const theme = useTheme();
+  const { pathname } = useLocation();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 24 });
+
+  // Always close the drawer after navigation (header stays mounted across routes).
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [pathname]);
+
+  // Avoid a stuck-open drawer when rotating/resizing up to desktop.
+  useEffect(() => {
+    if (!isMobile) {
+      setMobileOpen(false);
+    }
+  }, [isMobile]);
+
+  const closeMobileNav = () => setMobileOpen(false);
+  const toggleMobileNav = () => setMobileOpen((open) => !open);
 
   const navItem = (link: (typeof navLinks)[number], mobile = false) => (
     <Button
@@ -35,7 +51,7 @@ export function WoAHeader(): JSX.Element {
       component={NavLink}
       to={link.to}
       end={link.to === '/'}
-      onClick={() => setMobileOpen(false)}
+      onClick={closeMobileNav}
       sx={{
         color: 'text.secondary',
         px: mobile ? 2 : 1.4,
@@ -77,6 +93,10 @@ export function WoAHeader(): JSX.Element {
         position="fixed"
         color="transparent"
         sx={{
+          // Fixed AppBar + backdrop-filter can composite above MUI Modal/Drawer and
+          // steal clicks from the drawer close control; disable blur while open.
+          backdropFilter: mobileOpen ? 'none' : undefined,
+          WebkitBackdropFilter: mobileOpen ? 'none' : undefined,
           backgroundColor: scrolled
             ? alpha(woaTokens.colours.background.default, 0.92)
             : alpha(woaTokens.colours.background.default, 0.72),
@@ -97,6 +117,7 @@ export function WoAHeader(): JSX.Element {
             direction="row"
             spacing={1.25}
             alignItems="center"
+            onClick={closeMobileNav}
             sx={{ color: 'inherit', mr: { md: 3 }, flexShrink: 0 }}
           >
             <Box
@@ -152,28 +173,43 @@ export function WoAHeader(): JSX.Element {
             ) : null}
             {isMobile ? (
               <IconButton
-                aria-label="Open navigation"
-                onClick={() => setMobileOpen(true)}
+                aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
+                aria-expanded={mobileOpen}
+                onClick={toggleMobileNav}
                 sx={{ color: 'text.primary', ml: 0.5 }}
               >
-                <MenuIcon />
+                {mobileOpen ? <CloseIcon /> : <MenuIcon />}
               </IconButton>
             ) : null}
           </Stack>
         </Toolbar>
       </AppBar>
 
-      <Drawer anchor="right" open={mobileOpen} onClose={() => setMobileOpen(false)} PaperProps={{ sx: { width: 300 } }}>
+      <Drawer
+        anchor="right"
+        open={mobileOpen}
+        onClose={closeMobileNav}
+        ModalProps={{ keepMounted: true }}
+        sx={{ zIndex: (t) => t.zIndex.modal + 1 }}
+        PaperProps={{ sx: { width: 300 } }}
+      >
         <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ p: 2 }}>
           <Typography variant="brand">Navigate</Typography>
-          <IconButton aria-label="Close navigation" onClick={() => setMobileOpen(false)}>
+          <IconButton aria-label="Close navigation" onClick={closeMobileNav} edge="end">
             <CloseIcon />
           </IconButton>
         </Stack>
         <Divider sx={{ borderColor: 'border.default' }} />
         <Stack spacing={0.5} sx={{ p: 1.5 }}>
           {navLinks.map((link) => navItem(link, true))}
-          <Button variant="contained" href={siteMeta.discordUrl} target="_blank" rel="noreferrer" sx={{ mt: 2 }}>
+          <Button
+            variant="contained"
+            href={siteMeta.discordUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={closeMobileNav}
+            sx={{ mt: 2 }}
+          >
             Join Discord
           </Button>
         </Stack>
