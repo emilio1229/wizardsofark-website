@@ -1,11 +1,17 @@
 "$schema" = "https://railway.com/railway.schema.json"
 
+# Use this file as Config-as-code for the woa-web service only.
+# Dashboard: Settings → Config-as-code → Set to docker/railway.web.toml
+
 [build]
 builder = "DOCKERFILE"
 dockerfilePath = "docker/Dockerfile.web"
 
 [deploy]
+# Important: do NOT run apps/api start.sh / Prisma on the web service.
+# Empty startCommand = use the Dockerfile CMD (nginx).
+startCommand = ""
 healthcheckPath = "/health"
-healthcheckTimeout = 60
+healthcheckTimeout = 120
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
