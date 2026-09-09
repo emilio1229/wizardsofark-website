@@ -1,14 +1,31 @@
-import { PrismaClient } from '@prisma/client';
-import { DEFAULT_MAP_ORDER } from '@woa/shared';
+'use strict';
+
+/**
+ * Production-safe seed (plain Node, no ts-node).
+ * Used by: `node prisma/seed.cjs` and `prisma db seed`.
+ */
+const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
 
-const MAP_SEEDS: Array<{
-  id: string;
-  name: string;
-  displayName: string;
-  imagePath: string;
-}> = [
+const DEFAULT_MAP_ORDER = [
+  'The Island',
+  'Scorched Earth',
+  'Aberration',
+  'Extinction',
+  'Ragnarok',
+  'Valguero',
+  'Genesis Part 1',
+  'Genesis Part 2',
+  'The Center',
+  'Lost Colony',
+  'Astraeos',
+  'Dragontopia',
+  'Amissa',
+  'Bjarnheim',
+];
+
+const MAP_SEEDS = [
   { id: 'the-island', name: 'the-island', displayName: 'The Island', imagePath: '/assets/maps/the-island.jpg' },
   { id: 'scorched-earth', name: 'scorched-earth', displayName: 'Scorched Earth', imagePath: '/assets/maps/scorched-earth.jpg' },
   { id: 'aberration', name: 'aberration', displayName: 'Aberration', imagePath: '/assets/maps/aberration.jpg' },
@@ -164,7 +181,7 @@ const COUNCIL_SEEDS = [
   },
 ];
 
-async function seedMaps(): Promise<void> {
+async function seedMaps() {
   const orderIndex = new Map(
     DEFAULT_MAP_ORDER.map((displayName, index) => [displayName.toLowerCase(), index]),
   );
@@ -193,7 +210,7 @@ async function seedMaps(): Promise<void> {
   }
 }
 
-async function seedCouncil(): Promise<void> {
+async function seedCouncil() {
   for (const member of COUNCIL_SEEDS) {
     await prisma.councilMember.upsert({
       where: { id: member.id },
@@ -221,8 +238,8 @@ async function seedCouncil(): Promise<void> {
   }
 }
 
-async function seedSettings(): Promise<void> {
-  const settings: Array<{ key: string; value: string }> = [
+async function seedSettings() {
+  const settings = [
     { key: 'site.name', value: 'Wizards of Ark' },
     { key: 'site.network', value: 'The Wizards Of Ark' },
     { key: 'features.eosShop', value: 'false' },
@@ -238,16 +255,20 @@ async function seedSettings(): Promise<void> {
   }
 }
 
-async function main(): Promise<void> {
+async function main() {
   await seedMaps();
   await seedCouncil();
   await seedSettings();
-  console.log('Seeded maps, council members, and application settings');
+  const [maps, council] = await Promise.all([
+    prisma.arkMap.count(),
+    prisma.councilMember.count(),
+  ]);
+  console.log(`Seeded maps=${maps}, council members=${council}, and application settings`);
 }
 
 main()
   .catch((error) => {
-    console.error(error);
+    console.error('[seed] failed', error);
     process.exit(1);
   })
   .finally(async () => {
