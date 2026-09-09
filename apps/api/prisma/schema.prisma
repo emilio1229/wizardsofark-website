@@ -1,0 +1,120 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid()) @db.Uuid
+  discordId String?  @unique
+  username  String?
+  email     String?
+  role      String   @default("guest")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ArkMap {
+  id          String   @id
+  name        String
+  displayName String
+  imagePath   String?
+  sortOrder   Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model ArkServer {
+  id              String    @id
+  sessionId       String?
+  name            String
+  sessionName     String?
+  mapName         String?
+  mapDisplayName  String
+  mapId           String
+  ip              String
+  gamePort        Int
+  queryPort       Int?
+  firstSeen       DateTime
+  lastSeen        DateTime?
+  lastChecked     DateTime
+  currentStatus   String
+  previousStatus  String?
+  players         Int?
+  maxPlayers      Int?
+  version         String?
+  ping            Int?
+  clusterId       String?
+  isPve           Boolean?
+  missingSince    DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  transitions StatusTransition[]
+  snapshots   ServerSnapshot[]
+
+  @@index([currentStatus])
+  @@index([mapId])
+  @@index([lastChecked])
+}
+
+model StatusTransition {
+  id         Int       @id @default(autoincrement())
+  serverId   String
+  fromStatus String?
+  toStatus   String
+  observedAt DateTime
+  note       String?
+
+  server ArkServer @relation(fields: [serverId], references: [id], onDelete: Cascade)
+
+  @@index([serverId, observedAt])
+}
+
+model ServerSnapshot {
+  id         String   @id @default(uuid()) @db.Uuid
+  serverId   String
+  players    Int?
+  maxPlayers Int?
+  status     String
+  capturedAt DateTime @default(now())
+
+  server ArkServer @relation(fields: [serverId], references: [id], onDelete: Cascade)
+
+  @@index([serverId, capturedAt])
+}
+
+model CouncilMember {
+  id               String   @id
+  name             String
+  title            String
+  role             String
+  tagline          String?
+  avatar           String?
+  portrait         String?
+  energyColor      String?
+  bio              String?
+  responsibilities Json?
+  accessLevel      String?
+  status           String?
+  quote            String?
+  angle            Float?
+  sortOrder        Int      @default(0)
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model ApplicationSetting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
+model PollMeta {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}

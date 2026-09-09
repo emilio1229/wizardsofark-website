@@ -1,40 +1,31 @@
 {
-  "name": "wizards-of-ark-site",
-  "version": "1.0.0",
-  "description": "React + MUI website for Wizards of Ark",
-  "main": "server.js",
+  "name": "wizards-of-ark",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Wizards of Ark — monorepo (web + NestJS API)",
   "packageManager": "yarn@1.22.22",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "vite",
-    "dev:api": "yarn --cwd backend dev",
-    "dev:all": "yarn --cwd backend dev & yarn dev",
-    "preview": "vite preview",
-    "start": "node backend/dist/index.js",
-    "start:api": "yarn --cwd backend start",
-    "build": "tsc --noEmit && vite build && yarn --cwd backend build",
-    "test:api": "yarn --cwd backend test",
-    "postinstall": "yarn --cwd backend install"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.13.3",
-    "@emotion/styled": "^11.13.0",
-    "@mui/icons-material": "^5.16.7",
-    "@mui/material": "^5.16.7",
-    "@tanstack/react-query": "^5.102.8",
-    "axios": "^1.20.0",
-    "express": "^4.18.2",
-    "framer-motion": "^13.2.0",
-    "http-proxy-middleware": "^3.0.3",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-router-dom": "^6.27.0"
+    "dev": "yarn workspace @woa/web dev",
+    "dev:api": "yarn workspace @woa/api start:dev",
+    "dev:all": "yarn build:shared && concurrently -k -n api,web -c blue,magenta \"yarn dev:api\" \"yarn dev\"",
+    "build:shared": "yarn workspace @woa/shared build",
+    "build:web": "yarn workspace @woa/web build",
+    "build:api": "yarn workspace @woa/api build",
+    "build": "yarn build:shared && yarn build:api && yarn build:web",
+    "start": "yarn workspace @woa/api start:prod",
+    "test": "yarn workspace @woa/api test",
+    "test:api": "yarn workspace @woa/api test",
+    "lint": "echo \"Add ESLint workspaces next\"",
+    "prisma:generate": "yarn workspace @woa/api prisma:generate",
+    "prisma:migrate": "yarn workspace @woa/api prisma:migrate",
+    "prisma:seed": "yarn workspace @woa/api prisma:seed"
   },
   "devDependencies": {
-    "@types/node": "^26.5.0",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.2",
-    "typescript": "^5.6.3",
-    "vite": "^5.4.8"
+    "concurrently": "^9.1.2",
+    "typescript": "^5.8.2"
   }
 }

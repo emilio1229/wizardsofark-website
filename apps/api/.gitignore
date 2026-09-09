@@ -1,0 +1,10 @@
+# Dependencies
+node_modules/
+dist/
+coverage/
+.env
+*.log
+
+# Prisma
+prisma/*.db
+*.tsbuildinfo
