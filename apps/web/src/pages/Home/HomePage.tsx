@@ -16,7 +16,7 @@ function HomePage(): JSX.Element {
       }}
     >
       <PageHero
-        title="WIZARDS OF ARK"
+        title=" THE WIZARDS OF ARK"
         subtitle={siteMeta.tagline}
         description={siteMeta.description}
         backgroundImage="/assets/community/media/skyforge-peak.png"
