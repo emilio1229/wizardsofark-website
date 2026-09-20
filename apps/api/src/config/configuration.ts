@@ -17,6 +17,10 @@ export type AppConfiguration = {
   masterListStaleSeconds: number;
   mapOrder: string[];
   redisUrl: string | null;
+  discordClientId: string;
+  discordClientSecret: string;
+  discordRedirectUri: string;
+  authAdminDiscordIds: string[];
 };
 
 function parseMapOrder(raw: string | undefined): string[] {
@@ -57,5 +61,14 @@ export default (): AppConfiguration => {
     masterListStaleSeconds: Number(process.env.MASTER_LIST_STALE_SECONDS ?? 180),
     mapOrder: parseMapOrder(process.env.MAP_ORDER),
     redisUrl: process.env.REDIS_URL?.trim() ? process.env.REDIS_URL.trim() : null,
+    discordClientId: process.env.DISCORD_CLIENT_ID ?? '',
+    discordClientSecret: process.env.DISCORD_CLIENT_SECRET ?? '',
+    discordRedirectUri:
+      process.env.DISCORD_REDIRECT_URI ??
+      'http://localhost:3001/api/v1/auth/discord/callback',
+    authAdminDiscordIds: (process.env.AUTH_ADMIN_DISCORD_IDS ?? '')
+      .split(',')
+      .map((value) => value.trim())
+      .filter(Boolean),
   };
 };

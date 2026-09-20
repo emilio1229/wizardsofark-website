@@ -63,7 +63,7 @@ function CommunityPage(): JSX.Element {
                     letterSpacing: '0.08em',
                   }}
                 >
-                  WIZARDS OF ARK
+                  THE WIZARDS OF ARK
                 </Box>
                 <Button variant="contained" href={siteMeta.discordUrl} target="_blank" rel="noreferrer">
                   Join Discord

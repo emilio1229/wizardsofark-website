@@ -84,7 +84,7 @@ function ServersPage(): JSX.Element {
           <Grid item xs={12}>
             <Box sx={{ py: 4 }}>
               <Typography color="text.secondary">
-                No Wizards of Ark servers have been discovered yet. The monitor will add matching
+                No The Wizards Of Ark servers have been discovered yet. The monitor will add matching
                 realms automatically once they appear in the public ASA list.
               </Typography>
             </Box>

@@ -44,7 +44,7 @@ export function WoAFooter(): JSX.Element {
           <Stack direction="row" spacing={1.5} alignItems="center">
             <Box component="img" src="/assets/logo.png" alt="" sx={{ width: 44, height: 44, objectFit: 'contain' }} />
             <Box>
-              <Typography variant="brand">WIZARDS OF ARK</Typography>
+              <Typography variant="brand">THE WIZARDS OF ARK</Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
                 {siteMeta.motto}
               </Typography>

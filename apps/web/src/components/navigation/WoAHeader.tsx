@@ -22,6 +22,9 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { features } from '../../config/features';
 import { navLinks, siteMeta } from '../../data/site';
 import { woaTokens } from '../../theme/tokens';
+import { useGetCurrentUserQuery, useLogoutMutation } from '../../store/api/apiSlice';
+import { useAppDispatch } from '../../store/hooks';
+import { setAuthUser } from '../../store/slices/authSlice';
 
 export function WoAHeader(): JSX.Element {
   const theme = useTheme();
@@ -29,6 +32,35 @@ export function WoAHeader(): JSX.Element {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [mobileOpen, setMobileOpen] = useState(false);
   const scrolled = useScrollTrigger({ disableHysteresis: true, threshold: 24 });
+  const dispatch = useAppDispatch();
+  const currentUser = useGetCurrentUserQuery(undefined, { skip: !features.account });
+  const [logout] = useLogoutMutation();
+  const canAccessSiteAdmin = currentUser.data?.role === 'admin' || currentUser.data?.permissions.some((permission) => [
+    'site.admin.access',
+    'users.manage',
+    'roles.manage',
+    'community.media.manage',
+  ].includes(permission));
+  const visibleNavLinks = canAccessSiteAdmin
+    ? [...navLinks, { label: 'Site Admin', to: '/admin' }]
+    : navLinks;
+
+  useEffect(() => {
+    if (currentUser.data) {
+      dispatch({
+        type: setAuthUser.type,
+        payload: {
+          userId: currentUser.data.id,
+          username: currentUser.data.username,
+          discordId: currentUser.data.discordId,
+          role: currentUser.data.role,
+          permissions: currentUser.data.permissions,
+        },
+      });
+    } else if (currentUser.isError) {
+      dispatch(setAuthUser(null));
+    }
+  }, [currentUser.data, currentUser.isError, dispatch]);
 
   // Always close the drawer after navigation (header stays mounted across routes).
   useEffect(() => {
@@ -123,17 +155,17 @@ export function WoAHeader(): JSX.Element {
             <Box
               component="img"
               src="/assets/logo.png"
-              alt="Wizards of Ark"
+              alt="The Wizards Of Ark"
               sx={{ width: 40, height: 40, objectFit: 'contain' }}
             />
             <Typography variant="brand" sx={{ display: { xs: 'none', sm: 'block' }, color: 'text.primary' }}>
-              WIZARDS OF ARK
+              THE WIZARDS OF ARK
             </Typography>
           </Stack>
 
           {!isMobile ? (
             <Stack direction="row" spacing={0.25} sx={{ flexGrow: 1, justifyContent: 'center' }}>
-              {navLinks.map((link) => navItem(link))}
+              {visibleNavLinks.map((link) => navItem(link))}
             </Stack>
           ) : (
             <Box sx={{ flexGrow: 1 }} />
@@ -155,21 +187,37 @@ export function WoAHeader(): JSX.Element {
               </IconButton>
             ) : null}
             {features.account ? (
-              <Avatar
-                sx={{
-                  width: 34,
-                  height: 34,
-                  ml: 0.5,
-                  bgcolor: 'primary.dark',
-                  color: 'text.primary',
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
-                  border: `1px solid ${woaTokens.colours.border.default}`,
-                }}
-                aria-label="Account"
-              >
-                B
-              </Avatar>
+              currentUser.data ? (
+                <Button
+                  color="inherit"
+                  onClick={() => void logout()}
+                  aria-label="Sign out"
+                  sx={{ minWidth: 0, p: 0.5, color: 'text.secondary' }}
+                >
+                  <Avatar
+                    sx={{
+                      width: 34,
+                      height: 34,
+                      bgcolor: 'primary.dark',
+                      color: 'text.primary',
+                      fontSize: '0.85rem',
+                      fontWeight: 700,
+                      border: `1px solid ${woaTokens.colours.border.default}`,
+                    }}
+                  >
+                    {(currentUser.data.username ?? 'D').slice(0, 1).toUpperCase()}
+                  </Avatar>
+                </Button>
+              ) : (
+                <Button
+                  component={NavLink}
+                  to="/auth/discord"
+                  size="small"
+                  sx={{ color: 'text.secondary', whiteSpace: 'nowrap' }}
+                >
+                  Sign in with Discord
+                </Button>
+              )
             ) : null}
             {isMobile ? (
               <IconButton
@@ -201,7 +249,7 @@ export function WoAHeader(): JSX.Element {
         </Stack>
         <Divider sx={{ borderColor: 'border.default' }} />
         <Stack spacing={0.5} sx={{ p: 1.5 }}>
-          {navLinks.map((link) => navItem(link, true))}
+          {visibleNavLinks.map((link) => navItem(link, true))}
           <Button
             variant="contained"
             href={siteMeta.discordUrl}

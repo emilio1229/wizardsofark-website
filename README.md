@@ -1,6 +1,6 @@
-# Wizards of Ark — Community Portal
+# The Wizards Of Ark — Community Portal
 
-Production-oriented full-stack community portal for the Wizards of Ark ARK: Survival Ascended cluster.
+Production-oriented full-stack community portal for the The Wizards Of Ark ARK: Survival Ascended cluster.
 
 **Stack:** React · TypeScript · Material UI · Redux Toolkit · RTK Query · Vite · NestJS · Prisma · PostgreSQL · Socket.IO · Docker · Railway
 

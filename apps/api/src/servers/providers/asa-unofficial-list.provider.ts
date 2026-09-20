@@ -49,6 +49,10 @@ export class AsaUnofficialListProvider implements ServerProvider {
       ),
       mapOrder: this.configService.get<string[]>('mapOrder', []),
       redisUrl: this.configService.get<string | null>('redisUrl', null),
+      discordClientId: '',
+      discordClientSecret: '',
+      discordRedirectUri: '',
+      authAdminDiscordIds: [],
     };
   }
 

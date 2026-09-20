@@ -51,7 +51,7 @@ function MediaPage(): JSX.Element {
       <PageHero
         title="MEDIA"
         subtitle="Screenshots, clips, and stories from the realm."
-        description="Browse community captures and featured videos from across the Wizards of Ark cluster."
+        description="Browse community captures and featured videos from across the The Wizards Of Ark cluster."
         backgroundImage="/assets/gallery/gallery8.png"
         minHeight={{ xs: '36vh', md: '42vh' }}
         overlay="vertical"

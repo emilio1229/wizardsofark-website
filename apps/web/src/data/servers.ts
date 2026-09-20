@@ -22,7 +22,7 @@ export const homeFeatures: FeatureCardData[] = [
   {
     id: 'servers',
     title: 'Multiple Servers',
-    description: 'Live status across every official map in the Wizards of Ark cluster.',
+    description: 'Live status across every official map in the The Wizards Of Ark cluster.',
     icon: 'dns',
     to: '/servers',
   },

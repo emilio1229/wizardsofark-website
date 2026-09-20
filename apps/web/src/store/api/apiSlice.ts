@@ -44,7 +44,40 @@ function toCouncilMember(dto: CouncilMemberDto): CouncilMember {
 
 const rawBaseQuery = fetchBaseQuery({
   baseUrl: import.meta.env.VITE_API_URL || '/api/v1',
+  credentials: 'include',
 });
+
+type AuthUser = {
+  id: string;
+  discordId: string | null;
+  username: string | null;
+  role: string | null;
+  permissions: string[];
+};
+
+type Role = {
+  id: string;
+  name: string;
+  description: string | null;
+  permissions: { permission: { key: string } }[];
+  _count?: { users: number };
+};
+
+type PermissionOption = {
+  key: string;
+  label: string;
+  description: string;
+};
+
+type SiteUser = {
+  id: string;
+  discordId: string | null;
+  username: string | null;
+  email: string | null;
+  status: 'PENDING' | 'ACTIVE' | 'DISABLED';
+  createdAt: string;
+  role: { id: string; name: string } | null;
+};
 
 /** Unwrap Nest `{ data, meta }` envelopes. */
 const baseQueryWithEnvelope: BaseQueryFn<
@@ -100,7 +133,7 @@ function toServerDetail(live: LiveServer): ServerDetail {
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithEnvelope,
-  tagTypes: ['Servers', 'Server', 'Maps', 'Council', 'Shop', 'Community', 'Rules'],
+  tagTypes: ['Servers', 'Server', 'Maps', 'Council', 'Shop', 'Community', 'Rules', 'Auth', 'Roles', 'Users'],
   endpoints: (builder) => ({
     getServersNetwork: builder.query<ServersNetworkResponse, void>({
       query: () => '/servers',
@@ -180,6 +213,37 @@ export const apiSlice = createApi({
       },
       providesTags: ['Rules'],
     }),
+    getCurrentUser: builder.query<AuthUser, void>({
+      query: () => '/auth/me',
+      providesTags: ['Auth'],
+    }),
+    logout: builder.mutation<void, void>({
+      query: () => ({ url: '/auth/logout', method: 'POST' }),
+      invalidatesTags: ['Auth'],
+    }),
+    getRoles: builder.query<Role[], void>({
+      query: () => '/users/roles',
+      providesTags: ['Roles'],
+    }),
+    getUsers: builder.query<SiteUser[], void>({
+      query: () => '/users',
+      providesTags: ['Users'],
+    }),
+    getPermissions: builder.query<PermissionOption[], void>({
+      query: () => '/users/permissions',
+    }),
+    createRole: builder.mutation<Role, { name: string; description?: string; permissionKeys: string[] }>({
+      query: (body) => ({ url: '/users/roles', method: 'POST', body }),
+      invalidatesTags: ['Roles'],
+    }),
+    assignUserRole: builder.mutation<SiteUser, { userId: string; roleId: string | null }>({
+      query: ({ userId, roleId }) => ({ url: `/users/${userId}/role`, method: 'PATCH', body: { roleId } }),
+      invalidatesTags: ['Users', 'Roles'],
+    }),
+    deleteRole: builder.mutation<void, string>({
+      query: (roleId) => ({ url: `/users/roles/${roleId}`, method: 'DELETE' }),
+      invalidatesTags: ['Roles'],
+    }),
   }),
 });
 
@@ -194,4 +258,12 @@ export const {
   useGetCommunityActivityQuery,
   useGetCommunityMediaQuery,
   useGetRulesQuery,
+  useGetCurrentUserQuery,
+  useLogoutMutation,
+  useGetRolesQuery,
+  useGetUsersQuery,
+  useGetPermissionsQuery,
+  useCreateRoleMutation,
+  useAssignUserRoleMutation,
+  useDeleteRoleMutation,
 } = apiSlice;

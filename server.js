@@ -27,5 +27,5 @@ app.get('*', (_req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Wizards of Ark site running on port ${PORT} (API proxy → ${API_ORIGIN})`);
+  console.log(`The Wizards Of Ark site running on port ${PORT} (API proxy → ${API_ORIGIN})`);
 });

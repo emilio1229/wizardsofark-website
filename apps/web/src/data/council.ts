@@ -145,8 +145,8 @@ export const councilPrinciples = [
 ];
 
 export const councilAutomation = [
-  'Wizards of Ark Bot — Realm automation and announcements',
-  'Wizards of Ark Raffle Bot — Raffle and event automation',
+  'The Wizards Of Ark Bot — Realm automation and announcements',
+  'The Wizards Of Ark Raffle Bot — Raffle and event automation',
   'Helena ASA — ASA data assistant',
   'Ticket Tool — Support ticket management',
   'Awesome ARK Tools — Utility and cluster tools',

@@ -1,7 +1,7 @@
 import type { NavLinkItem } from '../types';
 
 export const siteMeta = {
-  name: 'Wizards of Ark',
+  name: 'The Wizards Of Ark',
   shortName: 'WOA',
   tagline: 'Explore • Build • Survive • Together',
   motto: 'More than a server. A community.',
