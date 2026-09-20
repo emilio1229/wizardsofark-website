@@ -2,7 +2,7 @@
   "name": "wizards-of-ark",
   "version": "2.0.0",
   "private": true,
-  "description": "Wizards of Ark — monorepo (web + NestJS API)",
+  "description": "The Wizards Of Ark — monorepo (web + NestJS API)",
   "packageManager": "yarn@1.22.22",
   "workspaces": [
     "apps/*",

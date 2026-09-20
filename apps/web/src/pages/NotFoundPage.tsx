@@ -13,7 +13,7 @@ function NotFoundPage(): JSX.Element {
           404
         </Typography>
         <Typography color="text.secondary" sx={{ mb: 3 }}>
-          This path does not exist in the Wizards of Ark portal.
+          This path does not exist in the The Wizards Of Ark portal.
         </Typography>
         <Box>
           <Button component={RouterLink} to="/" variant="contained">

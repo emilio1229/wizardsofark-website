@@ -8,13 +8,90 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid()) @db.Uuid
-  discordId String?  @unique
+  id        String     @id @default(uuid()) @db.Uuid
+  discordId String?    @unique
   username  String?
   email     String?
-  role      String   @default("guest")
+  roleId    String?    @db.Uuid
+  status    UserStatus @default(PENDING)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  role                Role?         @relation(fields: [roleId], references: [id])
+  createdInvitations  Invitation[]  @relation("InvitationCreator")
+  receivedInvitations Invitation[]  @relation("InvitationUser")
+  sessions            AuthSession[]
+
+  @@index([roleId])
+}
+
+enum UserStatus {
+  PENDING
+  ACTIVE
+  DISABLED
+}
+
+model Role {
+  id          String   @id @default(uuid()) @db.Uuid
+  name        String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       User[]
+  permissions RolePermission[]
+  invitations Invitation[]
+}
+
+model Permission {
+  id          String   @id @default(uuid()) @db.Uuid
+  key         String   @unique
+  description String?
+  createdAt   DateTime @default(now())
+
+  roles RolePermission[]
+}
+
+model RolePermission {
+  roleId       String @db.Uuid
+  permissionId String @db.Uuid
+
+  role       Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+
+  @@id([roleId, permissionId])
+}
+
+model Invitation {
+  id        String    @id @default(uuid()) @db.Uuid
+  tokenHash String    @unique
+  roleId    String    @db.Uuid
+  createdBy String    @db.Uuid
+  userId    String?   @db.Uuid
+  expiresAt DateTime
+  usedAt    DateTime?
+  revokedAt DateTime?
+  createdAt DateTime  @default(now())
+
+  role    Role  @relation(fields: [roleId], references: [id])
+  creator User  @relation("InvitationCreator", fields: [createdBy], references: [id], onDelete: Restrict)
+  user    User? @relation("InvitationUser", fields: [userId], references: [id])
+
+  @@index([expiresAt])
+  @@index([createdBy])
+}
+
+model AuthSession {
+  id        String   @id @default(uuid()) @db.Uuid
+  tokenHash String   @unique
+  userId    String   @db.Uuid
+  expiresAt DateTime
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([expiresAt])
 }
 
 model ArkMap {
@@ -28,30 +105,30 @@ model ArkMap {
 }
 
 model ArkServer {
-  id              String    @id
-  sessionId       String?
-  name            String
-  sessionName     String?
-  mapName         String?
-  mapDisplayName  String
-  mapId           String
-  ip              String
-  gamePort        Int
-  queryPort       Int?
-  firstSeen       DateTime
-  lastSeen        DateTime?
-  lastChecked     DateTime
-  currentStatus   String
-  previousStatus  String?
-  players         Int?
-  maxPlayers      Int?
-  version         String?
-  ping            Int?
-  clusterId       String?
-  isPve           Boolean?
-  missingSince    DateTime?
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  id             String    @id
+  sessionId      String?
+  name           String
+  sessionName    String?
+  mapName        String?
+  mapDisplayName String
+  mapId          String
+  ip             String
+  gamePort       Int
+  queryPort      Int?
+  firstSeen      DateTime
+  lastSeen       DateTime?
+  lastChecked    DateTime
+  currentStatus  String
+  previousStatus String?
+  players        Int?
+  maxPlayers     Int?
+  version        String?
+  ping           Int?
+  clusterId      String?
+  isPve          Boolean?
+  missingSince   DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 
   transitions StatusTransition[]
   snapshots   ServerSnapshot[]
@@ -62,7 +139,7 @@ model ArkServer {
 }
 
 model StatusTransition {
-  id         Int       @id @default(autoincrement())
+  id         Int      @id @default(autoincrement())
   serverId   String
   fromStatus String?
   toStatus   String

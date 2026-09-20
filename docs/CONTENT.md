@@ -1,6 +1,6 @@
 # Content & Asset Management
 
-How to edit Wizards of Ark site content without digging through UI code.
+How to edit The Wizards Of Ark site content without digging through UI code.
 
 Almost all editable content lives in **`src/data/`**.  
 Almost all images live in **`public/assets/`**.

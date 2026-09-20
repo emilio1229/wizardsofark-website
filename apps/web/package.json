@@ -2,7 +2,7 @@
   "name": "@woa/web",
   "version": "2.0.0",
   "private": true,
-  "description": "Wizards of Ark community portal (Vite + React)",
+  "description": "The Wizards Of Ark community portal (Vite + React)",
   "type": "module",
   "scripts": {
     "dev": "vite",

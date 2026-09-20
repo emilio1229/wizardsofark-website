@@ -252,7 +252,7 @@ export class CatalogueSeedService implements OnModuleInit {
     }
 
     const settings = [
-      { key: 'site.name', value: 'Wizards of Ark' },
+      { key: 'site.name', value: 'The Wizards Of Ark' },
       { key: 'site.network', value: 'The Wizards Of Ark' },
       { key: 'features.eosShop', value: 'false' },
       { key: 'map.order', value: DEFAULT_MAP_ORDER.join(',') },

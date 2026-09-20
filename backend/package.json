@@ -2,7 +2,7 @@
   "name": "woa-server-monitor",
   "version": "1.0.0",
   "private": true,
-  "description": "Live ASA server monitoring for Wizards of Ark",
+  "description": "Live ASA server monitoring for The Wizards Of Ark",
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",

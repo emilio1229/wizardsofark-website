@@ -26,7 +26,7 @@ export const communityCategories: CommunityCategory[] = [
   {
     id: 'media',
     title: 'Media',
-    description: 'Screenshots, clips, and stories from life in the Wizards of Ark.',
+    description: 'Screenshots, clips, and stories from life in the The Wizards Of Ark.',
     icon: 'photo_library',
     to: '/community/media',
   },
@@ -161,7 +161,7 @@ export const communityMedia: CommunityMediaItem[] = [
     id: 'custom-logo-build',
     kind: 'image',
     title: 'Custom 3D Crest',
-    description: 'In-world Wizards of Ark crest construction.',
+    description: 'In-world The Wizards Of Ark crest construction.',
     thumbnail: communityImagePath('media', 'custom-logo-build.png'),
     src: communityImagePath('media', 'custom-logo-build.png'),
     tags: ['build', 'brand'],
@@ -188,7 +188,7 @@ export const communityMedia: CommunityMediaItem[] = [
     // Example: 'https://www.youtube.com/embed/YOUR_VIDEO_ID'
     videoUrl: '',
     tags: ['trailer', 'featured'],
-    credit: 'Wizards of Ark',
+    credit: 'The Wizards Of Ark',
     createdAt: '2026-09-01',
   },
 ];

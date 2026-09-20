@@ -2,7 +2,7 @@
   "name": "@woa/api",
   "version": "1.0.0",
   "private": true,
-  "description": "Wizards of Ark NestJS API — ASA server monitor, maps, council",
+  "description": "The Wizards Of Ark NestJS API — ASA server monitor, maps, council",
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",

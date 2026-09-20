@@ -13,6 +13,8 @@ const MediaPage = lazy(() => import('./pages/Community/MediaPage'));
 const ShopPage = lazy(() => import('./pages/Shop/ShopPage'));
 const RulesPage = lazy(() => import('./pages/Rules/RulesPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
+const DiscordAuthPage = lazy(() => import('./pages/Auth/DiscordAuthPage'));
+const AdminPage = lazy(() => import('./pages/Admin/AdminPage'));
 
 function RouteFallback(): JSX.Element {
   return (
@@ -29,6 +31,8 @@ function App(): JSX.Element {
       <Suspense fallback={<RouteFallback />}>
         <Routes>
           <Route element={<AppLayout />}>
+            <Route path="auth/discord" element={<DiscordAuthPage />} />
+            <Route path="admin" element={<AdminPage />} />
             <Route index element={<HomePage />} />
             <Route path="servers" element={<ServersPage />} />
             <Route path="servers/:serverId" element={<ServerDetailPage />} />

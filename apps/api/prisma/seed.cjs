@@ -240,7 +240,7 @@ async function seedCouncil() {
 
 async function seedSettings() {
   const settings = [
-    { key: 'site.name', value: 'Wizards of Ark' },
+    { key: 'site.name', value: 'The Wizards Of Ark' },
     { key: 'site.network', value: 'The Wizards Of Ark' },
     { key: 'features.eosShop', value: 'false' },
     { key: 'map.order', value: DEFAULT_MAP_ORDER.join(',') },
@@ -259,6 +259,11 @@ async function main() {
   await seedMaps();
   await seedCouncil();
   await seedSettings();
+  await prisma.role.upsert({
+    where: { name: 'admin' },
+    create: { name: 'admin', description: 'Full site administration' },
+    update: { description: 'Full site administration' },
+  });
   const [maps, council] = await Promise.all([
     prisma.arkMap.count(),
     prisma.councilMember.count(),

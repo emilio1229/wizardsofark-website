@@ -4,7 +4,7 @@ Source: `https://cdn2.arkdedicated.com/servers/asa/unofficialserverlist.json`
 
 Inspected: 2026-09-08 (response is a JSON array of server objects).
 
-## Fields used by Wizards of Ark monitoring
+## Fields used by The Wizards Of Ark monitoring
 
 | ASA field | Purpose |
 |-----------|---------|

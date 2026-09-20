@@ -83,7 +83,7 @@ export const ticketShopContent = {
   steps: [
     {
       title: 'Open Discord',
-      description: 'Join the Wizards of Ark server.',
+      description: 'Join the The Wizards Of Ark server.',
     },
     {
       title: 'Create a shop ticket',

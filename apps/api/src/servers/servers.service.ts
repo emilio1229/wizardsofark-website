@@ -81,6 +81,10 @@ export class ServersService {
       ),
       mapOrder: this.configService.get<string[]>('mapOrder', []),
       redisUrl: this.configService.get<string | null>('redisUrl', null),
+      discordClientId: '',
+      discordClientSecret: '',
+      discordRedirectUri: '',
+      authAdminDiscordIds: [],
     };
   }
 

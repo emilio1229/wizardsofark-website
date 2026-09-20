@@ -95,7 +95,7 @@ function CouncilPage(): JSX.Element {
                 Guiding the Realm Together
               </Typography>
               <Typography color="text.secondary" sx={{ maxWidth: 560 }}>
-                The Council shapes, protects and grows the Wizards of Ark realm. Select a member to discover
+                The Council shapes, protects and grows the The Wizards Of Ark realm. Select a member to discover
                 their role within the community.
               </Typography>
               <Typography

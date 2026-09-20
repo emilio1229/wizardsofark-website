@@ -12,7 +12,7 @@ async function main(): Promise<void> {
       pollIntervalSeconds: config.pollIntervalSeconds,
       databasePath: config.databasePath,
     },
-    'Wizards of Ark server monitor started',
+    'The Wizards Of Ark server monitor started',
   );
 
   await poller.start();

@@ -1,7 +1,7 @@
 import type { NavLinkItem } from '../types';
 
 export const siteMeta = {
-  name: 'Wizards of Ark',
+  name: 'The Wizards Of Ark',
   shortName: 'WOA',
   tagline: 'Explore • Build • Survive • Together',
   motto: 'More than a server. A community.',
@@ -11,9 +11,11 @@ export const siteMeta = {
   discordUrl: 'https://discord.gg/84FDUShzE',
   socials: {
     discord: 'https://discord.gg/84FDUShzE',
-    youtube: 'https://www.youtube.com/@wizardsofark',
-    x: 'https://x.com/wizardsofark',
-    reddit: 'https://www.reddit.com/r/wizardsofark',
+    instagram: 'https://www.instagram.com/wizardsofark?stkn=ZzBqZTNmaHcycXQ3',
+    x: 'https://x.com/theWizardsofArk',
+    facebook: 'https://www.facebook.com/share/1Utd7iW64S/',
+    arkCluster: 'https://ark.fusey.gg/ark-survival-ascended/clusters/UcqUjN93gkEDESYg-utSESnI-QNY6I0nuqFni93L7xw',
+    reddit: 'https://www.reddit.com/u/WizardsofArk/s/ErNMeGc2nF',
   },
 };
 
