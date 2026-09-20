@@ -1,6 +1,8 @@
 import { Box, Container, IconButton, Link, Stack, Typography } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
-import YouTubeIcon from '@mui/icons-material/YouTube';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import XIcon from '@mui/icons-material/X';
 import RedditIcon from '@mui/icons-material/Reddit';
 import { footerLinks, siteMeta } from '../../data/site';
@@ -70,11 +72,17 @@ export function WoAFooter(): JSX.Element {
             <IconButton aria-label="Discord" href={siteMeta.socials.discord} target="_blank" rel="noreferrer" sx={{ color: 'text.secondary' }}>
               <DiscordGlyph />
             </IconButton>
-            <IconButton aria-label="YouTube" href={siteMeta.socials.youtube} target="_blank" rel="noreferrer" sx={{ color: 'text.secondary' }}>
-              <YouTubeIcon />
+            <IconButton aria-label="Instagram" href={siteMeta.socials.instagram} target="_blank" rel="noreferrer" sx={{ color: 'text.secondary' }}>
+              <InstagramIcon />
             </IconButton>
             <IconButton aria-label="X" href={siteMeta.socials.x} target="_blank" rel="noreferrer" sx={{ color: 'text.secondary' }}>
               <XIcon />
+            </IconButton>
+            <IconButton aria-label="Facebook" href={siteMeta.socials.facebook} target="_blank" rel="noreferrer" sx={{ color: 'text.secondary' }}>
+              <FacebookIcon />
+            </IconButton>
+            <IconButton aria-label="ARK Cluster" href={siteMeta.socials.arkCluster} target="_blank" rel="noreferrer" sx={{ color: 'text.secondary' }}>
+              <SportsEsportsIcon />
             </IconButton>
             <IconButton aria-label="Reddit" href={siteMeta.socials.reddit} target="_blank" rel="noreferrer" sx={{ color: 'text.secondary' }}>
               <RedditIcon />
