@@ -119,6 +119,20 @@ export type CommunityMediaItem = {
   createdAt?: string;
 };
 
+export type CommunityEvent = {
+  id: string;
+  title: string;
+  summary: string;
+  description: string;
+  dateLabel: string;
+  host?: string;
+  statusLabel?: string;
+  heroImage: string;
+  recapTitle: string;
+  recap: string[];
+  media: CommunityMediaItem[];
+};
+
 export type ShopCategory =
   | 'featured'
   | 'structures'

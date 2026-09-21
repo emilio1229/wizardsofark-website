@@ -8,9 +8,12 @@ import {
   DialogContent,
   IconButton,
   Stack,
+  Tooltip,
   Typography,
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
 import type { CommunityMediaItem } from '../../types';
@@ -124,31 +127,71 @@ export function MediaCard({ item, onOpen }: MediaCardProps): JSX.Element {
 
 type MediaViewerProps = {
   item: CommunityMediaItem | null;
+  items: CommunityMediaItem[];
   open: boolean;
   onClose: () => void;
+  onSelect: (item: CommunityMediaItem) => void;
 };
 
-export function MediaViewer({ item, open, onClose }: MediaViewerProps): JSX.Element {
+export function MediaViewer({ item, items, open, onClose, onSelect }: MediaViewerProps): JSX.Element {
   const youtubeEmbedUrl = item?.videoUrl ? getYouTubeEmbedUrl(item.videoUrl) : null;
   const isExternalVideo = item?.kind === 'video' && !!youtubeEmbedUrl;
+  const itemIndex = item ? items.findIndex((candidate) => candidate.id === item.id) : -1;
+  const previousItem = itemIndex > 0 ? items[itemIndex - 1] : undefined;
+  const nextItem = itemIndex >= 0 && itemIndex < items.length - 1 ? items[itemIndex + 1] : undefined;
 
   return (
     <Dialog open={open} onClose={onClose} maxWidth="lg" fullWidth>
       <DialogContent sx={{ position: 'relative', p: { xs: 1.5, md: 2.5 } }}>
-        <IconButton
-          aria-label="Close media viewer"
-          onClick={onClose}
-          sx={{ position: 'absolute', top: 8, right: 8, zIndex: 2, bgcolor: 'rgba(5,8,17,0.7)' }}
+        <Stack
+          direction="row"
+          spacing={0.5}
+          sx={{ position: 'absolute', top: 8, right: 8, zIndex: 2 }}
         >
-          <CloseIcon />
-        </IconButton>
+          <Tooltip title="Previous media">
+            <span>
+              <IconButton
+                aria-label="Previous media"
+                onClick={() => previousItem && onSelect(previousItem)}
+                disabled={!previousItem}
+                sx={{ bgcolor: 'rgba(5,8,17,0.7)' }}
+              >
+                <ChevronLeftIcon />
+              </IconButton>
+            </span>
+          </Tooltip>
+          <Tooltip title="Next media">
+            <span>
+              <IconButton
+                aria-label="Next media"
+                onClick={() => nextItem && onSelect(nextItem)}
+                disabled={!nextItem}
+                sx={{ bgcolor: 'rgba(5,8,17,0.7)' }}
+              >
+                <ChevronRightIcon />
+              </IconButton>
+            </span>
+          </Tooltip>
+          <Tooltip title="Close media viewer">
+            <IconButton aria-label="Close media viewer" onClick={onClose} sx={{ bgcolor: 'rgba(5,8,17,0.7)' }}>
+              <CloseIcon />
+            </IconButton>
+          </Tooltip>
+        </Stack>
 
         {item ? (
           <Stack spacing={2}>
             <Box>
-              <Typography variant="overline" sx={{ color: 'gold.main' }}>
-                {item.kind === 'video' ? 'Video' : 'Image'}
-              </Typography>
+              <Stack direction="row" justifyContent="space-between" spacing={2} sx={{ pr: 18 }}>
+                <Typography variant="overline" sx={{ color: 'gold.main' }}>
+                  {item.kind === 'video' ? 'Video' : 'Image'}
+                </Typography>
+                {itemIndex >= 0 ? (
+                  <Typography variant="caption" color="text.muted">
+                    {itemIndex + 1} of {items.length}
+                  </Typography>
+                ) : null}
+              </Stack>
               <Typography variant="h4">{item.title}</Typography>
               <Typography color="text.secondary" sx={{ mt: 0.75 }}>
                 {item.description}

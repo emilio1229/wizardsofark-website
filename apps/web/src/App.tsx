@@ -9,6 +9,8 @@ const ServersPage = lazy(() => import('./pages/Servers/ServersPage'));
 const ServerDetailPage = lazy(() => import('./pages/ServerDetail/ServerDetailPage'));
 const CouncilPage = lazy(() => import('./pages/Council/CouncilPage'));
 const CommunityPage = lazy(() => import('./pages/Community/CommunityPage'));
+const EventsPage = lazy(() => import('./pages/Community/EventsPage'));
+const EventDetailPage = lazy(() => import('./pages/Community/EventDetailPage'));
 const MediaPage = lazy(() => import('./pages/Community/MediaPage'));
 const ShopPage = lazy(() => import('./pages/Shop/ShopPage'));
 const RulesPage = lazy(() => import('./pages/Rules/RulesPage'));
@@ -38,6 +40,8 @@ function App(): JSX.Element {
             <Route path="servers/:serverId" element={<ServerDetailPage />} />
             <Route path="council" element={<CouncilPage />} />
             <Route path="community" element={<CommunityPage />} />
+            <Route path="community/events" element={<EventsPage />} />
+            <Route path="community/events/:eventId" element={<EventDetailPage />} />
             <Route path="community/media" element={<MediaPage />} />
             <Route path="shop" element={<ShopPage />} />
             <Route path="rules" element={<RulesPage />} />

@@ -119,7 +119,13 @@ function MediaPage(): JSX.Element {
         </Grid>
       </Container>
 
-      <MediaViewer item={selected} open={Boolean(selected)} onClose={() => setSelected(null)} />
+      <MediaViewer
+        item={selected}
+        items={filtered}
+        open={Boolean(selected)}
+        onClose={() => setSelected(null)}
+        onSelect={setSelected}
+      />
     </>
   );
 }
