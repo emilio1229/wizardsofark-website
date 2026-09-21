@@ -53,6 +53,7 @@ export class AsaUnofficialListProvider implements ServerProvider {
       discordClientSecret: '',
       discordRedirectUri: '',
       authAdminDiscordIds: [],
+      authLocalBypass: false,
     };
   }
 

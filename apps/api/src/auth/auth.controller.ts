@@ -43,6 +43,17 @@ export class AuthController {
     response.redirect(`${frontendUrl}/`);
   }
 
+  @Get('dev')
+  async localDevLogin(@Res() response: Response): Promise<void> {
+    const result = await this.authService.createLocalDevSession();
+    const frontendUrl = process.env.FRONTEND_URL ?? 'http://localhost:5173';
+    response.setHeader(
+      'Set-Cookie',
+      `${SESSION_COOKIE}=${result.sessionToken}; HttpOnly; SameSite=Lax; Path=/; Max-Age=2592000`,
+    );
+    response.redirect(`${frontendUrl}/`);
+  }
+
   @Get('me')
   getCurrentUser(@Req() request: Request) {
     return this.authService.getUserFromSession(this.readCookie(request, SESSION_COOKIE));

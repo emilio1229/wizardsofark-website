@@ -85,6 +85,7 @@ export class ServersService {
       discordClientSecret: '',
       discordRedirectUri: '',
       authAdminDiscordIds: [],
+      authLocalBypass: false,
     };
   }
 

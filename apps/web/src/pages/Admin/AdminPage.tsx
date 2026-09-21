@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   Alert,
   Box,
@@ -37,7 +37,6 @@ export default function AdminPage(): JSX.Element {
     'site.admin.access',
     'roles.manage',
     'users.manage',
-    'community.media.manage',
   ].includes(permission)));
   const roles = useGetRolesQuery(undefined, { skip: !canManageRoles && !canManageUsers });
   const users = useGetUsersQuery(undefined, { skip: !canManageUsers });

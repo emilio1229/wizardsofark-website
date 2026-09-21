@@ -112,7 +112,7 @@ export type CommunityMediaItem = {
   thumbnail: string;
   /** Full image path for kind=image */
   src?: string;
-  /** External or embed URL for kind=video (YouTube, etc.) */
+  /** Public asset URL or external embed URL for kind=video */
   videoUrl?: string;
   tags?: string[];
   credit?: string;

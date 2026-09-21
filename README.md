@@ -140,3 +140,65 @@ Set `FRONTEND_URL` / `CORS_ORIGIN` on the API to the web domain.
 Editorial map artwork, shop copy, community media, and enrichment notes still live under `apps/web/src/data` and `apps/web/public/assets`. Council/maps catalogue is also seeded into Postgres for the API.
 
 See [`docs/CONTENT.md`](docs/CONTENT.md) and [`docs/ASA_SERVER_LIST_FIELDS.md`](docs/ASA_SERVER_LIST_FIELDS.md).
+
+### Community media images and videos
+
+The `/community/media` gallery is asset-driven. There is no server upload flow.
+
+1. Put image, thumbnail, or video files in:
+
+```text
+apps/web/public/assets/community/media/
+```
+
+2. Register each item in `communityMedia`:
+
+```text
+apps/web/src/data/community.ts
+```
+
+Image example:
+
+```ts
+{
+     id: 'my-shot',
+     kind: 'image',
+     title: 'My Shot',
+     description: 'Short caption.',
+     thumbnail: communityImagePath('media', 'my-shot.png'),
+     src: communityImagePath('media', 'my-shot.png'),
+     tags: ['build'],
+     credit: 'PlayerName',
+}
+```
+
+Local video example:
+
+```ts
+{
+     id: 'cluster-trailer',
+     kind: 'video',
+     title: 'Cluster Trailer',
+     description: 'Official look at the realm.',
+     thumbnail: communityImagePath('media', 'cluster-trailer-thumb.png'),
+     videoUrl: communityImagePath('media', 'cluster-trailer.mp4'),
+     tags: ['trailer'],
+     credit: 'The Wizards Of Ark',
+}
+```
+
+YouTube embed example:
+
+```ts
+{
+     id: 'youtube-trailer',
+     kind: 'video',
+     title: 'YouTube Trailer',
+     description: 'Hosted trailer.',
+     thumbnail: communityImagePath('media', 'trailer-thumb.png'),
+     videoUrl: 'https://www.youtube.com/embed/YOUR_VIDEO_ID',
+     tags: ['trailer'],
+}
+```
+
+Rebuild or redeploy the web app after adding new static files so they are included in the built site.

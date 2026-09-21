@@ -7,15 +7,16 @@ export default function DiscordAuthPage(): JSX.Element {
 
   useEffect(() => {
     const apiUrl = import.meta.env.VITE_API_URL || '/api/v1';
+    const authPath = import.meta.env.VITE_AUTH_LOCAL_BYPASS === 'true' ? 'dev' : 'discord';
     const invite = searchParams.get('invite');
     const query = invite ? `?invite=${encodeURIComponent(invite)}` : '';
-    window.location.assign(`${apiUrl}/auth/discord${query}`);
+    window.location.assign(`${apiUrl}/auth/${authPath}${query}`);
   }, [searchParams]);
 
   return (
     <Box sx={{ minHeight: '60vh', display: 'grid', placeItems: 'center', gap: 2 }}>
       <CircularProgress color="primary" />
-      <Typography color="text.secondary">Connecting to Discord...</Typography>
+      <Typography color="text.secondary">Signing in...</Typography>
     </Box>
   );
 }

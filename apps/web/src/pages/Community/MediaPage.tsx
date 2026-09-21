@@ -30,9 +30,10 @@ const filters: Array<{ id: FilterTab; label: string }> = [
 
 function MediaPage(): JSX.Element {
   const { data, isLoading, isError } = useCommunityMedia();
-  const items = data?.status === 'success' ? data.data : [];
   const [tab, setTab] = useState(0);
   const [selected, setSelected] = useState<CommunityMediaItem | null>(null);
+
+  const items = data?.status === 'success' ? data.data : [];
 
   const activeFilter = filters[tab]?.id ?? 'all';
 
@@ -65,14 +66,16 @@ function MediaPage(): JSX.Element {
           <Button component={RouterLink} to="/community" startIcon={<ArrowBackIcon />} sx={{ alignSelf: 'flex-start' }}>
             Back to Community
           </Button>
-          <Typography variant="body2" color="text.muted">
-            {imageCount} images · {videoCount} videos
-          </Typography>
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5} alignItems="center">
+            <Typography variant="body2" color="text.muted">
+              {imageCount} images · {videoCount} videos
+            </Typography>
+          </Stack>
         </Stack>
 
         <SectionHeader
           title="Community Media"
-          subtitle="Select an item to open the viewer. Add new files under public/assets/community/media/."
+          subtitle="Select an item to open the viewer. Add images and videos by placing files in public/assets/community/media and listing them in the media data file."
         />
 
         {isError || data?.status === 'error' ? (

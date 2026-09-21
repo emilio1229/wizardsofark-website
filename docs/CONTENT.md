@@ -176,7 +176,28 @@ The Media card on Community links here. All gallery items live in `communityMedi
 }
 ```
 
-#### Add a video
+#### Add a local video file
+
+1. Drop the video in `public/assets/community/media/cluster-trailer.mp4`
+2. Drop a thumbnail in `public/assets/community/media/cluster-trailer-thumb.png`
+3. Append to `communityMedia`:
+
+```ts
+{
+  id: 'cluster-trailer',
+  kind: 'video',
+  title: 'Cluster Trailer',
+  description: 'Official look at the realm.',
+  thumbnail: communityImagePath('media', 'cluster-trailer-thumb.png'),
+  videoUrl: communityImagePath('media', 'cluster-trailer.mp4'),
+  tags: ['trailer'],
+  credit: 'The Wizards Of Ark',
+}
+```
+
+The viewer uses the browser video player for local `.mp4`, `.webm`, and other browser-supported video files.
+
+#### Add a YouTube video
 
 1. Optional thumbnail in `public/assets/community/media/`
 2. Append with a YouTube **embed** URL:

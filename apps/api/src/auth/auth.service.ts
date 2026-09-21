@@ -110,6 +110,42 @@ export class AuthService {
     return { sessionToken, user: this.toUser(user) };
   }
 
+  async createLocalDevSession(): Promise<{ sessionToken: string; user: AuthUser }> {
+    if (!this.config.get<boolean>('authLocalBypass')) {
+      throw new ForbiddenException('Local auth bypass is disabled');
+    }
+
+    const roleId = await this.ensureAdminRole();
+    const user = await this.prisma.user.upsert({
+      where: { discordId: 'local-dev-admin' },
+      create: {
+        discordId: 'local-dev-admin',
+        username: 'Local Dev Admin',
+        email: 'local-dev@thewizardsofark.local',
+        status: 'ACTIVE',
+        roleId,
+      },
+      update: {
+        username: 'Local Dev Admin',
+        email: 'local-dev@thewizardsofark.local',
+        status: 'ACTIVE',
+        roleId,
+      },
+      include: { role: { include: { permissions: { include: { permission: true } } } } },
+    });
+
+    const sessionToken = randomBytes(32).toString('hex');
+    await this.prisma.authSession.create({
+      data: {
+        tokenHash: this.hash(sessionToken),
+        userId: user.id,
+        expiresAt: this.daysFromNow(SESSION_DAYS),
+      },
+    });
+
+    return { sessionToken, user: this.toUser(user) };
+  }
+
   async getUserFromSession(sessionToken: string | undefined): Promise<AuthUser> {
     if (!sessionToken) {
       throw new UnauthorizedException('Authentication required');

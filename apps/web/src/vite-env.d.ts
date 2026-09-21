@@ -8,6 +8,7 @@ interface ImportMetaEnv {
   readonly VITE_FEATURE_SEARCH?: string;
   readonly VITE_FEATURE_THEME?: string;
   readonly VITE_FEATURE_ACCOUNT?: string;
+  readonly VITE_AUTH_LOCAL_BYPASS?: string;
 }
 
 interface ImportMeta {

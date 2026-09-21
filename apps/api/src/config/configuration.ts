@@ -21,6 +21,7 @@ export type AppConfiguration = {
   discordClientSecret: string;
   discordRedirectUri: string;
   authAdminDiscordIds: string[];
+  authLocalBypass: boolean;
 };
 
 function parseMapOrder(raw: string | undefined): string[] {
@@ -70,5 +71,6 @@ export default (): AppConfiguration => {
       .split(',')
       .map((value) => value.trim())
       .filter(Boolean),
+    authLocalBypass: process.env.AUTH_LOCAL_BYPASS === 'true',
   };
 };

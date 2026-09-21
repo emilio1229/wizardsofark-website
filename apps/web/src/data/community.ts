@@ -182,11 +182,10 @@ export const communityMedia: CommunityMediaItem[] = [
   {
     id: 'woa-trailer',
     kind: 'video',
-    title: 'Enter the Realm',
-    description: 'Featured trailer slot — set videoUrl in src/data/community.ts to your YouTube embed link.',
-    thumbnail: communityImagePath('media', 'ember-citadel.png'),
-    // Example: 'https://www.youtube.com/embed/YOUR_VIDEO_ID'
-    videoUrl: '',
+    title: 'The Wizards of Ark Trailer',
+    description: 'Featured trailer for The Wizards of Ark.',
+    thumbnail: communityImagePath('media', 'ad-cluster1.png'),
+    videoUrl: 'https://www.youtube.com/watch?v=MTspAS4MTJ0',
     tags: ['trailer', 'featured'],
     credit: 'The Wizards Of Ark',
     createdAt: '2026-09-01',
