@@ -16,7 +16,7 @@ function CommunityPage(): JSX.Element {
       <PageHero
         title="COMMUNITY"
         subtitle="Events, guides, builds and everything in between."
-        backgroundImage="/assets/gallery/gallery5.png"
+        backgroundImage="/assets/branding/MainCommunityPage.png"
         minHeight={{ xs: '40vh', md: '46vh' }}
         overlay="vertical"
       />
