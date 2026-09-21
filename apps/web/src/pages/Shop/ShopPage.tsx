@@ -54,6 +54,7 @@ function TicketShopPage(): JSX.Element {
         description="Open a ticket, state the order clearly, and let staff process it in a single logged thread."
         primaryAction={{ label: 'Make a Purchase on Discord', href: siteMeta.discordUrl, external: true }}
         secondaryAction={{ label: 'Need Support?', href: '/community' }}
+        backgroundImage="/assets/branding/ShopBackImage.png"
         compact
       />
 
@@ -163,15 +164,19 @@ function EosShopPage(): JSX.Element {
   }, [items, activeCategory]);
 
   return (
-    <Container
-      maxWidth={false}
-      sx={{ maxWidth: woaTokens.layout.contentMaxWidth, px: { xs: 2, md: 4 }, py: { xs: 5, md: 7 } }}
-    >
-      <SectionHeader
+    <>
+      <PageHero
         title="SHOP"
         subtitle="Use your EOS points to unlock exclusive rewards."
-        action={<EOSBalance balance={balance} />}
+        backgroundImage="/assets/branding/ShopBackImage.png"
+        compact
       />
+
+      <Container
+        maxWidth={false}
+        sx={{ maxWidth: woaTokens.layout.contentMaxWidth, px: { xs: 2, md: 4 }, py: { xs: 5, md: 7 } }}
+      >
+        <SectionHeader title="Rewards Catalogue" action={<EOSBalance balance={balance} />} />
 
       {itemsError || itemsResult?.status === 'error' ? (
         <Alert severity="warning" sx={{ mb: 3 }}>
@@ -222,7 +227,8 @@ function EosShopPage(): JSX.Element {
           </>
         ) : null}
       </Dialog>
-    </Container>
+      </Container>
+    </>
   );
 }
 

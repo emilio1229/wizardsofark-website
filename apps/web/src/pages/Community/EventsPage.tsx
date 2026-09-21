@@ -15,7 +15,7 @@ function EventsPage(): JSX.Element {
         title="EVENTS"
         subtitle="Shared stories from across the realm."
         description="Explore the events that brought the community together, then open each record for its recap and captured moments."
-        backgroundImage="/assets/gallery/gallery5.png"
+        backgroundImage="/assets/branding/eventBackImage.png"
         minHeight={{ xs: '40vh', md: '46vh' }}
         overlay="vertical"
       />
