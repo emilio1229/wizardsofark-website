@@ -21,6 +21,38 @@ type MediaCardProps = {
   onOpen: (item: CommunityMediaItem) => void;
 };
 
+function getYouTubeEmbedUrl(videoUrl: string): string | null {
+  try {
+    const url = new URL(videoUrl);
+    const hostname = url.hostname.replace(/^www\./, '');
+    let videoId: string | undefined;
+
+    if (hostname === 'youtu.be') {
+      videoId = url.pathname.slice(1).split('/')[0];
+    } else if (hostname === 'youtube.com' || hostname === 'youtube-nocookie.com') {
+      const pathParts = url.pathname.split('/').filter(Boolean);
+      videoId = url.searchParams.get('v') ?? (pathParts[0] === 'embed' || pathParts[0] === 'shorts' ? pathParts[1] : undefined);
+    }
+
+    if (!videoId) {
+      return null;
+    }
+
+    const embedUrl = new URL(`https://www.youtube.com/embed/${videoId}`);
+    const start = url.searchParams.get('start') ?? url.searchParams.get('t');
+    if (start) {
+      const seconds = start.match(/\d+/)?.[0];
+      if (seconds) {
+        embedUrl.searchParams.set('start', seconds);
+      }
+    }
+
+    return embedUrl.toString();
+  } catch {
+    return null;
+  }
+}
+
 export function MediaCard({ item, onOpen }: MediaCardProps): JSX.Element {
   return (
     <Card sx={{ height: '100%', overflow: 'hidden' }}>
@@ -97,6 +129,9 @@ type MediaViewerProps = {
 };
 
 export function MediaViewer({ item, open, onClose }: MediaViewerProps): JSX.Element {
+  const youtubeEmbedUrl = item?.videoUrl ? getYouTubeEmbedUrl(item.videoUrl) : null;
+  const isExternalVideo = item?.kind === 'video' && !!youtubeEmbedUrl;
+
   return (
     <Dialog open={open} onClose={onClose} maxWidth="lg" fullWidth>
       <DialogContent sx={{ position: 'relative', p: { xs: 1.5, md: 2.5 } }}>
@@ -121,31 +156,56 @@ export function MediaViewer({ item, open, onClose }: MediaViewerProps): JSX.Elem
             </Box>
 
             {item.kind === 'video' && item.videoUrl ? (
-              <Box
-                sx={{
-                  position: 'relative',
-                  pt: '56.25%',
-                  borderRadius: `${woaTokens.radius.md}px`,
-                  overflow: 'hidden',
-                  border: `1px solid ${woaTokens.colours.border.default}`,
-                  bgcolor: '#000',
-                }}
-              >
+              isExternalVideo ? (
                 <Box
-                  component="iframe"
-                  src={item.videoUrl}
-                  title={item.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
                   sx={{
-                    position: 'absolute',
-                    inset: 0,
-                    width: '100%',
-                    height: '100%',
-                    border: 0,
+                    position: 'relative',
+                    pt: '56.25%',
+                    borderRadius: `${woaTokens.radius.md}px`,
+                    overflow: 'hidden',
+                    border: `1px solid ${woaTokens.colours.border.default}`,
+                    bgcolor: '#000',
                   }}
-                />
-              </Box>
+                >
+                  <Box
+                    component="iframe"
+                    src={youtubeEmbedUrl ?? undefined}
+                    title={item.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    sx={{
+                      position: 'absolute',
+                      inset: 0,
+                      width: '100%',
+                      height: '100%',
+                      border: 0,
+                    }}
+                  />
+                </Box>
+              ) : (
+                <Box
+                  sx={{
+                    borderRadius: `${woaTokens.radius.md}px`,
+                    border: `1px solid ${woaTokens.colours.border.default}`,
+                    bgcolor: '#000',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <Box
+                    component="video"
+                    src={item.videoUrl}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    sx={{
+                      display: 'block',
+                      width: '100%',
+                      maxHeight: '75vh',
+                      background: '#000',
+                    }}
+                  />
+                </Box>
+              )
             ) : item.kind === 'video' ? (
               <Box
                 sx={{
@@ -163,7 +223,7 @@ export function MediaViewer({ item, open, onClose }: MediaViewerProps): JSX.Elem
                 }}
               >
                 <Typography color="text.secondary">
-                  Add a YouTube embed URL to this item in <code>src/data/community.ts</code>.
+                  Upload a video or add a YouTube embed URL.
                 </Typography>
               </Box>
             ) : (
