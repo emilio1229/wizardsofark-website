@@ -17,7 +17,8 @@ import { Link as RouterLink, useParams } from 'react-router-dom';
 import { getMapById } from '../../api/servers';
 import { GlassPanel, StatusDot } from '../../components/common/GlassPanel';
 import { PlayerCount } from '../../components/server/PlayerCount';
-import { useServer } from '../../hooks/useApi';
+import { useServer, useServerActivity } from '../../hooks/useApi';
+import { ServerActivityHeatmap } from '../../components/server/ServerActivityHeatmap';
 import { formatDateTime, formatStatusLabel, getStatusColour } from '../../utils/format';
 import { formatConnection, formatRelativeTime, formatUtilization, useRelativeClock } from '../../features/servers/utils/time';
 import { woaTokens } from '../../theme/tokens';
@@ -28,11 +29,13 @@ function ServerDetailPage(): JSX.Element {
   const { serverId: rawServerId = '' } = useParams();
   const serverId = decodeURIComponent(rawServerId);
   const { data, isLoading, isError, refetch, isFetching } = useServer(serverId);
+  const { data: activityData, isLoading: activityLoading } = useServerActivity(serverId);
   const [tab, setTab] = useState(0);
   const [copied, setCopied] = useState(false);
   const nowMs = useRelativeClock(1000);
 
   const server = data?.status === 'success' ? data.data : null;
+  const activity = activityData?.status === 'success' ? activityData.data : null;
   const map = server ? getMapById(server.mapId) : undefined;
 
   const joinAddress = useMemo(() => {
@@ -194,7 +197,7 @@ function ServerDetailPage(): JSX.Element {
 
         {tab === 0 ? (
           <Grid container spacing={3}>
-            <Grid item xs={12} md={7}>
+            <Grid item xs={12} md={6}>
               <GlassPanel>
                 <Typography variant="h5" sx={{ mb: 2 }}>
                   Live Status
@@ -254,22 +257,22 @@ function ServerDetailPage(): JSX.Element {
                 </Box>
               </GlassPanel>
             </Grid>
-            <Grid item xs={12} md={5}>
+            <Grid item xs={12} md={6}>
               <GlassPanel sx={{ height: '100%' }}>
-                <Typography variant="h5" sx={{ mb: 2 }}>
-                  Observation Notes
+                <Typography variant="h5" sx={{ mb: 0.5 }}>
+                  Player Activity
                 </Typography>
-                <Typography color="text.secondary" sx={{ mb: 2 }}>
-                  Status is derived from presence in the ArkStatus server list. Absence
-                  does not confirm a crash, update, or network issue on its own.
+                <Typography color="text.secondary" variant="body2" sx={{ mb: 2.5 }}>
+                  Average players by hour of the week, in your local timezone.
                 </Typography>
-                {server.missingSince ? (
-                  <Typography color="text.muted">
-                    Missing since {formatDateTime(server.missingSince)} (
-                    {formatRelativeTime(server.missingSince, nowMs)})
-                  </Typography>
+                {activity ? (
+                  <ServerActivityHeatmap activity={activity} />
+                ) : activityLoading ? (
+                  <Typography color="text.muted">Loading activity…</Typography>
                 ) : (
-                  <Typography color="text.muted">Currently present in the latest successful poll.</Typography>
+                  <Typography color="text.secondary">
+                    Activity history is unavailable right now.
+                  </Typography>
                 )}
               </GlassPanel>
             </Grid>

@@ -62,6 +62,49 @@ export type ApiEnvelope<T> = {
   meta: Record<string, unknown>;
 };
 
+/**
+ * One cell of the activity grid. `dow` is UTC day-of-week (0=Sunday) and `hour`
+ * is UTC hour, so the client can shift buckets into the visitor's timezone.
+ */
+export type ActivityCell = {
+  dow: number;
+  hour: number;
+  avgPlayers: number;
+  avgUtilization: number | null;
+  samples: number;
+};
+
+/** Aggregate of one UTC day-of-week across the whole history window. */
+export type ActivityDayTotal = {
+  dow: number;
+  avgPlayers: number;
+  samples: number;
+};
+
+export type ActivityPeak = {
+  dow: number;
+  hour: number;
+  avgPlayers: number;
+  samples: number;
+};
+
+export type ServerActivityResponse = {
+  serverId: string;
+  /** Always "UTC" — the client converts buckets to the visitor's locale. */
+  gridTimezone: 'UTC';
+  /** Days of history the aggregate covers. */
+  windowDays: number;
+  since: string | null;
+  until: string | null;
+  totalSamples: number;
+  maxPlayers: number;
+  /** 168 cells (7 x 24), always fully populated; empty slots have samples 0. */
+  cells: ActivityCell[];
+  perDay: ActivityDayTotal[];
+  busiest: ActivityPeak | null;
+  quietest: ActivityPeak | null;
+};
+
 export type ApiErrorBody = {
   statusCode: number;
   error: string;

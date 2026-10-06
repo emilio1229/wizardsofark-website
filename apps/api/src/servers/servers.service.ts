@@ -1,8 +1,12 @@
 import { Inject, Injectable, Logger, Optional } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import type {
+  ActivityCell,
+  ActivityDayTotal,
+  ActivityPeak,
   LiveServer,
   MasterListStatus,
+  ServerActivityResponse,
   ServersNetworkResponse,
   ServerStatus,
 } from '@woa/shared';
@@ -151,6 +155,96 @@ export class ServersService {
       missingSince: server.missingSince,
       statusExplanation: statusExplanation(server.status),
       statusHistory: server.statusHistory,
+    };
+  }
+
+  async getServerActivity(
+    id: string,
+    windowDays = 28,
+  ): Promise<ServerActivityResponse | null> {
+    const server = await this.getServerById(id);
+    if (!server) {
+      return null;
+    }
+
+    const until = new Date();
+    const since = new Date(until.getTime() - windowDays * 24 * 60 * 60 * 1000);
+
+    // Bucket in UTC so the client can shift cells into the visitor's timezone.
+    // EXTRACT(DOW) is 0=Sunday, matching the client's getDay().
+    const rows = await this.prisma.$queryRaw<
+      { dow: number; hour: number; avg_players: number; avg_util: number | null; samples: bigint }[]
+    >`
+      SELECT
+        EXTRACT(DOW FROM "capturedAt")::int AS dow,
+        EXTRACT(HOUR FROM "capturedAt")::int AS hour,
+        AVG("players")::float AS avg_players,
+        AVG(CASE WHEN "maxPlayers" > 0 THEN "players"::float / "maxPlayers" END)::float AS avg_util,
+        COUNT(*) AS samples
+      FROM "ServerSnapshot"
+      WHERE "serverId" = ${id} AND "capturedAt" >= ${since}
+      GROUP BY 1, 2
+    `;
+
+    const byKey = new Map(rows.map((r) => [`${Number(r.dow)}:${Number(r.hour)}`, r]));
+    const cells: ActivityCell[] = [];
+    const perDaySamples = new Array(7).fill(0);
+    const perDayPlayerSum = new Array(7).fill(0);
+
+    for (let dow = 0; dow < 7; dow += 1) {
+      for (let hour = 0; hour < 24; hour += 1) {
+        const row = byKey.get(`${dow}:${hour}`);
+        const samples = row ? Number(row.samples) : 0;
+        const avgPlayers = row ? round1(Number(row.avg_players)) : 0;
+
+        cells.push({
+          dow,
+          hour,
+          avgPlayers,
+          avgUtilization:
+            row && row.avg_util !== null ? round3(Number(row.avg_util)) : null,
+          samples,
+        });
+
+        if (samples > 0) {
+          perDaySamples[dow] += 1;
+          perDayPlayerSum[dow] += avgPlayers;
+        }
+      }
+    }
+
+    const perDay: ActivityDayTotal[] = Array.from({ length: 7 }, (_, dow) => ({
+      dow,
+      avgPlayers:
+        perDaySamples[dow] > 0
+          ? round1(perDayPlayerSum[dow] / perDaySamples[dow])
+          : 0,
+      samples: perDaySamples[dow],
+    }));
+
+    const withData = cells.filter((cell) => cell.samples > 0);
+    const rank = (sorted: ActivityCell[]): ActivityPeak | null =>
+      sorted[0]
+        ? {
+            dow: sorted[0].dow,
+            hour: sorted[0].hour,
+            avgPlayers: sorted[0].avgPlayers,
+            samples: sorted[0].samples,
+          }
+        : null;
+
+    return {
+      serverId: id,
+      gridTimezone: 'UTC',
+      windowDays,
+      since: withData.length > 0 ? since.toISOString() : null,
+      until: withData.length > 0 ? until.toISOString() : null,
+      totalSamples: cells.reduce((sum, cell) => sum + cell.samples, 0),
+      maxPlayers: server.maxPlayers ?? 0,
+      cells,
+      perDay,
+      busiest: rank([...withData].sort((a, b) => b.avgPlayers - a.avgPlayers)),
+      quietest: rank([...withData].sort((a, b) => a.avgPlayers - b.avgPlayers)),
     };
   }
 
@@ -703,4 +797,14 @@ function fromIso(value: string | null | undefined): Date | null {
   }
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? null : date;
+}
+
+/** Round to 1dp for player averages (display precision). */
+function round1(value: number): number {
+  return Number.isFinite(value) ? Math.round(value * 10) / 10 : 0;
+}
+
+/** Round to 3dp for utilisation ratios (0–1). */
+function round3(value: number): number {
+  return Number.isFinite(value) ? Math.round(value * 1000) / 1000 : 0;
 }

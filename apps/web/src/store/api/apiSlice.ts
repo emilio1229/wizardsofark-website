@@ -10,6 +10,7 @@ import type {
   ArkMapDto,
   CouncilMemberDto,
   LiveServer,
+  ServerActivityResponse,
   ServersNetworkResponse,
 } from '@woa/shared';
 import type { ServerDetail } from '../../types';
@@ -144,6 +145,10 @@ export const apiSlice = createApi({
       transformResponse: (live: LiveServer) => toServerDetail(live),
       providesTags: (_result, _error, id) => [{ type: 'Server', id }],
     }),
+    getServerActivity: builder.query<ServerActivityResponse, string>({
+      query: (id) => `/servers/${encodeURIComponent(id)}/activity`,
+      providesTags: (_result, _error, id) => [{ type: 'Server', id }],
+    }),
     getMaps: builder.query<ArkMapDto[], void>({
       query: () => '/maps',
       providesTags: ['Maps'],
@@ -250,6 +255,7 @@ export const apiSlice = createApi({
 export const {
   useGetServersNetworkQuery,
   useGetServerByIdQuery,
+  useGetServerActivityQuery,
   useGetMapsQuery,
   useGetCouncilQuery,
   useGetShopItemsQuery,

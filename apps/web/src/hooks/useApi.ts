@@ -1,6 +1,7 @@
 import {
   useGetServersNetworkQuery,
   useGetServerByIdQuery,
+  useGetServerActivityQuery,
   useGetCouncilQuery,
   useGetShopItemsQuery,
   useGetEosBalanceQuery,
@@ -76,6 +77,17 @@ export function useServer(serverId: string) {
     pollingInterval: 60_000,
   });
   return wrapQueryResult(query, 'Failed to load server');
+}
+
+/**
+ * Player-activity aggregate. Slow-moving (28-day window) so it is cached longer
+ * than the live status and is not polled.
+ */
+export function useServerActivity(serverId: string) {
+  const query = useGetServerActivityQuery(serverId, {
+    skip: !serverId,
+  });
+  return wrapQueryResult(query, 'Failed to load activity');
 }
 
 export function useCouncil() {

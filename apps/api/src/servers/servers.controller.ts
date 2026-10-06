@@ -4,7 +4,7 @@ import {
   NotFoundException,
   Param,
 } from '@nestjs/common';
-import type { LiveServer, ServersNetworkResponse } from '@woa/shared';
+import type { LiveServer, ServerActivityResponse, ServersNetworkResponse } from '@woa/shared';
 import { ServersService, statusExplanation } from './servers.service';
 
 @Controller('servers')
@@ -23,6 +23,15 @@ export class ServersController {
       throw new NotFoundException('Server not found');
     }
     return status;
+  }
+
+  @Get(':id/activity')
+  async getServerActivity(@Param('id') id: string): Promise<ServerActivityResponse> {
+    const activity = await this.serversService.getServerActivity(decodeURIComponent(id));
+    if (!activity) {
+      throw new NotFoundException('Server not found');
+    }
+    return activity;
   }
 
   @Get(':id')
