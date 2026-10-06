@@ -18,6 +18,9 @@ ENV VITE_AUTH_LOCAL_BYPASS=$VITE_AUTH_LOCAL_BYPASS
 RUN yarn workspace @woa/shared build && yarn workspace @woa/web build
 
 FROM nginx:stable-alpine
+# Only substitute our own vars. Without this filter envsubst also blanks nginx
+# runtime vars ($host, $uri, $scheme ...) and the config fails to load.
+ENV NGINX_ENVSUBST_FILTER="^(PORT|API_UPSTREAM)$"
 COPY docker/nginx.web.conf /etc/nginx/templates/default.conf.template
 COPY --from=build /app/apps/web/dist /usr/share/nginx/html
 # Compose maps host 8080 → container; Railway injects its own PORT.
