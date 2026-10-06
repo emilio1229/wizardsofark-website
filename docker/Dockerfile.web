@@ -18,6 +18,8 @@ ENV VITE_AUTH_LOCAL_BYPASS=$VITE_AUTH_LOCAL_BYPASS
 RUN yarn workspace @woa/shared build && yarn workspace @woa/web build
 
 FROM nginx:stable-alpine
+# Cache-bust: bump this when a lower layer must not be reused from cache.
+# v2 — 2026-10-06: force rebuild so NGINX_ENVSUBST_FILTER is actually applied.
 # Only substitute our own vars. Without this filter envsubst also blanks nginx
 # runtime vars ($host, $uri, $scheme ...) and the config fails to load.
 ENV NGINX_ENVSUBST_FILTER="^(PORT|API_UPSTREAM)$"
