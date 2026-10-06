@@ -45,7 +45,7 @@ function ServerDetailPage(): JSX.Element {
     return formatConnection(server.ip, server.gamePort ?? server.port);
   }, [server]);
 
-  const copyIp = async () => {
+  const copyJoinAddress = async () => {
     if (!joinAddress) {
       return;
     }
@@ -162,11 +162,13 @@ function ServerDetailPage(): JSX.Element {
               </Stack>
             </Box>
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5}>
-              <Button variant="contained" size="large" onClick={() => void copyIp()}>
+              <Button
+                variant="contained"
+                size="large"
+                startIcon={<ContentCopyIcon />}
+                onClick={() => void copyJoinAddress()}
+              >
                 Copy Join Address
-              </Button>
-              <Button variant="outlined" startIcon={<ContentCopyIcon />} onClick={() => void copyIp()}>
-                Copy IP
               </Button>
             </Stack>
           </Stack>
@@ -372,7 +374,7 @@ function ServerDetailPage(): JSX.Element {
         ) : null}
       </Container>
 
-      <Snackbar open={copied} autoHideDuration={2500} onClose={() => setCopied(false)} message="Server IP copied" />
+      <Snackbar open={copied} autoHideDuration={2500} onClose={() => setCopied(false)} message="Join address copied" />
     </>
   );
 }
