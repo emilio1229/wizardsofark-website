@@ -164,11 +164,12 @@ function ServerDetailPage(): JSX.Element {
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1.5}>
               <Button
                 variant="contained"
-                size="large"
-                startIcon={<ContentCopyIcon />}
+                size="small"
+                startIcon={<ContentCopyIcon sx={{ fontSize: 16 }} />}
                 onClick={() => void copyJoinAddress()}
+                sx={{ alignSelf: 'flex-start', whiteSpace: 'nowrap' }}
               >
-                Copy Join Address
+                Copy Address
               </Button>
             </Stack>
           </Stack>
