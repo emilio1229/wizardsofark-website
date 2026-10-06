@@ -1,7 +1,7 @@
-import type { ParsedAsaServer } from '../types';
+import type { ParsedServer } from '../types';
 
 export interface ServerProvider {
-  fetchServers(): Promise<ParsedAsaServer[]>;
+  fetchServers(): Promise<ParsedServer[]>;
 }
 
 export const SERVER_PROVIDER = Symbol('SERVER_PROVIDER');

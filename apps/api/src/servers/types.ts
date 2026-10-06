@@ -2,7 +2,7 @@ import type { LiveServerStatus } from '@woa/shared';
 
 export type ServerStatus = LiveServerStatus;
 
-export type ParsedAsaServer = {
+export type ParsedServer = {
   id: string;
   sessionId: string | null;
   name: string;
@@ -19,7 +19,7 @@ export type ParsedAsaServer = {
   ping: number | null;
   clusterId: string | null;
   isPve: boolean | null;
-  asaLastUpdated: number | null;
+  sourceLastUpdated: number | null;
 };
 
 export type KnownServerRecord = {

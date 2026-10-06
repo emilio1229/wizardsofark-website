@@ -3,7 +3,6 @@ import {
   simulateStatusTimeline,
 } from './server-state.engine';
 import { filterWoaServers, matchesServerNameFilter } from '../providers/server-filter';
-import { parseAsaServer } from '../providers/asa-parser';
 import { calculatePlayerUtilization } from '../utils/player-stats';
 
 const thresholds = {
@@ -95,44 +94,6 @@ describe('server name filter', () => {
       'The Wizards Of Ark',
     );
     expect(filtered).toHaveLength(1);
-  });
-});
-
-describe('ASA parser', () => {
-  it('parses a real-shaped record and uses IP:Port as id', () => {
-    const parsed = parseAsaServer({
-      Name: 'The Wizards Of Ark \\Ragnarok\\No Wipe',
-      SessionName: 'The Wizards Of Ark \\Ragnarok\\No Wipe - (v93.22)',
-      MapName: 'Ragnarok_WP',
-      IP: '37.10.115.234',
-      Port: 5970,
-      LatencyPort: 'WinLiveLatecyCheckPort',
-      NumPlayers: 1,
-      MaxPlayers: 32,
-      BuildId: 93,
-      MinorBuildId: 22,
-      ServerPing: 176,
-      SessionID: 'f00e6327d7304fa6889117b002421723',
-      ClusterId: 'abc',
-      SessionIsPve: 1,
-      LastUpdated: 1788901860469,
-    });
-
-    expect(parsed).toMatchObject({
-      id: '37.10.115.234:5970',
-      mapId: 'ragnarok',
-      mapDisplayName: 'Ragnarok',
-      gamePort: 5970,
-      queryPort: null,
-      players: 1,
-      maxPlayers: 32,
-      version: '93.22',
-      isPve: true,
-    });
-  });
-
-  it('skips malformed records instead of throwing', () => {
-    expect(parseAsaServer({ Name: 'Missing IP', Port: 7777 })).toBeNull();
   });
 });
 

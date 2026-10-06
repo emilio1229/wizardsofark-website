@@ -20,7 +20,7 @@ export type StatusObservationResult = {
 
 /**
  * Observation-based status detection.
- * Never invents confirmed restart/update/crash reasons — only absences from a successful ASA list.
+ * Never invents confirmed restart/update/crash reasons — only absences from a successful poll.
  */
 export function observeServerStatus(input: StatusObservationInput): StatusObservationResult {
   const { previousStatus, presentInLatestSuccessfulPoll, now, thresholds } = input;

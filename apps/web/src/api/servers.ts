@@ -71,7 +71,7 @@ export async function fetchServerById(serverId: string): Promise<ApiResult<Serve
     missingSince: live.missingSince,
     description:
       enrichment?.description ??
-      `${live.map} — live status from the public ASA unofficial server list.`,
+      `${live.map} — live status from ArkStatus.`,
     mods: enrichment?.mods ?? [],
     settings: enrichment?.settings ?? [],
     rules: enrichment?.rules ?? ['Follow General and Building rules'],

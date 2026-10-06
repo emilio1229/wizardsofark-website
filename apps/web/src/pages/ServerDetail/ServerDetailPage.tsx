@@ -260,7 +260,7 @@ function ServerDetailPage(): JSX.Element {
                   Observation Notes
                 </Typography>
                 <Typography color="text.secondary" sx={{ mb: 2 }}>
-                  Status is derived from presence in the public ASA unofficial server list. Absence
+                  Status is derived from presence in the ArkStatus server list. Absence
                   does not confirm a crash, update, or network issue on its own.
                 </Typography>
                 {server.missingSince ? (
@@ -317,7 +317,7 @@ function ServerDetailPage(): JSX.Element {
         {tab === 2 ? (
           <GlassPanel>
             {server.settings.length === 0 ? (
-              <Typography color="text.secondary">Settings are not available from the public ASA list.</Typography>
+              <Typography color="text.secondary">Settings are not available from the ArkStatus API.</Typography>
             ) : (
               <Stack spacing={1.5}>
                 {server.settings.map((setting) => (
@@ -334,7 +334,7 @@ function ServerDetailPage(): JSX.Element {
         {tab === 3 ? (
           <GlassPanel>
             {server.mods.length === 0 ? (
-              <Typography color="text.secondary">Mod details are not available from the public ASA list.</Typography>
+              <Typography color="text.secondary">Mod details are not available from the ArkStatus API.</Typography>
             ) : (
               <Stack spacing={1}>
                 {server.mods.map((mod) => (

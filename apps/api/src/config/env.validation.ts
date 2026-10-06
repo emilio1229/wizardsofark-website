@@ -32,5 +32,19 @@ export function validateEnv(config: Record<string, unknown>): Record<string, unk
     );
   }
 
+  const arkStatusApiKey = String(config.ARKSTATUS_API_KEY ?? '').trim();
+  if (!arkStatusApiKey) {
+    throw new Error(
+      'Invalid API configuration: ARKSTATUS_API_KEY is required (ArkStatus is the only server source)',
+    );
+  }
+
+  const retentionDays = Number(config.SERVER_RETENTION_DAYS ?? 5);
+  if (!Number.isFinite(retentionDays) || retentionDays < 0) {
+    throw new Error(
+      'Invalid API configuration: SERVER_RETENTION_DAYS must be a non-negative number',
+    );
+  }
+
   return config;
 }

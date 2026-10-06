@@ -10,7 +10,7 @@ import { LOCK_STORE, type LockStore } from '../redis/lock-store.interface';
 import { ServersGateway } from './servers.gateway';
 import { ServersService } from './servers.service';
 
-const POLL_LOCK_KEY = 'asa:poll';
+const POLL_LOCK_KEY = 'arkstatus:poll';
 
 @Injectable()
 export class ServersPoller implements OnModuleInit, OnModuleDestroy {
@@ -27,13 +27,13 @@ export class ServersPoller implements OnModuleInit, OnModuleDestroy {
   onModuleInit(): void {
     const intervalMs = this.configService.get<number>('arkServerPollIntervalMs', 60_000);
     // Do not await the first poll — Nest blocks listen()/health until onModuleInit
-    // resolves, which trips Railway healthchecks when the ASA CDN is slow.
+    // resolves, which trips Railway healthchecks when the upstream API is slow.
     this.timer = setInterval(() => {
       void this.runOnce();
     }, intervalMs);
     this.timer.unref?.();
     void this.runOnce();
-    this.logger.log(`ASA poller started (interval=${intervalMs}ms)`);
+    this.logger.log(`ArkStatus poller started (interval=${intervalMs}ms)`);
   }
 
   onModuleDestroy(): void {
@@ -46,7 +46,7 @@ export class ServersPoller implements OnModuleInit, OnModuleDestroy {
   private async runOnce(): Promise<void> {
     const acquired = await this.lockStore.acquire(POLL_LOCK_KEY, 55_000);
     if (!acquired) {
-      this.logger.warn('Skipping overlapping ASA poll');
+      this.logger.warn('Skipping overlapping ArkStatus poll');
       return;
     }
 
@@ -55,19 +55,19 @@ export class ServersPoller implements OnModuleInit, OnModuleDestroy {
       if (result.ok) {
         if (result.changes.length > 0) {
           this.logger.log(
-            `ASA poll completed: matched=${result.matched} skipped=${result.skipped} changes=${result.changes.length}`,
+            `ArkStatus poll completed: matched=${result.matched} skipped=${result.skipped} changes=${result.changes.length}`,
           );
           await this.serversGateway.emitMeaningfulChanges(result.changes);
         } else {
           this.logger.debug(
-            `ASA poll completed with no meaningful changes (matched=${result.matched})`,
+            `ArkStatus poll completed with no meaningful changes (matched=${result.matched})`,
           );
         }
       } else {
-        this.logger.error(`ASA poll failed; retaining prior server states: ${result.error}`);
+        this.logger.error(`ArkStatus poll failed; retaining prior server states: ${result.error}`);
       }
     } catch (error) {
-      this.logger.error('Unexpected ASA poller failure', error instanceof Error ? error.stack : undefined);
+      this.logger.error('Unexpected ArkStatus poller failure', error instanceof Error ? error.stack : undefined);
     } finally {
       await this.lockStore.release(POLL_LOCK_KEY);
     }

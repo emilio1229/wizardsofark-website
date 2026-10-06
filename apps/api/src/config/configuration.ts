@@ -7,13 +7,15 @@ export type AppConfiguration = {
   databaseUrl: string;
   frontendUrl: string;
   corsOrigin: string;
-  arkApiUrl: string;
+  arkStatusBaseUrl: string;
+  arkStatusApiKey: string;
   serverNameFilter: string;
   arkServerPollIntervalMs: number;
   restartingThresholdSeconds: number;
   offlineThresholdSeconds: number;
+  serverRetentionDays: number;
   cacheTtlSeconds: number;
-  asaFetchTimeoutMs: number;
+  fetchTimeoutMs: number;
   masterListStaleSeconds: number;
   mapOrder: string[];
   redisUrl: string | null;
@@ -49,16 +51,18 @@ export default (): AppConfiguration => {
     databaseUrl: process.env.DATABASE_URL ?? '',
     frontendUrl: process.env.FRONTEND_URL ?? 'http://localhost:5173',
     corsOrigin: process.env.CORS_ORIGIN ?? process.env.FRONTEND_URL ?? '*',
-    arkApiUrl:
-      process.env.ARK_API_URL ??
-      process.env.ASA_SERVER_LIST_URL ??
-      'https://cdn2.arkdedicated.com/servers/asa/unofficialserverlist.json',
+    arkStatusBaseUrl: (process.env.ARKSTATUS_BASE_URL ?? 'https://arkstatus.com/api/v1').replace(
+      /\/+$/,
+      '',
+    ),
+    arkStatusApiKey: process.env.ARKSTATUS_API_KEY ?? '',
     serverNameFilter: process.env.SERVER_NAME_FILTER ?? 'The Wizards Of Ark',
     arkServerPollIntervalMs: Number(pollIntervalRaw ?? 60_000),
     restartingThresholdSeconds: Number(process.env.RESTARTING_THRESHOLD_SECONDS ?? 180),
     offlineThresholdSeconds: Number(process.env.OFFLINE_THRESHOLD_SECONDS ?? 600),
+    serverRetentionDays: Number(process.env.SERVER_RETENTION_DAYS ?? 5),
     cacheTtlSeconds: Number(process.env.CACHE_TTL_SECONDS ?? 45),
-    asaFetchTimeoutMs: Number(process.env.ASA_FETCH_TIMEOUT_MS ?? 30_000),
+    fetchTimeoutMs: Number(process.env.FETCH_TIMEOUT_MS ?? 30_000),
     masterListStaleSeconds: Number(process.env.MASTER_LIST_STALE_SECONDS ?? 180),
     mapOrder: parseMapOrder(process.env.MAP_ORDER),
     redisUrl: process.env.REDIS_URL?.trim() ? process.env.REDIS_URL.trim() : null,

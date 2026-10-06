@@ -12,9 +12,9 @@ Browser ──► apps/web (Vite SPA + Redux/RTK Query + Socket.IO client)
                 ▼
            apps/api (NestJS REST /api/v1 + WebSockets)
                 │
-        ┌───────┼────────┐
-        ▼       ▼        ▼
-   PostgreSQL  ASA CDN  Redis (optional / future)
+        ┌───────┼────────────────┐
+        ▼       ▼                ▼
+   PostgreSQL  ArkStatus API  Redis (optional / future)
 ```
 
 Shared types live in `packages/shared` and are consumed by both web and api.
@@ -23,7 +23,7 @@ Shared types live in `packages/shared` and are consumed by both web and api.
 
 ```text
 apps/web/          React SPA (theme, pages, Redux store)
-apps/api/          NestJS API, Prisma, ASA poller, Socket.IO
+apps/api/          NestJS API, Prisma, ArkStatus poller, Socket.IO
 packages/shared/   Shared TS types & constants
 docker/            Dockerfiles + nginx config
 ```
@@ -127,7 +127,7 @@ Set `FRONTEND_URL` / `CORS_ORIGIN` on the API to the web domain.
 | Path | Page |
 |------|------|
 | `/` | Home |
-| `/servers` | Live ASA server browser |
+| `/servers` | Live server browser |
 | `/servers/:serverId` | Server detail |
 | `/council` | Magical council |
 | `/community` | Community hub |
@@ -139,7 +139,7 @@ Set `FRONTEND_URL` / `CORS_ORIGIN` on the API to the web domain.
 
 Editorial map artwork, shop copy, community media, and enrichment notes still live under `apps/web/src/data` and `apps/web/public/assets`. Council/maps catalogue is also seeded into Postgres for the API.
 
-See [`docs/CONTENT.md`](docs/CONTENT.md) and [`docs/ASA_SERVER_LIST_FIELDS.md`](docs/ASA_SERVER_LIST_FIELDS.md).
+See [`docs/CONTENT.md`](docs/CONTENT.md).
 
 ### Community media images and videos
 

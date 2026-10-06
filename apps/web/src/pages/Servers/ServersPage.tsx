@@ -29,7 +29,7 @@ function ServersPage(): JSX.Element {
     >
       <SectionHeader
         title="OUR SERVERS"
-        subtitle="Explore our ARK ASA worlds. Live status is discovered from the public unofficial server list."
+        subtitle="Explore our ARK ASA worlds. Live status is discovered from ArkStatus."
         action={
           <Stack direction="row" spacing={2} alignItems="center" flexWrap="wrap" useFlexGap>
             <StatusLegend />
@@ -60,7 +60,7 @@ function ServersPage(): JSX.Element {
             : null}{' '}
           Showing the last known server information when available.
         </Alert>
-      ) : null}
+      )     : null}
 
       {network ? (
         <ServerStatusSummary
@@ -85,7 +85,7 @@ function ServersPage(): JSX.Element {
             <Box sx={{ py: 4 }}>
               <Typography color="text.secondary">
                 No The Wizards Of Ark servers have been discovered yet. The monitor will add matching
-                realms automatically once they appear in the public ASA list.
+                realms automatically once they appear in the ArkStatus list.
               </Typography>
             </Box>
           </Grid>

@@ -1,4 +1,4 @@
-/** MapName values observed from ASA → stable mapId + display name. */
+/** MapName values observed from the upstream API → stable mapId + display name. */
 const MAP_DEFINITIONS: Array<{
   patterns: RegExp[];
   mapId: string;

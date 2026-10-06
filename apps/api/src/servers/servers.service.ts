@@ -13,11 +13,14 @@ import {
   observeServerStatus,
   shouldRecordTransition,
 } from './engines/server-state.engine';
-import { AsaUnofficialListProvider } from './providers/asa-unofficial-list.provider';
+import {
+  SERVER_PROVIDER,
+  type ServerProvider,
+} from './providers/server-provider.interface';
 import type {
   KnownServerRecord,
   MeaningfulServerChange,
-  ParsedAsaServer,
+  ParsedServer,
   PollHealth,
   StatusTransitionRecord,
 } from './types';
@@ -44,7 +47,7 @@ export class ServersService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly configService: ConfigService,
-    private readonly asaProvider: AsaUnofficialListProvider,
+    @Inject(SERVER_PROVIDER) private readonly serverProvider: ServerProvider,
     @Optional() @Inject(CACHE_STORE) private readonly cacheStore?: CacheStore,
   ) {}
 
@@ -56,7 +59,11 @@ export class ServersService {
       databaseUrl: this.configService.get<string>('databaseUrl', ''),
       frontendUrl: this.configService.get<string>('frontendUrl', ''),
       corsOrigin: this.configService.get<string>('corsOrigin', '*'),
-      arkApiUrl: this.configService.get<string>('arkApiUrl', ''),
+      arkStatusBaseUrl: this.configService.get<string>(
+        'arkStatusBaseUrl',
+        'https://arkstatus.com/api/v1',
+      ),
+      arkStatusApiKey: this.configService.get<string>('arkStatusApiKey', ''),
       serverNameFilter: this.configService.get<string>(
         'serverNameFilter',
         'The Wizards Of Ark',
@@ -73,8 +80,9 @@ export class ServersService {
         'offlineThresholdSeconds',
         600,
       ),
+      serverRetentionDays: this.configService.get<number>('serverRetentionDays', 5),
       cacheTtlSeconds: this.configService.get<number>('cacheTtlSeconds', 45),
-      asaFetchTimeoutMs: this.configService.get<number>('asaFetchTimeoutMs', 30_000),
+      fetchTimeoutMs: this.configService.get<number>('fetchTimeoutMs', 30_000),
       masterListStaleSeconds: this.configService.get<number>(
         'masterListStaleSeconds',
         180,
@@ -91,18 +99,18 @@ export class ServersService {
 
   async pollOnce(now = new Date()): Promise<PollOnceResult> {
     try {
-      const { servers: matched, skipped } = await this.asaProvider.fetchWithStats();
+      const matched = await this.serverProvider.fetchServers();
       const changes = await this.applySuccessfulPoll(matched, now);
       await this.setPollSuccess(now);
       await this.invalidateCache();
-      return { ok: true, matched: matched.length, skipped, changes };
+      return { ok: true, matched: matched.length, skipped: 0, changes };
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown ASA poll failure';
+      const message = error instanceof Error ? error.message : 'Unknown server poll failure';
       const health = await this.getPollHealth();
       await this.setPollFailure(now, message, health.consecutiveFailures + 1);
       // Critical: do not mutate per-server statuses on master-list failure.
       await this.invalidateCache();
-      this.logger.error(`ASA poll failed; retaining prior server states: ${message}`);
+      this.logger.error(`Server poll failed; retaining prior server states: ${message}`);
       return { ok: false, matched: 0, skipped: 0, error: message, changes: [] };
     }
   }
@@ -151,7 +159,7 @@ export class ServersService {
   }
 
   private async applySuccessfulPoll(
-    liveServers: ParsedAsaServer[],
+    liveServers: ParsedServer[],
     now: Date,
   ): Promise<MeaningfulServerChange[]> {
     const known = await this.listServers();
@@ -182,11 +190,45 @@ export class ServersService {
       }
     }
 
+    await this.pruneRetiredServers(now);
+
     return changes;
   }
 
+  /**
+   * Remove servers that have been absent from the source for longer than the
+   * retention window, keeping the database aligned with what the upstream API
+   * actually returns. Only ever called from the successful-poll path so a
+   * transient upstream failure can never delete live servers.
+   */
+  private async pruneRetiredServers(now: Date): Promise<void> {
+    const retentionDays = this.config.serverRetentionDays;
+    if (!Number.isFinite(retentionDays) || retentionDays <= 0) {
+      return;
+    }
+
+    const cutoff = new Date(now.getTime() - retentionDays * 24 * 60 * 60 * 1000);
+    // Guard against rows that were never seen (lastSeen null) by falling back
+    // to lastChecked, which every poll writes.
+    const { count } = await this.prisma.arkServer.deleteMany({
+      where: {
+        currentStatus: 'offline',
+        OR: [
+          { lastSeen: { lt: cutoff } },
+          { lastSeen: null, lastChecked: { lt: cutoff } },
+        ],
+      },
+    });
+
+    if (count > 0) {
+      this.logger.log(
+        `Pruned ${count} retired server(s) not seen for ${retentionDays} day(s)`,
+      );
+    }
+  }
+
   private async createServer(
-    live: ParsedAsaServer,
+    live: ParsedServer,
     now: Date,
   ): Promise<MeaningfulServerChange> {
     const record: KnownServerRecord = {
@@ -222,7 +264,7 @@ export class ServersService {
       fromStatus: null,
       toStatus: 'online',
       observedAt: now,
-      note: 'Discovered in ASA unofficial server list',
+      note: 'Discovered in ArkStatus server list',
     });
     await this.writeSnapshot(record);
 
@@ -238,7 +280,7 @@ export class ServersService {
 
   private async updateObservedServer(
     existing: KnownServerRecord,
-    live: ParsedAsaServer | null,
+    live: ParsedServer | null,
     present: boolean,
     now: Date,
   ): Promise<MeaningfulServerChange | null> {
@@ -294,8 +336,8 @@ export class ServersService {
         toStatus: nextStatus,
         observedAt: now,
         note: present
-          ? 'Returned in ASA unofficial server list'
-          : 'Absent from latest successful ASA unofficial server list',
+          ? 'Returned in ArkStatus server list'
+          : 'Absent from latest successful ArkStatus poll',
       });
     }
 
@@ -644,13 +686,13 @@ export class ServersService {
 
 export function statusExplanation(status: ServerStatus): string | null {
   if (status === 'possibly_updating') {
-    return 'Server has not appeared in the public ASA server list for several minutes. This may indicate a restart, update, crash or network issue.';
+    return 'Server has not appeared in the ArkStatus server list for several minutes. This may indicate a restart, update, crash or network issue.';
   }
   if (status === 'restarting') {
-    return 'Server was recently online but is temporarily absent from the public ASA server list. This often indicates a short interruption such as a restart.';
+    return 'Server was recently online but is temporarily absent from the ArkStatus server list. This often indicates a short interruption such as a restart.';
   }
   if (status === 'offline') {
-    return 'Server has been absent from the public ASA server list beyond the offline threshold. Live presence cannot be confirmed.';
+    return 'Server has been absent from the ArkStatus server list beyond the offline threshold. Live presence cannot be confirmed.';
   }
   return null;
 }
